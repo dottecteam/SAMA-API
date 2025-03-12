@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAMA - Sistema de Atestados Médicos e Avaliações</title>
+
+    <!-- Bootstrap CSS e JS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!------>
+
+    <!-- Bibliotecas Próprias -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/style_template.css') }}"
+    />
+    <script src="{{ url_for('static', filename='scripts/script_template.js') }}"></script>
+    <!------>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a
+          class="navbar-brand"
+          href="#"
+          style="margin-left: 20px; font-size: 32px"
+          >SAMA</a
+        >
+
+        <!-- Botão de Toggle (para dispositivos móveis) -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+        <i class="bi bi-list navbar-icon-custom"></i>
+        </button>
+
+        <!-- Itens de Navegação -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item p-2">
+              <a class="nav-link rounded text-center" href="#"
+                >Atestado Médico</a
+              >
+            </li>
+            <li class="nav-item p-2">
+              <a class="nav-link rounded text-center" href="#">Avaliações</a>
+            </li>
+            <li class="nav-item p-2">
+              <a class="nav-link rounded text-center" href="#"
+                >Painel de Administração</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div style="height: 1200px"></div>
+
+    <footer class="footer-custom-bg">
+      <div class="container">
+        <p>&copy; 2025 SAMA - Todos os direitos reservados.</p>
+        <p>
+          <a href="#">Política de Privacidade</a> |
+          <a href="#">Termos de Serviço</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
