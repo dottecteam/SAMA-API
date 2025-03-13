@@ -1,18 +1,19 @@
-:root{
-    --cor-primaria: #3b8c6e;
-    --cor-secundaria: #1e5959;
-}
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
 }
+
+
+
 
 
 /* Estilo da Navbar */
 .navbar-custom {
-  background-color: var(--cor-primaria);
   backdrop-filter: blur(10px);
   opacity: 0.9;
 }
@@ -47,6 +48,34 @@
 }
 /**/
 
+
+
+/* Estilo do Main */
+
+    .container-main{
+        margin-top: 7%;
+    }
+
+    @media only screen and (max-width: 800px){
+        .container-main{
+            margin-top: 10%;
+        }
+    }
+
+    @media only screen and (max-width: 600px){
+        .container-main{
+            margin-top: 15%;
+        }
+    }
+
+    @media only screen and (max-width: 400px){
+        .container-main{
+            margin-top: 20%;
+        }
+    }
+   
+/**/
+  
 
 
 

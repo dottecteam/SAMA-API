@@ -1,0 +1,20 @@
+:root{
+    --cor-primaria: #164773;
+    --cor-secundaria: #0b2b40;
+}
+
+.navbar-custom {
+    background-color: var(--cor-primaria);
+  }
+  
+  .nav-link:hover {
+    background-color: var(--cor-secundaria);
+  }
+  
+  .navbar-toggler:focus{
+    background-color: var(--cor-secundaria);
+  }
+  
+  .footer-custom-bg {
+    background-color: var(--cor-secundaria);
+  }
