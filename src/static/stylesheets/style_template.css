@@ -18,9 +18,9 @@
   opacity: 0.9;
 }
 
-.navbar-custom .navbar-brand {
-  font-weight: bold;
-  color: #ffffff;
+.navbar-custom .navbar-logo-custom {
+  height: 50px;
+  width: 120px;
 }
 
 .navbar-custom .navbar-nav .nav-link {

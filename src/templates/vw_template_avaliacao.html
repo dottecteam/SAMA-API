@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SAMA - Sistema de Atestados Médicos e Avaliações</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icone.svg') }}" />
 
     <!-- Bootstrap CSS e JS -->
     <link
@@ -19,15 +20,15 @@
 
     <!-- Bibliotecas Próprias -->
     <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='stylesheets/style_template.css') }}"
-  />
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/style_template.css') }}"
+    />
 
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='stylesheets/style_template_avaliacao.css') }}"
     />
-   
+
     <script src="{{ url_for('static', filename='scripts/script_template.js') }}"></script>
     <!------>
   </head>
@@ -38,8 +39,11 @@
       <div class="container-fluid">
         <!-- Logo -->
         <a href="/">
-          <img src="{{ url_for('static', filename='img/logo-transparente.png') }}" style="width: 100px; height: 50px;">
-        
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Logo SAMA"
+            class="navbar-logo-custom"
+          />
         </a>
 
         <!-- Botão de Toggle (para dispositivos móveis) -->
@@ -52,7 +56,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-        <i class="bi bi-list navbar-icon-custom"></i>
+          <i class="bi bi-list navbar-icon-custom"></i>
         </button>
 
         <!-- Itens de Navegação -->
@@ -64,7 +68,9 @@
               >
             </li>
             <li class="nav-item p-2">
-              <a class="nav-link rounded text-center" href="/avaliacao">Avaliações</a>
+              <a class="nav-link rounded text-center" href="/avaliacao"
+                >Avaliações</a
+              >
             </li>
             <li class="nav-item p-2">
               <a class="nav-link rounded text-center" href="/painel"
@@ -76,12 +82,9 @@
       </div>
     </nav>
 
-     <main class="container container-main"> 
-
+    <main class="container container-main">
       {% block content %} {% endblock %}
-
     </main>
-
 
     <footer class="footer-custom-bg">
       <div class="container">
