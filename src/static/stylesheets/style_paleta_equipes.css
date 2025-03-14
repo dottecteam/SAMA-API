@@ -1,6 +1,6 @@
-:root{
-    --cor-primaria: #3b8c6e;
-    --cor-secundaria: #0b2b40;
+:root {
+  --cor-primaria: #164773;
+  --cor-secundaria: #0b2b40;
 }
 
 .navbar-custom {
@@ -11,7 +11,7 @@
   background-color: var(--cor-secundaria);
 }
 
-.navbar-toggler:focus{
+.navbar-toggler:focus {
   background-color: var(--cor-secundaria);
 }
 
@@ -19,21 +19,21 @@
   background-color: var(--cor-secundaria);
 }
 
-.bg-primario{
+.bg-primario {
   background-color: var(--cor-primaria);
 }
 
-.btn-custom{
+.btn-custom {
   background-color: var(--cor-primaria);
   color: #ffffff;
 }
 
-.btn-custom:hover{
+.btn-custom:hover {
   background-color: var(--cor-secundaria);
   color: #ffffff;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   background-color: var(--cor-secundaria);
   color: #ffffff;
   transition: all 0.3s;
