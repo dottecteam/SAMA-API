@@ -13,11 +13,6 @@
 
 
 /* Estilo da Navbar */
-.navbar-custom {
-  backdrop-filter: blur(10px);
-  opacity: 0.9;
-}
-
 .navbar-custom .navbar-logo-custom {
   height: 50px;
   width: 120px;
@@ -54,6 +49,7 @@
 
     .container-main{
         margin-top: 7%;
+        margin-bottom: 5%;
     }
 
     @media only screen and (max-width: 800px){

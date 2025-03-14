@@ -1,0 +1,46 @@
+
+/*Estilização do input file*/
+.file-upload-area {
+    border: 2px dashed #007bff; /* Borda pontilhada azul */
+    padding: 30px; /* Espaçamento interno */
+    background-color: #f8f9fa; /* Fundo claro */
+    text-align: center; /* Centraliza o texto */
+    border-radius: 10px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}
+
+.file-upload-area:hover {
+    background-color: #e9ecef; /* Fundo mais escuro quando passar o mouse */
+}
+
+.file-upload-area span {
+    color: #007bff; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+.file-upload-area input[type="file"] {
+    display: none; /* Esconde o input de arquivo original */
+}
+
+/*Tamanhos*/
+
+.file-upload-area{
+    width: 40%;
+}
+
+@media only screen and (max-width: 1100px){
+    .file-upload-area{
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 990px){
+    .file-upload-area{
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 770px){
+    .file-upload-area{
+        width: 100%;
+    }
+}
+/**/

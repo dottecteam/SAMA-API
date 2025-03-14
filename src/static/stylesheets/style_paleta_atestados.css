@@ -18,3 +18,17 @@
 .footer-custom-bg {
   background-color: var(--cor-secundaria);
 }
+
+.bg-primario{
+  background-color: var(--cor-primaria);
+}
+
+.btn-custom{
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+}
+
+.btn-custom:hover{
+  background-color: var(--cor-secundaria);
+  color: #ffffff;
+}
