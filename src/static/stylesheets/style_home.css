@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
-/* Cor da seção do scrum */
 #scrum-section {
     background-color: #164773;
     padding: 40px;
@@ -34,6 +33,33 @@
     transform-origin: top right;
 }
 
+/* Ponta inferior esquerda */
+#scrum-section .bottom-left {
+    content: "";
+    position: absolute;
+    background-color: #164773;
+    bottom: 0;
+    height: 5vw;
+    width: 50%;
+    left: 0;
+    transform: skewY(5deg); /* Ponta inclinada para baixo */
+    transform-origin: bottom left;
+}
+
+/* Ponta inferior direita */
+#scrum-section .bottom-right {
+    content: "";
+    position: absolute;
+    background-color: #164773;
+    bottom: 0;
+    height: 5vw;
+    width: 50%;
+    right: 0;
+    transform: skewY(-5deg); /* Ponta inclinada para baixo */
+    transform-origin: bottom right;
+}
+
+
 #scrum-section h2 {
     color: #f78e2d;
     
@@ -59,9 +85,12 @@
 
 #scrum-section img {
     width: 300px;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
+#img-home-doctor{
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 
-
+}
 
 @media (max-width: 950px) {
     #img-home-doctor{

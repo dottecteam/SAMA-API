@@ -2,42 +2,64 @@
 <!-- Eu não faço a menor ideia de html, meu deus -->
 
 <section class="container-fluid">
-    <div class="row m-2">
-        <div class="col-6 align-self-center text-center">
-            <div class="text-center mx-auto" style="max-width: 500px;">
-                <h2 class="text-center home-title">Serviço de envio de <span style="color: #3b8c6e;">Atestados Médicos</span></h2>
-                <p>Precisa enviar seus atestados médicos de forma remota? Envie seu atestado médico pelo nosso
-                    formulário de cadastro clicando no botão abaixo!</p>
-                <a href="/atestados/cadastro" class="btn btn-custom ">Cadastrar Atestado</a>
-            </div>
-        </div>
-        <div class="col-6 overflow-hidden div-image">
-            <!-- Conteúdo do serviço de envio de atestados médicos, eu não tinha a imagem então deixei sem -->
-            <img id="img-home-doctor" src="{{ url_for('static', filename='images/doutor.png') }}"
-                class="mx-auto align-self-center" alt="Doutor">
-        </div>
+  <div class="row m-2">
+    <div class="col-6 align-self-center text-center">
+      <div class="text-center mx-auto" style="max-width: 500px">
+        <h2 class="text-center home-title">
+          Serviço de envio de
+          <span style="color: #3b8c6e">Atestados Médicos</span>
+        </h2>
+        <p>
+          Precisa enviar seus atestados médicos de forma remota? Envie seu
+          atestado médico pelo nosso formulário de cadastro clicando no botão
+          abaixo!
+        </p>
+        <a href="/atestados/cadastro" class="btn btn-custom"
+          >Cadastrar Atestado</a
+        >
+      </div>
     </div>
+    <div class="col-6 overflow-hidden div-image">
+      <!-- Conteúdo do serviço de envio de atestados médicos, eu não tinha a imagem então deixei sem -->
+      <img
+        id="img-home-doctor"
+        src="{{ url_for('static', filename='images/doutor.png') }}"
+        class="mx-auto align-self-center"
+        alt="Doutor"
+      />
+    </div>
+  </div>
 </section>
 
 <section>
-        <div id="scrum-section" class=" container-fluid">
-            <div class="row m-2">
-                <div class="col-6 align-self-center text-center  div-image">
-                    <img src="{{ url_for('static', filename='images/MAScrum.png') }}" alt="Ícone Scrum">
-                </div>
-                <!-- Conteúdo da metodologia Scrum, também não tinha uma imagem -->
-                <div class="col-6 align-self-center text-center">
-                    <div class="text-center mx-auto " style="max-width: 500px;">
-                        <h2 class="home-title">Métodologia <span style="color: #ffcb05;">Scrum</span></h2>
-                        <p>Deseja cadastrar sua equipe ágil e receber avaliações? Cadastre sua empresa no SAMA! Aqui
-                            você terá
-                            painéis administrativos para administração e visualização do processo evolutivo do seu time.
-                        </p>
-                        <a href="/equipes/cadastro" class="btn btn-custom-home">Cadastrar Equipe</a>
-                    </div>
-                </div>
-            </div>
+  <div id="scrum-section" class="container-fluid">
+    <div class="bottom-left"></div>
+    <div class="bottom-right"></div>
+    <div class="row m-2">
+      <div class="col-6 align-self-center text-center div-image">
+        <img
+          src="{{ url_for('static', filename='images/MAScrum.png') }}"
+          alt="Ícone Scrum"
+        />
+      </div>
+      <!-- Conteúdo da metodologia Scrum, também não tinha uma imagem -->
+      <div class="col-6 align-self-center text-center">
+        <div class="text-center mx-auto" style="max-width: 500px">
+          <h2 class="home-title">
+            Métodologia <span style="color: #ffcb05">Scrum</span>
+          </h2>
+          <p>
+            Deseja cadastrar sua equipe ágil e receber avaliações? Cadastre sua
+            empresa no SAMA! Aqui você terá painéis administrativos para
+            administração e visualização do processo evolutivo do seu time.
+          </p>
+          <a href="/equipes/cadastro" class="btn btn-custom-home"
+            >Cadastrar Equipe</a
+          >
         </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 {% endblock %}

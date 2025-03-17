@@ -38,5 +38,5 @@ def avaliacao():
 #TELAS
 
 #FUNÇÕES
-
+#Aqui ficará as rotas que irão fazer as requisições para o banco de dados, como cadastrar, logar, deletar, etc.
 #FUNÇÕES
