@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+/* Cor da seção do scrum */
+#scrum-section {
+    background-color: #164773;
+    padding: 40px;
+    color: white;
+    position: relative; /* Necessário para os pseudo-elementos */
+}
+
+/* Ponta superior esquerda */
+#scrum-section::before {
+    content: "";
+    position: absolute;
+    background-color: #164773;
+    top: 0;
+    height: 5vw;
+    width: 50%;
+    left: 0;
+    transform: skewY(-5deg); /* Ponta inclinada para cima */
+    transform-origin: top left;
+}
+
+/* Ponta superior direita */
+#scrum-section::after {
+    content: "";
+    position: absolute;
+    background-color: #164773;
+    top: 0;
+    height: 5vw;
+    width: 50%;
+    right: 0;
+    transform: skewY(5deg); /* Ponta inclinada para cima */
+    transform-origin: top right;
+}
+
+#scrum-section h2 {
+    color: #f78e2d;
+    
+}
+
+.home-title{
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: bold;
+}
+.home-title span{
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: bold;
+}
+
+.btn-custom-home{
+    background-color: #f78e2d;
+    color: #ffffff;
+}
+.btn-custom-home:hover{
+    background-color: #c56b17;
+}
+
+
+#scrum-section img {
+    width: 300px;
+}
+
+
+
+@media (max-width: 950px) {
+    #img-home-doctor{
+        width: 450px;
+    }
+}
+@media (max-width: 870px) {
+    #img-home-doctor{
+        width: 400px;
+    }
+}
+@media (max-width: 780px) {
+    #img-home-doctor{
+        width: 350px;
+    }
+}
+@media (max-width: 700px) {
+    #img-home-doctor{
+        width: 350px;
+    }
+    #scrum-section img {
+        width: 250px;
+    }
+}
+@media (max-width: 689px) {
+    #img-home-doctor{
+        width: 300px;
+    }
+    #scrum-section img {
+        width: 250px;
+    }
+}
+@media (max-width: 610px) {
+    .div-image{
+        display: none;
+    }
+    .col-6{
+        width: 100% !important;
+        margin-bottom: 50px;
+    }
+}
