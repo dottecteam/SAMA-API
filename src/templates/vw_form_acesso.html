@@ -1,4 +1,66 @@
 {% extends "vw_template_atestados.html" %} {% block content %}
 
-<h1>Acesso da Secretaria</h1>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="errorModal"
+  tabindex="-1"
+  aria-labelledby="errorModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Fechar"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Ocorreu um erro inesperado!</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h4 class="text-center align-self-center">Acesso da Secretaria</h4>
+        </div>
+        <div class="card-body">
+          <form action="" method="POST">
+            <p>
+              Informe o código de funcionário da secretaria para acessar o
+              sistema:
+            </p>
+            <div class="form-group mb-3">
+              <label for="senha">Código</label>
+              <input
+                type="password"
+                name="senha"
+                id="senha"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group mb-3 text-center">
+              <button type="submit" class="btn btn-custom">Entrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
