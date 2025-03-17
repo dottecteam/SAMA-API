@@ -1,16 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Quicksand', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
 }
-
-
-
-
 
 /* Estilo da Navbar */
 .navbar-custom .navbar-logo-custom {
@@ -28,91 +23,129 @@
   transform: scale(1.05);
   background-color: var(--cor-secundaria);
 }
-.navbar-icon-custom{
-    color: #ffffff;
-    font-size: 40px;
-    font-weight: bold;
+.navbar-icon-custom {
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: bold;
 }
-.navbar-toggler{
-    border: none;
+.navbar-toggler {
+  border: none;
 }
-.navbar-toggler:focus{
-    background-color: var(--cor-secundaria);
-    outline: none;
-    box-shadow: none;
+.navbar-toggler:focus {
+  background-color: var(--cor-secundaria);
+  outline: none;
+  box-shadow: none;
 }
 /**/
-
-
 
 /* Estilo do Main */
 
-    .container-main{
-        margin-top: 7%;
-        margin-bottom: 5%;
-    }
+.container-main {
+  margin-top: 7%;
+  margin-bottom: 5%;
+}
 
-    @media only screen and (max-width: 800px){
-        .container-main{
-            margin-top: 10%;
-        }
-    }
+@media only screen and (max-width: 800px) {
+  .container-main {
+    margin-top: 10%;
+  }
+}
 
-    @media only screen and (max-width: 600px){
-        .container-main{
-            margin-top: 15%;
-        }
-    }
+@media only screen and (max-width: 600px) {
+  .container-main {
+    margin-top: 15%;
+  }
+}
 
-    @media only screen and (max-width: 400px){
-        .container-main{
-            margin-top: 20%;
-        }
-    }
-   
+@media only screen and (max-width: 400px) {
+  .container-main {
+    margin-top: 20%;
+  }
+}
+
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px 35px 8px 12px; /* Reduzi o padding */
+  border: 1.5px solid rgba(255, 255, 255, 0.5); /* Borda mais fina */
+  background: transparent;
+  border-radius: 20px; /* Mantém arredondado */
+  color: white;
+  font-size: 14px; /* Texto levemente menor */
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-container input:focus {
+  border-color: #ffffff;
+}
+
+.search-container .bi-search {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+}
+.search-container .bi-search:hover {
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s;
+}
+
+.navbar.scrolled {
+    opacity: 0.9;
+  }
+
 /**/
-  
-
-
 
 /* Estilo do Footer */
 
 .footer-logo-custom {
   width: 400px;
 }
-@media only screen and (max-width: 1080px){
-    .footer-logo-custom {
-        width: 350px;
-    }
+@media only screen and (max-width: 1080px) {
+  .footer-logo-custom {
+    width: 350px;
+  }
 }
-@media only screen and (max-width: 960px){
-    .footer-logo-custom {
-        width: 300px;
-    }
+@media only screen and (max-width: 960px) {
+  .footer-logo-custom {
+    width: 300px;
+  }
 }
-@media only screen and (max-width: 840px){
-    .footer-logo-custom {
-        width: 250px;
-    }
+@media only screen and (max-width: 840px) {
+  .footer-logo-custom {
+    width: 250px;
+  }
 }
 
 .footer-custom a {
   text-decoration: none;
 }
 
-.dropdown-menu.show{
-    animation: dropdownFade 0.3s ease forwards;
+.dropdown-menu.show {
+  animation: dropdownFade 0.3s ease forwards;
 }
 
 @keyframes dropdownFade {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /**/
