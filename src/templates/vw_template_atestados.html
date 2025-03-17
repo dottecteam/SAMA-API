@@ -133,11 +133,24 @@
                     >Cadastro de Atestados</a
                   >
                 </li>
+                {% if 'secretaria' not in session %}
                 <li>
                   <a class="dropdown-item" href="/atestados/acesso"
                     >Acesso da Secretaria</a
                   >
                 </li>
+                {% else %}
+                <li>
+                  <a class="dropdown-item" href="/atestados/consulta"
+                    >Consulta de Atestados</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/atestados/acesso/logout"
+                    >Sair</a
+                  >
+                </li>
+                {% endif %}
               </ul>
             </li>
 
@@ -195,7 +208,10 @@
           </ul>
           <div class="nav-item p-2">
             <div class="search-container mx-auto">
-              <input type="text" placeholder="Pesquise aqui seu atestado médico!" />
+              <input
+                type="text"
+                placeholder="Pesquise aqui seu atestado médico!"
+              />
               <i class="bi bi-search"></i>
             </div>
           </div>

@@ -1,4 +1,5 @@
 from app import app
+from app.controllers.ct_secretaria import *
 from flask import render_template, request, redirect, url_for, jsonify, session
 
 #TELAS
@@ -19,6 +20,7 @@ def acesso_secretaria():
 
 #Página de painel de atestados
 @app.route("/painel/atestados")
+@login_required_secretaria
 def painel_atestados():
     return render_template("vw_dashboard_atestados.html")
 
@@ -39,4 +41,13 @@ def avaliacao():
 
 #FUNÇÕES
 #Aqui ficará as rotas que irão fazer as requisições para o banco de dados, como cadastrar, logar, deletar, etc.
+@app.route('/atestados/acesso/logar', methods=['POST'])
+def logar():
+    response = logar_secretaria()
+    return response
+
+@app.route('/atestados/acesso/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
 #FUNÇÕES
