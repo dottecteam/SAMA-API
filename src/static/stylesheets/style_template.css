@@ -7,6 +7,16 @@
   font-family: "Quicksand", sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+
 /* Estilo da Navbar */
 .navbar-custom .navbar-logo-custom {
   height: 50px;
@@ -43,6 +53,7 @@
 .container-main {
   margin-top: 7%;
   margin-bottom: 5%;
+  min-height: 400px;
 }
 
 @media only screen and (max-width: 800px) {
