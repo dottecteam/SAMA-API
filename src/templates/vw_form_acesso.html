@@ -12,7 +12,7 @@
           <h4 class="text-center align-self-center">Acesso da Secretaria</h4>
         </div>
         <div class="card-body">
-          <form action="" method="POST">
+          <form id="form-login-secretaria" method="POST">
             <p>
               Informe o código de funcionário da secretaria para acessar o
               sistema:
@@ -20,7 +20,8 @@
             <div class="form-group mb-3">
               <label for="senha">Código</label>
               <input
-                type="password"
+                autocomplete="off"
+                type="text"
                 name="senha"
                 id="senha"
                 class="form-control"
@@ -36,4 +37,6 @@
     </div>
   </div>
 </div>
+
+<script src="{{ url_for('static', filename='scripts/script_form_acesso.js') }}"></script>
 {% endblock %}

@@ -1,20 +1,19 @@
-
-/*Estilização do input file*/
+/* Estilização do input file */
 .file-upload-area {
-    border: 2px dashed #007bff; /* Borda pontilhada azul */
+    border: 2px dashed rgb(59, 140, 110); /* Borda pontilhada azul (#007bff) */
     padding: 30px; /* Espaçamento interno */
-    background-color: #f8f9fa; /* Fundo claro */
+    background-color: rgb(248, 249, 250); /* Fundo claro (#f8f9fa) */
     text-align: center; /* Centraliza o texto */
     border-radius: 10px; /* Bordas arredondadas */
     cursor: pointer; /* Muda o cursor para indicar que é clicável */
 }
 
 .file-upload-area:hover {
-    background-color: #e9ecef; /* Fundo mais escuro quando passar o mouse */
+    background-color: rgb(233, 236, 239); /* Fundo mais escuro quando passar o mouse (#e9ecef) */
 }
 
 .file-upload-area span {
-    color: #007bff; /* Cor do texto */
+    color: rgb(59, 140, 110); /* Cor do texto (#007bff) */
     font-size: 16px; /* Tamanho da fonte */
 }
 
@@ -22,25 +21,25 @@
     display: none; /* Esconde o input de arquivo original */
 }
 
-/*Tamanhos*/
-
-.file-upload-area{
+/* Tamanhos */
+.file-upload-area {
     width: 40%;
 }
 
-@media only screen and (max-width: 1100px){
-    .file-upload-area{
+@media only screen and (max-width: 1100px) {
+    .file-upload-area {
         width: 50%;
     }
 }
-@media only screen and (max-width: 990px){
-    .file-upload-area{
+
+@media only screen and (max-width: 990px) {
+    .file-upload-area {
         width: 70%;
     }
 }
-@media only screen and (max-width: 770px){
-    .file-upload-area{
+
+@media only screen and (max-width: 770px) {
+    .file-upload-area {
         width: 100%;
     }
 }
-/**/

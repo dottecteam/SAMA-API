@@ -2,8 +2,8 @@ import uuid
 from app import app
 from flask import render_template, request, redirect, url_for, jsonify, session, send_from_directory
 from app.controllers.ct_atestado import *
-
-
+from app.controllers.ct_secretaria import *
+from flask import render_template, request, redirect, url_for, jsonify, session
 
 #TELAS
 #Home
@@ -24,6 +24,7 @@ def acesso_secretaria():
 
 #Página de painel de atestados
 @app.route("/painel/atestados")
+@login_required_secretaria
 def painel_atestados():
     return render_template("vw_dashboard_atestados.html")
 
@@ -66,4 +67,14 @@ def cadastrar():
 
         usuarios = ler_dados()
         return render_template('vw_form_atestados.html', usuarios=usuarios)
+
+@app.route('/atestados/acesso/logar', methods=['POST'])
+def logar():
+    response = logar_secretaria()
+    return response
+
+@app.route('/atestados/acesso/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
 #FUNÇÕES
