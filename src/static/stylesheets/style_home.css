@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 
 #scrum-section {
-  background-color: #164773;
+  background-color: rgb(22, 71, 115); /* #164773 */
   padding: 40px;
   color: white;
   position: relative; /* Necessário para os pseudo-elementos */
@@ -11,7 +11,7 @@
 #scrum-section::before {
   content: "";
   position: absolute;
-  background-color: #164773;
+  background-color: rgb(22, 71, 115); /* #164773 */
   top: 0;
   height: 5vw;
   width: 50%;
@@ -24,7 +24,7 @@
 #scrum-section::after {
   content: "";
   position: absolute;
-  background-color: #164773;
+  background-color: rgb(22, 71, 115); /* #164773 */
   top: 0;
   height: 5vw;
   width: 50%;
@@ -37,7 +37,7 @@
 #scrum-section .bottom-left {
   content: "";
   position: absolute;
-  background-color: #164773;
+  background-color: rgb(22, 71, 115); /* #164773 */
   bottom: 0;
   height: 5vw;
   width: 50%;
@@ -50,7 +50,7 @@
 #scrum-section .bottom-right {
   content: "";
   position: absolute;
-  background-color: #164773;
+  background-color: rgb(22, 71, 115); /* #164773 */
   bottom: 0;
   height: 5vw;
   width: 50%;
@@ -60,30 +60,33 @@
 }
 
 #scrum-section h2 {
-  color: #f78e2d;
+  color: rgb(247, 142, 45); /* #f78e2d */
 }
 
 .home-title {
   font-family: "Archivo Black", sans-serif;
   font-weight: bold;
 }
+
 .home-title span {
   font-family: "Archivo Black", sans-serif;
   font-weight: bold;
 }
 
 .btn-custom-home {
-  background-color: #f78e2d;
-  color: #ffffff;
+  background-color: rgb(247, 142, 45); /* #f78e2d */
+  color: rgb(255, 255, 255); /* #ffffff */
 }
+
 .btn-custom-home:hover {
-  background-color: #c56b17;
+  background-color: rgb(197, 107, 23); /* #c56b17 */
 }
 
 #img-home-scrum {
   width: 300px;
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
+
 #img-home-doctor {
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
@@ -93,16 +96,19 @@
     width: 450px;
   }
 }
+
 @media (max-width: 870px) {
   #img-home-doctor {
     width: 400px;
   }
 }
+
 @media (max-width: 780px) {
   #img-home-doctor {
     width: 350px;
   }
 }
+
 @media (max-width: 700px) {
   #img-home-doctor {
     width: 350px;
@@ -111,6 +117,7 @@
     width: 250px;
   }
 }
+
 @media (max-width: 689px) {
   #img-home-doctor {
     width: 300px;
@@ -119,6 +126,7 @@
     width: 250px;
   }
 }
+
 @media (max-width: 610px) {
   .div-image {
     display: none;
