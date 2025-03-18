@@ -21,31 +21,31 @@
   </div>
 
 
-<h1>Cadastro de atestado médico</h1>
-<form id="form-atestados">
+<h1 style="text-align: center;">Cadastro de atestado médico</h1>
+<form id="form-atestados" method="POST" action="/atestados/cadastro/cadastrar" enctype="multipart/form-data">
 
     <div class="form-group p-2">
         <label for="input-nome-form-atestados">Nome completo:</label>
-        <input type="name" class="form-control" id="input-nome-form-atestados" aria-describedby="nameHelp"
+        <input type="name" class="form-control" id="input-nome-form-atestados" name="input-nome-form-atestados" aria-describedby="nameHelp"
             placeholder="Nome">
     </div>
 
     <div class="form-group p-2">
         <label for="input-email-form-atestados">E-mail:</label>
-        <input type="email" class="form-control" id="input-email-form-atestados" aria-describedby="emailHelp"
+        <input type="email" class="form-control" id="input-email-form-atestados" name="input-email-form-atestados" aria-describedby="emailHelp"
             placeholder="Seu email">
         <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
     </div>
 
     <div class="form-group p-2">
         <label for="input-curso-form-atestados">Curso:</label>
-        <input type="curso" class="form-control" id="input-curso-form-atestados" aria-describedby="cursoHelp"
+        <input type="curso" class="form-control" id="input-curso-form-atestados" name="input-curso-form-atestados" aria-describedby="cursoHelp"
             placeholder="Nome do curso">
     </div>
 
     <div class="form-group p-2 ">
         <label for="select-form-atestados">Semestre</label>
-        <select class="form-control" id="select-form-atestados">
+        <select class="form-control" id="select-form-atestados" name="select-form-atestados">
             <option>1°</option>
             <option>2°</option>
             <option>3°</option>
@@ -61,21 +61,21 @@
 
     <div class="form-group p-2 ">
         <label for="date-form-atestados-1">Período de afastamento: </label>
-        <input type="date" id="date-form-atestados-1" name="data" required> até <input type="date"
-            id="date-form-atestados-1" name="data" required>,
+        <input type="date" id="date-form-atestados-1" name="date-form-atestados-1" required> até <input type="date"
+            id="date-form-atestados-2" name="date-form-atestados-2" required>,
         inclusive.
     </div>
 
     <div class="form-group p-2">
         <label for="input-cid-form-atestados">CID do afastamento:</label>
-        <input type="text" class="form-control" id="input-cid-form-atestados" aria-describedby="cidHelp"
+        <input type="text" class="form-control" id="input-cid-form-atestados" name="input-cid-form-atestados" aria-describedby="cidHelp"
             placeholder="Ex: M51.4">
     </div>
 
     <div class="form-group p-2">
         <label for="file-form-atestados">Anexar Atestado <strong>(Deve conter assinatura do médico com CRM)</strong></label>
         <div class="file-upload-area" id="file-upload-area">
-            <input type="file" class="form-control-file" id="file-form-atestados" style="display:none;" accept=".pdf">
+            <input type="file" class="form-control-file" id="file-form-atestados" name="file-form-atestados" style="display:none;" accept=".pdf">
             <span>Arraste ou clique para escolher o arquivo</span>
         </div>
     </div>    
@@ -88,6 +88,13 @@
 
     <button type="submit" class="btn btn-custom bg-primario">Enviar</button>
 </form>
+
+    <h2>Usuários Cadastrados</h2>
+        <ul>
+            {% for usuario in usuarios %}
+                <li>{{ usuario[0] }} - {{ usuario[1] }} - {{ usuario[2] }} - {{ usuario[3] }} - {{ usuario[4] }} - {{ usuario[5] }} - {{ usuario[6] }}</li>
+            {% endfor %}
+        </ul>
 
 <script src="{{ url_for('static', filename='scripts/script_form_atestados.js') }}"></script>
 {% endblock %}

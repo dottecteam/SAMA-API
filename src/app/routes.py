@@ -1,5 +1,9 @@
+import uuid
 from app import app
-from flask import render_template, request, redirect, url_for, jsonify, session
+from flask import render_template, request, redirect, url_for, jsonify, session, send_from_directory
+from app.controllers.ct_atestado import *
+
+
 
 #TELAS
 #Home
@@ -10,7 +14,8 @@ def home():
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
 def atestados():
-    return render_template("vw_form_atestados.html")
+    usuarios = ler_dados()
+    return render_template("vw_form_atestados.html", usuarios=usuarios)
 
 #Página de cadastro de atestados
 @app.route("/atestados/acesso")
@@ -38,5 +43,27 @@ def avaliacao():
 #TELAS
 
 #FUNÇÕES
+@app.route("/atestados/cadastro/cadastrar", methods=['GET', 'POST'])
+def cadastrar():
+    if request.method == 'POST':
+        nome = request.form['input-nome-form-atestados']
+        email = request.form['input-email-form-atestados']
+        curso = request.form['input-curso-form-atestados']
+        semestre = request.form['select-form-atestados']
+        dataIn = request.form['date-form-atestados-1']
+        dataFin = request.form['date-form-atestados-2']
+        cid = request.form['input-cid-form-atestados']
+        arquivo = request.files['file-form-atestados']
 
+        
+        
+        if arquivo.filename.endswith(".pdf"):
+            nome_unico = str(uuid.uuid4()) + arquivo.filename
+            caminho_atestados = f"../data/atestados/{nome_unico}"
+            salvar_arquivo(arquivo, caminho_atestados)
+    
+        salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico)  
+
+        usuarios = ler_dados()
+        return render_template('vw_form_atestados.html', usuarios=usuarios)
 #FUNÇÕES

@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+
+#scrum-section {
+  background-color: #164773;
+  padding: 40px;
+  color: white;
+  position: relative; /* Necessário para os pseudo-elementos */
+}
+
+/* Ponta superior esquerda */
+#scrum-section::before {
+  content: "";
+  position: absolute;
+  background-color: #164773;
+  top: 0;
+  height: 5vw;
+  width: 50%;
+  left: 0;
+  transform: skewY(-5deg); /* Ponta inclinada para cima */
+  transform-origin: top left;
+}
+
+/* Ponta superior direita */
+#scrum-section::after {
+  content: "";
+  position: absolute;
+  background-color: #164773;
+  top: 0;
+  height: 5vw;
+  width: 50%;
+  right: 0;
+  transform: skewY(5deg); /* Ponta inclinada para cima */
+  transform-origin: top right;
+}
+
+/* Ponta inferior esquerda */
+#scrum-section .bottom-left {
+  content: "";
+  position: absolute;
+  background-color: #164773;
+  bottom: 0;
+  height: 5vw;
+  width: 50%;
+  left: 0;
+  transform: skewY(5deg); /* Ponta inclinada para baixo */
+  transform-origin: bottom left;
+}
+
+/* Ponta inferior direita */
+#scrum-section .bottom-right {
+  content: "";
+  position: absolute;
+  background-color: #164773;
+  bottom: 0;
+  height: 5vw;
+  width: 50%;
+  right: 0;
+  transform: skewY(-5deg); /* Ponta inclinada para baixo */
+  transform-origin: bottom right;
+}
+
+#scrum-section h2 {
+  color: #f78e2d;
+}
+
+.home-title {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: bold;
+}
+.home-title span {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: bold;
+}
+
+.btn-custom-home {
+  background-color: #f78e2d;
+  color: #ffffff;
+}
+.btn-custom-home:hover {
+  background-color: #c56b17;
+}
+
+#img-home-scrum {
+  width: 300px;
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
+}
+#img-home-doctor {
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
+}
+
+@media (max-width: 950px) {
+  #img-home-doctor {
+    width: 450px;
+  }
+}
+@media (max-width: 870px) {
+  #img-home-doctor {
+    width: 400px;
+  }
+}
+@media (max-width: 780px) {
+  #img-home-doctor {
+    width: 350px;
+  }
+}
+@media (max-width: 700px) {
+  #img-home-doctor {
+    width: 350px;
+  }
+  #img-home-scrum {
+    width: 250px;
+  }
+}
+@media (max-width: 689px) {
+  #img-home-doctor {
+    width: 300px;
+  }
+  #img-home-scrum {
+    width: 250px;
+  }
+}
+@media (max-width: 610px) {
+  .div-image {
+    display: none;
+  }
+  .col-6 {
+    width: 100% !important;
+    margin-bottom: 50px;
+  }
+}

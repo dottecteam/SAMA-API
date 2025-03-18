@@ -1,4 +1,39 @@
 {% extends "vw_template_atestados.html" %} {% block content %}
 
-<h1>Acesso da Secretaria</h1>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h4 class="text-center align-self-center">Acesso da Secretaria</h4>
+        </div>
+        <div class="card-body">
+          <form action="" method="POST">
+            <p>
+              Informe o código de funcionário da secretaria para acessar o
+              sistema:
+            </p>
+            <div class="form-group mb-3">
+              <label for="senha">Código</label>
+              <input
+                type="password"
+                name="senha"
+                id="senha"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group mb-3 text-center">
+              <button type="submit" class="btn btn-custom">Entrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
