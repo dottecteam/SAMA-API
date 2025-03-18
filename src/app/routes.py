@@ -68,6 +68,7 @@ def cadastrar():
         usuarios = ler_dados()
         return render_template('vw_form_atestados.html', usuarios=usuarios)
 
+
 @app.route('/atestados/acesso/logar', methods=['POST'])
 def logar():
     response = logar_secretaria()
