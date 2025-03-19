@@ -22,6 +22,11 @@ def atestados():
 def acesso_secretaria():
     return render_template("vw_form_acesso.html")
 
+#Página de consulta de atestados
+@app.route("/atestados/consulta")
+def consulta_atestados():
+    return render_template("vw_consulta_atestados.html")
+
 #Página de painel de atestados
 @app.route("/painel/atestados")
 @login_required_secretaria
