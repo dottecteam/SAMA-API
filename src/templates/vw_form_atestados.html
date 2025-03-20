@@ -13,19 +13,6 @@
         <!-- Primeiros dois campos à esquerda -->
         <div class="col-md-6">
           <div class="form-group p-2">
-            <label for="input-nome-form-atestados">Nome completo:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="input-nome-form-atestados"
-              name="input-nome-form-atestados"
-              aria-describedby="nameHelp"
-              placeholder="Nome"
-              required
-            />
-          </div>
-
-          <div class="form-group p-2">
             <label for="input-email-form-atestados">E-mail:</label>
             <input
               type="email"
@@ -35,15 +22,65 @@
               aria-describedby="emailHelp"
               placeholder="Seu email"
               required
+              autocomplete="none"
             />
             <small id="emailHelp" class="form-text text-muted"
               >Nunca vamos compartilhar seu email, com ninguém.</small
             >
           </div>
+
+          <div class="form-group p-2">
+            <label for="input-nome-form-atestados">Nome completo:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="input-nome-form-atestados"
+              name="input-nome-form-atestados"
+              aria-describedby="nameHelp"
+              placeholder="Nome"
+              required
+              autocomplete="none"
+            />
+          </div>
+
+         
+
+          <div class="form-group p-2">
+            <label for="input-cid-form-atestados">CID do afastamento:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="input-cid-form-atestados"
+              name="input-cid-form-atestados"
+              aria-describedby="cidHelp"
+              placeholder="Ex: M51.4"
+              required
+              autocomplete="none"
+            />
+          </div>
+
+         
         </div>
 
         <!-- Dois seguintes à direita -->
         <div class="col-md-6">
+          <div class="form-group p-2">
+            <label for="input-cpf-form-atestados">CPF:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="input-cpf-form-atestados"
+              name="input-cpf-form-atestados"
+              aria-describedby="cpfHelp"
+              placeholder="Seu CPF"
+              required
+              autocomplete="none"
+            />
+            <small id="cpfHelp" class="form-text text-muted"
+              >Nunca vamos compartilhar seu CPF, com ninguém.</small
+            >
+          </div>
+
           <div class="form-group p-2">
             <label for="input-curso-form-atestados">Curso:</label>
             <input
@@ -54,6 +91,7 @@
               aria-describedby="cursoHelp"
               placeholder="Nome do curso"
               required
+              autocomplete="none"
             />
           </div>
 
@@ -76,6 +114,7 @@
               <option>10°</option>
             </select>
           </div>
+         
         </div>
       </div>
 
@@ -97,19 +136,6 @@
               name="date-form-atestados-2"
               required
             />, inclusive.
-          </div>
-
-          <div class="form-group p-2">
-            <label for="input-cid-form-atestados">CID do afastamento:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="input-cid-form-atestados"
-              name="input-cid-form-atestados"
-              aria-describedby="cidHelp"
-              placeholder="Ex: M51.4"
-              required
-            />
           </div>
 
           <div class="form-group p-2">
@@ -157,7 +183,7 @@
   {% for usuario in usuarios %}
   <li>
     {{ usuario[0] }} - {{ usuario[1] }} - {{ usuario[2] }} - {{ usuario[3] }} -
-    {{ usuario[4] }} - {{ usuario[5] }} - {{ usuario[6] }} - {{ usuario[7] }}
+    {{ usuario[4] }} - {{ usuario[5] }} - {{ usuario[6] }} - {{ usuario[7] }} - {{ usuario[8] }}
   </li>
   {% endfor %}
 </ul>

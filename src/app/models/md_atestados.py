@@ -6,9 +6,9 @@ class Atestados:
     caminho_atestados = "../data/atestados"
 
     #Função para salvar os dados no arquivo .txt
-    def salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico):
+    def salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico, cpf):
         with open(Atestados.caminho_arquivo, "a") as arquivo:
-            arquivo.write(f"{nome};{email};{curso};{semestre};{dataIn};{dataFin};{cid};{nome_unico}\n")
+            arquivo.write(f"{nome};{email};{cpf};{curso};{semestre};{dataIn};{dataFin};{cid};{nome_unico}\n")
             return True
 
     #Função para ler os dados do arquivo .txt

@@ -12,6 +12,7 @@ def cadastrar_atestado():
         dataFin = request.form['date-form-atestados-2']
         cid = request.form['input-cid-form-atestados']
         arquivo = request.files['file-form-atestados']
+        cpf = request.form['input-cpf-form-atestados']
 
         if arquivo.filename.endswith(".pdf"):
             nome_unico = str(uuid.uuid4()) + arquivo.filename
@@ -20,7 +21,7 @@ def cadastrar_atestado():
             if response != True:
                 return jsonify({"status": False, "mensagem": "Erro ao salvar arquivo!"}), 400
 
-        response = Atestados.salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico)
+        response = Atestados.salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico, cpf)
         if response != True:
             return jsonify({"status": False, "mensagem": "Erro ao salvar dados!"}), 400
 
