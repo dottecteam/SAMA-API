@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 teste 2;teste@gmail.com;teste;7ï¿½;2025-02-26;2025-03-25;M51.3
 teste;teste@gmail.com;teste;7ï¿½;2025-03-04;2025-03-26;M51.3
 ;;;1ï¿½;2025-02-26;2025-03-26;
@@ -7,3 +8,6 @@ teste;teste@gmail.com;teste;2ï¿½;2025-02-26;2025-03-19;M52.3
 ;;;1ï¿½;2025-03-06;2025-04-03;
 Kauan;teste@gmail.com;teste;8ï¿½;2025-03-06;2025-03-27;M51.3;24b9f401-1687-4209-bdba-ae70520fd3beTrabalho_ADM_1.pdf
 
+=======
+Ramon Batista Varjão;ramon0123456789@teste.com;111.111.111-11;ADS;1°;2025-03-10;2025-03-20;M51.4;47254b55-155e-4be2-af70-2f47feb2592dgrafico.pdf
+>>>>>>> 9a7cad8bfc35eeab08f42c2584e31eb33190ce96

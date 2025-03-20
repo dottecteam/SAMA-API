@@ -23,23 +23,9 @@
 
 /* Tamanhos */
 .file-upload-area {
-    width: 40%;
+    width: 100%;
 }
 
-@media only screen and (max-width: 1100px) {
-    .file-upload-area {
-        width: 50%;
-    }
-}
-
-@media only screen and (max-width: 990px) {
-    .file-upload-area {
-        width: 70%;
-    }
-}
-
-@media only screen and (max-width: 770px) {
-    .file-upload-area {
-        width: 100%;
-    }
+#checkbox-form-atestados{
+    float: none;
 }

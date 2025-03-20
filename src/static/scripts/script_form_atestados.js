@@ -45,4 +45,33 @@ $(document).ready(function() {
             $('#file-upload-area span').text('Arraste ou clique para escolher o arquivo');  // Reseta o texto da área
         }
     });
+
+    // Quando o formulário é enviado
+    $('#form-atestados').on('submit', function(event) {
+        event.preventDefault();
+        let formData = new FormData(this);
+
+        $.ajax({
+            type: 'POST',
+            url: '/atestados/cadastro/cadastrar',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.status) {
+                    var myModal = new bootstrap.Modal($('#successModal'));
+                    myModal.show();
+                    $('#form-atestados')[0].reset();
+                    $('#file-upload-area span').text('Arraste ou clique para escolher o arquivo');
+                } else {
+                    var myModal = new bootstrap.Modal($('#errorModal'));
+                    myModal.show();
+                }
+            },
+            error: function(xhr, status, error) {
+                var myModal = new bootstrap.Modal($('#errorModal'));
+                myModal.show();
+            },
+        });
+    });
 });
