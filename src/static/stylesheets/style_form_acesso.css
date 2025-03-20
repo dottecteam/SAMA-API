@@ -1,0 +1,18 @@
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.input-group i {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: rgb(59, 140, 110);
+  font-size: 20px;
+}
