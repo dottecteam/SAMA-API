@@ -26,9 +26,9 @@ class Atestados:
             return []
     
     #Função para salvar atestados em .pdf
-    def salvar_arquivo(arquivo):
+    def salvar_arquivo(arquivo, nome_unico):
         try:
-            with open(os.path.join(Atestados.caminho_atestados, arquivo.filename), "wb") as f:
+            with open(os.path.join(Atestados.caminho_atestados, nome_unico), "wb") as f:
                 f.write(arquivo.read())
             return True
         except Exception as e:

@@ -17,7 +17,7 @@ def cadastrar_atestado():
         if arquivo.filename.endswith(".pdf"):
             nome_unico = str(uuid.uuid4()) + arquivo.filename
             
-            response = Atestados.salvar_arquivo(arquivo) 
+            response = Atestados.salvar_arquivo(arquivo, nome_unico) 
             if response != True:
                 return jsonify({"status": False, "mensagem": "Erro ao salvar arquivo!"}), 400
 

@@ -1,13 +1,14 @@
 {% extends "vw_template_atestados.html" %} {% block content %}
 
-<section class="container-fluid">
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='stylesheets/style_form_atestados.css') }}"
+/>
+
+<section id="atestados-section" class="container-fluid">
   <h1 class="text-center">Cadastro de Atestados Médicos</h1>
 
-  <form
-    id="form-atestados"
-    method="post"
-    enctype="multipart/form-data"
-  >
+  <form id="form-atestados" method="post" enctype="multipart/form-data">
     <div class="container">
       <div class="row">
         <!-- Primeiros dois campos à esquerda -->
@@ -43,8 +44,6 @@
             />
           </div>
 
-         
-
           <div class="form-group p-2">
             <label for="input-cid-form-atestados">CID do afastamento:</label>
             <input
@@ -58,8 +57,6 @@
               autocomplete="off"
             />
           </div>
-
-         
         </div>
 
         <!-- Dois seguintes à direita -->
@@ -114,7 +111,6 @@
               <option>10°</option>
             </select>
           </div>
-         
         </div>
       </div>
 
