@@ -3,7 +3,6 @@ from app import app
 from flask import render_template, request, redirect, url_for, jsonify, session, send_from_directory
 from app.controllers.ct_atestado import *
 from app.controllers.ct_secretaria import *
-from app.models.md_atestados import Atestados
 
 #TELAS
 #Home
@@ -14,8 +13,7 @@ def home():
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
 def atestados():
-    usuarios = Atestados.ler_dados()
-    return render_template('vw_form_atestados.html', usuarios=usuarios)
+    return render_template('vw_form_atestados.html')
 
 #Página de cadastro de atestados
 @app.route("/atestados/acesso")

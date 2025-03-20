@@ -22,7 +22,7 @@
               aria-describedby="emailHelp"
               placeholder="Seu email"
               required
-              autocomplete="none"
+              autocomplete="off"
             />
             <small id="emailHelp" class="form-text text-muted"
               >Nunca vamos compartilhar seu email, com ninguém.</small
@@ -39,7 +39,7 @@
               aria-describedby="nameHelp"
               placeholder="Nome"
               required
-              autocomplete="none"
+              autocomplete="off"
             />
           </div>
 
@@ -55,7 +55,7 @@
               aria-describedby="cidHelp"
               placeholder="Ex: M51.4"
               required
-              autocomplete="none"
+              autocomplete="off"
             />
           </div>
 
@@ -74,7 +74,7 @@
               aria-describedby="cpfHelp"
               placeholder="Seu CPF"
               required
-              autocomplete="none"
+              autocomplete="off"
             />
             <small id="cpfHelp" class="form-text text-muted"
               >Nunca vamos compartilhar seu CPF, com ninguém.</small
@@ -91,7 +91,7 @@
               aria-describedby="cursoHelp"
               placeholder="Nome do curso"
               required
-              autocomplete="none"
+              autocomplete="off"
             />
           </div>
 
@@ -177,16 +177,6 @@
     </div>
   </form>
 </section>
-
-<h2>Usuários Cadastrados</h2>
-<ul>
-  {% for usuario in usuarios %}
-  <li>
-    {{ usuario[0] }} - {{ usuario[1] }} - {{ usuario[2] }} - {{ usuario[3] }} -
-    {{ usuario[4] }} - {{ usuario[5] }} - {{ usuario[6] }} - {{ usuario[7] }} - {{ usuario[8] }}
-  </li>
-  {% endfor %}
-</ul>
 
 <script src="{{ url_for('static', filename='scripts/script_form_atestados.js') }}"></script>
 {% endblock %}
