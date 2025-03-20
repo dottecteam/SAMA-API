@@ -1,5 +1,173 @@
-{% extends "vw_template_equipes.html" %} {% block content %} 
+{% extends "vw_template_equipes.html" %} {% block content %}
 
-<h1> Cadastro de equipes </h1>
+<!-- Container para o formulário de cadastro de equipes -->
+<section class="container-fluid">
+    <h1 class="text-center">Cadastro de Equipes</h1>
+    <p class="text-center">Forme sua equipe no modelo ágil Scrum:</p>
 
+    <form id="form-equipes" method="post" enctype="multipart/form-data">
+        
+        <!-- Container para Nome da Equipe e Scrum Master com fundo mais claro e bordas arredondadas -->
+        <div class="container bg-light p-4 mb-4 rounded">
+            <h2 class="text-center"> Equipe:</h2>
+            <div class="row">
+                <!-- Nome da Equipe ao lado da Senha -->
+                <div class="col-md-6">
+                    <div class="form-group p-2">
+                        <label for="input-nome-form-equipe">Nome da Equipe:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="input-nome-form-equipe"
+                            name="input-nome-form-equipe"
+                            placeholder="Nome da Equipe"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <!-- Senha de Entrada -->
+                <div class="col-md-6">
+                    <div class="form-group p-2">
+                        <label for="input-password-form">Senha de Entrada:</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="input-password-form"
+                            name="input-password-form"
+                            placeholder="Senha"
+                            required
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <!-- Nome do Scrum Master ao lado do Email do Scrum Master -->
+                <div class="col-md-6">
+                    <div class="form-group p-2">
+                        <label for="input-nome-form-scmaster">Nome do Scrum Master:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="input-nome-form-scmaster"
+                            name="input-nome-form-scmaster"
+                            placeholder="Nome do Master"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <!-- Email do Scrum Master -->
+                <div class="col-md-6">
+                    <div class="form-group p-2">
+                        <label for="input-email-form-scmaster">Email do Scrum Master:</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="input-email-form-scmaster"
+                            name="input-email-form-scmaster"
+                            placeholder="Email do Master"
+                            required
+                        />
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row mt-2">
+                <!-- Nome do Scrum Master ao lado do Email do Scrum Master -->
+                <div class="col-md-6">
+                    <div class="form-group p-2">
+                        <label for="input-nome-form-scmaster">Nome do Product Owner:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="input-nome-form-po"
+                            name="input-nome-form-po"
+                            placeholder="Nome do P.O."
+                            required
+                        />
+                    </div>
+                </div>
+
+                <!-- Email do Scrum Master -->
+                <div class="col-md-6">
+                    <div class="form-group p-2">
+                        <label for="input-email-form-po">Email do Product Owner:</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="input-email-form-po"
+                            name="input-email-form-po"
+                            placeholder="Email do P.O."
+                            required
+                        />
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="container bg-light p-4 rounded">
+            
+                <div id="devFieldsContainer"></div>
+            
+            <div class="align-items-center text-center">
+                <button id="addFieldBtn" class="btn m-3 btn-primary">Adicionar Dev</button>
+            </div>
+        </div>
+
+        <!-- Botão Criar Equipe -->
+        <div class="container text-center mt-4">
+            <button type="submit" class="btn btn-success">Criar Equipe</button>
+        </div>
+
+    </form>
+
+    <!-- Script para adicionar e remover os campos de Dev -->
+    <script>
+        $(document).ready(function() {
+            let fieldCounter = 0; // Contador para gerar IDs únicos
+    
+            // Função para adicionar o novo campo
+            $('#addFieldBtn').click(function(event) {
+                event.preventDefault(); // Impede o envio do formulário
+    
+                fieldCounter++; // Incrementa o contador
+    
+                // Criar o elemento div para o novo campo
+                const newField = $(`
+                    <div class="row form-group p-2">
+                        <div class="col-md-6">
+                            <label for="input-nome-form-devteam-${fieldCounter}">Nome do Dev:</label>
+                            <input type="text" class="form-control"
+                                   id="input-nome-form-devteam-${fieldCounter}" 
+                                   name="input-nome-form-devteam" 
+                                   placeholder="Nome" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="input-email-form-devteam-${fieldCounter}">Email do Dev:</label>
+                            <input type="email" class="form-control"
+                                   id="input-email-form-devteam-${fieldCounter}" 
+                                   name="input-email-form-devteam" 
+                                   placeholder="Email" required />
+                        </div>
+                        <div class="col-md-12 d-flex align-items-end mt-2">
+                            <button class="btn btn-sm btn-danger removeFieldBtn" aria-label="Remover este campo">Remover</button>
+                        </div>
+                    </div>
+                `);
+    
+                // Adicionar o novo campo ao contêiner
+                $('#devFieldsContainer').append(newField);
+    
+                // Adicionar a função para remover o campo quando o botão for clicado
+                newField.find('.removeFieldBtn').click(function() {
+                    newField.remove();
+                });
+            });
+        });
+    </script>
+    
+</section>
 {% endblock %}
