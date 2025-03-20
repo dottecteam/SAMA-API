@@ -1,8 +1,28 @@
 {% extends "vw_template_atestados.html" %} {% block content %}
 
+<style>
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
 
+  .input-group input {
+    width: 100%;
+    padding-right: 40px;
+  }
 
+  .input-group i {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: rgb(59, 140, 110);
+    font-size: 20px;
+  }
+</style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 <div class="container">
   <div class="row">
@@ -13,20 +33,22 @@
         </div>
         <div class="card-body">
           <form id="form-login-secretaria" method="POST">
-            <p>
+            <p style="text-align: center;">
               Informe o código de funcionário da secretaria para acessar o
               sistema:
             </p>
-            <div class="form-group mb-3">
-              <label for="senha">Código</label>
+            <label for="senha">Código: </label>
+            <div class="input-group mb-3">
               <input
                 autocomplete="off"
-                type="text"
+                type="password"
                 name="senha"
                 id="senha"
                 class="form-control"
+                style="width: flex; float: left;"
                 required
               />
+              <i class="bi bi-eye-fill" id="ver_senha" onclick="mostrarSenha()"> </i>
             </div>
             <div class="form-group mb-3 text-center">
               <button type="submit" class="btn btn-custom">Entrar</button>

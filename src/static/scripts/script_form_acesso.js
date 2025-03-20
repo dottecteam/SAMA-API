@@ -24,3 +24,17 @@ $(document).ready(function() {
         });
     });
 });
+
+function mostrarSenha(){
+    var inputPass = document.getElementById("senha")
+    var BtnMostrarSenha = document.getElementById("ver_senha")
+
+    if(inputPass.type === "password"){
+        inputPass.setAttribute('type', 'text')
+        BtnMostrarSenha.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
+    }
+    else{
+        inputPass.setAttribute('type', 'password')
+        BtnMostrarSenha.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+    }
+}
