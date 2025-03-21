@@ -13,6 +13,7 @@ $(document).ready(function() {
         } else {
             var myModal = new bootstrap.Modal($('#errorModal'));
             myModal.show();
+            $('#error-message').html('Formato de arquivo inválido.')
             $('#file-upload-area span').text('Arraste ou clique para escolher o arquivo');  // Reseta o texto da área
             $('#file-form-atestados').val('');  // Limpa o input file
         }
@@ -42,6 +43,7 @@ $(document).ready(function() {
         } else {
             var myModal = new bootstrap.Modal($('#errorModal'));
             myModal.show();
+            $('#error-message').html('Formato de arquivo inválido.')
             $('#file-upload-area span').text('Arraste ou clique para escolher o arquivo');  // Reseta o texto da área
         }
     });
@@ -66,14 +68,19 @@ $(document).ready(function() {
                 } else {
                     var myModal = new bootstrap.Modal($('#errorModal'));
                     myModal.show();
+                    $('#error-message').html(response.mensagem);
                 }
             },
             error: function(xhr, status, error) {
                 var myModal = new bootstrap.Modal($('#errorModal'));
                 myModal.show();
+                var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
+                var errorMessage = response.mensagem;
+                $('#error-message').html(errorMessage);
             },
         });
     });
+
 
     $('#input-cpf-form-atestados').on('input', function () {
         let cpf = $(this).val().replace(/\D/g, ''); // Remove tudo que não for número

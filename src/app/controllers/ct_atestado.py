@@ -21,6 +21,9 @@ def cadastrar_atestado():
             if response != True:
                 return jsonify({"status": False, "mensagem": "Erro ao salvar arquivo!"}), 400
 
+        if Atestados.validar_cpf(cpf) == False:
+            return jsonify({"status": False, "mensagem": "CPF inválido!"}), 400
+        
         response = Atestados.salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico, cpf)
         if response != True:
             return jsonify({"status": False, "mensagem": "Erro ao salvar dados!"}), 400
