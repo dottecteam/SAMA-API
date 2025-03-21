@@ -1,0 +1,51 @@
+{% extends "vw_template_equipes.html" %} {% block content %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='stylesheets/style_form_acesso.css') }}"
+/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+/>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h4 class="text-center align-self-center">Acesso do Scrum Master</h4>
+        </div>
+        <div class="card-body">
+          <form id="form-login-secretaria" method="POST">
+            <p style="text-align: center">
+              Informe a senha de equipe para acessar a administação de equipe
+            </p>
+            <label for="senha">Senha: </label>
+            <div class="input-group mb-3">
+              <input
+                autocomplete="off"
+                type="password"
+                name="senha"
+                id="senha"
+                class="form-control"
+                style="width: flex; float: left"
+                required
+              />
+              <i class="bi bi-eye-fill" id="ver_senha" onclick="mostrarSenha()">
+              </i>
+            </div>
+            <div class="form-group mb-3 text-center">
+              <button type="submit" class="btn btn-custom">Entrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='scripts/script_form_acesso_equipes.js') }}"></script>
+{% endblock %}
