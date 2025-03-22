@@ -88,6 +88,25 @@
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
 
+/* Caixa de texto da parte de informação */
+.text-box {
+  flex: 0 0 50%; /* Ocupa 50% da largura da tela */
+  padding-right: 20px;
+}
+
+
+/* Caixa de imagem da parte de informação */
+.image-box {
+  flex: 0 0 50%; /* Ocupa 50% da largura da tela */
+  text-align: center;
+}
+
+.image-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
 @media (max-width: 950px) {
   #img-home-doctor {
     width: 450px;
@@ -121,6 +140,9 @@
 }
 @media (max-width: 610px) {
   .div-image {
+    display: none;
+  }
+  .image-box {
     display: none;
   }
   .col-6 {
