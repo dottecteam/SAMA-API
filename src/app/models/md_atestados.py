@@ -1,13 +1,15 @@
 import os
-import re
+from datetime import datetime
+from app import app
+
 
 class Atestados:
     #Caminho do arquivo .txt
     caminho_arquivo = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "atestados", "alunos.txt")
     #Caminho dos uploads de atestados
-    caminho_atestados = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "atestados", "uploads"))
+    caminho_atestados = os.path.abspath(os.path.join(app.config['UPLOAD_FOLDER'], "atestados"))
 
-    def __init__(self, nome, email, curso, semestre, dataIn, dataFin, cid, pdf, cpf):
+    def __init__(self, nome, email, curso, semestre, dataIn, dataFin, cid, pdf, cpf, situacao, periodo):
         self.nome = nome
         self.email = email
         self.curso = curso
@@ -17,13 +19,15 @@ class Atestados:
         self.cid=cid
         self.pdf=pdf
         self.cpf=cpf
+        self.situacao=situacao
+        self.periodo=periodo
 
     
     #Função para salvar os dados no arquivo .txt
     def salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico, cpf):
         try:
             with open(Atestados.caminho_arquivo, "a") as arquivo:
-                arquivo.write(f"{nome};{email};{cpf};{curso};{semestre};{dataIn};{dataFin};{cid};{nome_unico}\n")
+                arquivo.write(f"{nome};{email};{cpf};{curso};{semestre};{dataIn};{dataFin};{cid};{nome_unico};Pendente\n")
                 return True
         except Exception as e:
             print(f"Erro ao salvar os dados: {e}")
@@ -47,10 +51,12 @@ class Atestados:
                             cpf=dados[2],
                             curso=dados[3],
                             semestre=dados[4],
-                            dataIn=dados[5],
-                            dataFin=dados[6],
+                            dataIn=datetime.strptime(dados[5], "%Y-%m-%d").strftime("%d/%m/%Y"),
+                            dataFin=datetime.strptime(dados[6], "%Y-%m-%d").strftime("%d/%m/%Y"),
                             cid=dados[7],
-                            pdf=dados[8]
+                            pdf=dados[8],
+                            situacao=dados[9],
+                            periodo=str((datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days > 1 else " dia"
                         )
                         atestados_encontrados.append(atestado)
                 return atestados_encontrados
@@ -67,31 +73,4 @@ class Atestados:
             print(f"Erro ao salvar o arquivo: {e}")
             return False
         
-    def validar_cpf(cpf):
-         # Remove qualquer caractere não numérico
-        cpf = re.sub(r'[^0-9]', '', cpf)
     
-        # Verifica se o CPF tem 11 dígitos
-        if len(cpf) != 11:
-            return False
-    
-        # Verifica se todos os dígitos são iguais (ex: 111.111.111-11)
-        if cpf == cpf[0] * 11:
-            return False
-    
-        # Validação do primeiro dígito verificador
-        soma_1 = sum(int(cpf[i]) * (10 - i) for i in range(9))
-        digito_1 = (soma_1 * 10) % 11
-        if digito_1 == 10 or digito_1 == 11:
-            digito_1 = 0
-    
-        # Validação do segundo dígito verificador
-        soma_2 = sum(int(cpf[i]) * (11 - i) for i in range(10))
-        digito_2 = (soma_2 * 10) % 11
-        if digito_2 == 10 or digito_2 == 11:
-            digito_2 = 0
-    
-        # Verifica se os dígitos verificadores estão corretos
-        if cpf[9] == str(digito_1) and cpf[10] == str(digito_2):
-            return True
-        return False

@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_atestados import Atestados
 import uuid
+import re
 
 def cadastrar_atestado():
     try:
@@ -21,7 +22,7 @@ def cadastrar_atestado():
             if response != True:
                 return jsonify({"status": False, "mensagem": "Erro ao salvar arquivo!"}), 400
 
-        if Atestados.validar_cpf(cpf) == False:
+        if validar_cpf(cpf) == False:
             return jsonify({"status": False, "mensagem": "CPF inválido!"}), 400
         
         response = Atestados.salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico, cpf)
@@ -38,6 +39,35 @@ def consultar_atestados_alunos():
 
     response = Atestados.ler_dados_cpf(cpf)
     return response
+
+def validar_cpf(cpf):
+         # Remove qualquer caractere não numérico
+    cpf = re.sub(r'[^0-9]', '', cpf)
+    
+        # Verifica se o CPF tem 11 dígitos
+    if len(cpf) != 11:
+        return False
+    
+        # Verifica se todos os dígitos são iguais (ex: 111.111.111-11)
+    if cpf == cpf[0] * 11:
+        return False
+    
+        # Validação do primeiro dígito verificador
+    soma_1 = sum(int(cpf[i]) * (10 - i) for i in range(9))
+    digito_1 = (soma_1 * 10) % 11
+    if digito_1 == 10 or digito_1 == 11:
+            digito_1 = 0
+    
+        # Validação do segundo dígito verificador
+    soma_2 = sum(int(cpf[i]) * (11 - i) for i in range(10))
+    digito_2 = (soma_2 * 10) % 11
+    if digito_2 == 10 or digito_2 == 11:
+        digito_2 = 0
+    
+        # Verifica se os dígitos verificadores estão corretos
+    if cpf[9] == str(digito_1) and cpf[10] == str(digito_2):
+        return True
+    return False
 
 
         

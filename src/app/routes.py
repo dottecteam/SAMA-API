@@ -4,6 +4,7 @@ from flask import render_template, request, redirect, url_for, jsonify, session,
 from app.controllers.ct_atestado import *
 from app.controllers.ct_secretaria import *
 from app.controllers.ct_dashboard_atestados import *
+import os
 
 #TELAS
 #Home
@@ -38,6 +39,7 @@ def painel_equipes():
 def equipes():
     return render_template("vw_form_equipes.html")
 
+#Página de criar avaliações
 @app.route("/equipes/avaliacoes")
 def avaliacao():
     return render_template("vw_form_avaliacoes.html")
@@ -48,6 +50,18 @@ def avaliacao():
 
 
 #FUNÇÕES
+#Função para servir arquivos de atestados
+@app.route('/uploads/atestados/<filename>')
+def serve_file_atestados(filename):
+    # Caminho correto para o diretório de 'atestados' dentro de 'UPLOAD_FOLDER'
+    atestados_folder = os.path.join(app.config['UPLOAD_FOLDER'], 'atestados')
+    
+    # Verifica se o arquivo existe no diretório de 'atestados'
+    try:
+        return send_from_directory(atestados_folder, filename)
+    except FileNotFoundError:
+        return "Arquivo não encontrado", 404
+    
 @app.route("/atestados/cadastro/cadastrar", methods=['POST'])
 def cadastrar():
     response = cadastrar_atestado()

@@ -19,4 +19,18 @@ $(document).ready(function () {
             }
         }
     );
+
+    $('#form-search-atestados input').on('input', function () {
+        let cpf = $(this).val().replace(/\D/g, ''); // Remove tudo que não for número
+        
+         // Limita a 11 números (CPF sem formatação)
+         if (cpf.length > 11) cpf = cpf.substring(0, 11);
+
+        // Formata o CPF: 000.000.000-00
+        if (cpf.length > 3) cpf = cpf.replace(/^(\d{3})(\d)/, '$1.$2');
+        if (cpf.length > 6) cpf = cpf.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+        if (cpf.length > 9) cpf = cpf.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+
+        $(this).val(cpf);
+    });
 });
