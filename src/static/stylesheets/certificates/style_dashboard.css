@@ -1,0 +1,30 @@
+.graficos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    width: 45%;
+    height: 400px;
+    margin: 10px;
+}
+
+#mensal {
+    width: 100%;
+    min-height: 300px;
+}
+
+@media (max-width: 910px) {
+    .graficos-container {
+        flex-direction: column;
+    }
+    .card {
+        width: 95%;
+    }
+}

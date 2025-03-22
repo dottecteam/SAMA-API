@@ -1,7 +1,11 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_dashboard.css') }}">
 
 <!-- Import Google Charts e script js-->
+<script>
+var dados = JSON.parse('{{ dados | tojson | safe }}');
+</script>
 
 
 <script defer src="{{ url_for('static', filename='scripts/certificates/script_dashboard.js') }}"></script>
@@ -11,6 +15,20 @@
 <h1> Painel de atestados </h1>
 <p>{{ dados }}</p>
 
-<div id="chart_div" style="width: 800px; height: 400px;"></div>
+<section class="graficos-container">
+    <div id="card-mensal" class="card">
+        <div class="card-header">Quantidade de Atestados Mensais</div>
+        <div id="mensal" class="card-body"></div>
+    </div>
+    <div class="card">
+        <div class="card-header">Quantidade de Atestados Pendentes</div>
+        <div class="card-body">{{ dados[1] }}</div>
+        <div class="card-header">Quantidade de Atestados Aprovados</div>
+        <div class="card-body">{{ dados[2] }}</div>
+        <div class="card-header">Quantidade de Atestados Reprovados</div>
+        <div class="card-body">{{ dados[3] }}</div>
+</section>
+
+
 
 {% endblock %}

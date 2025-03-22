@@ -6,6 +6,7 @@ class AtestadoDados:
         self.arquivo = arquivo
         self.atestados = []
         self.atestados_unicos = []
+        self.pendentes = []
         self.aprovados = []
         self.reprovados = []
         self.cids = Counter()
@@ -32,15 +33,20 @@ class AtestadoDados:
             except ValueError:
                 print(f"Erro ao processar datas no atestado: {atestado}")
         return self.atestados_unicos
+    
+    def atestados_pendentes(self):
+        """Retorna a lista de atestados pendentes."""
+        self.pendentes = [atestado for atestado in self.atestados_unicos if "Pendente" in atestado]
+        return self.pendentes
 
     def atestados_aprovados(self):
         """Retorna a lista de atestados aprovados."""
-        self.aprovados = [atestado for atestado in self.atestados_unicos if "aprovado" in atestado]
+        self.aprovados = [atestado for atestado in self.atestados_unicos if "Aprovado" in atestado]
         return self.aprovados
 
     def atestados_reprovados(self):
         """Retorna a lista de atestados reprovados."""
-        self.reprovados = [atestado for atestado in self.atestados_unicos if "reprovado" in atestado]
+        self.reprovados = [atestado for atestado in self.atestados_unicos if "Reprovado" in atestado]
         return self.reprovados
 
     def mensal(self):
