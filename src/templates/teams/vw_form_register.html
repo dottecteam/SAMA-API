@@ -1,4 +1,4 @@
-{% extends "vw_template_equipes.html" %} {% block content %}
+{% extends "teams/vw_template.html" %} {% block content %}
 
 <!-- Container para o formulário de cadastro de equipes -->
 <section id="equipes-section" class="container-fluid">
@@ -125,7 +125,7 @@
     </form>
 
     <!-- Script para adicionar e remover os campos de Dev -->
-    <script src="{{ url_for('static', filename='scripts/script_form_equipes.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/teams/script_form_register.js') }}"></script>
     
 </section>
 {% endblock %}

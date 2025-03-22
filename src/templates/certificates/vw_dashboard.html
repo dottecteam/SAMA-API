@@ -1,12 +1,10 @@
-{% extends "vw_template_atestados.html" %} {% block content %} 
+{% extends "certificates/vw_template.html" %} {% block content %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <!-- Import Google Charts e script js-->
-<script>
-var dados = {{ dados | tojson | safe if dados else "[]" }};
-</script>
 
-<script defer src="{{ url_for('static', filename='scripts/script_dashboard_atestados.js') }}"></script>
+
+<script defer src="{{ url_for('static', filename='scripts/certificates/script_dashboard.js') }}"></script>
 <!---->
 
 

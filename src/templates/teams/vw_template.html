@@ -1,7 +1,5 @@
-<!-- Template de Página para Equipes -->
 <!DOCTYPE html>
 <html lang="pt-br">
-  <!-- Configurações do header -->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,10 +30,9 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='stylesheets/style_template.css') }}"
     />
-
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='stylesheets/style_paleta_equipes.css') }}"
+      href="{{ url_for('static', filename='stylesheets/teams/style_color.css') }}"
     />
 
     <script src="{{ url_for('static', filename='scripts/script_template.js') }}"></script>
@@ -43,6 +40,86 @@
   </head>
 
   <body>
+    <!-- Modal de erro-->
+    <div
+      class="modal fade"
+      id="errorModal"
+      tabindex="-1"
+      aria-labelledby="errorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title">Erro</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-center">
+              <strong>Ocorreu um erro inesperado!</strong>
+            </p>
+            <p id="error-message" class="text-center">
+              Por favor, tente novamente.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de sucesso -->
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      aria-labelledby="successModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">Sucesso</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-center">
+              <strong>Operação realizada com sucesso!</strong>
+            </p>
+            <p id="success-message" class="text-center">
+              Seu atestado foi enviado corretamente.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
       <div class="container-fluid">
@@ -84,12 +161,13 @@
                 Atestados
               </a>
               <ul class="dropdown-menu" aria-labelledby="dropdown-atestados">
+                {% if 'secretaria' not in session %}
                 <li>
                   <a class="dropdown-item" href="/atestados/cadastro"
                     >Cadastro de Atestados</a
                   >
                 </li>
-                {% if 'secretaria' not in session %}
+                
                 <li>
                   <a class="dropdown-item" href="/atestados/acesso"
                     >Acesso da Secretaria</a
@@ -163,13 +241,20 @@
             </li>
           </ul>
           <div class="nav-item p-2">
-            <div class="search-container mx-auto">
+            <form
+              class="search-container mx-auto"
+              id="form-search-atestados"
+              method="get"
+              action="/atestados/consulta/aluno"
+            >
               <input
                 type="text"
-                placeholder="Pesquise aqui seu atestado médico!"
+                placeholder="Pesquise o atestado médico pelo CPF!"
+                name="cpf"
+                autocomplete="off"
               />
-              <i class="bi bi-search"></i>
-            </div>
+              <button class="bi bi-search border-0 bg-transparent"></button>
+            </form>
           </div>
         </div>
       </div>

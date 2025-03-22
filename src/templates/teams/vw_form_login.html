@@ -1,14 +1,8 @@
-{% extends "vw_template_atestados.html" %} {% block content %}
+{% extends "teams/vw_template.html" %} {% block content %}
 
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename='stylesheets/style_form_acesso.css') }}"
-/>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
 />
 
 <div class="container">
@@ -16,15 +10,14 @@
     <div class="col-md-6 offset-md-3">
       <div class="card mt-5">
         <div class="card-header">
-          <h4 class="text-center align-self-center">Acesso da Secretaria</h4>
+          <h4 class="text-center align-self-center">Acesso do Scrum Master</h4>
         </div>
         <div class="card-body">
           <form id="form-login-secretaria" method="POST">
             <p style="text-align: center">
-              Informe o código de funcionário da secretaria para acessar o
-              sistema:
+              Informe a senha de equipe para acessar a administação de equipe
             </p>
-            <label for="senha">Código: </label>
+            <label for="senha">Senha: </label>
             <div class="input-group mb-3">
               <input
                 autocomplete="off"
@@ -48,5 +41,5 @@
   </div>
 </div>
 
-<script src="{{ url_for('static', filename='scripts/script_form_acesso.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/script_form_login.js') }}"></script>
 {% endblock %}

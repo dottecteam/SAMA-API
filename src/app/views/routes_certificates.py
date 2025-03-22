@@ -1,8 +1,7 @@
-
 from app import app
-from flask import render_template, request, redirect, url_for, jsonify, session, send_from_directory
-from app.controllers.ct_atestado import *
-from app.controllers.ct_secretaria import *
+from flask import render_template, redirect, url_for, session, send_from_directory
+from app.controllers.ct_certificates import *
+from app.controllers.ct_secretary import *
 from app.controllers.ct_dashboard_atestados import *
 import os
 
@@ -10,44 +9,25 @@ import os
 #Home
 @app.route("/")
 def home():
-    return render_template("vw_home.html")
+    return render_template("certificates/vw_home.html")
 
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
 def atestados():
-    return render_template('vw_form_atestados.html')
-
-#Página de cadastro de atestados
-@app.route("/atestados/acesso")
-def acesso_secretaria():
-    return render_template("vw_form_acesso.html")
+    return render_template('certificates/vw_form_register.html')
 
 #Página de painel de atestados
 @app.route("/painel/atestados")
 @login_required_secretaria
 def painel_atestados():
     dados = coletar_dados()
-    return render_template("vw_dashboard_atestados.html", dados = dados)
+    return render_template("certificates/vw_dashboard.html", dados = dados)
 
-#Página de painel de atestados
-@app.route("/painel/equipes")
-def painel_equipes():
-    return render_template("vw_dashboard_equipes.html")
-
-#Página de cadastro de equipes
-@app.route("/equipes/cadastro")
-def equipes():
-    return render_template("vw_form_equipes.html")
-
-#Página de criar avaliações
-@app.route("/equipes/avaliacoes")
-def avaliacao():
-    return render_template("vw_form_avaliacoes.html")
+#Página de login
+@app.route("/atestados/acesso")
+def acesso_secretaria():
+    return render_template("certificates/vw_form_login.html")
 #TELAS
-
-
-
-
 
 #FUNÇÕES
 #Função para servir arquivos de atestados
@@ -81,5 +61,5 @@ def logout():
 @app.route("/atestados/consulta/aluno", methods=['GET'])
 def consulta_atestados_aluno():
     dados = consultar_atestados_alunos()
-    return render_template("vw_consulta_atestados_aluno.html", dados=dados)
+    return render_template("certificates/vw_search.html", dados=dados)
 #FUNÇÕES

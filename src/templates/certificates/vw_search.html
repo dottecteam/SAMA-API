@@ -1,4 +1,4 @@
-{% extends "vw_template_atestados.html" %} {% block content %}
+{% extends "certificates/vw_template.html" %} {% block content %}
 
 <!-- Modal Bootstrap para exibir o PDF -->
 <div
@@ -81,5 +81,5 @@
   </div>
 </div>
 
-<script src="{{ url_for('static', filename='scripts/script_consulta_atestados_aluno.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/certificates/script_search.js') }}"></script>
 {% endblock %}

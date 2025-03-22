@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app.models.md_secretaria import Secretaria
+from app.models.md_secretary import Secretaria
 from functools import wraps
 
 def login_required_secretaria(f):

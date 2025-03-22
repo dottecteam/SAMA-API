@@ -1,5 +1,4 @@
-{% extends "vw_template_equipes.html" %} 
-{% block content %}
+{% extends "teams/vw_template.html" %} {% block content %}
 
 <!-- Container para o formulário de avaliação de equipe -->
 <section id="avaliacao-section" class="container-fluid">
@@ -122,6 +121,6 @@
     </form>
 </section>
 
-<script src="path/to/script_avalicao_equipe.js"></script>  <!-- Inclua o script aqui -->
+<script src="{{ url_for('static', filename='scripts/teams/script_form_evaluate.js') }}"></script>  <!-- Inclua o script aqui -->
 
 {% endblock %}

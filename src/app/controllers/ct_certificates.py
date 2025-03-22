@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app.models.md_atestados import Atestados
+from app.models.md_certificates import Atestados
 import uuid
 import re
 
