@@ -15,11 +15,15 @@ $(document).ready(function() {
                 } else {
                     var myModal = new bootstrap.Modal($('#errorModal'));
                     myModal.show();
+                    $('#error-message').html(response.mensagem);
                 }
             },
             error: function(xhr, status, error) {
                 var myModal = new bootstrap.Modal($('#errorModal'));
                 myModal.show();
+                var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
+                var errorMessage = response.mensagem;
+                $('#error-message').html(errorMessage);
             },
         });
     });

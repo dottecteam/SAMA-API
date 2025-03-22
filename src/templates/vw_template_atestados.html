@@ -240,13 +240,14 @@
             </li>
           </ul>
           <div class="nav-item p-2">
-            <div class="search-container mx-auto">
+            <form class="search-container mx-auto" id="form-search-atestados" method="get" action="/atestados/consulta/aluno" >
               <input
                 type="text"
-                placeholder="Pesquise aqui seu atestado médico!"
+                placeholder="Pesquise o atestado médico pelo CPF!"
+                name="cpf"
               />
-              <i class="bi bi-search"></i>
-            </div>
+              <button class="bi bi-search border-0 bg-transparent"></button>
+            </form>
           </div>
         </div>
       </div>
