@@ -44,6 +44,11 @@
   transition: all 0.3s;
 }
 
+.form-control:focus {
+  border-color: rgba(var(--cor-primaria), 0.5) !important;
+  box-shadow: 0 0 0 0.1rem rgba(var(--cor-primaria), 0.5) !important;
+}
+
 ::-webkit-scrollbar-track {
   background-color: rgba(var(--cor-primaria), 0.5);
 }
