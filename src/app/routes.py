@@ -3,6 +3,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, jsonify, session, send_from_directory
 from app.controllers.ct_atestado import *
 from app.controllers.ct_secretaria import *
+from app.controllers.ct_dashboard_atestados import *
 
 #TELAS
 #Home
@@ -24,7 +25,8 @@ def acesso_secretaria():
 @app.route("/painel/atestados")
 @login_required_secretaria
 def painel_atestados():
-    return render_template("vw_dashboard_atestados.html")
+    dados = coletar_dados()
+    return render_template("vw_dashboard_atestados.html", dados = dados)
 
 #Página de painel de atestados
 @app.route("/painel/equipes")

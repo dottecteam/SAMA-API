@@ -1,32 +1,44 @@
+from collections import Counter
 from datetime import datetime
-from app.models.md_atestados import Atestados
 
-atestados_unicos = []
-aprovados = []
-reprovados = []
+class AtestadoDados:
+    def __init__(self, arquivo="data/atestados/alunos.txt"):
+        self.arquivo = arquivo
+        self.atestados = []
+        self.atestados_unicos = []
+        self.aprovados = []
+        self.reprovados = []
+        self.cids = Counter()
+        self.carregar_dados()
 
+    def carregar_dados(self):
+        """Carrega os dados do arquivo e preenche a lista de atestados."""
+        with open(self.arquivo, "r", encoding="utf-8") as usuarios:
+            for linha in usuarios:
+                if linha.strip():
+                    dados = linha.strip().split(";")
+                    self.atestados.append(dados)
 
-# Diferencia atestados, adiciona a duração do atestado após a dataFin e retorna atestados_unicos 
-def dif_atestados():
-    for atestado in Atestados.ler_dados():
-        if atestado not in atestados_unicos:
-            atestados_unicos.append(atestado)
-        data_inicial = datetime.strptime(atestado[5], "%Y-%m-%d")
-        data_final = datetime.strptime(atestado[6], "%Y-%m-%d")
-        atestado.insert(6, (data_final - data_inicial).days)
-    return atestados_unicos
+    def dif_atestados(self):
+        """Retorna uma lista com atestados únicos e adiciona a duração."""
+        for atestado in self.atestados:
+            if atestado not in self.atestados_unicos:
+                self.atestados_unicos.append(atestado)
+            try:
+                data_inicial = datetime.strptime(atestado[5], "%Y-%m-%d")
+                data_final = datetime.strptime(atestado[6], "%Y-%m-%d")
+                duracao = (data_final - data_inicial).days
+                atestado.insert(6, duracao)
+            except ValueError:
+                print(f"Erro ao processar datas no atestado: {atestado}")
+        return self.atestados_unicos
 
-# Retorna atestados aprovados
-def atestados_aprovados():
-    for atestado in Atestados.ler_dados():
-        if "aprovado" in atestado:
-            aprovados.append(atestado)
-    return aprovados
-    
-# Retorna atestados reprovados
-def atestados_reprovados():
-    for atestado in Atestados.ler_dados():
-        if "reprovado" in atestado:
-            reprovados.append(atestado)
-    return reprovados
+    def atestados_aprovados(self):
+        """Retorna a lista de atestados aprovados."""
+        self.aprovados = [atestado for atestado in self.atestados if "aprovado" in atestado]
+        return self.aprovados
 
+    def atestados_reprovados(self):
+        """Retorna a lista de atestados reprovados."""
+        self.reprovados = [atestado for atestado in self.atestados if "reprovado" in atestado]
+        return self.reprovados

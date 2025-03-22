@@ -1,5 +1,18 @@
 {% extends "vw_template_atestados.html" %} {% block content %} 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<!-- Import Google Charts e script js-->
+<script>
+var dados = {{ dados | tojson | safe if dados else "[]" }};
+</script>
+
+<script defer src="{{ url_for('static', filename='scripts/script_dashboard_atestados.js') }}"></script>
+<!---->
+
 
 <h1> Painel de atestados </h1>
+<p>{{ dados }}</p>
+
+<div id="chart_div" style="width: 800px; height: 400px;"></div>
 
 {% endblock %}
