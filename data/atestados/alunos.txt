@@ -1,1 +1,2 @@
 Teste da Silva;teste@teste.com;111.111.111-11;Teste;1°;2025-03-10;2025-03-20;TESTE;f36330d8-e669-4bda-a2e7-77087baea6c8Curriculo.pdf
+11;a@a;138.718.989-10;11;1°;2025-02-28;2025-03-24;111;55e6e252-42be-49c8-856d-6f76580d9b95EP1 Python para Zumbis.pdf

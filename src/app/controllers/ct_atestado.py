@@ -33,7 +33,12 @@ def cadastrar_atestado():
         print(e)
         return jsonify({"status": False, "mensagem": "Erro ao cadastrar atestado!"}), 400
         
-        
+def consultar_atestados_alunos():
+    cpf = request.args.get('cpf')
+
+    response = Atestados.ler_dados_cpf(cpf)
+    return response
+
 
         
         

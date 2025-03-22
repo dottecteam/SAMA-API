@@ -20,11 +20,6 @@ def atestados():
 def acesso_secretaria():
     return render_template("vw_form_acesso.html")
 
-#Página de consulta de atestados
-@app.route("/atestados/consulta")
-def consulta_atestados():
-    return render_template("vw_consulta_atestados.html")
-
 #Página de painel de atestados
 @app.route("/painel/atestados")
 @login_required_secretaria
@@ -46,6 +41,10 @@ def avaliacao():
     return render_template("vw_form_avaliacoes.html")
 #TELAS
 
+
+
+
+
 #FUNÇÕES
 @app.route("/atestados/cadastro/cadastrar", methods=['POST'])
 def cadastrar():
@@ -61,4 +60,10 @@ def logar():
 def logout():
     session.clear()
     return redirect(url_for('home'))
+
+#Página de consulta de atestados
+@app.route("/atestados/consulta/aluno", methods=['GET'])
+def consulta_atestados_aluno():
+    dados = consultar_atestados_alunos()
+    return render_template("vw_consulta_atestados_aluno.html", dados=dados)
 #FUNÇÕES
