@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app.models.md_dash_atestados import AtestadoDados
+from app.models.md_dashboard_atestados import AtestadoDados
 
 def coletar_dados():
     try:
@@ -7,8 +7,9 @@ def coletar_dados():
         num_atestados = len(atestados.dif_atestados())
         num_aprovados = len(atestados.atestados_aprovados())
         num_reprovados = len(atestados.atestados_reprovados())
+        meses = atestados.mensal()
         
-        dados = [num_atestados, num_aprovados, num_reprovados]
+        dados = [num_atestados, num_aprovados, num_reprovados, meses]
         return dados
     except Exception as e:
         print(e)

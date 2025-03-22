@@ -28,17 +28,25 @@ class AtestadoDados:
                 data_inicial = datetime.strptime(atestado[5], "%Y-%m-%d")
                 data_final = datetime.strptime(atestado[6], "%Y-%m-%d")
                 duracao = (data_final - data_inicial).days
-                atestado.insert(6, duracao)
+                atestado.insert(7, duracao)
             except ValueError:
                 print(f"Erro ao processar datas no atestado: {atestado}")
         return self.atestados_unicos
 
     def atestados_aprovados(self):
         """Retorna a lista de atestados aprovados."""
-        self.aprovados = [atestado for atestado in self.atestados if "aprovado" in atestado]
+        self.aprovados = [atestado for atestado in self.atestados_unicos if "aprovado" in atestado]
         return self.aprovados
 
     def atestados_reprovados(self):
         """Retorna a lista de atestados reprovados."""
-        self.reprovados = [atestado for atestado in self.atestados if "reprovado" in atestado]
+        self.reprovados = [atestado for atestado in self.atestados_unicos if "reprovado" in atestado]
         return self.reprovados
+
+    def mensal(self):
+        meses = [0,0,0,0,0,0,0,0,0,0,0,0]
+        for atestado in self.atestados_unicos:
+            data = atestado[5]
+            mes = datetime.strptime(data, "%Y-%m-%d").month
+            meses[mes-1] += 1
+        return meses
