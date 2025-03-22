@@ -16,17 +16,29 @@ def home():
 def atestados():
     return render_template('certificates/vw_form_register.html')
 
+#Página de login
+@app.route("/atestados/acesso")
+def acesso_secretaria():
+    return render_template("certificates/vw_form_login.html")
+
+#Página de consulta de atestados
+@app.route("/atestados/consulta/aluno", methods=['GET'])
+def consulta_atestados_aluno():
+    dados = consultar_atestados_alunos()
+    return render_template("certificates/vw_search.html", dados=dados)
+
+#Página de consulta de atestados
+@app.route("/atestados/consulta/secretaria")
+@login_required_secretaria
+def consulta_atestados_secretaria():
+    return render_template("certificates/vw_query.html")
+
 #Página de painel de atestados
 @app.route("/painel/atestados")
 @login_required_secretaria
 def painel_atestados():
     dados = coletar_dados()
     return render_template("certificates/vw_dashboard.html", dados = dados)
-
-#Página de login
-@app.route("/atestados/acesso")
-def acesso_secretaria():
-    return render_template("certificates/vw_form_login.html")
 #TELAS
 
 #FUNÇÕES
@@ -56,10 +68,4 @@ def logar():
 def logout():
     session.clear()
     return redirect(url_for('home'))
-
-#Página de consulta de atestados
-@app.route("/atestados/consulta/aluno", methods=['GET'])
-def consulta_atestados_aluno():
-    dados = consultar_atestados_alunos()
-    return render_template("certificates/vw_search.html", dados=dados)
 #FUNÇÕES
