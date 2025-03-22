@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 Teste da Silva;teste@teste.com;111.111.111-11;Teste;1�;2025-03-10;2025-03-20;TESTE;f36330d8-e669-4bda-a2e7-77087baea6c8Curriculo.pdf
-=======
-Teste da Silva;teste@teste.com;111.111.111-11;Teste;1�;2025-03-10;2025-03-20;TESTE;f36330d8-e669-4bda-a2e7-77087baea6c8Curriculo.pdf
->>>>>>> 897750c6a1e47ac87e65b1c7f4e6a2e1d8102785
