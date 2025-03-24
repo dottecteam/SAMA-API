@@ -15,7 +15,7 @@ function drawMensalChart() {
     data.addColumn({ type: 'string', role: 'style' });
 
     for (var i = 0; i < meses.length; i++) {
-        data.addRow([meses[i], dados[4][i], estilo]);
+        data.addRow([meses[i], metricas[5][1][i], estilo]);
     }
 
     var options = {

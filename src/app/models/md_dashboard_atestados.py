@@ -1,14 +1,14 @@
 from collections import Counter
 from datetime import datetime
 
-class AtestadoDados:
+class AtestadoMetricas:
     def __init__(self, arquivo="data/atestados/alunos.txt"):
         self.arquivo = arquivo
         self.atestados = []
         self.atestados_unicos = []
         self.pendentes = []
         self.aprovados = []
-        self.reprovados = []
+        self.rejeitados = []
         self.cids = Counter()
         self.carregar_dados()
 
@@ -44,15 +44,28 @@ class AtestadoDados:
         self.aprovados = [atestado for atestado in self.atestados_unicos if "Aprovado" in atestado]
         return self.aprovados
 
-    def atestados_reprovados(self):
-        """Retorna a lista de atestados reprovados."""
-        self.reprovados = [atestado for atestado in self.atestados_unicos if "Reprovado" in atestado]
-        return self.reprovados
+    def atestados_rejeitados(self):
+        """Retorna a lista de atestados rejeitados."""
+        self.rejeitados = [atestado for atestado in self.atestados_unicos if "Rejeitado" in atestado]
+        return self.rejeitados
+    
+    def diff_anos(self):
+        anos = []
+        for atestado in self.atestados_unicos:
+            ano = datetime.strptime(atestado[5], "%Y-%m-%d").year
+            if ano not in anos:
+                anos.append(ano)
+        return anos
 
     def mensal(self):
-        meses = [0,0,0,0,0,0,0,0,0,0,0,0]
+        anos = self.diff_anos()
+        mesesPorAno = [[0] * 12 for _ in anos]
+        
         for atestado in self.atestados_unicos:
-            data = atestado[5]
-            mes = datetime.strptime(data, "%Y-%m-%d").month
-            meses[mes-1] += 1
-        return meses
+            data = datetime.strptime(atestado[5], "%Y-%m-%d")
+            mes = data.month
+            ano = data.year
+            if ano in anos:
+                index = anos.index(ano)
+                mesesPorAno[index][mes - 1] += 1
+        return mesesPorAno

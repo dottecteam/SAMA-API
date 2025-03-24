@@ -4,7 +4,7 @@
 
 <!-- Import Google Charts e script js-->
 <script>
-var dados = JSON.parse('{{ dados | tojson | safe }}');
+var metricas = JSON.parse('{{ metricas | tojson | safe }}');
 </script>
 
 
@@ -13,20 +13,40 @@ var dados = JSON.parse('{{ dados | tojson | safe }}');
 
 
 <h1> Painel de atestados </h1>
-<p>{{ dados }}</p>
+<p>{{ metricas }}</p>
 
 <section class="graficos-container">
     <div id="card-mensal" class="card">
-        <div class="card-header">Quantidade de Atestados Mensais</div>
+        <div class="card-header">
+            Quantidade de Atestados Mensais
+            <section id="selecionarAno">
+                <label>Selecione o ano:</label>
+                <select id="selectAno" class="form-select">
+                    {% for ano in metricas[4] %}
+                        <option value="{{ ano }}">{{ ano }}</option>
+                    {% endfor %}
+                </select>
+            </section>
+        </div>
         <div id="mensal" class="card-body"></div>
     </div>
-    <div class="card">
-        <div class="card-header">Quantidade de Atestados Pendentes</div>
-        <div class="card-body">{{ dados[1] }}</div>
-        <div class="card-header">Quantidade de Atestados Aprovados</div>
-        <div class="card-body">{{ dados[2] }}</div>
-        <div class="card-header">Quantidade de Atestados Reprovados</div>
-        <div class="card-body">{{ dados[3] }}</div>
+    <section id="card-estado" class="card">
+        <div class="card-header">Quantidade por Estado</div>
+        <div class="card-body">
+            <div class="container">
+                <p>Atestados Pendentes</p>
+                <div>{{ metricas[1] }}</div>
+            </div>
+            <div class="container">
+                <p>Atestados Aprovados</p>
+                <div>{{ metricas[2] }}</div>
+            </div>
+            <div class="container">
+                <p>Atestados Rejeitados</p>
+                <div>{{ metricas[3] }}</div>
+            </div>
+        </div>
+    </section>
 </section>
 
 

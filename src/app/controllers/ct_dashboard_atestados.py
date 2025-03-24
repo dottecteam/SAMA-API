@@ -1,17 +1,18 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app.models.md_dashboard_atestados import AtestadoDados
+from app.models.md_dashboard_atestados import AtestadoMetricas
 
-def coletar_dados():
+def coletar_metricas():
     try:
-        atestados = AtestadoDados()
+        atestados = AtestadoMetricas()
         num_atestados = len(atestados.dif_atestados())
         num_pendentes = len(atestados.atestados_pendentes())
         num_aprovados = len(atestados.atestados_aprovados())
-        num_reprovados = len(atestados.atestados_reprovados())
+        num_rejeitados = len(atestados.atestados_rejeitados())
+        anos = atestados.diff_anos()
         meses = atestados.mensal()
         
-        dados = [num_atestados, num_pendentes, num_aprovados, num_reprovados, meses]
-        return dados
+        metricas = [num_atestados, num_pendentes, num_aprovados, num_rejeitados, anos, meses]
+        return metricas
     except Exception as e:
         print(e)
         return jsonify({"status": False, "mensagem": "Erro ao coletar dados do atestado!"}), 400
