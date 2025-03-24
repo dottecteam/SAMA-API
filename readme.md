@@ -40,7 +40,7 @@ Essas tecnologias foram escolhidas para proporcionar uma aplicação rápida, co
 
 ## **Backlog do Produto**
 
-| **ID** | **Epic**                  | **User Story**                                                                 | **DOR (Definição de Pronto)**                                                                                                                                                        | **Effort** |
+| **ID** | **Epic**                  | **User Story**                                                                 | **DOR (Definição de Preparado)**                                                                                                                                                        | **Effort** |
 |--------|---------------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
 | 1      | Home page                 | Como usuário geral, quero acessar a página inicial para entender o propósito do sistema e acessar ferramentas. | Uma página inicial com título, descrição do sistema, seção de navegação e links para ferramentas principais.                                                                            | 8          |
 | 2      | Cadastro de atestados     | Como aluno, quero cadastrar minhas informações pessoais e enviar atestados médicos para a secretaria. | Formulário para cadastro de informações pessoais e envio de atestados médicos em PDF.                                                                                                     | 13         |
