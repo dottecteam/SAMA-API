@@ -1,8 +1,14 @@
 {% extends "teams/vw_template.html" %} {% block content %}
 
+<!-- Style da pagina -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='stylesheets/teams/style_form_register.css') }}"
+/>
+
 <!-- Container para o formulário de cadastro de equipes -->
 <section id="equipes-section" class="container-fluid">
-    <h1 class="text-center">Cadastro de Equipes</h1>
+    <h1 class="text-center form-register-title">Cadastro de Equipes</h1>
     <p class="text-center">Forme sua equipe no modelo ágil Scrum:</p>
 
     <form id="form-equipes" method="post" enctype="multipart/form-data">
