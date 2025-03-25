@@ -16,3 +16,8 @@
   color: rgb(59, 140, 110);
   font-size: 20px;
 }
+
+.form-login-title  {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: bold;
+}

@@ -1,9 +1,15 @@
 {% extends "teams/vw_template.html" %} {% block content %}
 
+<!-- Style da pagina -->
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='stylesheets/teams/style_form_evaluate.css') }}"
+/>
+
 <!-- Container para o formulário de avaliação de equipe -->
 <section id="avaliacao-section" class="container-fluid">
     <div class="container p-4 mb-4 rounded">
-    <h1 class="text-center" style="font-size:50px;">Avaliação de Equipe</h1>
+    <h1 class="text-center form-evaluate-title" style="font-size:50px;">Avaliação de Equipe</h1>
     <p class="text-center">Avalie a equipe baseada nos critérios abaixo:</p>
 </div>
 
@@ -11,7 +17,7 @@
         
         <!-- Container para informações e avaliação do Scrum Master -->
         <div class="container bg-light p-4 mb-4 rounded">
-            <h2>Scrum Master</h2>
+            <h2 class="input-title">Scrum Master</h2>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group p-2">
@@ -22,7 +28,7 @@
                 </div>
                 <div class="col-md-6 d-flex flex-wrap">
                     <div class="form-group p-2 w-25">
-                        <label for="proatividade_sm">Proatividade:</label>
+                        <label for="proatividade_sm" class="input-title">Proatividade:</label>
                         <select id="proatividade_sm" class="form-control btn-sm">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -31,7 +37,7 @@
                         </select>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="entrega_sm">Entrega:</label>
+                        <label for="entrega_sm" class="input-title">Entrega:</label>
                         <select id="entrega_sm" class="form-control btn-sm">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -40,7 +46,7 @@
                         </select>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="comunicacao_sm">Comunicação:</label>
+                        <label for="comunicacao_sm" class="input-title">Comunicação:</label>
                         <select id="comunicacao_sm" class="form-control btn-sm">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -49,7 +55,7 @@
                         </select>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="agilidade_sm">Agilidade:</label>
+                        <label for="agilidade_sm" class="input-title">Agilidade:</label>
                         <select id="agilidade_sm" class="form-control btn-sm">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -63,7 +69,7 @@
 
         <!-- Container para informações e avaliação do Product Owner -->
         <div id="productOwnerOriginal" class="container bg-light p-4 mb-4 rounded">
-            <h2>Product Owner</h2>
+            <h2 class="input-title">Product Owner</h2>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group p-2">
@@ -74,7 +80,7 @@
                 </div>
                 <div class="col-md-6 d-flex flex-wrap">
                     <div class="form-group p-2 w-25">
-                        <label for="proatividade_po">Proatividade:</label>
+                        <label for="proatividade_po" class="input-title">Proatividade:</label>
                         <select id="proatividade_po" class="form-control btn-sm">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -83,7 +89,7 @@
                         </select>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="entrega_po">Entrega:</label>
+                        <label for="entrega_po" class="input-title">Entrega:</label>
                         <select id="entrega_po" class="form-control btn-sm">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -92,7 +98,7 @@
                         </select>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="comunicacao_po">Comunicação:</label>
+                        <label for="comunicacao_po" class="input-title">Comunicação:</label>
                         <select id="comunicacao_po" class="form-control btn-sm">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -101,7 +107,7 @@
                         </select>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="agilidade_po">Agilidade:</label>
+                        <label for="agilidade_po" class="input-title">Agilidade:</label>
                         <select id="agilidade_po" class="form-control btn-sm">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -116,7 +122,7 @@
         <div id="developersContainer"></div>
 
         <div class="container text-center mt-4">
-            <button type="submit" class="btn btn-success btn-lg">Enviar Avaliação</button>
+            <button type="submit" class="btn btn-success btn-lg" class="input-title">Enviar Avaliação</button>
         </div>
     </form>
 </section>

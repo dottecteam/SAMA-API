@@ -8,6 +8,9 @@ load_dotenv()
 # Configuração do Flask
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 app.config['UPLOAD_FOLDER'] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data", "uploads"))
-app.secret_key = os.getenv('SECRET_KEY', '.tec@2025')
+app.secret_key = os.getenv('SECRET_KEY')
+secretary_password = os.getenv('PASSWORD_SECRETARY')
+admin_password = os.getenv('PASSWORD')
+admin_email = os.getenv('EMAIL')
 
 from app.views import routes_certificates, routes_teams

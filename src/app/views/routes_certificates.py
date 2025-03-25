@@ -54,11 +54,19 @@ def serve_file_atestados(filename):
     except FileNotFoundError:
         return "Arquivo não encontrado", 404
     
+#Cadastrar atestados
+@app.route("/atestados/cadastro/validar", methods=['POST'])
+def validar():
+    response = validar_dados()
+    return response  
+
 @app.route("/atestados/cadastro/cadastrar", methods=['POST'])
 def cadastrar():
     response = cadastrar_atestado()
-    return response
-    
+    return response  
+#Cadastrar atestados
+
+
 @app.route('/atestados/acesso/logar', methods=['POST'])
 def logar():
     response = logar_secretaria()
