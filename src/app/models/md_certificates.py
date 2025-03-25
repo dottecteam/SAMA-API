@@ -73,4 +73,10 @@ class Atestados:
             print(f"Erro ao salvar o arquivo: {e}")
             return False
         
-    
+    def remover_arquivo(nome_unico):
+        try:
+            os.remove(os.path.join(Atestados.caminho_atestados, nome_unico))
+            return True
+        except Exception as e:
+            print(f"Erro ao excluir o arquivo: {e}")
+            return False

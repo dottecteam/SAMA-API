@@ -40,20 +40,22 @@ def validar_dados():
 
 def cadastrar_atestado():
     codigo = request.form['input-codigo-form-atestados']
-    print(codigo)
-    print(session['codigo'])
+    
     try:
         if codigo != session['codigo']:
+            Atestados.remover_arquivo(session['arquivo'])
             return jsonify({"status": False, "mensagem": "Código incorreto!"}), 400
 
         response = Atestados.salvar_dados(session['nome'], session['email'], session['curso'], session['semestre'], session['dataIn'], session['dataFin'], session['cid'], session['arquivo'], session['cpf'])
         if response != True:
+            Atestados.remover_arquivo(session['arquivo'])
             return jsonify({"status": False, "mensagem": "Erro ao salvar dados!"}), 400
 
         session.clear()
         return jsonify({"status": True, "mensagem": "Atestado cadastrado com sucesso!"}), 200 
     except Exception as e:
         print(e)
+        Atestados.remover_arquivo(session['arquivo'])
         return jsonify({"status": False, "mensagem": "Erro ao cadastrar atestado!"}), 400
         
 
