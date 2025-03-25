@@ -51,16 +51,18 @@ select#selectAno:focus{
     background-color: rgb(59, 140, 110);
     border-radius: 10px;
     padding: 0 5px;
+    margin-top: 10px;
+    font-size: 24px;
 }
 .container {
     display: inline;
     border: 1px solid gray;
     border-radius: 20px;
-    width: 30%;
-    height: 30%;
+    width: 45%;
+    height: 40%;
     text-align: center;
+    margin: 10px;
 }
-
 
 #mensal {
     width: 100%;
@@ -88,3 +90,9 @@ select#selectAno:focus{
         flex-direction: column;
     }
 }
+/* 
+@media (max-width: 1435px) {
+    .card-body {
+        display: inline;
+    }
+} */

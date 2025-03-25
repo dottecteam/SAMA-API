@@ -59,13 +59,25 @@ class AtestadoMetricas:
 
     def mensal(self):
         anos = self.diff_anos()
-        mesesPorAno = [[0] * 12 for _ in anos]
+        mesesPorAno = {}
+        for ano in anos:
+            mesesPorAno.update({ano: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
         
         for atestado in self.atestados_unicos:
             data = datetime.strptime(atestado[5], "%Y-%m-%d")
             mes = data.month
             ano = data.year
             if ano in anos:
-                index = anos.index(ano)
-                mesesPorAno[index][mes - 1] += 1
+                mesesPorAno[ano][mes - 1] += 1
         return mesesPorAno
+    
+    def pessoas_afastadas(self):
+        afastados = []
+        for atestado in self.atestados_aprovados():
+            data_atual = datetime.now()
+            data_inicial = datetime.strptime(atestado[5], "%Y-%m-%d")
+            data_final = datetime.strptime(atestado[6], "%Y-%m-%d")
+            if data_inicial <= data_atual <= data_final:
+                afastados.append(atestado)
+        return(afastados)
+

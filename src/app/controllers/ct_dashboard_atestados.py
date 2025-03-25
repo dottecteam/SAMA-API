@@ -8,10 +8,11 @@ def coletar_metricas():
         num_pendentes = len(atestados.atestados_pendentes())
         num_aprovados = len(atestados.atestados_aprovados())
         num_rejeitados = len(atestados.atestados_rejeitados())
+        num_afastados = len(atestados.pessoas_afastadas())
         anos = atestados.diff_anos()
         meses = atestados.mensal()
         
-        metricas = [num_atestados, num_pendentes, num_aprovados, num_rejeitados, anos, meses]
+        metricas = [num_atestados, num_pendentes, num_aprovados, num_rejeitados, anos, meses, num_afastados]
         return metricas
     except Exception as e:
         print(e)

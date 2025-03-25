@@ -1,4 +1,4 @@
-google.charts.load("current", {packages:["corechart"]});
+google.charts.load("current", { packages: ["corechart"] });
 google.charts.setOnLoadCallback(drawCharts);
 
 function drawCharts() {
@@ -15,15 +15,15 @@ function drawMensalChart() {
     data.addColumn({ type: 'string', role: 'style' });
 
     for (var i = 0; i < meses.length; i++) {
-        data.addRow([meses[i], metricas[5][1][i], estilo]);
+        data.addRow([meses[i], metricas[5][2022][i], estilo]);
     }
 
     var options = {
         title: '',
         colors: ['rgb(59, 140, 110)'],
-        chartArea: {width: '90%'},
+        chartArea: { width: '90%' },
         hAxis: {
-            title: 'Mês', 
+            title: 'Mês',
             minValue: 0,
             gridlines: { count: 5 }
         }

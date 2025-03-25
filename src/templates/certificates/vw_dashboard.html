@@ -14,8 +14,31 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
 
 <h1> Painel de atestados </h1>
 <p>{{ metricas }}</p>
+<p>{{metricas[5][-1]}}</p>
+
 
 <section class="graficos-container">
+    <section id="card-estado" class="card">
+        <div class="card-header">Quantidade por Estado</div>
+        <div class="card-body">
+            <div class="container">
+                <p class="texto-metrica">Pessoas Afastadas</p>
+                <div>{{ metricas[6] }}</div>
+            </div>
+            <div class="container">
+                <p class="texto-metrica">Atestados Pendentes</p>
+                <div>{{ metricas[1] }}</div>
+            </div>
+            <div class="container">
+                <p class="texto-metrica">Atestados Aprovados</p>
+                <div>{{ metricas[2] }}</div>
+            </div>
+            <div class="container">
+                <p class="texto-metrica">Atestados Rejeitados</p>
+                <div>{{ metricas[3] }}</div>
+            </div>
+        </div>
+    </section>
     <div id="card-mensal" class="card">
         <div class="card-header">
             Quantidade de Atestados Mensais
@@ -30,23 +53,6 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
         </div>
         <div id="mensal" class="card-body"></div>
     </div>
-    <section id="card-estado" class="card">
-        <div class="card-header">Quantidade por Estado</div>
-        <div class="card-body">
-            <div class="container">
-                <p>Atestados Pendentes</p>
-                <div>{{ metricas[1] }}</div>
-            </div>
-            <div class="container">
-                <p>Atestados Aprovados</p>
-                <div>{{ metricas[2] }}</div>
-            </div>
-            <div class="container">
-                <p>Atestados Rejeitados</p>
-                <div>{{ metricas[3] }}</div>
-            </div>
-        </div>
-    </section>
 </section>
 
 
