@@ -21,6 +21,12 @@
     display: none; /* Esconde o input de arquivo original */
 }
 
+/* Titulos */
+.form-register-title {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: bold;
+  }
+
 /* Tamanhos */
 .file-upload-area {
     width: 100%;

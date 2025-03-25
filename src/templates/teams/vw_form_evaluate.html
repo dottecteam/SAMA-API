@@ -1,9 +1,15 @@
 {% extends "teams/vw_template.html" %} {% block content %}
 
+<!-- Style da pagina -->
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='stylesheets/teams/style_form_evaluate.css') }}"
+/>
+
 <!-- Container para o formulário de avaliação de equipe -->
 <section id="avaliacao-section" class="container-fluid">
     <div class="container p-4 mb-4 rounded">
-    <h1 class="text-center" style="font-size:50px;">Avaliação de Equipe</h1>
+    <h1 class="text-center form-evaluate-title" style="font-size:50px;">Avaliação de Equipe</h1>
     <p class="text-center">Avalie a equipe baseada nos critérios abaixo:</p>
 </div>
 
