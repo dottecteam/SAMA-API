@@ -67,14 +67,18 @@ $(document).ready(function () {
     $(this).val(cpf);
   });
 
-  
-
-
   //ENVIO DO FORMULÁRIO
   // Quando o formulário é enviado
   $("#form-atestados").on("submit", function (event) {
     event.preventDefault();
     let formData = new FormData(this);
+
+    // Exibe o loading
+    var ModalLoading = new bootstrap.Modal(document.getElementById('loadingModal'), {
+      backdrop: 'static',  // Impede o fechamento ao clicar fora do modal
+      keyboard: false      // Impede o fechamento ao pressionar a tecla ESC
+    });
+    ModalLoading.show();
 
     $.ajax({
       type: "POST",
@@ -87,19 +91,23 @@ $(document).ready(function () {
           $("#email-destino").html(formData.get("input-email-form-atestados"));
           var myModal = new bootstrap.Modal($("#modalConfirmacao"));
           myModal.show();
-        
+          ModalLoading.hide();
         } else {
           var myModal = new bootstrap.Modal($("#errorModal"));
-          myModal.show();
           $("#error-message").html(response.mensagem);
+          myModal.show();
+          ModalLoading.hide();
+
         }
       },
       error: function (xhr, status, error) {
         var myModal = new bootstrap.Modal($("#errorModal"));
-        myModal.show();
         var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
         var errorMessage = response.mensagem;
         $("#error-message").html(errorMessage);
+        ModalLoading.hide();
+        myModal.show();
+
       },
     });
   });
@@ -144,5 +152,5 @@ $(document).ready(function () {
     });
   });
 
-  
+
 });
