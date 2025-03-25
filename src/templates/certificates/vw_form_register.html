@@ -5,11 +5,56 @@
   href="{{ url_for('static', filename='stylesheets/certificates/style_form_register.css') }}"
 />
 
+<!-- Modal de confirmação de e-mail -->
+<div
+  class="modal fade"
+  id="modalConfirmacao"
+  tabindex="-1"
+  aria-labelledby="modalConfirmacaoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalConfirmacaoLabel">
+          Confirme seu e-mail
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Fechar"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Enviamos um código para <strong id="email-destino"></strong>. Por
+          favor, digite abaixo:
+        </p>
+        <form id="form-confirmacao">
+          <input
+            type="int"
+            class="form-control mb-3"
+            id="input-codigo-form-atestados"
+            name="input-codigo-form-atestados"
+            placeholder="Digite o código"
+            autocomplete="off"
+            required
+          />
+          <div class="text-end">
+            <button type="submit" class="btn btn-custom">Confirmar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section id="atestados-section" class="container-fluid">
   <h1 class="text-center">Cadastro de Atestados Médicos</h1>
   <p class="text-center">Se registre e envie seu atestado médico:</p>
-  <form id="form-atestados" method="post" enctype="multipart/form-data">
-    <div class="container bg-light p-4 mb-4 rounded">
+  <div class="container bg-light p-4 mb-4 rounded">
+    <form id="form-atestados" method="post" enctype="multipart/form-data">
       <div class="row">
         <!-- Primeiros dois campos à esquerda -->
         <div class="col-md-6">
@@ -164,14 +209,13 @@
               >DECLARO VERACIDADE DAS INFORMAÇÕES FORNECIDAS</label
             >
           </div>
-
-          <div class="text-center p-2">
-            <button type="submit" class="btn btn-custom">Enviar</button>
-          </div>
         </div>
       </div>
-    </div>
-  </form>
+      <div class="text-center p-2">
+        <button type="submit" class="btn btn-custom">Validar</button>
+      </div>
+    </form>
+  </div>
 </section>
 
 <script src="{{ url_for('static', filename='scripts/certificates/script_form_register.js') }}"></script>

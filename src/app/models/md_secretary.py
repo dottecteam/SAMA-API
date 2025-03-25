@@ -1,7 +1,8 @@
 from flask import session
+from app import secretary_password
 
 class Secretaria:
-    password = 'secretaria@2025'
+    password = secretary_password
 
     def logar(senha):
         if senha == Secretaria.password:
