@@ -1,5 +1,29 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
 
-<h1>Consulta Completa</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_query.css') }}">
+<script src="{{ url_for('static', filename='scripts/certificates/script_query.js') }}"></script>
+
+<h1>Consulta de atestados</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nome do aluno</th>
+            <th>Data de envio do atestado</th>
+            <th>Período de afastamento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="linhaUm" onclick="abrirModal('Ramon Batista Varjão', '21/3/2025', '3 dias')">
+            <td>Ramon Batista Varjão</td>
+            <td>21/3/2025</td>
+            <td>3 dias</td>
+        </tr>
+    </tbody>
+</table>
+<div class="fundoDoModal" onclick="fecharModal()"></div>
+<div class="popUp" id="popUp">
+    <button class="botaoDeFechar" onclick="fecharModal()">x</button>
+    <p id="conteudoDoModal"></p>
+</div>
 
 {% endblock %}
