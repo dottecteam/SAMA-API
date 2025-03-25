@@ -1,4 +1,18 @@
 $(document).ready(function () {
+  const ModalLoading = new bootstrap.Modal(
+    document.getElementById("loadingModal"),
+    {
+      backdrop: "static",
+      keyboard: false,
+    }
+  );
+  const ModalError = new bootstrap.Modal(document.getElementById("errorModal"))
+  const ModalSuccess = new bootstrap.Modal(document.getElementById("successModal"))
+  const ModalConfirmacao = new bootstrap.Modal(document.getElementById("modalConfirmacao"), {
+    backdrop: "static",
+    keyboard: false,
+  })
+
   // Quando a área de upload é clicada, dispara o clique no input file
   $("#file-upload-area").on("click", function () {
     $("#file-form-atestados")[0].click(); // Dispara o clique no input file
@@ -43,8 +57,7 @@ $(document).ready(function () {
       $("#file-upload-area span").text(file.name); // Atualiza o nome do arquivo na área
       // Se quiser processar o arquivo aqui, como enviá-lo para o servidor, pode adicionar essa lógica
     } else {
-      var myModal = new bootstrap.Modal($("#errorModal"));
-      myModal.show();
+      ModalError.show();
       $("#error-message").html("Formato de arquivo inválido.");
       $("#file-upload-area span").text(
         "Arraste ou clique para escolher o arquivo"
@@ -73,13 +86,7 @@ $(document).ready(function () {
     event.preventDefault();
     let formData = new FormData(this);
 
-    // Exibe o loading
-    var ModalLoading = new bootstrap.Modal(document.getElementById('loadingModal'), {
-      backdrop: 'static',  // Impede o fechamento ao clicar fora do modal
-      keyboard: false      // Impede o fechamento ao pressionar a tecla ESC
-    });
     ModalLoading.show();
-
     $.ajax({
       type: "POST",
       url: "/atestados/cadastro/validar",
@@ -87,28 +94,25 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function (response) {
+        ModalLoading.hide();
         if (response.status) {
           $("#email-destino").html(formData.get("input-email-form-atestados"));
-          var myModal = new bootstrap.Modal($("#modalConfirmacao"));
-          myModal.show();
-          ModalLoading.hide();
+          ModalConfirmacao.show();
         } else {
-          var myModal = new bootstrap.Modal($("#errorModal"));
           $("#error-message").html(response.mensagem);
-          myModal.show();
-          ModalLoading.hide();
-
+          ModalError.show();
         }
       },
       error: function (xhr, status, error) {
-        var myModal = new bootstrap.Modal($("#errorModal"));
-        var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
-        var errorMessage = response.mensagem;
-        $("#error-message").html(errorMessage);
-        ModalLoading.hide();
-        myModal.show();
-
-      },
+        setTimeout(function() {
+          ModalLoading.hide(); 
+          var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
+          var errorMessage = response.mensagem;
+          $("#error-message").html(errorMessage);
+          ModalError.show();
+        }, 1000);
+        
+      }
     });
   });
 
@@ -124,33 +128,30 @@ $(document).ready(function () {
       contentType: false,
       success: function (response) {
         if (response.status) {
-          $("#modalConfirmacao").modal("hide");
-          var myModal = new bootstrap.Modal($("#successModal"));
-          myModal.show();
+          ModalConfirmacao.hide();
+          
+          ModalSuccess.show();
           $("#form-confirmacao")[0].reset();
           $("#form-atestados")[0].reset();
           $("#file-upload-area span").text(
             "Arraste ou clique para escolher o arquivo"
           );
         } else {
-          $("#modalConfirmacao").modal("hide");
+          ModalConfirmacao.hide();
           $("#form-confirmacao")[0].reset();
-          var myModal = new bootstrap.Modal($("#errorModal"));
-          myModal.show();
           $("#error-message").html(response.mensagem);
+          ModalError.show();
         }
       },
       error: function (xhr, status, error) {
-        $("#modalConfirmacao").modal("hide");
+        ModalConfirmacao.hide();
         $("#form-confirmacao")[0].reset();
-        var myModal = new bootstrap.Modal($("#errorModal"));
-        myModal.show();
+
         var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
         var errorMessage = response.mensagem;
         $("#error-message").html(errorMessage);
-      }
+        ModalError.show();
+      },
     });
   });
-
-
 });
