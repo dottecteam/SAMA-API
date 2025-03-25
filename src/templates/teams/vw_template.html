@@ -27,11 +27,20 @@
 
 <body>
   <!--Carregamento-->
-  <div id="loading" class="d-flex justify-content-center">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Carregando...</span>
+  <!-- Overlay com o Modal (sem conteúdo) -->
+  <div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body text-center">
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Carregando...</span>
+            </div>
+          </div>
+          <h3 class="mt-2 text-white">Carregando, aguarde...</h3>
+        </div>
+      </div>
     </div>
-    <span class="ms-2">Carregando, aguarde...</span>
   </div>
   <!-- Modal de erro-->
   <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
