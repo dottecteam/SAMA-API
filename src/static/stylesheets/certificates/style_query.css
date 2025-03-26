@@ -1,0 +1,81 @@
+h1 {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+table {
+    width: 96%;
+    margin: auto;
+    border-collapse: collapse;
+    justify-content: space-around;
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #3B8C6E;
+}
+
+td {
+    cursor: pointer;
+}
+
+.popUp {
+    visibility: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 25px;
+    box-shadow: 0px 0px 10px gray;
+    z-index: 1000;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.popUp p {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px;
+}
+
+.fundoDoModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.botaoDeFechar {
+    background-color: red;
+    color: white;
+    width: 35px;
+    cursor: pointer;
+    border-radius: 5%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.botaoDeFechar:hover {
+    background-color: darkred;
+}
+
+.linhaUm:hover {
+    background-color: lightgrey;
+}
+
+.linhaUm {
+    transition: background-color 0.2s ease;
+}

@@ -2,8 +2,12 @@ import random
 from flask import session
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.image import MIMEImage
 from app import admin_email, admin_password
 import re
+import os
+from app import app
 
 class Validade:
 
@@ -38,21 +42,39 @@ class Validade:
 
     def enviar_codigo(email):
         session['codigo'] = str(random.randint(100000, 999999))
-        print(admin_password)
+        logo_path = os.path.join(app.root_path, "..", "static", "images", "logo.jpg")
         corpo = f"""
-        <html>
-        <body style="font-family: Arial;">
-            <h2>Confirmação de E-mail</h2>
-            <p>Seu código de confirmação:</p>
-            <h1 style="color: #3498db;">{session['codigo']}</h1>
-        </body>
-        </html>
-        """
-        msg = MIMEText(corpo, 'html')
+            <html>
+                <body style="font-family: Arial; color: #000000;">
+                    <img src="cid:logo" style="border-radius:15px;width: 500px; margin-bottom: 20px;">
+                    <h2 style="text-align:center">Confirmação de E-mail</h2>
+                    <p style="text-align:center">Seu código de confirmação:</p>
+                    <h1 style="color: #3b8c6e; text-align:center">{session['codigo']}</h1>
+                </body>
+            </html>
+            """
+
+        # Criação da mensagem com partes (HTML + Imagem)
+        msg = MIMEMultipart("related")
         msg['Subject'] = 'Código de Confirmação'
         msg['From'] = admin_email
         msg['To'] = email
 
+        # Adicionando o corpo HTML
+        msg_alternativo = MIMEMultipart("alternative")
+        msg_alternativo.attach(MIMEText(corpo, 'html'))
+        msg.attach(msg_alternativo)
+
+        # Adicionando a imagem da logo
+        try:
+            with open(logo_path, 'rb') as img:
+                imagem = MIMEImage(img.read())
+                imagem.add_header('Content-ID', '<logo>')
+                msg.attach(imagem)
+        except Exception as e:
+            print(f"Erro ao carregar logo: {e}")
+
+        # Enviando e-mail
         try:
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
@@ -61,7 +83,7 @@ class Validade:
             server.quit()
             return True
         except Exception as e:
-            print(e)
+            print(f"Erro ao enviar e-mail: {e}")
             return False
     
     def confirmar_email(codigo):
