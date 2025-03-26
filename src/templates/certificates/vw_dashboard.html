@@ -13,7 +13,6 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
 
 
 <h1> Painel de atestados </h1>
-<p>{{ metricas }}</p>
 
 <section class="graficos-container">
     <section id="card-estado" class="card">
@@ -21,19 +20,19 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
         <div class="card-body">
             <div class="container">
                 <p >Pessoas Afastadas</p>
-                <div class="texto-metrica"><p>{{ metricas[6] }}</p></div>
-            </div>
-            <div class="container">
-                <p>Atestados Pendentes</p>
                 <div class="texto-metrica"><p>{{ metricas[1] }}</p></div>
             </div>
             <div class="container">
-                <p>Atestados Aprovados</p>
+                <p>Atestados Pendentes</p>
                 <div class="texto-metrica"><p>{{ metricas[2] }}</p></div>
             </div>
             <div class="container">
-                <p>Atestados Rejeitados</p>
+                <p>Atestados Aprovados</p>
                 <div class="texto-metrica"><p>{{ metricas[3] }}</p></div>
+            </div>
+            <div class="container">
+                <p>Atestados Rejeitados</p>
+                <div class="texto-metrica"><p>{{ metricas[4] }}</p></div>
             </div>
         </div>
     </section>
@@ -43,7 +42,7 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
             <section id="selecionarAno">
                 <label>Selecione o ano:</label>
                 <select id="selectAno" class="form-select">
-                    {% for ano in metricas[4] %}
+                    {% for ano in metricas[5] %}
                         <option value="{{ ano }}">{{ ano }}</option>
                     {% endfor %}
                 </select>
@@ -52,7 +51,6 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
         <div id="mensal" class="card-body"></div>
     </section>
 </section>
-
 
 
 {% endblock %}

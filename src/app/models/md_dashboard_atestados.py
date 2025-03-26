@@ -49,14 +49,18 @@ class AtestadoMetricas:
         return self.rejeitados
     
     def dif_anos(self):
-        anos = []
+        """Retorna uma lista com os anos dos atestados aprovados."""
+        anos = set()
         for atestado in self.atestados_aprovados():
             ano = datetime.strptime(atestado[5], "%Y-%m-%d").year
-            if ano not in anos:
-                anos.append(ano)
+            anos.add(ano)
+        anos = list(anos)
+        anos.sort()
+        anos.reverse()
         return anos
 
     def mensal(self):
+        """Retorna um dicionário com a quantidade de atestados por mês em cada ano."""
         anos = self.dif_anos()
         mesesPorAno = {}
         for ano in anos:
@@ -71,6 +75,7 @@ class AtestadoMetricas:
         return mesesPorAno
     
     def pessoas_afastadas(self):
+        """Retorna uma lista com os atestados aprovados que estão em vigor (Pessoas Afastadas)."""
         afastados = []
         for atestado in self.atestados_aprovados():
             data_atual = datetime.now()

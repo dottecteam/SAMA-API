@@ -1,3 +1,8 @@
+body {
+    text-align: center;
+}
+
+/* Container principal dos gráficos */
 .graficos-container {
     display: flex;
     flex-wrap: wrap;
@@ -7,6 +12,7 @@
     justify-self: center;
 }
 
+/* Cartão que envolve os gráficos */
 .card {
     display: flex;
     width: 95%;
@@ -15,6 +21,7 @@
     overflow: hidden;
 }
 
+/* Cabeçalho do cartão */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -22,10 +29,12 @@
     font-size: 26px;
 }
 
+/* Corpo do cartão */
 .card-body {
     display: flex;
 }
 
+/* Container para métricas */
 .container {
     display: inline;
     border: 1px solid gray;
@@ -36,6 +45,7 @@
     margin: 10px;
 }
 
+/* Parágrafo dentro do container de métricas */
 .container > p {
     color: white;
     background-color: rgb(59, 140, 110);
@@ -45,11 +55,13 @@
     font-size: 24px;
 }
 
+/* Estilização do texto das métricas */
 .texto-metrica {
     font-size: 22px;
     padding: none;
 }
 
+/* Seletor de ano */
 #selecionarAno {
     display: flex;
     width: auto;
@@ -61,55 +73,30 @@
     margin-right: 15px;
 }
 
-select#selectAno{
+/* Estilização do select de ano */
+select#selectAno {
     border-color: rgb(59, 140, 110);
     height: 35px;
     width: 90px;
     color: rgb(59, 140, 110);
 }
-select#selectAno:focus{
+
+select#selectAno:focus {
     box-shadow: 0 0 8px rgb(59, 140, 110);
 }
 
+/* Seção mensal do dashboard */
 #mensal {
     width: 100%;
     min-height: 300px;
 }
 
+/* Cartão específico para mensal */
 #card-mensal {
     width: 70%;
 }
 
-@media (max-width: 1000px) {
-    .graficos-container {
-        flex-direction: column;
-    }
-    
-    .card-body {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .container {
-        width: 100%;
-    }
-
-    .card-header {
-        flex-direction: column;
-        font-size: 22px;
-        text-align: center;
-    }
-
-    .container > p {
-        font-size: 20px;
-    }
-
-    .texto-metrica {
-        font-size: 18px;
-    }
-}
-
-
+/* Ajustes para telas menores que 1286px */
 @media (max-width: 1286px) {
     .card, #card-mensal {
         width: 95%;
@@ -122,3 +109,29 @@ select#selectAno:focus{
         width: 100%;
     }
 }
+
+/* Ajustes para telas menores que 1000px */
+@media (max-width: 1000px) {
+    .graficos-container {
+        flex-direction: column;
+    }
+    .card-body {
+        flex-direction: column;
+        align-items: center;
+    }
+    .container {
+        width: 100%;
+    }
+    .card-header {
+        flex-direction: column;
+        font-size: 22px;
+        text-align: center;
+    }
+    .container > p {
+        font-size: 20px;
+    }
+    .texto-metrica {
+        font-size: 18px;
+    }
+}
+

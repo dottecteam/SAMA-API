@@ -12,7 +12,7 @@ def coletar_metricas():
         anos = atestados.dif_anos()
         meses = atestados.mensal()
         
-        metricas = [num_atestados, num_pendentes, num_aprovados, num_rejeitados, anos, meses, num_afastados]
+        metricas = [num_atestados, num_afastados, num_pendentes, num_aprovados, num_rejeitados, anos, meses]
         return metricas
     except Exception as e:
         print(e)
