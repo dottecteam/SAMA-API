@@ -1,8 +1,3 @@
-:root {
-    --cor-primaria: 59, 140, 110;
-    --cor-secundaria: 11, 43, 64;
-}
-
 .graficos-container {
     display: flex;
     flex-wrap: wrap;
@@ -14,22 +9,56 @@
 
 .card {
     display: flex;
-    width: 45%;
-    height: 400px;
+    width: 95%;
+    height: auto;
     margin: 10px;
+    overflow: hidden;
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 26px;
+}
+
+.card-body {
+    display: flex;
+}
+
+.container {
+    display: inline;
+    border: 1px solid gray;
+    border-radius: 20px;
+    width: 45%;
+    height: 40%;
+    text-align: center;
+    margin: 10px;
+}
+
+.container > p {
+    color: white;
+    background-color: rgb(59, 140, 110);
+    border-radius: 10px;
+    padding: 0 5px;
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.texto-metrica {
+    font-size: 22px;
+    padding: none;
 }
 
 #selecionarAno {
     display: flex;
-    width: 220px;
+    width: auto;
     justify-content: space-between;
     align-items: center;
+}
+
+#selecionarAno > label {
+    margin-right: 15px;
 }
 
 select#selectAno{
@@ -42,41 +71,20 @@ select#selectAno:focus{
     box-shadow: 0 0 8px rgb(59, 140, 110);
 }
 
-.card-body {
-    display: flex;
-}
-
-.card-body p {
-    color: white;
-    background-color: rgb(59, 140, 110);
-    border-radius: 10px;
-    padding: 0 5px;
-    margin-top: 10px;
-    font-size: 24px;
-}
-.container {
-    display: inline;
-    border: 1px solid gray;
-    border-radius: 20px;
-    width: 45%;
-    height: 40%;
-    text-align: center;
-    margin: 10px;
-}
-
 #mensal {
     width: 100%;
     min-height: 300px;
+}
+
+#card-mensal {
+    width: 70%;
 }
 
 @media (max-width: 1000px) {
     .graficos-container {
         flex-direction: column;
     }
-    .card {
-        width: 95%;
-    }
-
+    
     .card-body {
         flex-direction: column;
         align-items: center;
@@ -88,11 +96,29 @@ select#selectAno:focus{
 
     .card-header {
         flex-direction: column;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .container > p {
+        font-size: 20px;
+    }
+
+    .texto-metrica {
+        font-size: 18px;
     }
 }
-/* 
-@media (max-width: 1435px) {
-    .card-body {
-        display: inline;
+
+
+@media (max-width: 1286px) {
+    .card, #card-mensal {
+        width: 95%;
     }
-} */
+    .card-body {
+        flex-direction: column;
+        align-items: center;
+    }
+    .container {
+        width: 100%;
+    }
+}

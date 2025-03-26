@@ -9,7 +9,7 @@ def coletar_metricas():
         num_aprovados = len(atestados.atestados_aprovados())
         num_rejeitados = len(atestados.atestados_rejeitados())
         num_afastados = len(atestados.pessoas_afastadas())
-        anos = atestados.diff_anos()
+        anos = atestados.dif_anos()
         meses = atestados.mensal()
         
         metricas = [num_atestados, num_pendentes, num_aprovados, num_rejeitados, anos, meses, num_afastados]

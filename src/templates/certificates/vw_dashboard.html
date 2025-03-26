@@ -14,32 +14,30 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
 
 <h1> Painel de atestados </h1>
 <p>{{ metricas }}</p>
-<p>{{metricas[5][-1]}}</p>
-
 
 <section class="graficos-container">
     <section id="card-estado" class="card">
         <div class="card-header">Quantidade por Estado</div>
         <div class="card-body">
             <div class="container">
-                <p class="texto-metrica">Pessoas Afastadas</p>
-                <div>{{ metricas[6] }}</div>
+                <p >Pessoas Afastadas</p>
+                <div class="texto-metrica"><p>{{ metricas[6] }}</p></div>
             </div>
             <div class="container">
-                <p class="texto-metrica">Atestados Pendentes</p>
-                <div>{{ metricas[1] }}</div>
+                <p>Atestados Pendentes</p>
+                <div class="texto-metrica"><p>{{ metricas[1] }}</p></div>
             </div>
             <div class="container">
-                <p class="texto-metrica">Atestados Aprovados</p>
-                <div>{{ metricas[2] }}</div>
+                <p>Atestados Aprovados</p>
+                <div class="texto-metrica"><p>{{ metricas[2] }}</p></div>
             </div>
             <div class="container">
-                <p class="texto-metrica">Atestados Rejeitados</p>
-                <div>{{ metricas[3] }}</div>
+                <p>Atestados Rejeitados</p>
+                <div class="texto-metrica"><p>{{ metricas[3] }}</p></div>
             </div>
         </div>
     </section>
-    <div id="card-mensal" class="card">
+    <section  id="card-mensal" class="card">
         <div class="card-header">
             Quantidade de Atestados Mensais
             <section id="selecionarAno">
@@ -52,7 +50,7 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
             </section>
         </div>
         <div id="mensal" class="card-body"></div>
-    </div>
+    </section>
 </section>
 
 

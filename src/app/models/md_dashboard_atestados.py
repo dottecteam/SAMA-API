@@ -5,7 +5,7 @@ class AtestadoMetricas:
     def __init__(self, arquivo="data/atestados/alunos.txt"):
         self.arquivo = arquivo
         self.atestados = []
-        self.atestados_unicos = []
+        self.atestados_unicos = set()
         self.pendentes = []
         self.aprovados = []
         self.rejeitados = []
@@ -23,15 +23,14 @@ class AtestadoMetricas:
     def dif_atestados(self):
         """Retorna uma lista com atestados únicos e adiciona a duração."""
         for atestado in self.atestados:
-            if atestado not in self.atestados_unicos:
-                self.atestados_unicos.append(atestado)
             try:
                 data_inicial = datetime.strptime(atestado[5], "%Y-%m-%d")
                 data_final = datetime.strptime(atestado[6], "%Y-%m-%d")
                 duracao = (data_final - data_inicial).days
-                atestado.insert(7, duracao)
+                atestado.insert(7, duracao)   
+                self.atestados_unicos.add(tuple(atestado))
             except ValueError:
-                print(f"Erro ao processar datas no atestado: {atestado}")
+                print(f"Erro ao processar datas no atestado: {atestado}")  
         return self.atestados_unicos
     
     def atestados_pendentes(self):
@@ -49,16 +48,16 @@ class AtestadoMetricas:
         self.rejeitados = [atestado for atestado in self.atestados_unicos if "Rejeitado" in atestado]
         return self.rejeitados
     
-    def diff_anos(self):
+    def dif_anos(self):
         anos = []
-        for atestado in self.atestados_unicos:
+        for atestado in self.atestados_aprovados():
             ano = datetime.strptime(atestado[5], "%Y-%m-%d").year
             if ano not in anos:
                 anos.append(ano)
         return anos
 
     def mensal(self):
-        anos = self.diff_anos()
+        anos = self.dif_anos()
         mesesPorAno = {}
         for ano in anos:
             mesesPorAno.update({ano: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
