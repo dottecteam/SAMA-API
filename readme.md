@@ -83,5 +83,3 @@ Essas tecnologias foram escolhidas para proporcionar uma aplicação rápida, co
 |  Luiz Gabriel Lakner dos Santos  | Developer | <a href="https://github.com/Lakner13"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> | <a href="https://www.linkedin.com/in/gabriel-lakner-734528264/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin$logoColor=white"> </a>
 |  Ramon Batista Varjão  | Product owner | <a href="https://github.com/gitDeRamon"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> |
 
-
-OBS: foram usados HTML, CSS, Python e JavaScript
