@@ -30,7 +30,7 @@ function drawMensalChart() {
 
     // Adiciona os dados à tabela com base no ano selecionado
     for (var i = 0; i < meses.length; i++) {
-        data.addRow([meses[i], metricas[6][anoSelecionado][i], estilo]);
+        data.addRow([meses[i], metricas[2][anoSelecionado][i], estilo]);
     }
 
     // Configurações de exibição do gráfico
@@ -63,3 +63,66 @@ function drawMensalChart() {
 
 // Redesenha os gráficos quando a janela for redimensionada
 window.addEventListener('resize', drawCharts);
+
+// Função para esconder todos os cards
+function esconderTodosCards() {
+    var cards = ['painel-afastados', 'painel-pendentes', 'painel-aprovados', 'painel-rejeitados'];
+    cards.forEach(function(cardId) {
+      var card = document.getElementById(cardId);
+      card.style.display = 'none';
+    });
+  }
+  
+  // Evento para o botão 'afastados'
+  document.getElementById('botao-afastados').addEventListener('click', function() {
+    esconderTodosCards();
+    var card = document.getElementById('painel-afastados');
+    // Alterna entre mostrar e esconder o card
+    if (card.style.display === 'none') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  // Evento para o botão 'pendentes'
+  document.getElementById('botao-pendentes').addEventListener('click', function() {
+    esconderTodosCards();
+    var card = document.getElementById('painel-pendentes');
+    // Alterna entre mostrar e esconder o card
+    if (card.style.display === 'none') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  // Evento para o botão 'aprovados'
+  document.getElementById('botao-aprovados').addEventListener('click', function() {
+    esconderTodosCards();
+    var card = document.getElementById('painel-aprovados');
+    // Alterna entre mostrar e esconder o card
+    if (card.style.display === 'none') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  // Evento para o botão 'rejeitados'
+  document.getElementById('botao-rejeitados').addEventListener('click', function() {
+    esconderTodosCards();
+    var card = document.getElementById('painel-rejeitados');
+    // Alterna entre mostrar e esconder o card
+    if (card.style.display === 'none') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  document.querySelectorAll('.botao-x').forEach(botao => {
+    botao.addEventListener('click', function() {
+        esconderTodosCards();
+    });
+});

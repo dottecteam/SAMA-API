@@ -4,16 +4,27 @@ from app.models.md_dashboard_atestados import AtestadoMetricas
 def coletar_metricas():
     try:
         atestados = AtestadoMetricas()
+        atestados.executar()
         num_atestados = len(atestados.dif_atestados())
-        num_pendentes = len(atestados.atestados_pendentes())
-        num_aprovados = len(atestados.atestados_aprovados())
-        num_rejeitados = len(atestados.atestados_rejeitados())
-        num_afastados = len(atestados.pessoas_afastadas())
         anos = atestados.dif_anos()
         meses = atestados.mensal()
         
-        metricas = [num_atestados, num_afastados, num_pendentes, num_aprovados, num_rejeitados, anos, meses]
+        metricas = [num_atestados, anos, meses]
         return metricas
+    except Exception as e:
+        print(e)
+        return jsonify({"status": False, "mensagem": "Erro ao coletar dados do atestado!"}), 400
+    
+def coletar_estados():
+    try:
+        atestados = AtestadoMetricas()
+        atestados.executar()
+        pendentes = atestados.atestados_pendentes()
+        aprovados = atestados.atestados_aprovados()
+        rejeitados = atestados.atestados_rejeitados()
+        afastados = atestados.pessoas_afastadas()
+        estado = {"pendentes": pendentes, "aprovados": aprovados, "rejeitados": rejeitados, "afastados": afastados}
+        return estado
     except Exception as e:
         print(e)
         return jsonify({"status": False, "mensagem": "Erro ao coletar dados do atestado!"}), 400

@@ -5,6 +5,7 @@
 <!-- Import Google Charts e script js-->
 <script>
 var metricas = JSON.parse('{{ metricas | tojson | safe }}');
+var estado = JSON.parse('{{ metricas | tojson | safe }}');
 </script>
 
 
@@ -19,30 +20,171 @@ var metricas = JSON.parse('{{ metricas | tojson | safe }}');
         <div class="card-header">Quantidade por Estado</div>
         <div class="card-body">
             <div class="container">
-                <p >Pessoas Afastadas</p>
-                <div class="texto-metrica"><p>{{ metricas[1] }}</p></div>
+                <button type="button"  id="botao-afastados" class="botao-estado" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    Pessoas Afastadas
+                </button>
+                <div class="texto-metrica"><p>{{ estado["afastados"]|length }}</p></div>
             </div>
             <div class="container">
-                <p>Atestados Pendentes</p>
-                <div class="texto-metrica"><p>{{ metricas[2] }}</p></div>
+                <button type="button"  id="botao-pendentes" class="botao-estado" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    Atestados Pendentes
+                </button>
+                <div class="texto-metrica"><p>{{ estado["pendentes"]|length }}</p></div>
             </div>
             <div class="container">
-                <p>Atestados Aprovados</p>
-                <div class="texto-metrica"><p>{{ metricas[3] }}</p></div>
+                <button type="button"  id="botao-aprovados" class="botao-estado" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    Atestados Aprovados
+                </button>
+                <div class="texto-metrica"><p>{{ estado["aprovados"]|length }}</p></div>
             </div>
             <div class="container">
-                <p>Atestados Rejeitados</p>
-                <div class="texto-metrica"><p>{{ metricas[4] }}</p></div>
+                <button type="button"  id="botao-rejeitados" class="botao-estado" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    Atestados Rejeitados
+                </button>
+                <div class="texto-metrica"><p>{{ estado["rejeitados"]|length }}</p></div>
             </div>
         </div>
     </section>
+
+    <section id="painel-afastados" class="painel-atestados" style="display: none;">
+        <div class="header-tabela" class="card-header">
+            <h3>Pessoas Afastadas</h3>
+            <button class="botao-x">X</button>
+        </div>
+        <div class="card-body">
+            <article class="atestado">
+                {% if estado["afastados"]|length <= 0 %}
+                    <p>Nenhum atestado rejeitado</p>
+                {% endif %}
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Início</th>
+                            <th>Término</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabela-body">
+                        {% for atestado in estado["afastados"] %}
+                            <tr>
+                                <td>{{ atestado[0] }}</td>
+                                <td>{{ atestado[2] }}</td>
+                                <td>{{ atestado[5] }}</td>
+                                <td>{{ atestado[6] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </article>
+        </div>
+    </section>
+
+    <section id="painel-pendentes" class="painel-atestados" style="display: none;">
+        <div  class="header-tabela" class="card-header">
+            <h3>Atestados Pendentes</h3>
+            <button class="botao-x">X</button>
+        </div>
+        <div class="card-body">
+            <article class="atestado">
+                {% if estado["pendentes"]|length <= 0 %}
+                    <p>Nenhum atestado rejeitado</p>
+                {% endif %}
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Início</th>
+                            <th>Término</th>
+                        </tr>
+                    </thead>
+                    {% for atestado in estado["pendentes"] %}
+                        <tr>
+                            <td>{{ atestado[0] }}</td>
+                            <td>{{ atestado[2] }}</td>
+                            <td>{{ atestado[5] }}</td>
+                            <td>{{ atestado[6] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </article>
+        </div>
+    </section>
+
+    <section id="painel-aprovados" class="painel-atestados" style="display: none;">
+        <div class="header-tabela" class="card-header">
+            <h3>Atestados Aprovados</h3>
+            <button class="botao-x">X</button>
+        </div>
+        <div class="card-body">
+            <article class="atestado">
+                {% if estado["aprovados"]|length <= 0 %}
+                    <p>Nenhum atestado rejeitado</p>
+                {% endif %}
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Início</th>
+                            <th>Término</th>
+                        </tr>
+                    </thead>
+                    {% for atestado in estado["aprovados"] %}
+                        <tr>
+                            <td>{{ atestado[0] }}</td>
+                            <td>{{ atestado[2] }}</td>
+                            <td>{{ atestado[5] }}</td>
+                            <td>{{ atestado[6] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </article>
+        </div>
+    </section>
+
+    <section id="painel-rejeitados" class="painel-atestados" style="display: none;">
+        <div class="header-tabela" class="card-header">
+            <h3>Atestados Rejeitados</h3>
+            <button class="botao-x">X</button>
+        </div>
+        <div class="card-body">
+            <article class="atestado">
+                {% if estado["rejeitados"]|length <= 0 %}
+                    <p>Nenhum atestado rejeitado</p>
+                {% endif %}
+                <table class="table table-hover">
+                    {% if estado["rejeitados"]|length > 0 %}
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Início</th>
+                            <th>Término</th>
+                        </tr>
+                    </thead>
+                    {% endif %}
+                    {% for atestado in estado["rejeitados"] %}
+                        <tr>
+                            <td>{{ atestado[0] }}</td>
+                            <td>{{ atestado[2] }}</td>
+                            <td>{{ atestado[5] }}</td>
+                            <td>{{ atestado[6] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </article>
+        </div>
+    </section>
+
     <section  id="card-mensal" class="card">
         <div class="card-header">
             Quantidade de Atestados Mensais
             <section id="selecionarAno">
                 <label>Selecione o ano:</label>
                 <select id="selectAno" class="form-select">
-                    {% for ano in metricas[5] %}
+                    {% for ano in metricas[1] %}
                         <option value="{{ ano }}">{{ ano }}</option>
                     {% endfor %}
                 </select>
