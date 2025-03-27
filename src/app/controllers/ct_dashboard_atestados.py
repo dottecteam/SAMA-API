@@ -13,7 +13,7 @@ def coletar_metricas():
         return metricas
     except Exception as e:
         print(e)
-        return jsonify({"status": False, "mensagem": "Erro ao coletar dados do atestado!"}), 400
+        return []
     
 def coletar_estados():
     try:
@@ -27,4 +27,5 @@ def coletar_estados():
         return estado
     except Exception as e:
         print(e)
-        return jsonify({"status": False, "mensagem": "Erro ao coletar dados do atestado!"}), 400
+        return []
+
