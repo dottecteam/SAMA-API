@@ -11,7 +11,7 @@ $(document).ready(function() {
             contentType: false,
             success: function(response) {
                 if (response.status) {
-                    window.location.href = "/atestados/consulta/secretaria";
+                    window.location.href = "/painel/atestados";
                 } else {
                     var myModal = new bootstrap.Modal($('#errorModal'));
                     myModal.show();

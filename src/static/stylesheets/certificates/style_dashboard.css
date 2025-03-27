@@ -107,7 +107,7 @@ select#selectAno:focus {
 }
 
 /* Ajustes para telas menores que 1286px */
-@media (max-width: 1286px) {
+@media (max-width: 900px) {
     .card, #card-mensal {
         width: 95%;
     }

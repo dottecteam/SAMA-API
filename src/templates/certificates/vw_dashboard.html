@@ -54,7 +54,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
         <div class="card-body">
             <article class="atestado">
                 {% if estado["afastados"]|length <= 0 %}
-                    <p>Nenhum atestado rejeitado</p>
+                    <p>Nenhuma pessoa afastada</p>
                 {% endif %}
                 <table class="table table-hover">
                     {% if estado["afastados"]|length > 0 %}
@@ -185,6 +185,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
     </section>
 
     <section  id="card-mensal" class="card">
+        {% if estado["aprovados"]|length > 0 %}
         <div class="card-header">
             Quantidade de Atestados Mensais
             <section id="selecionarAno">
@@ -197,6 +198,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
             </section>
         </div>
         <div id="mensal" class="card-body"></div>
+        {% endif %}
     </section>
 </section>
 
