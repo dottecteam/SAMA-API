@@ -26,7 +26,8 @@ class Atestados:
     #Função para salvar os dados no arquivo .txt
     def salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico, cpf):
         try:
-            with open(Atestados.caminho_arquivo, "a") as arquivo:
+            print(nome)
+            with open(Atestados.caminho_arquivo, "a", encoding="utf-8") as arquivo:
                 arquivo.write(f"{nome};{email};{cpf};{curso};{semestre};{dataIn};{dataFin};{cid};{nome_unico};Pendente\n")
                 return True
         except Exception as e:
@@ -37,7 +38,7 @@ class Atestados:
     def ler_dados_cpf(cpf):
         atestados_encontrados = []  # Lista para armazenar os objetos Atestados encontrados
         try:
-            with open(Atestados.caminho_arquivo, "r") as arquivo:
+            with open(Atestados.caminho_arquivo, "r", encoding="utf-8") as arquivo:
                 linhas = arquivo.readlines()
             
                 # Loop para verificar cada linha
