@@ -1,8 +1,8 @@
-:root {
-    --cor-primaria: 59, 140, 110;
-    --cor-secundaria: 11, 43, 64;
+body {
+    text-align: center;
 }
 
+/* Container principal dos gráficos */
 .graficos-container {
     display: flex;
     flex-wrap: wrap;
@@ -10,50 +10,33 @@
     align-items: center;
     width: 100%;
     justify-self: center;
+    font-family: "Archivo Black", sans-serif;
 }
 
+/* Cartão que envolve os gráficos */
 .card {
     display: flex;
-    width: 45%;
-    height: 400px;
+    width: 95%;
+    height: auto;
     margin: 10px;
+    overflow: hidden;
 }
 
+/* Cabeçalho do cartão */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 26px;
+    font-family: "Archivo Black", sans-serif;
 }
 
-#selecionarAno {
-    display: flex;
-    width: 220px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-select#selectAno{
-    border-color: rgb(59, 140, 110);
-    height: 35px;
-    width: 90px;
-    color: rgb(59, 140, 110);
-}
-select#selectAno:focus{
-    box-shadow: 0 0 8px rgb(59, 140, 110);
-}
-
+/* Corpo do cartão */
 .card-body {
     display: flex;
 }
 
-.card-body p {
-    color: white;
-    background-color: rgb(59, 140, 110);
-    border-radius: 10px;
-    padding: 0 5px;
-    margin-top: 10px;
-    font-size: 24px;
-}
+/* Container para métricas */
 .container {
     display: inline;
     border: 1px solid gray;
@@ -64,35 +47,166 @@ select#selectAno:focus{
     margin: 10px;
 }
 
+.botao-estado {
+    width: 98%;
+    border: transparent;
+    color: white;
+    background-color: rgb(59, 140, 110);
+    border-radius: 15px;
+    padding: 0 5px;
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.botao-estado:hover , .botao-x:hover {
+    background-color: rgb(79, 160, 130);
+}
+.botao-estado:focus {
+    background-color: rgb(11, 43, 64);
+}
+
+/* Estilização do texto das métricas */
+.texto-metrica {
+    font-size: 22px;
+    padding: 10px 0 0 0;
+}
+
+/* Seletor de ano */
+#selecionarAno {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#selecionarAno > label {
+    margin-right: 15px;
+}
+
+/* Estilização do select de ano */
+select#selectAno {
+    border-color: rgb(59, 140, 110);
+    height: 35px;
+    width: 90px;
+    color: rgb(59, 140, 110);
+}
+
+select#selectAno:focus {
+    box-shadow: 0 0 8px rgb(59, 140, 110);
+}
+
+/* Seção mensal do dashboard */
 #mensal {
     width: 100%;
     min-height: 300px;
 }
 
-@media (max-width: 1000px) {
-    .graficos-container {
-        flex-direction: column;
-    }
-    .card {
+/* Cartão específico para mensal */
+#card-mensal {
+    width: 70%;
+}
+
+/* Ajustes para telas menores que 1286px */
+@media (max-width: 1286px) {
+    .card, #card-mensal {
         width: 95%;
     }
-
     .card-body {
         flex-direction: column;
         align-items: center;
     }
-
     .container {
         width: 100%;
     }
+}
 
-    .card-header {
+/* Ajustes para telas menores que 1000px */
+@media (max-width: 1000px) {
+    .graficos-container {
         flex-direction: column;
     }
-}
-/* 
-@media (max-width: 1435px) {
     .card-body {
-        display: inline;
+        flex-direction: column;
+        align-items: center;
     }
-} */
+    .container {
+        width: 100%;
+    }
+    .card-header {
+        flex-direction: column;
+        font-size: 22px;
+        text-align: center;
+    }
+    .container > p {
+        font-size: 20px;
+    }
+    .texto-metrica {
+        font-size: 18px;
+    }
+}
+
+/* Ajustes para telas menores que 500px */
+
+@media (max-width: 512px) {
+    .card-header {
+        font-size: 20px;
+    }
+    .container > p {
+        font-size: 16px;
+    }
+    .texto-metrica {
+        font-size: 16px;
+    }
+
+    .painel-atestados {
+        font-size: 14px;
+    }
+}
+
+
+/* Estilização da tabela de atestados */
+
+.painel-atestados {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(59, 140, 110);
+    border-radius: 20px;
+}
+
+.header-tabela{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px;
+    border-bottom: 1px solid rgb(59, 140, 110);
+}
+
+.botao-x {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(59, 140, 110);
+    height: 30px;
+    width: 30px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.atestado {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    margin: 10px;
+    overflow-y: auto;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}

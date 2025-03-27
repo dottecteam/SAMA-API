@@ -1,3 +1,2 @@
-João Santos;jpaulo3907@gmail.com;477.430.358-59;ADS;1;2025-03-19;2025-03-27;TESTE;4b731136-d340-4f33-97e4-08acd11b0b91.pdf;Pendente
+Joï¿½o Santos;jpaulo3907@gmail.com;477.430.358-59;ADS;1;2025-03-19;2025-03-27;TESTE;4b731136-d340-4f33-97e4-08acd11b0b91.pdf;Pendente
 Gustavo Zago de Lima;rrgusta@gmail.com;501.109.478-27;ADS;1;2025-03-25;2025-04-05;M514;898b0e2d-a106-4dc2-a010-90eb82433486.pdf;Pendente
-João Scamilla Jardim Whyte Gailey;joaoscamilla@gmail.com;429.919.458-69;Alura;1;2022-03-15;2040-03-15;M51.4;94a64c01-7e6f-4889-a343-0075ad1b9a4c.pdf;Pendente
