@@ -1,6 +1,6 @@
 h1 {
     text-align: center;
-    margin-bottom: 2%;
+    margin-bottom: 20px;
 }
 
 table {
@@ -30,13 +30,28 @@ td {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.9);
     background-color: white;
     padding: 25px;
     box-shadow: 0px 0px 10px gray;
     z-index: 1000;
     border-radius: 10px;
     width: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    pointer-events: none;
+}
+
+.popUp.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: all;
+}
+
+.popUp.remove {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+    pointer-events: none;
 }
 
 .popUp p {
