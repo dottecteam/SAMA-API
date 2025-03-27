@@ -1,8 +1,11 @@
 from collections import Counter
 from datetime import datetime
+import os
 
 class AtestadoMetricas:
-    def __init__(self, arquivo="data/atestados/alunos.txt"):
+    caminho_arquivo = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "atestados", "alunos.txt")
+
+    def __init__(self, arquivo=caminho_arquivo):
         self.arquivo = arquivo
         self.atestados = []
         self.atestados_unicos = set()
