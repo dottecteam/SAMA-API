@@ -57,6 +57,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
                     <p>Nenhum atestado rejeitado</p>
                 {% endif %}
                 <table class="table table-hover">
+                    {% if estado["afastados"]|length > 0 %}
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -65,6 +66,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
                             <th>Término</th>
                         </tr>
                     </thead>
+                    {% endif %}
                     <tbody class="tabela-body">
                         {% for atestado in estado["afastados"] %}
                             <tr>
@@ -91,6 +93,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
                     <p>Nenhum atestado rejeitado</p>
                 {% endif %}
                 <table class="table table-hover">
+                    {% if estado["pendentes"]|length > 0 %}
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -99,6 +102,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
                             <th>Término</th>
                         </tr>
                     </thead>
+                    {% endif %}
                     {% for atestado in estado["pendentes"] %}
                         <tr>
                             <td>{{ atestado[0] }}</td>
@@ -123,6 +127,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
                     <p>Nenhum atestado rejeitado</p>
                 {% endif %}
                 <table class="table table-hover">
+                    {% if estado["aprovados"]|length > 0 %}
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -131,6 +136,7 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
                             <th>Término</th>
                         </tr>
                     </thead>
+                    {% endif %}
                     {% for atestado in estado["aprovados"] %}
                         <tr>
                             <td>{{ atestado[0] }}</td>
