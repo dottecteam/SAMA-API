@@ -11,6 +11,14 @@ import os
 def home():
     return render_template("certificates/vw_home.html")
 
+@app.route("/home")
+def home_redirect():
+    return redirect(url_for('home'))
+
+@app.route("/faq")
+def faq():
+    return render_template("certificates/vw_faq.html")
+
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
 def atestados():
