@@ -113,7 +113,8 @@ select#selectAno:focus {
 }
 
 
-/* Ajustes para telas menores que 1000px */
+/* Ajustes para telas menores que 1045px */
+
 @media (max-width: 1045px) {
     .graficos-container {
         flex-direction: column;
@@ -121,9 +122,6 @@ select#selectAno:focus {
     .card-body {
         flex-direction: column;
         align-items: center;
-    }
-    .container {
-        width: 100%;
     }
     .card-header {
         flex-direction: column;
@@ -139,11 +137,32 @@ select#selectAno:focus {
     .botao-estado {
         font-size: 24px;
     }
+
+    #card-body-estado {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .container {
+        width: auto;
+        height: auto;
+        margin: none;
+    }
 }
 
-/* Ajustes para telas menores que 500px */
+/* Ajustes para telas menores que 690px */
 
-@media (max-width: 512px) {
+@media (max-width: 690px) {
+    #card-body-estado {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .container {
+        width: 100%;
+    }
     .card-header {
         font-size: 20px;
     }
