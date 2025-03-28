@@ -31,7 +31,8 @@ def consulta_atestados_aluno():
 @app.route("/atestados/consulta/secretaria")
 @login_required_secretaria
 def consulta_atestados_secretaria():
-    return render_template("certificates/vw_query.html")
+    dados = consultar_atestados_secretaria()
+    return render_template("certificates/vw_query.html", dados=dados)
 
 #Página de painel de atestados
 @app.route("/painel/atestados")
@@ -55,6 +56,11 @@ def serve_file_atestados(filename):
     except FileNotFoundError:
         return "Arquivo não encontrado", 404
     
+@app.route('/atestado/consulta/secretaria/id', methods=['POST'])
+def consultar_atestados_id():
+    dados = consultar_atestados_secretaria_id()
+    return dados
+
 #Cadastrar atestados
 @app.route("/atestados/cadastro/validar", methods=['POST'])
 def validar():

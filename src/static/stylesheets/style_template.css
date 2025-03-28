@@ -159,3 +159,22 @@
 }
 
 /**/
+
+/* Remover a animação padrão de fade e slide do Bootstrap */
+.modal.fade .modal-dialog {
+  transform: scale(0.7); /* Começar com o modal reduzido */
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Definindo o comportamento quando o modal é exibido */
+.modal.show .modal-dialog {
+  transform: scale(1); /* Modal em tamanho normal */
+  opacity: 1;
+}
+
+/* Garantir que o modal está centralizado na tela */
+.modal-dialog {
+  margin: auto;
+  transform: translateY(-50%); /* Ajuste fino para ficar perfeito */
+}

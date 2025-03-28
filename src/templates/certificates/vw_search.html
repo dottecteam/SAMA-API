@@ -1,31 +1,10 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
 
-<!-- Modal Bootstrap para exibir o PDF -->
-<div
-  class="modal fade"
-  id="pdfModal"
-  tabindex="-1"
-  aria-labelledby="pdfModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg">
-    <!-- modal-lg para mais espaço -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="pdfModalLabel">Visualizar PDF</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Fechar"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <!-- O iframe com o PDF será inserido aqui via jQuery -->
-      </div>
-    </div>
-  </div>
-</div>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='stylesheets/certificates/style_query.css') }}"
+/>
+
 
 <div class="container">
   <div class="row">
@@ -37,34 +16,25 @@
           </h4>
         </div>
         <div class="card-body overflow-auto">
-          <table class="table table-bordered table-hover table-align-middle">
-            <thead class="table-success">
-              <tr>
-                <th>CID</th>
+          <table id="table-query">
+            <thead>
+              <tr class="bg-primario">
+                <th>Nome</th>
                 <th>Data Inicial</th>
                 <th>Data Final</th>
                 <th>Período de Afastamento</th>
                 <th>Status do Atestado</th>
-                <th>Visualizar Atestado</th>
               </tr>
             </thead>
             <!--Fileiras de Atestados, Substituir por valores reais quando o Banco de dados estiver pronto-->
             <tbody>
               {% if dados %} {% for atestado in dados %}
               <tr>
-                <td>{{ atestado.cid }}</td>
+                <td>{{ atestado.nome }}</td>
                 <td>{{ atestado.dataIn }}</td>
                 <td>{{ atestado.dataFin }}</td>
                 <td>{{ atestado.periodo }}</td>
                 <td>{{ atestado.situacao }}</td>
-                <td class="text-center">
-                  <button
-                    class="btn btn-custom btn-view-pdf"
-                    data-pdf="{{ atestado.pdf }}"
-                  >
-                    Visualizar PDF
-                  </button>
-                </td>
               </tr>
               {% endfor %} {% else %}
               <tr>
