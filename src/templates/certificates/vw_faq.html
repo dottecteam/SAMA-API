@@ -1,6 +1,66 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
 
 <!--Aqui fica o conteúdo-->
-<h1>Perguntas Frequentemente Respondidas</h1>
+<section id="equipes-section" class="container-fluid">
+    <h1 class="text-center form-register-title">Perguntas frequentes (FAQ)</h1>
+    </section>
+
+<body>
+    <div class="container bg-light p-4 mb-4 rounded">
+        <div class="row">
+<section>
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Como faço para cadastrar um atestado médico?</b></summary></style></a>
+        <p>Para cadastrar um atestado, acesse a área de <a href="/atestados/cadastro">Cadastro de Atestados</a>, preencha as informações necessárias (e-mail, CPF, nome , curso, CID, Semestre, Período de afastamento e anexe o atestado) e clique em "Validar".</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Quais formatos de arquivo são aceitos para anexar o atestado?</b></summary></style></a>
+        <p>Atualmente, só aceitamos arquivos nos formatos PDF.</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Como acompanho o status do meu atestado?</b></summary></style></a>
+        <p>Você pode acompanhar o status do seu atestado buscando pelo CPF através da barra de pesquisa. O sistema mostrará se ele está "Pendente", "Aprovado" ou "Recusado".</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Quem tem acesso aos atestados cadastrados?</b></summary></style></a>
+        <p>Apenas os fúncionarios da secretaria têm acesso aos atestados cadastrados, garantindo a privacidade das informações</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Como funciona a avaliação das equipes pelo método Scrum?</b></summary></style></a>
+        <p>As equipes são avaliadas com base nas entregas feitas em cada sprint. Os critérios podem incluir proatividade, entrega, comunicação e agilidade.</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Como cadastro uma equipe?</b></summary></style></a>
+        <p>Acesse a área <a href="/equipes/cadastro">Cadastro de equipes</a>, preencha o formulário com as informações de sua equipe. Após finalizar, clique em "Criar Equipe".</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Como registro a avaliação de uma equipe?</b></summary></style></a>
+        <p>Após cadastrar sua equipe, acesse a área <a href="/equipes/avaliacoes">Avaliações</a>, selecione a equipe e preencha os critérios de avaliação. Após finalizar, clique em "Enviar Avaliação".</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Posso editar uma avaliação depois de enviada?</b></summary></style></a>
+        <p>Sim, desde que a avaliação ainda não tenha sido finalizada pelo gestor. Você pode acessar a avaliação na aba "Minhas Avaliações" e clicar em "Editar".</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>O sistema gera relatórios de desempenho?</b></summary></style></a>
+        <p>Sim! O sistema permite gerar relatórios detalhados de atestados médicos e avaliações de equipe. Você pode exportar os relatórios em PDF.</p>
+    </details>
+
+    <details>
+        <summary> <a style="color:RGB(59, 140, 110)"><b>Preciso de ajuda. Como entro em contato com o suporte?</b></summary></style></a>
+        <p>Você pode entrar em contato com o suporte pelo e-mail <a href="mailto:grupodev.tec@gmail.com">grupodev.tec@gmail.com</a>, de segunda a sexta, das 8h às 18h.</p>
+    </details>
+</section>
+</div>
+    </div>
+</body>
 
 {% endblock %}
