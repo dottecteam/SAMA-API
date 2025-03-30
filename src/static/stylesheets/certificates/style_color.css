@@ -22,6 +22,7 @@
 
 .bg-primario {
   background-color: rgba(var(--cor-primaria));
+  color: #ffffff;
 }
 
 .btn-custom {
@@ -62,4 +63,8 @@
   background-color: rgba(var(--cor-primaria));
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   transition: all .3s;
+}
+
+#table-query {
+  border: solid 1px rgba(var(--cor-primaria));
 }

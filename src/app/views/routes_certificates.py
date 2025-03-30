@@ -11,6 +11,14 @@ import os
 def home():
     return render_template("certificates/vw_home.html")
 
+@app.route("/home")
+def home_redirect():
+    return redirect(url_for('home'))
+
+@app.route("/faq")
+def faq():
+    return render_template("certificates/vw_faq.html")
+
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
 def atestados():
@@ -31,7 +39,8 @@ def consulta_atestados_aluno():
 @app.route("/atestados/consulta/secretaria")
 @login_required_secretaria
 def consulta_atestados_secretaria():
-    return render_template("certificates/vw_query.html")
+    dados = consultar_atestados_secretaria()
+    return render_template("certificates/vw_query.html", dados=dados)
 
 #Página de painel de atestados
 @app.route("/painel/atestados")
@@ -56,6 +65,11 @@ def serve_file_atestados(filename):
     except FileNotFoundError:
         return "Arquivo não encontrado", 404
     
+@app.route('/atestado/consulta/secretaria/id', methods=['POST'])
+def consultar_atestados_id():
+    dados = consultar_atestados_secretaria_id()
+    return dados
+
 #Cadastrar atestados
 @app.route("/atestados/cadastro/validar", methods=['POST'])
 def validar():

@@ -1,29 +1,157 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='stylesheets/certificates/style_query.css') }}"
+/>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_query.css') }}">
-<script src="{{ url_for('static', filename='scripts/certificates/script_query.js') }}"></script>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalDados"
+  tabindex="-1"
+  aria-labelledby="modalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content mx-auto" style="width: 90%">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Detalhes do Estudante</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Seção de Dados Pessoais e Dados do Atestado -->
+        <div class="row mb-4">
+          <!-- Adicionando margem inferior -->
+          <!-- Coluna esquerda: Dados Pessoais -->
+          <div class="col-md-6">
+            <div class="mb-3">
+              <!-- Adicionando margem inferior -->
+              <div><strong>Email:</strong> <span id="data-email"></span></div>
+            </div>
+            <div class="mb-3">
+              <!-- Adicionando margem inferior -->
+              <div><strong>Nome:</strong> <span id="data-nome"></span></div>
+            </div>
+            <div class="mb-3">
+              <!-- Adicionando margem inferior -->
+              <div><strong>CPF:</strong> <span id="data-cpf"></span></div>
+            </div>
+            <div class="mb-3">
+              <!-- Adicionando margem inferior -->
+              <div><strong>Curso:</strong> <span id="data-curso"></span></div>
+            </div>
+          </div>
 
-<h1>Consulta de atestados</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Nome do aluno</th>
-            <th>Data de envio do atestado</th>
-            <th>Período de afastamento</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="linhaUm" onclick="abrirModal('Ramon Batista Varjão', '21/3/2025', '3 dias')">
-            <td>Ramon Batista Varjão</td>
-            <td>21/3/2025</td>
-            <td>3 dias</td>
-        </tr>
-    </tbody>
-</table>
-<div class="fundoDoModal" onclick="fecharModal()"></div>
-<div class="popUp" id="popUp">
-    <button class="botaoDeFechar" onclick="fecharModal()">x</button>
-    <p id="conteudoDoModal"></p>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <!-- Adicionando margem inferior -->
+              <div>
+                <strong>Semestre:</strong> <span id="data-semestre"></span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <!-- Adicionando margem inferior -->
+              <div><strong>CID:</strong> <span id="data-cid"></span></div>
+            </div>
+
+            <div class="mb-3">
+              <div>
+                <strong>Data:</strong> De <span id="data-dataIn"></span> até
+                <span id="data-dataFin"></span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div>
+                <strong>Período:</strong> <span id="data-periodo"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-custom mt-3 mx-auto" id="btn-view-pdf">
+          Visualizar Atestado
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- Modal Bootstrap para exibir o PDF -->
+<div
+  class="modal fade"
+  id="pdfModal"
+  tabindex="-1"
+  aria-labelledby="pdfModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <!-- modal-lg para mais espaço -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pdfModalLabel">Visualizar PDF</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Fechar"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- O iframe com o PDF será inserido aqui via jQuery -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card mt-3">
+        <div class="card-header">
+          <h4 class="text-center align-self-center" style="font-size: 35px">
+            Consulta de Atestados
+          </h4>
+        </div>
+        <div class="card-body overflow-auto">
+          <table id="table-query">
+            <thead>
+              <tr class="bg-primario">
+                <th>Nome</th>
+                <th>Data Inicial</th>
+                <th>Data Final</th>
+                <th>Período de Afastamento</th>
+                <th>Status do Atestado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if dados %} {% for atestado in dados %}
+              <tr class="table-query-tr" data-id="{{ atestado.id }}">
+                <td>{{ atestado.nome }}</td>
+                <td>{{ atestado.dataIn }}</td>
+                <td>{{ atestado.dataFin }}</td>
+                <td>{{ atestado.periodo }}</td>
+                <td>{{ atestado.situacao }}</td>
+              </tr>
+              {% endfor %} {% else %}
+              <tr>
+                <td colspan="6" class="text-center">
+                  Nenhum atestado encontrado.
+                </td>
+              </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='scripts/certificates/script_query.js') }}"></script>
 {% endblock %}

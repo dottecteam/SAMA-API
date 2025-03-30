@@ -11,6 +11,32 @@ def consultar_atestados_alunos():
     response = Atestados.ler_dados_cpf(cpf)
     return response
 
+def consultar_atestados_secretaria():
+    response = Atestados.ler_dados()
+    return response
+
+def consultar_atestados_secretaria_id():
+    data = request.get_json()
+    id = data.get('id')
+    dados = Atestados.ler_dados_id(id)
+    response = jsonify({
+        "status": True,
+        "mensagem": "Dados encontrados!",
+        "nome": dados.nome,
+        "email": dados.email,
+        "curso": dados.curso,
+        "semestre": dados.semestre,
+        "dataIn": dados.dataIn,
+        "dataFin": dados.dataFin,
+        "cid": dados.cid,
+        "pdf": dados.pdf,
+        "cpf": dados.cpf,
+        "situacao": dados.situacao,
+        "periodo": dados.periodo,
+        "id": dados.id
+    }), 200
+    return response
+
 def validar_dados():
     try:
         session['nome'] = request.form['input-nome-form-atestados']
