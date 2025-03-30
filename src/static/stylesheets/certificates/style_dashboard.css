@@ -8,7 +8,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    width: 100%;
+    width: 95%;
     justify-self: center;
     font-family: "Archivo Black", sans-serif;
 }
@@ -24,6 +24,7 @@ body {
 
 /* Cabeçalho do cartão */
 .card-header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,8 +59,8 @@ body {
     font-size: 24px;
 }
 
-.botao-estado:hover , .botao-x:hover {
-    background-color: rgb(79, 160, 130);
+.botao-estado:hover , .botao-x:hover, #botao-x-cids:hover {
+    background-color: rgb(19, 100, 70);
 }
 .botao-estado:focus {
     background-color: rgb(11, 43, 64);
@@ -103,19 +104,147 @@ select#selectAno:focus {
 
 /* Cartão específico para mensal */
 #card-mensal {
-    width: 70%;
+    width: 95%;
 }
 
-@media (max-width: 1297px) {
+
+/* Estilização da tabela de atestados */
+
+.painel-atestados {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(59, 140, 110);
+    border-radius: 20px;
+}
+
+.header-tabela{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px;
+    border-bottom: 1px solid rgb(59, 140, 110);
+}
+
+.botao-x, #botao-x-cids {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(59, 140, 110);
+    height: 30px !important;
+    width: 30px !important;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px !important;
+}
+
+.atestado {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    margin: 10px;
+    overflow-y: auto;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+/* Estilização do card do gráfico de CIDs */
+#card-body-cids {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    justify-content: space-around;
+}
+
+.grafico-cids {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    height: 100%;
+}
+
+#cids-descrissoes {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(59, 140, 110);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.detalhes-cids-header {
+    width: 90%;
+    display: flex;
+    flex: 0 0 0;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 20px;
+    border-bottom: 1px solid rgb(59, 140, 110);
+}
+
+.detalhes-cids-header h3 {
+    width: 90%;
+}
+
+#botao-detalhes-cids {
+    background: none;
+    text-decoration: underline;
+    border: none;
+    border-radius: 20px;
+    color: rgb(59, 140, 110);
+    font-size: 20px;
+    padding: 4px;
+}
+
+#botao-detalhes-cids:hover {
+    color: rgb(11, 43, 64);
+}
+
+.card-body-cids-detalhes {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-body-cids-detalhes h5 {
+    text-align: left;
+}
+
+.cids {
+    width: 90%;
+    display: inline;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.card-body-cids-detalhes article p{
+    border-bottom: 1px solid rgb(59, 140, 110);
+    text-align: left;
+}
+
+
+/* Responsividade */
+
+@media (max-width: 1366px) {
     .botao-estado {
         font-size: 18px;
     }
 }
 
-
-/* Ajustes para telas menores que 1045px */
-
-@media (max-width: 1045px) {
+@media (max-width: 1096px) {
     .graficos-container {
         flex-direction: column;
     }
@@ -150,9 +279,34 @@ select#selectAno:focus {
         height: auto;
         margin: none;
     }
+
+
+    #card-body-cids{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+    .grafico-cids {
+        width: 100%;
+        margin: 10px 0 0 10px;
+    }
+    .cids-descrissoes {
+        width: 100%;
+    }
+    #cids-descrissoes {
+        width: 100%;
+        border: none;
+        margin: 30px;
+    }
+
 }
 
-/* Ajustes para telas menores que 690px */
+@media (max-width: 718px) {
+    .botao-estado {
+        font-size: 18px;
+    }
+}
 
 @media (max-width: 690px) {
     #card-body-estado {
@@ -169,6 +323,9 @@ select#selectAno:focus {
     .container > p {
         font-size: 16px;
     }
+    .botao-estado {
+        font-size: 24px;
+    }
     .texto-metrica {
         font-size: 16px;
     }
@@ -176,52 +333,10 @@ select#selectAno:focus {
     .painel-atestados {
         font-size: 14px;
     }
+
+    #botao-detalhes-cids {
+        width: auto;
+        font-size: 14px;
+    }
 }
 
-
-/* Estilização da tabela de atestados */
-
-.painel-atestados {
-    width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgb(59, 140, 110);
-    border-radius: 20px;
-}
-
-.header-tabela{
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 20px;
-    border-bottom: 1px solid rgb(59, 140, 110);
-}
-
-.botao-x {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(59, 140, 110);
-    height: 30px;
-    width: 30px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    cursor: pointer;
-}
-
-.atestado {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    margin: 10px;
-    overflow-y: auto;
-}
-
-.table thead {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-}

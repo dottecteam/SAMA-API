@@ -6,6 +6,7 @@
 <script>
 var metricas = JSON.parse('{{ metricas | tojson | safe }}');
 var estado = JSON.parse('{{ metricas | tojson | safe }}');
+var cids = JSON.parse('{{ cids | tojson | safe }}');
 </script>
 
 
@@ -198,6 +199,41 @@ var estado = JSON.parse('{{ metricas | tojson | safe }}');
             </section>
         </div>
         <div id="mensal" class="card-body"></div>
+        {% endif %}
+    </section>
+
+    <section id="card-cids" class="card">
+        {% if cids|length > 0 %}
+        <div class="card-header">
+            Quantidade de Atestados por CID
+            <button id="botao-detalhes-cids">
+            Ver Classificação
+            </button>
+        </div>
+        <section id="card-body-cids">
+
+            <section class="grafico-cids">
+                <div id="cids_chart" style="width: 100%; height: 70%;"></div>
+            </section>
+
+            <section id="cids-descrissoes" style="display: block;">
+                <div class="detalhes-cids-header">
+                    <h3>Classificação de CIDs por Recorrência</h3>
+                    <button id="botao-x-cids">X</button>
+                </div>
+                <div class="card-body-cids-detalhes">
+                    <section class="cids">
+                        {% for cid in cids %}
+                            <article>
+                                <h5>{{ cids[cid][0] }}°</h5>
+                                <p>{{cids[cid][1]}} | {{cid}}: {{cids[cid][2]}}</p>
+                            </article>
+                        {% endfor %}
+                    </section>
+                </div>
+            </section>
+
+        </section>
         {% endif %}
     </section>
 </section>

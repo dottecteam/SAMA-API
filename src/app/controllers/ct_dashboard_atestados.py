@@ -4,8 +4,7 @@ from app.models.md_dashboard_atestados import AtestadoMetricas
 def coletar_metricas():
     try:
         atestados = AtestadoMetricas()
-        atestados.executar()
-        num_atestados = len(atestados.dif_atestados())
+        num_atestados = len(atestados.atestados)
         anos = atestados.dif_anos()
         meses = atestados.mensal()
         
@@ -18,13 +17,21 @@ def coletar_metricas():
 def coletar_estados():
     try:
         atestados = AtestadoMetricas()
-        atestados.executar()
-        pendentes = atestados.atestados_pendentes()
-        aprovados = atestados.atestados_aprovados()
-        rejeitados = atestados.atestados_rejeitados()
-        afastados = atestados.pessoas_afastadas()
+        pendentes = atestados.pendentes
+        aprovados = atestados.aprovados
+        rejeitados = atestados.rejeitados
+        afastados = atestados.afastados
         estado = {"pendentes": pendentes, "aprovados": aprovados, "rejeitados": rejeitados, "afastados": afastados}
         return estado
+    except Exception as e:
+        print(e)
+        return []
+    
+def coletar_cids():
+    try:
+        atestados = AtestadoMetricas()
+        cids = atestados.cids_unicas
+        return cids
     except Exception as e:
         print(e)
         return []

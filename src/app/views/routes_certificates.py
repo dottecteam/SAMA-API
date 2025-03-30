@@ -39,7 +39,8 @@ def consulta_atestados_secretaria():
 def painel_atestados():
     estado = coletar_estados()
     metricas = coletar_metricas()
-    return render_template("certificates/vw_dashboard.html", metricas = metricas, estado = estado)
+    cids = coletar_cids()
+    return render_template("certificates/vw_dashboard.html", metricas = metricas, estado = estado, cids = cids)
 #TELAS
 
 #FUNÇÕES

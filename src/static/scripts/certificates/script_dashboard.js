@@ -4,6 +4,7 @@ google.charts.setOnLoadCallback(drawCharts);
 // Função principal que chama os gráficos necessários
 function drawCharts() {
     drawMensalChart();
+    drawCidsChart();
 }
 
 // Função responsável por desenhar o gráfico mensal
@@ -59,6 +60,34 @@ function drawMensalChart() {
     // Mantém a seleção do ano visível e definida corretamente
     document.getElementById("selectAno").value = anoSelecionado;
     document.getElementById("selectAno").style.display = 'block';
+}
+
+function drawCidsChart() {;
+
+  const chartData = [[cids, 'Quantidade']];
+
+  const sortedCids = Object.keys(cids).sort((a, b) => cids[a][0] - cids[b][0]);
+
+  // Preencher os dados sem a descrição, apenas código e quantidade
+  sortedCids.forEach((codigo) => {
+    chartData.push([`${cids[codigo][0]}° - ${codigo} (${cids[codigo][1]})`, cids[codigo][1]]);
+  });
+
+  // Converter para formato do Google Charts
+  const data = google.visualization.arrayToDataTable(chartData);
+
+  // Configuração do gráfico
+  const options = {
+      title: '',
+      chartArea: { width: '100%', height: '100%'},
+      pieHole: 0.4,
+      legend: { position: 'right', alignment: 'center' },
+      pieSliceText: 'percentage'
+  };
+
+  // Criar e desenhar o gráfico no elemento com id "piechart"
+  const chart = new google.visualization.PieChart(document.getElementById('cids_chart'));
+  chart.draw(data, options);
 }
 
 // Redesenha os gráficos quando a janela for redimensionada
@@ -117,7 +146,7 @@ function esconderTodosCards() {
     if (card.style.display === 'none') {
       card.style.display = 'block';
     } else {
-      card.style.display = 'none';
+      esconderTodosCards();
     }
   });
   
@@ -125,4 +154,18 @@ function esconderTodosCards() {
     botao.addEventListener('click', function() {
         esconderTodosCards();
     });
+});
+
+document.getElementById('botao-detalhes-cids').addEventListener('click', function() {
+  var card = document.getElementById('cids-descrissoes');
+  if (card.style.display === 'none') {
+    card.style.display = 'block';
+  } else {
+    card.style.display = 'none';
+  }
+});
+
+document.getElementById('botao-x-cids').addEventListener('click', function() {
+  var card = document.getElementById('cids-descrissoes');
+  card.style.display = 'none';
 });
