@@ -1,1 +1,2 @@
-João Paulo Aparecido Santos;jpaulo3907@gmail.com;792.320.640-65;Análise e Desenvolvimento de Sistemas;1;2025-03-06;2025-03-20;TESTE;218d3dc0-6697-4949-b36e-72de14e8c802.pdf;Pendente;34420594-bcdf-4028-89c4-108899c5b3eb
+João Paulo Aparecido Santos;jpaulo3907@gmail.com;792.320.640-65;Análise e Desenvolvimento de Sistemas;1;2025-03-06;2025-03-20;TESTE;218d3dc0-6697-4949-b36e-72de14e8c802.pdf;Aprovado;34420594-bcdf-4028-89c4-108899c5b3eb
+Cléber Santos;jpaulo3907@gmail.com;408.497.180-40;Análise e Desenvolvimento de Sistemas;1;2025-03-12;2025-03-20;M51.4;a1b71495-a0ab-47db-a31f-d42aa1960c2c.pdf;Pendente;28b3d7ff-0f2e-409e-bfe1-335dc71f1405

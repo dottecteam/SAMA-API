@@ -5,20 +5,17 @@
 <hr>
 <br>
 
-## 💻 Tecnologias Utilizadas
+## **📦 MVP**
 
-O **SAMA** foi desenvolvido utilizando as seguintes tecnologias:
+✔ **Sprint 1** - Página Home, Cadastro de atestados, Consulta de atestados, Página FAQ. <a href='https://drive.google.com/file/d/1ywzBtuB1bd4RrZu-ZCTQt8jgHP-A-EsA/view?usp=sharing'>Clique aqui para acessar o vídeo!</a><br>
+X **Sprint 2** - Dashboards, Cadastro de equipes ágeis, Consulta de equipes ágeis, Criar avaliações.<br>
+X **Sprint 3** - Criação do comparador e correção de detalhes.<br>
 
-<p align="center">
-    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
-    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
-</p>
 
-<br>
+<br> 
+</br>
 
-## 📖 Objetivo do Projeto
+## **📖 Objetivo do Projeto**
 
 >O **SAMA** é um sistema para **envio de atestados médicos** e **avaliações de equipes ágeis**. Ele facilita a gestão de documentos médicos e o acompanhamento do desempenho de times, garantindo maior transparência e eficiência no processo.  
 
@@ -29,10 +26,25 @@ O **SAMA** foi desenvolvido utilizando as seguintes tecnologias:
 ✔ Simplificar processos administrativos.
 
 <br> 
+</br>
 
-## 📚Metodologia
+## **📚Metodologia**
 
 O desenvolvimento do projeto seguiu o framework ágil Scrum, um método adaptativo, iterativo e flexível. Para estruturar o progresso do produto, utilizamos a divisão em Sprints, garantindo entregas contínuas e de alto valor para o cliente.
+
+<br>
+</br>
+
+## 💻 Tecnologias Utilizadas
+
+O **SAMA** foi desenvolvido utilizando as seguintes tecnologias:
+
+<p align="center">
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
+</p>
 
 <br>
 </br>
