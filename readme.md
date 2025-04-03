@@ -3,47 +3,65 @@
       <img src="./src/static/images/logo.jpg" alt="logo do SAMA">
 <br>
 <hr>
+</br>
+
+## **🤔 Sobre o projeto**
+
+O **SAMA** é um sistema para **envio de atestados médicos** e **avaliações de equipes ágeis**, ele facilita a gestão de documentos médicos e o acompanhamento do desempenho de times, garantindo maior transparência e eficiência no processo.  
+
+🎯 **Principais objetivos**  
+- Digitalizar o envio e armazenamento de atestados médicos.  
+- Permitir a avaliação contínua de equipes ágeis.  
+- Melhorar a comunicação entre os usuários.  
+- Simplificar processos administrativos.
+
+<br> 
+</br>
+
+## **📚 Metodologia**
+
+O desenvolvimento do projeto segue a metodologia ágil **Scrum**, uma forma adaptativa, iterativa e flexível, para estruturar o progresso do produto, utilizamos a divisão em **sprints**, garantindo entregas contínuas e de alto valor para o cliente.
+
 <br>
+</br>
 
 ## **📦 MVP**
 
-✔ **Sprint 1** - Página Home, Cadastro de atestados, Consulta de atestados, Página FAQ. <a href='https://drive.google.com/file/d/1ywzBtuB1bd4RrZu-ZCTQt8jgHP-A-EsA/view?usp=sharing'>Clique aqui para acessar o vídeo!</a><br>
-X **Sprint 2** - Dashboards, Cadastro de equipes ágeis, Consulta de equipes ágeis, Criar avaliações.<br>
-X **Sprint 3** - Criação do comparador e correção de detalhes.<br>
-
-
-<br> 
-</br>
-
-## **📖 Objetivo do Projeto**
-
->O **SAMA** é um sistema para **envio de atestados médicos** e **avaliações de equipes ágeis**. Ele facilita a gestão de documentos médicos e o acompanhamento do desempenho de times, garantindo maior transparência e eficiência no processo.  
-
-💡 **Principais objetivos:**  
-✔ Digitalizar o envio e armazenamento de atestados médicos.  
-✔ Permitir a avaliação contínua de equipes ágeis.  
-✔ Melhorar a comunicação entre funcionários e gestores.  
-✔ Simplificar processos administrativos.
+✔ **Sprint 1** - Home page, cadastro de atestados, consulta de atestados e página FAQ. <a href='https://drive.google.com/file/d/1ywzBtuB1bd4RrZu-ZCTQt8jgHP-A-EsA/view?usp=sharing'>Clique aqui para acessar o vídeo!</a><br>
+⌚ **Sprint 2** - Dashboards, cadastro de equipes ágeis, consulta de equipes ágeis e seção para avaliações.<br>
+⌚ **Sprint 3** - Comparador de gráficos e correção de detalhes.<br>
 
 <br> 
 </br>
 
-## **📚Metodologia**
+## 📝 **Backlog**
 
-O desenvolvimento do projeto seguiu o framework ágil Scrum, um método adaptativo, iterativo e flexível. Para estruturar o progresso do produto, utilizamos a divisão em Sprints, garantindo entregas contínuas e de alto valor para o cliente.
+| **ID** | **Epic**                  | **User Story**                                                                 | **DOR (Definição de Preparado)**                                                                                                                                                        | **Effort** | **Sprint** |
+|--------|---------------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|------------|
+| 1      | Home page                 | Como usuário geral, quero acessar a página inicial que contenha informações sobre o sistema e opções de navegação claras, para entender rapidamente o propósito do sistema e facilmente acessar as ferramentas. | Uma página inicial com título, descrição do sistema, seção de navegação e links para ferramentas principais.                                                                            | 8          | 1          |
+| 2      | Cadastro de atestados     | Como aluno, quero cadastrar minhas informações pessoais e enviar atestados médicos, para a secretaria acessar e processar esses dados. | Um formulário que deve permitir o cadastro de informações pessoais e o envio de atestados médicos em PDF.                                                                                                     | 13         | 1          |
+| 3      | Acesso de secretaria      | Como funcionário da secretaria, quero acessar o sistema de atestados médicos de forma limitada, para administrar os dados dos alunos com segurança. | Login ao sistema que será restrito aos funcionários da secretaria e testes de segurança para garantir que as informações dos alunos estajam protegidas contra acessos não autorizados.                                                                                         | 13         | 1          |
+| 4      | Página de atestados (alunos) | Como aluno, quero visualizar uma lista de atestados médicos, para acessar facilmente as informações sobre meus afastamentos. | Uma lista organizada por ordem alfabética, a lista deve exibir apenas o nome dos alunos, a data de envio e a situação dos atestados (exemplos: "em análise", "aprovado" e "rejeitado").                                                        | 13         | 1          |
+| 5      | Página de atestados (secretaria) | Como funcionário da secretaria, quero visualizar uma lista de atestados médicos dos alunos, para gerenciar e acompanhar as informações de afastamento. | Uma lista organizada por data e período de afastamento, exibindo o nome dos alunos e ao clicar, devem ser mostrados detalhes (exemplos: dados pessoais e opção para mudar o status do atestado).                                                                   | 20         | 1          |
+| 6      | Dashboard (atestados)      | Como funcionário da secretaria, quero visualizar uma seção com gráficos sobre as estatísticas dos alunos afastados, para comparar diferentes períodos e identificar tendências. | Gráficos de barras, linhas ou outros tipos gráficos que mostrem o número de alunos afastados por período, o funcionário deve poder selecionar diferentes períodos (exemplos: mensal, trimestral e anual) para comparar os dados, e deve ter uma opção de dowload do gráfico.                                             | 20         | 2          |
+| 7      | Cadastro de equipes       | Como avaliador, quero cadastrar minha equipe no sistema, para avaliar seu desempenho, visualizar informações relevantes e tomar decisões mais eficientes. | Um formulário que deve permitir adicionar membros, definir suas funções e deve gerar automaticamente um código de acesso, que poderá ser personalizado.                                                                  | 8          | 2          |
+| 8      | Acesso de avaliadores     | Como avaliador, quero acessar o sistema de equipes, para visualizar e administrar informações detalhadas sobre os membros. | Login ao sistema utilizando um código gerado no cadastro da equipe e testes de segurança, para garantir que os dados das equipes estejam protegidos.                                                                                              | 13         | 2          |
+| 9      | Avaliação de equipes      | Como avaliador, quero avaliar os membros por meio de métricas de desempenho, identificar pontos fortes e áreas de melhoria, para  ter uma melhor gestão e acompanhamento do time. | Uma seção que deve medir o desempenho por meio de avaliações (exemplo: PACER), atribuir uma nota baseada em critérios predefinidos e exibir um feedback descritivo.                                                                         | 13         | 2          |
+| 10     | Dashboard (equipes)       | Como avaliador, quero acessar uma seção com gráficos sobre as estatísticas de desempenho dos membros, monitorar o progresso e identificar áreas de melhoria, para otimizar o desempenho e apoiar o crescimento contínuo da equipe. | Gráficos de barras, linhas ou outros tipos gráficos que reflitam as métricas de desempenho das equipes e deve haver uma opção de download do gráfico nos formatos PDF e XLSX.                                                                                                      | 20         | 2          |
+| 11     | Comparação de gráficos    | Como avaliador, quero comparar diferentes gráficos de forma clara e interativa, para identificar facilmente as variações e tendências entre eles e tomar melhores decisões. | O sistema deve permitir que o avaliador selecione dois ou mais gráficos para comparação e deve destacar as variações significativas entre os gráficos de forma visual (exemplos: cores diferentes e indicadores).                                                                        | 20         | 3          |
 
 <br>
 </br>
 
-## 💻 Tecnologias Utilizadas
+## 💻 Linguagens utilizadas
 
-O **SAMA** foi desenvolvido utilizando as seguintes tecnologias:
+<br>
 
 <p align="center">
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
     <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
     <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
 </p>
 
 <br>
@@ -51,39 +69,17 @@ O **SAMA** foi desenvolvido utilizando as seguintes tecnologias:
 
 ## 🚀 **Recursos**
 
-O **SAMA** foi desenvolvido utilizando as seguintes tecnologias e bibliotecas para garantir um sistema funcional e eficiente:
+Para garantir um sistema mais funcional e eficiente, o **SAMA** está sendo desenvolvido utilizando as seguintes tecnologias:
 
-- **[Bootstrap](https://getbootstrap.com/)**: Framework CSS responsivo para criar interfaces modernas e acessíveis com design flexível.
+- **[Bootstrap](https://getbootstrap.com/)**: Biblioteca de CSS para criar interfaces modernas, responsivas e com design flexível.
 - **[Bootstrap Icons](https://icons.getbootstrap.com/)**: Conjunto de ícones de alta qualidade que foram integrados para melhorar a experiência visual do usuário.
 - **[jQuery](https://jquery.com/)**: Biblioteca JavaScript que facilita a manipulação de elementos HTML e a criação de interações dinâmicas no frontend.
 - **[Flask](https://flask.palletsprojects.com/)**: Framework web em Python utilizado para o desenvolvimento do backend, garantindo um servidor simples e poderoso para o gerenciamento de requisições.
 
-Essas tecnologias foram escolhidas para proporcionar uma aplicação rápida, com um design responsivo e funcionalidades dinâmicas, atendendo aos requisitos do sistema de forma eficiente.
-
 <br>
 </br>
 
-## **Backlog do Produto**
-
-
-| **ID** | **Epic**                  | **User Story**                                                                 | **DOR (Definição de Preparado)**                                                                                                                                                        | **Effort** | **Sprint** |
-|--------|---------------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|------------|
-| 1      | Home page                 | Como usuário geral, quero acessar a página inicial para entender o propósito do sistema e acessar ferramentas. | Uma página inicial com título, descrição do sistema, seção de navegação e links para ferramentas principais.                                                                            | 8          | 1          |
-| 2      | Cadastro de atestados     | Como aluno, quero cadastrar minhas informações pessoais e enviar atestados médicos para a secretaria. | Formulário para cadastro de informações pessoais e envio de atestados médicos em PDF.                                                                                                     | 13         | 1          |
-| 3      | Acesso de secretaria      | Como funcionário da secretaria, quero acessar o sistema de atestados médicos de forma limitada. | Login para acesso restrito à secretaria e testes de segurança para garantir a proteção dos dados.                                                                                         | 13         | 1          |
-| 4      | Página de atestados (alunos) | Como aluno, quero visualizar uma lista de atestados médicos para acessar informações sobre meus afastamentos. | Lista organizada por ordem alfabética com nome do aluno e status dos atestados (exemplos: "em análise", "aprovado" e "rejeitado").                                                        | 13         | 1          |
-| 5      | Página de atestados (secretaria) | Como funcionário da secretaria, quero visualizar a lista de atestados médicos dos alunos para gerenciar as informações. | Lista organizada por data e período de afastamento, com detalhes ao clicar sobre o atestado (dados pessoais e status).                                                                   | 20         | 1          |
-| 6      | Dashboard (atestados)      | Como funcionário da secretaria, quero visualizar gráficos sobre as estatísticas dos alunos afastados. | Gráficos de barras, linhas ou outros tipos, com filtros para comparar diferentes períodos (mensal, trimestral, anual) e opção de download.                                             | 20         | 2          |
-| 7      | Cadastro de equipes       | Como avaliador, quero cadastrar minha equipe no sistema para avaliar seu desempenho. | Formulário que permite adicionar membros, definir funções e gerar automaticamente um código de acesso personalizável.                                                                  | 8          | 2          |
-| 8      | Acesso de avaliadores     | Como avaliador, quero acessar o sistema de equipes para administrar informações dos membros. | Login com código gerado no cadastro da equipe e testes de segurança para proteger os dados.                                                                                             | 13         | 2          |
-| 9      | Avaliação de equipes      | Como avaliador, quero avaliar os membros da equipe por meio de métricas de desempenho. | Seção para medir desempenho com avaliações baseadas em critérios (exemplo: PACER), nota e feedback descritivo.                                                                         | 13         | 2          |
-| 10     | Dashboard (equipes)       | Como avaliador, quero acessar gráficos sobre o desempenho das equipes e identificar áreas de melhoria. | Gráficos de desempenho das equipes com opção de download nos formatos PDF e XLSX.                                                                                                      | 20         | 2          |
-| 11     | Comparação de gráficos    | Como avaliador, quero comparar diferentes gráficos de desempenho para identificar variações e tendências. | Sistema para selecionar e comparar dois ou mais gráficos, destacando variações visuais com cores e indicadores.                                                                        | 20         | 3          |
-
-<br>
-</br>
-
-## 👨‍💻**Colaboradores** 
+## 👨‍💻 **Colaboradores** 
 
 |      Nome      |    Função       |                            Github                             |                           Linkedin                           |
 | :--------------: | :-----------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
