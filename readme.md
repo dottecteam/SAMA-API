@@ -9,7 +9,7 @@
 
 O **SAMA** é um sistema para **envio de atestados médicos** e **avaliações de equipes ágeis**, ele facilita a gestão de documentos médicos e o acompanhamento do desempenho de times, garantindo maior transparência e eficiência no processo.  
 
-🎯 **Principais objetivos**  
+ **🎯 Principais objetivos**
 - Digitalizar o envio e armazenamento de atestados médicos.  
 - Permitir a avaliação contínua de equipes ágeis.  
 - Melhorar a comunicação entre os usuários.  
@@ -34,26 +34,27 @@ O desenvolvimento do projeto segue a metodologia ágil **Scrum**, uma forma adap
 <br> 
 </br>
 
-## 📝 **Backlog**
+## **📝 Backlog**
 
-| **ID** | **Epic**                  | **User Story**                                                                 | **DOR (Definição de Preparado)**                                                                                                                                                        | **Effort** | **Sprint** |
-|--------|---------------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|------------|
-| 1      | Home page                 | Como usuário geral, quero acessar a página inicial que contenha informações sobre o sistema e opções de navegação claras, para entender rapidamente o propósito do sistema e facilmente acessar as ferramentas. | Uma página inicial com título, descrição do sistema, seção de navegação e links para ferramentas principais.                                                                            | 8          | 1          |
-| 2      | Cadastro de atestados     | Como aluno, quero cadastrar minhas informações pessoais e enviar atestados médicos, para a secretaria acessar e processar esses dados. | Um formulário que deve permitir o cadastro de informações pessoais e o envio de atestados médicos em PDF.                                                                                                     | 13         | 1          |
-| 3      | Acesso de secretaria      | Como funcionário da secretaria, quero acessar o sistema de atestados médicos de forma limitada, para administrar os dados dos alunos com segurança. | Login ao sistema que será restrito aos funcionários da secretaria e testes de segurança para garantir que as informações dos alunos estajam protegidas contra acessos não autorizados.                                                                                         | 13         | 1          |
-| 4      | Página de atestados (alunos) | Como aluno, quero visualizar uma lista de atestados médicos, para acessar facilmente as informações sobre meus afastamentos. | Uma lista organizada por ordem alfabética, a lista deve exibir apenas o nome dos alunos, a data de envio e a situação dos atestados (exemplos: "em análise", "aprovado" e "rejeitado").                                                        | 13         | 1          |
-| 5      | Página de atestados (secretaria) | Como funcionário da secretaria, quero visualizar uma lista de atestados médicos dos alunos, para gerenciar e acompanhar as informações de afastamento. | Uma lista organizada por data e período de afastamento, exibindo o nome dos alunos e ao clicar, devem ser mostrados detalhes (exemplos: dados pessoais e opção para mudar o status do atestado).                                                                   | 20         | 1          |
-| 6      | Dashboard (atestados)      | Como funcionário da secretaria, quero visualizar uma seção com gráficos sobre as estatísticas dos alunos afastados, para comparar diferentes períodos e identificar tendências. | Gráficos de barras, linhas ou outros tipos gráficos que mostrem o número de alunos afastados por período, o funcionário deve poder selecionar diferentes períodos (exemplos: mensal, trimestral e anual) para comparar os dados, e deve ter uma opção de dowload do gráfico.                                             | 20         | 2          |
-| 7      | Cadastro de equipes       | Como avaliador, quero cadastrar minha equipe no sistema, para avaliar seu desempenho, visualizar informações relevantes e tomar decisões mais eficientes. | Um formulário que deve permitir adicionar membros, definir suas funções e deve gerar automaticamente um código de acesso, que poderá ser personalizado.                                                                  | 8          | 2          |
-| 8      | Acesso de avaliadores     | Como avaliador, quero acessar o sistema de equipes, para visualizar e administrar informações detalhadas sobre os membros. | Login ao sistema utilizando um código gerado no cadastro da equipe e testes de segurança, para garantir que os dados das equipes estejam protegidos.                                                                                              | 13         | 2          |
-| 9      | Avaliação de equipes      | Como avaliador, quero avaliar os membros por meio de métricas de desempenho, identificar pontos fortes e áreas de melhoria, para  ter uma melhor gestão e acompanhamento do time. | Uma seção que deve medir o desempenho por meio de avaliações (exemplo: PACER), atribuir uma nota baseada em critérios predefinidos e exibir um feedback descritivo.                                                                         | 13         | 2          |
-| 10     | Dashboard (equipes)       | Como avaliador, quero acessar uma seção com gráficos sobre as estatísticas de desempenho dos membros, monitorar o progresso e identificar áreas de melhoria, para otimizar o desempenho e apoiar o crescimento contínuo da equipe. | Gráficos de barras, linhas ou outros tipos gráficos que reflitam as métricas de desempenho das equipes e deve haver uma opção de download do gráfico nos formatos PDF e XLSX.                                                                                                      | 20         | 2          |
-| 11     | Comparação de gráficos    | Como avaliador, quero comparar diferentes gráficos de forma clara e interativa, para identificar facilmente as variações e tendências entre eles e tomar melhores decisões. | O sistema deve permitir que o avaliador selecione dois ou mais gráficos para comparação e deve destacar as variações significativas entre os gráficos de forma visual (exemplos: cores diferentes e indicadores).                                                                        | 20         | 3          |
+**ID** | **Epic** | **User Story** | **DOR (Definition of ready)** | **Effort**
+-|-|-|-|-
+1 | Home page | Como usuário geral, quero acessar a página inicial que contenha informações sobre o sistema e opções de navegação claras, para entender rapidamente o propósito do sistema e facilmente acessar as ferramentas. | Uma página inicial com título, descrição do sistema, seção de navegação e links para ferramentas principais. | 8
+2 | Cadastro de atestados | Como aluno, quero cadastrar minhas informações pessoais e enviar atestados médicos, para a secretaria acessar e processar esses dados. | Um formulário que deve permitir o cadastro de informações pessoais e o envio de atestados médicos em PDF. | 13
+3 | Acesso de secretaria | Como funcionário da secretaria, quero acessar o sistema de atestados médicos de forma limitada, para administrar os dados dos alunos com segurança. | Login ao sistema que será restrito aos funcionários da secretaria e testes de segurança para garantir que as informações dos alunos estajam protegidas contra acessos não autorizados. | 13
+4 | Página de atestados (alunos) | Como aluno, quero visualizar uma lista de atestados médicos, para acessar facilmente as informações sobre meus afastamentos. | Uma lista organizada por ordem alfabética, a lista deve exibir apenas o nome dos alunos, a data de envio e a situação dos atestados (exemplos: "em análise", "aprovado" e "rejeitado"). | 13
+5 | Página de atestados (secretaria) | Como funcionário da secretaria, quero visualizar uma lista de atestados médicos dos alunos, para gerenciar e acompanhar as informações de afastamento. | Uma lista organizada por data e período de afastamento, exibindo o nome dos alunos e ao clicar, devem ser mostrados detalhes (exemplos: dados pessoais e opção para mudar o status do atestado). | 20
+6 | Acesso de alunos | Como aluno, quero acessar o sistema de atestados médicos, para enviar atestados e consultar minhas informações de forma rápida e centralizada. | Um formulário que possibilite o cadastro de um e-mail e uma senha, e que inclua um processo de confirmação por meio de um código enviado ao e-mail do aluno. | 13
+7 | Dashboard (atestados) | Como funcionário da secretaria, quero visualizar uma seção com gráficos sobre as estatísticas dos alunos afastados, para comparar diferentes períodos e identificar tendências. | Gráficos de barras, linhas ou outros tipos gráficos que mostrem o número de alunos afastados por período, o funcionário deve poder selecionar diferentes períodos (exemplos: mensal, trimestral e anual) para comparar os dados, e deve ter uma opção de dowload do gráfico. | 20
+8 | Cadastro de equipes | Como avaliador, quero cadastrar minha equipe no sistema, para avaliar seu desempenho, visualizar informações relevantes e tomar decisões mais eficientes. | Um formulário que deve permitir adicionar membros, definir suas funções e deve gerar automaticamente uma senha de acesso, que poderá ser personalizada. | 8
+9 | Acesso de avaliadores | Como avaliador, quero acessar o sistema de equipes, para visualizar e administrar informações detalhadas sobre os membros. | Login ao sistema utilizando uma senha gerada no cadastro da equipe e testes de segurança, para garantir que os dados das equipes estejam protegidos. | 13
+10 | Avaliação de equipes | Como avaliador, quero avaliar os membros por meio de métricas de desempenho, identificar pontos fortes e áreas de melhoria, para  ter uma melhor gestão e acompanhamento do time. | Uma seção que deve medir o desempenho por meio de avaliações (exemplo: PACER), atribuir uma nota baseada em critérios predefinidos e exibir um feedback descritivo. | 13
+11 | Dashboard (equipes) | Como avaliador, quero acessar uma seção com gráficos sobre as estatísticas de desempenho dos membros, monitorar o progresso e identificar áreas de melhoria, para otimizar o desempenho e apoiar o crescimento contínuo da equipe. | Gráficos de barras, linhas ou outros tipos gráficos que reflitam as métricas de desempenho das equipes e deve haver uma opção de download do gráfico nos formatos PDF e XLSX. | 20
+12 | Comparação de gráficos | Como avaliador, quero comparar diferentes gráficos de forma clara e interativa, para identificar facilmente as variações e tendências entre eles e tomar melhores decisões. | O sistema deve permitir que o avaliador selecione dois ou mais gráficos para comparação e deve destacar as variações significativas entre os gráficos de forma visual (exemplos: cores diferentes e indicadores). | 20
 
 <br>
 </br>
 
-## 💻 Linguagens utilizadas
+## **💻 Linguagens utilizadas**
 
 <br>
 
@@ -67,7 +68,7 @@ O desenvolvimento do projeto segue a metodologia ágil **Scrum**, uma forma adap
 <br>
 </br>
 
-## 🚀 **Recursos**
+## **🚀 Recursos**
 
 Para garantir um sistema mais funcional e eficiente, o **SAMA** está sendo desenvolvido utilizando as seguintes tecnologias:
 
@@ -79,7 +80,7 @@ Para garantir um sistema mais funcional e eficiente, o **SAMA** está sendo dese
 <br>
 </br>
 
-## 👨‍💻 **Colaboradores** 
+## **👨‍💻 Colaboradores**
 
 |      Nome      |    Função       |                            Github                             |                           Linkedin                           |
 | :--------------: | :-----------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
