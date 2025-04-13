@@ -51,6 +51,9 @@ def validar_dados():
 
         if Validade.validar_cpf(session['cpf']) == False:
             return jsonify({"status": False, "mensagem": "CPF inválido!"}), 400
+        
+        if Validade.validar_cid(session['cid']) == False:
+            return jsonify({"status": False, "mensagem": "CID inválida!"}), 400
     
         if Validade.enviar_codigo(session['email']) == False:
            return jsonify({"status": False, "mensagem": "Erro ao enviar email!"}), 400

@@ -5,62 +5,106 @@
 <!-- Import Google Charts e script js-->
 <script>
 var metricas = JSON.parse('{{ metricas | tojson | safe }}');
-var estado = JSON.parse('{{ metricas | tojson | safe }}');
-var cids = JSON.parse('{{ cids | tojson | safe }}');
+var estado = JSON.parse('{{ estado | tojson | safe }}');
+const cids = JSON.parse('{{ cids | tojson | safe }}');
 </script>
 
 
 <script defer src="{{ url_for('static', filename='scripts/certificates/script_dashboard.js') }}"></script>
 <!---->
 
-
 <h1> Painel de atestados </h1>
 
 <section class="graficos-container">
+
+    <!-- Filtro por data -->
+    <div>
+        <div class="card-header" style="background: transparent;">
+            <div style="width: 113px; display: flex;">
+                <button id="botao-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#info-filtros">
+                    Info
+                </button>
+                <label for="filtro" style="text-align: center; justify-self: center;">Filtro:</label>
+            </div>
+            <div style="padding: 5px;">
+            <input id="data-filtro-inicio" class="input-data" style="width: 150px; padding: 1px 4px;" type="date" name="data-filtro-inicio" onchange="filtrarAtestados()">
+            a
+            <input id="data-filtro-fim" class="input-data" style="width: 150px; padding: 1px 5px;" type="date" name="data-filtro-fim" onchange="filtrarAtestados()">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Off Screen Menu de informações sobre o filtro -->
+    <div class="offcanvas offcanvas-start" id="info-filtros">
+        <div class="offcanvas-header" id="info-filtros-header">
+          <h1 class="offcanvas-title">Filtros</h1>
+          <button type="button" class="btn-close text-reset" id="info-filtros-botao-fechar" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <h3>Como Funciona?</h3>
+            <p>Ao selecionar um intervalo de datas, os gráficos "Quantidade por Estado" e "Quantidade de Atestados por CID" exibirão apenas os atestados enviados cuja data de início de vigência esteja dentro do período selecionado.</p>
+            <ul>
+                <li>O primeiro campo de data refere-se à data inicial do intervalo.</li>
+                <li>O segundo campo indica a data final do intervalo.</li> 
+                <li>Importante: o filtro de datas não afeta o estado "Pessoas Afastadas" no gráfico "Quantidade por Estado", que apresenta a quantidade de pessoas afastadas na data de hoje.</li>
+                <li>O filtro não afeta o gráfico "Quantidade de Atestados Mensais", que tem filtro independente por ano.</li>
+                <li>O Gráfico de CIDs é baseado em valores dos atestados aprovados. Quando não há atestados aprovados no intervalo do filtro, o gráfico não é mostrado.</li>
+                <li>Dica: para filtros mensais, selecione o primeiro e o último dia do mês como intervalo no filtro.</li>
+            </ul>
+        </div>
+      </div>
+
+      <!-- Gráficos de estado do atestado -->
+
     <section id="card-estado" class="card">
-        <div class="card-header">Quantidade por Estado</div>
+        <div class="card-header">
+            Quantidade por Estado
+        </div>
         <div class="card-body" id="card-body-estado">
             <div class="container">
-                <button type="button"  id="botao-afastados" class="botao-estado" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                <button class="botao-estado" type="button"  id="botao-afastados" data-id="afastados">
                     Pessoas Afastadas
                 </button>
-                <div class="texto-metrica"><p>{{ estado["afastados"]|length }}</p></div>
+                <p class="texto-metrica" id="num-afastados"></p>
             </div>
             <div class="container">
-                <button type="button"  id="botao-pendentes" class="botao-estado" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                <button class="botao-estado" type="button"  id="botao-pendentes" data-id="pendentes">
                     Atestados Pendentes
                 </button>
-                <div class="texto-metrica"><p>{{ estado["pendentes"]|length }}</p></div>
+                <p class="texto-metrica" id="num-pendentes"></p>
             </div>
             <div class="container">
-                <button type="button"  id="botao-aprovados" class="botao-estado" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                <button class="botao-estado" type="button"  id="botao-aprovados" data-id="aprovados">
                     Atestados Aprovados
                 </button>
-                <div class="texto-metrica"><p>{{ estado["aprovados"]|length }}</p></div>
+                <p class="texto-metrica" id="num-aprovados"></p>
             </div>
             <div class="container">
-                <button type="button"  id="botao-rejeitados" class="botao-estado" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                <button class="botao-estado" type="button"  id="botao-rejeitados" data-id="rejeitados">
                     Atestados Rejeitados
                 </button>
-                <div class="texto-metrica"><p>{{ estado["rejeitados"]|length }}</p></div>
+                <p class="texto-metrica" id="num-rejeitados"></p>
             </div>
         </div>
     </section>
 
-    <section id="painel-afastados" class="painel-atestados" style="display: none;">
+    <!-- Tabelas Colapsáveis de Atestados -->
+
+    <div id="alerta" style="width: 95%; margin-top: 10px;"></div>
+
+    <section id="painel-atestados" class="painel-atestados" style="display: none;">
         <div class="header-tabela" class="card-header">
-            <h3>Pessoas Afastadas</h3>
-            <button class="botao-x">X</button>
+            <h3 id="titulo-tabela"></h3>
+            <button id="botao-x">X</button>
         </div>
         <div class="card-body">
-            <article class="atestado">
-                {% if estado["afastados"]|length <= 0 %}
-                    <p>Nenhuma pessoa afastada</p>
-                {% endif %}
-                <table class="table table-hover">
+            <article id="atestado">
+                <table class="table table-striped">
                     {% if estado["afastados"]|length > 0 %}
                     <thead>
                         <tr>
+                            <th>N°</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Início</th>
@@ -68,122 +112,17 @@ var cids = JSON.parse('{{ cids | tojson | safe }}');
                         </tr>
                     </thead>
                     {% endif %}
-                    <tbody class="tabela-body">
-                        {% for atestado in estado["afastados"] %}
-                            <tr>
-                                <td>{{ atestado[0] }}</td>
-                                <td>{{ atestado[2] }}</td>
-                                <td>{{ atestado[5] }}</td>
-                                <td>{{ atestado[6] }}</td>
-                            </tr>
-                        {% endfor %}
+
+                    <tbody id="tabela-atestados">
+
                     </tbody>
                 </table>
             </article>
         </div>
     </section>
 
-    <section id="painel-pendentes" class="painel-atestados" style="display: none;">
-        <div  class="header-tabela" class="card-header">
-            <h3>Atestados Pendentes</h3>
-            <button class="botao-x">X</button>
-        </div>
-        <div class="card-body">
-            <article class="atestado">
-                {% if estado["pendentes"]|length <= 0 %}
-                    <p>Nenhum atestado rejeitado</p>
-                {% endif %}
-                <table class="table table-hover">
-                    {% if estado["pendentes"]|length > 0 %}
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Início</th>
-                            <th>Término</th>
-                        </tr>
-                    </thead>
-                    {% endif %}
-                    {% for atestado in estado["pendentes"] %}
-                        <tr>
-                            <td>{{ atestado[0] }}</td>
-                            <td>{{ atestado[2] }}</td>
-                            <td>{{ atestado[5] }}</td>
-                            <td>{{ atestado[6] }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </article>
-        </div>
-    </section>
 
-    <section id="painel-aprovados" class="painel-atestados" style="display: none;">
-        <div class="header-tabela" class="card-header">
-            <h3>Atestados Aprovados</h3>
-            <button class="botao-x">X</button>
-        </div>
-        <div class="card-body">
-            <article class="atestado">
-                {% if estado["aprovados"]|length <= 0 %}
-                    <p>Nenhum atestado rejeitado</p>
-                {% endif %}
-                <table class="table table-hover">
-                    {% if estado["aprovados"]|length > 0 %}
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Início</th>
-                            <th>Término</th>
-                        </tr>
-                    </thead>
-                    {% endif %}
-                    {% for atestado in estado["aprovados"] %}
-                        <tr>
-                            <td>{{ atestado[0] }}</td>
-                            <td>{{ atestado[2] }}</td>
-                            <td>{{ atestado[5] }}</td>
-                            <td>{{ atestado[6] }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </article>
-        </div>
-    </section>
-
-    <section id="painel-rejeitados" class="painel-atestados" style="display: none;">
-        <div class="header-tabela" class="card-header">
-            <h3>Atestados Rejeitados</h3>
-            <button class="botao-x">X</button>
-        </div>
-        <div class="card-body">
-            <article class="atestado">
-                {% if estado["rejeitados"]|length <= 0 %}
-                    <p>Nenhum atestado rejeitado</p>
-                {% endif %}
-                <table class="table table-hover">
-                    {% if estado["rejeitados"]|length > 0 %}
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Início</th>
-                            <th>Término</th>
-                        </tr>
-                    </thead>
-                    {% endif %}
-                    {% for atestado in estado["rejeitados"] %}
-                        <tr>
-                            <td>{{ atestado[0] }}</td>
-                            <td>{{ atestado[2] }}</td>
-                            <td>{{ atestado[5] }}</td>
-                            <td>{{ atestado[6] }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </article>
-        </div>
-    </section>
+    <!-- Gráfico Mensal -->
 
     <section  id="card-mensal" class="card">
         {% if estado["aprovados"]|length > 0 %}
@@ -202,6 +141,8 @@ var cids = JSON.parse('{{ cids | tojson | safe }}');
         {% endif %}
     </section>
 
+    <!-- Donut Chart CIDs -->
+    
     <section id="card-cids" class="card">
         {% if cids|length > 0 %}
         <div class="card-header">
@@ -210,26 +151,32 @@ var cids = JSON.parse('{{ cids | tojson | safe }}');
             Ver Classificação
             </button>
         </div>
+
+        <div id="cids-sem-dados" class="alert alert-warning" style="margin: 3em 20px;">
+            <strong>Erro!</strong> Sem dados de CIDs para o período selecionado.
+        </div>
         <section id="card-body-cids">
 
             <section class="grafico-cids">
                 <div id="cids_chart" style="width: 100%; height: 70%;"></div>
             </section>
 
-            <section id="cids-descrissoes" style="display: block;">
+
+
+            <section id="cids-descricoes" style="display: block;">
                 <div class="detalhes-cids-header">
-                    <h3>Classificação de CIDs por Recorrência</h3>
+                    <h3 style="width: 90%;">Classificação de CIDs por Recorrência</h3>
                     <button id="botao-x-cids">X</button>
                 </div>
                 <div class="card-body-cids-detalhes">
-                    <section class="cids">
-                        {% for cid in cids %}
-                            <article>
-                                <h5>{{ cids[cid][0] }}°</h5>
-                                <p>{{cids[cid][1]}} | {{cid}}: {{cids[cid][2]}}</p>
-                            </article>
-                        {% endfor %}
-                    </section>
+                    <div>
+                        <table id="tabela-cids" class="table">
+                            <thead id="tabela-cids-head">
+                            </thead>
+                            <tbody id="tabela-cids-body">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 

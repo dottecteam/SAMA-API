@@ -1,4 +1,3 @@
-from collections import Counter
 from datetime import datetime
 import os
 import json
@@ -6,10 +5,12 @@ import json
 class AtestadoMetricas:
     caminho_arquivo = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "atestados", "alunos.txt")
     caminho_json = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "cid11.json")
-
-    def __init__(self, arquivo=caminho_arquivo, arquivo_json=caminho_json):
+    with open(caminho_json, "r", encoding="utf-8") as jsonfile:
+        dados = json.load(jsonfile)
+        cid_11 = {item["Code"]: item["Title"] for item in dados}
+    def __init__(self, arquivo=caminho_arquivo, cid_11=cid_11):
         self.arquivo = arquivo
-        self.arquivo_json = arquivo_json
+        self.cid_11 = cid_11
         self.atestados = []
         self.atestados_unicos = set()
         self.afastados = []
@@ -18,7 +19,6 @@ class AtestadoMetricas:
         self.rejeitados = []
         self.cids_unicas = {}
         self.carregar_dados()
-        self.abrir_json_cid11()
         self.dif_atestados()
         self.pessoas_afastadas()
         self.atestados_pendentes()
@@ -71,8 +71,6 @@ class AtestadoMetricas:
         """Retorna a lista de atestados aprovados."""
         self.aprovados = [atestado for atestado in self.atestados_unicos if "Aprovado" in atestado]
         self.aprovados.sort(key=lambda x: datetime.strptime(x[5], "%Y-%m-%d"), reverse=True)
-        for atestado in self.aprovados:
-            atestado[4].upper()
         return self.aprovados
 
     def atestados_rejeitados(self):
@@ -110,38 +108,33 @@ class AtestadoMetricas:
 
     """Tratamento de CIDs"""
 
-    def abrir_json_cid11(self):
-
-        with open(self.arquivo_json, "r", encoding="utf-8") as jsonfile:
-            dados = json.load(jsonfile)
-        cid_dict = {item["Code"]: item["Title"] for item in dados}
-        return cid_dict
-
-    def descricao_cid(self, codigo):
-        cid_dict = self.abrir_json_cid11()
-        response = cid_dict.get(codigo, None)
+    def descricao_cid(self, cid):
+        response = self.cid_11.get(cid, None)
         if response:
             return response.replace("- - - -", "").replace("- - - ", "").replace("- - ", "").replace("- ", "")
-        return "Código Inválido"
+        return False
     
     def dif_cids(self):
         """Retorna uma lista com os CIDs únicos e suas descrições."""
         for atestado in self.aprovados:
-            cid = atestado[4]
+            cid = atestado[8]
+            data = []
             if cid not in self.cids_unicas:
                 descricao = self.descricao_cid(cid)
                 if descricao:
-                    self.cids_unicas[cid] = 0, descricao
+                    self.cids_unicas[cid] = 0, descricao, data
         return self.cids_unicas
     
     def contar_cids(self):
         """Retorna um dicionário com a contagem de cada CID."""
         rank = 0
         for atestado in self.aprovados:
-            cid = atestado[4]
-            self.cids_unicas[cid] = self.cids_unicas[cid][0] + 1, self.cids_unicas[cid][1]
+            cid = atestado[8]
+            data_inicio = atestado[5]
+            self.cids_unicas[cid] = self.cids_unicas[cid][0] + 1, self.cids_unicas[cid][1], self.cids_unicas[cid][2]
+            self.cids_unicas[cid][2].append(data_inicio)
         self.cids_unicas = dict(sorted(self.cids_unicas.items(), key=lambda item: item[1][0], reverse=True))
         for cid in self.cids_unicas:
             rank +=1
-            self.cids_unicas[cid] = rank, self.cids_unicas[cid][0], self.cids_unicas[cid][1]
+            self.cids_unicas[cid] = rank, self.cids_unicas[cid][0], self.cids_unicas[cid][1], self.cids_unicas[cid][2]
         return self.cids_unicas

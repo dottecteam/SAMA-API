@@ -46,8 +46,8 @@ def consulta_atestados_secretaria():
 @app.route("/painel/atestados")
 @login_required_secretaria
 def painel_atestados():
-    estado = coletar_estados()
     metricas = coletar_metricas()
+    estado = coletar_estados()
     cids = coletar_cids()
     return render_template("certificates/vw_dashboard.html", metricas = metricas, estado = estado, cids = cids)
 #TELAS

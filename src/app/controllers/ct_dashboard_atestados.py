@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_dashboard_atestados import AtestadoMetricas
+from datetime import datetime
 
 def coletar_metricas():
     try:
@@ -35,4 +36,3 @@ def coletar_cids():
     except Exception as e:
         print(e)
         return []
-

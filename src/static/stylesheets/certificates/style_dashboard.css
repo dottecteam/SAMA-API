@@ -1,9 +1,14 @@
+:root {
+    --cor-principal: rgb(59, 140, 110);
+}
+
 body {
     text-align: center;
 }
 
 /* Container principal dos gráficos */
 .graficos-container {
+    margin-top: 10%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -11,6 +16,37 @@ body {
     width: 95%;
     justify-self: center;
     font-family: "Archivo Black", sans-serif;
+}
+
+#botao-info {
+    background: transparent;
+    color: var(--cor-principal);
+    margin: none;
+    padding: 2px 8px;
+    border: none;
+    font-size: 18px;
+}
+
+#info-filtros-botao-fechar {
+    box-shadow: none;
+}
+#info-filtros-botao-fechar:active {
+    box-shadow: 0 0 5px var(--cor-principal);
+}
+
+#botao-info:hover {
+    background-color: rgb(222, 222, 222);
+    border-radius: 6px;
+    color: rgb(11, 43, 64);
+}
+
+#info-filtros-header {
+    border-bottom: 2px solid var(--cor-principal);
+}
+
+#info-filtros {
+    text-align: left;
+    font-size: 16px;
 }
 
 /* Cartão que envolve os gráficos */
@@ -25,6 +61,7 @@ body {
 /* Cabeçalho do cartão */
 .card-header {
     width: 100%;
+    background-color: rgb(243, 248, 246);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,18 +85,24 @@ body {
     margin: 10px;
 }
 
+.input-data {
+    font-size: 20px;
+    border: 1px solid var(--cor-principal);
+    border-radius: 10px;
+}
+
 .botao-estado {
     width: 98%;
     border: transparent;
     color: white;
-    background-color: rgb(59, 140, 110);
+    background-color: var(--cor-principal);
     border-radius: 15px;
     padding: 0 5px;
     margin-top: 10px;
     font-size: 24px;
 }
 
-.botao-estado:hover , .botao-x:hover, #botao-x-cids:hover {
+.botao-estado:hover , #botao-x:hover, #botao-x-cids:hover {
     background-color: rgb(19, 100, 70);
 }
 .botao-estado:focus {
@@ -86,14 +129,14 @@ body {
 
 /* Estilização do select de ano */
 select#selectAno {
-    border-color: rgb(59, 140, 110);
+    border-color: var(--cor-principal);
     height: 35px;
     width: 90px;
-    color: rgb(59, 140, 110);
+    color: var(--cor-principal);
 }
 
 select#selectAno:focus {
-    box-shadow: 0 0 8px rgb(59, 140, 110);
+    box-shadow: 0 0 8px var(--cor-principal);
 }
 
 /* Seção mensal do dashboard */
@@ -102,21 +145,14 @@ select#selectAno:focus {
     min-height: 300px;
 }
 
-/* Cartão específico para mensal */
-#card-mensal {
-    width: 95%;
-}
-
-
 /* Estilização da tabela de atestados */
 
 .painel-atestados {
     width: 95%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(59, 140, 110);
+    border: 1px solid var(--cor-principal);
     border-radius: 20px;
 }
 
@@ -124,14 +160,14 @@ select#selectAno:focus {
     display: flex;
     justify-content: space-between;
     margin: 10px 20px;
-    border-bottom: 1px solid rgb(59, 140, 110);
+    border-bottom: 1px solid var(--cor-principal);
 }
 
-.botao-x, #botao-x-cids {
+#botao-x, #botao-x-cids {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(59, 140, 110);
+    background-color: var(--cor-principal);
     height: 30px !important;
     width: 30px !important;
     color: white;
@@ -142,7 +178,7 @@ select#selectAno:focus {
     font-size: 16px !important;
 }
 
-.atestado {
+#atestado {
     width: 100%;
     height: auto;
     max-height: 500px;
@@ -172,12 +208,12 @@ select#selectAno:focus {
     height: 100%;
 }
 
-#cids-descrissoes {
+#cids-descricoes {
     width: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(59, 140, 110);
+    border: 1px solid var(--cor-principal);
     border-radius: 20px;
     overflow: hidden;
     margin: 10px;
@@ -185,16 +221,13 @@ select#selectAno:focus {
 
 .detalhes-cids-header {
     width: 90%;
+    text-align: left;
     display: flex;
     flex: 0 0 0;
     justify-content: space-between;
     align-items: center;
     margin: 10px 20px;
-    border-bottom: 1px solid rgb(59, 140, 110);
-}
-
-.detalhes-cids-header h3 {
-    width: 90%;
+    border-bottom: 1px solid var(--cor-principal);
 }
 
 #botao-detalhes-cids {
@@ -202,7 +235,7 @@ select#selectAno:focus {
     text-decoration: underline;
     border: none;
     border-radius: 20px;
-    color: rgb(59, 140, 110);
+    color: var(--cor-principal);
     font-size: 20px;
     padding: 4px;
 }
@@ -213,26 +246,29 @@ select#selectAno:focus {
 
 .card-body-cids-detalhes {
     width: 100%;
-    height: auto;
+    height: 85%;
     max-height: 500px;
     display: flex;
     justify-content: center;
+    overflow-y: auto;
 }
 
 .card-body-cids-detalhes h5 {
     text-align: left;
 }
 
-.cids {
-    width: 90%;
-    display: inline;
-    overflow: hidden;
-    overflow-y: auto;
+.card-body-cids-detalhes tr{
+    border-bottom: 1px solid var(--cor-principal);
+    width: 95%;
+    height: auto;
+    text-align: left;
 }
 
-.card-body-cids-detalhes article p{
-    border-bottom: 1px solid rgb(59, 140, 110);
-    text-align: left;
+#tabela-cids {
+    width: 95%;
+    height: auto;
+    max-height: 500px;
+    margin: 10px;
 }
 
 
@@ -288,15 +324,14 @@ select#selectAno:focus {
         height: auto;
     }
     .grafico-cids {
-        width: 100%;
+        width: 95%;
         margin: 10px 0 0 10px;
     }
-    .cids-descrissoes {
-        width: 100%;
-    }
-    #cids-descrissoes {
-        width: 100%;
+
+    #cids-descricoes {
+        width: 95%;
         border: none;
+        border-radius: 0;
         margin: 30px;
     }
 

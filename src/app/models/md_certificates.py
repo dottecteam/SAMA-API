@@ -30,7 +30,7 @@ class Atestados:
         try:
             id_atestado = str(uuid.uuid4())
             with open(Atestados.caminho_arquivo, "a", encoding="utf-8") as arquivo:
-                arquivo.write(f"{nome};{email};{cpf};{curso};{semestre};{dataIn};{dataFin};{cid};{nome_unico};Pendente;{id_atestado}\n")
+                arquivo.write(f"{nome};{email};{cpf};{curso};{semestre};{dataIn};{dataFin};{cid.upper()};{nome_unico};Pendente;{id_atestado}\n")
                 return True
         except Exception as e:
             print(f"Erro ao salvar os dados: {e}")

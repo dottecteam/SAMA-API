@@ -8,6 +8,7 @@ from app import admin_email, admin_password
 import re
 import os
 from app import app
+from app.models.md_dashboard_atestados import AtestadoMetricas
 
 class Validade:
 
@@ -37,6 +38,13 @@ class Validade:
     
         # Verifica se os dígitos verificadores estão corretos
         if cpf[9] == str(digito_1) and cpf[10] == str(digito_2):
+            return True
+        return False
+    
+    def validar_cid (cid):
+        cid_dict = AtestadoMetricas.cid_11
+        cid = cid.upper()
+        if cid in cid_dict:
             return True
         return False
 
