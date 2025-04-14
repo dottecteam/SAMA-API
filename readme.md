@@ -54,6 +54,19 @@ O desenvolvimento do projeto segue a metodologia ágil **Scrum**, uma forma adap
 <br>
 </br>
 
+**Funcionalidade** | **Definição de preparado** | **Prioridade** | **Sprint**
+-|-|-|-
+Página inicial | Uma página inicial com título, descrição do sistema, seção de navegação e links para ferramentas principais. | Baixa | 1
+Envio de atestados | Um formulário que deve permitir o cadastro de informações pessoais e o envio de atestados médicos em PDF. | Alta | 1
+Acesso de secretaria | Login ao sistema que será restrito aos funcionários da secretaria e testes de segurança para garantir que as informações dos alunos estajam protegidas contra acessos não autorizados. | Alta | 1
+Página de atestados (alunos) | Uma lista organizada por ordem alfabética, a lista deve exibir apenas o nome dos alunos e a situação dos atestados (exemplos: "em análise", "aprovado" e "rejeitado"). | Média | 1
+Página de atestados (secretaria) | Uma lista organizada por data e período de afastamento, exibindo o nome dos alunos e ao clicar, devem ser mostrados detalhes (exemplos: dados pessoais e opção para mudar o status do atestado). | Média | 1
+Acesso de alunos | Um formulário que possibilite o cadastro de um e-mail e uma senha, e que inclua um processo de confirmação por meio de um código enviado ao e-mail do aluno. | Média | 2
+
+
+<br>
+<br>
+
 ## **💻 Linguagens utilizadas**
 
 <br>
