@@ -89,7 +89,7 @@ class Atestados:
                             cid=dados[7],
                             pdf=dados[8],
                             situacao=dados[9],
-                            periodo=str((datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days > 1 else " dia",
+                            periodo=str((datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days > 1 else "1 dia",
                             id=dados[10]
                         )
                         atestados_encontrados.append(atestado)
@@ -118,7 +118,7 @@ class Atestados:
                             cid=dados[7],
                             pdf=dados[8],
                             situacao=dados[9],
-                            periodo=str((datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days > 1 else " dia",
+                            periodo=str((datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days > 1 else "1 dia",
                             id=dados[10]
                         )
                 return atestado
@@ -141,4 +141,21 @@ class Atestados:
             return True
         except Exception as e:
             print(f"Erro ao excluir o arquivo: {e}")
+            return False
+        
+    def atualizar_status(status, id):
+        atestados_atualizados = []
+        try:
+            with open(Atestados.caminho_arquivo, "r", encoding="utf-8") as arquivo:
+                for atestado in arquivo:
+                    atestado = atestado.strip().split(';')
+                    if atestado[10] == id:
+                        atestado[9] = status 
+                    atestados_atualizados.append(';'.join(atestado)) 
+
+            with open(Atestados.caminho_arquivo, "w", encoding="utf-8") as arquivo:
+                for linha in atestados_atualizados:
+                    arquivo.write(linha + '\n')
+            return True
+        except:
             return False

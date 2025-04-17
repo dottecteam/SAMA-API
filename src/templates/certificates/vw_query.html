@@ -73,14 +73,52 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-custom mt-3 mx-auto" id="btn-view-pdf">
+      <div class="modal-footer" style="display: flex; justify-content: space-around;">
+        <button class="btn btn-custom w-auto" id="btn-view-pdf" style="margin: none;">
           Visualizar Atestado
         </button>
+        <div id="btns-status">
+          <button class="btn btn-custom" id="btn-aprovar">
+            Aprovar
+          </button>
+          <button class="btn btn-custom" id="btn-rejeitar">
+            Rejeitar
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Alerta de sucesso para quando o status for alterado -->
+<div id="alert-sucesso" 
+      class="alert alert-success alert-dismissible fade show"
+      role="alert"
+      style="position: fixed;left: 50%; transform: translateX(-50%); display: none; text-align: center; margin-top: 2%; z-index: 2000;"
+      >
+  Status atualizado com sucesso!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<!-- Modal Bootstrap para confirmar alteração no status do atestado -->
+<div class="modal fade" id="confirmModal">
+  <div class="modal-dialog mx-auto" style="margin-top: 1%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmar ação</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza de que deseja atualizar o status deste atestado?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-custom" id="btn-confirmar" data-bs-dismiss="modal">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal Bootstrap para exibir o PDF -->
 <div
@@ -131,7 +169,7 @@
             </thead>
             <tbody>
               {% if dados %} {% for atestado in dados %}
-              <tr class="table-query-tr" data-id="{{ atestado.id }}">
+              <tr class="table-query-tr" data-id="{{ atestado.id }}" data-status="{{ atestado.situacao }}">
                 <td>{{ atestado.nome }}</td>
                 <td>{{ atestado.dataIn }}</td>
                 <td>{{ atestado.dataFin }}</td>

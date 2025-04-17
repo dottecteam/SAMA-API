@@ -90,6 +90,11 @@ def cadastrar_atestado():
         print(e)
         Atestados.remover_arquivo(session['arquivo'])
         return jsonify({"status": False, "mensagem": "Erro ao cadastrar atestado!"}), 400
+    
+def atualizar_status_atestado(status, id):
+    response = Atestados.atualizar_status(status, id)
+    return response
+
         
 
         

@@ -70,6 +70,17 @@ def consultar_atestados_id():
     dados = consultar_atestados_secretaria_id()
     return dados
 
+@app.route('/atestado/consulta/secretaria/status', methods=['POST'])
+def atualizar_status():
+    dados = request.get_json()
+    status = dados.get('status')
+    id = dados.get('id')
+    response = atualizar_status_atestado(status, id)
+    if response:
+        return jsonify({"mensagem": "Status atualizado com sucesso!"}), 200
+    else:
+        return jsonify({"mensagem": "Erro ao atualizar status."}), 500
+
 #Cadastrar atestados
 @app.route("/atestados/cadastro/validar", methods=['POST'])
 def validar():
