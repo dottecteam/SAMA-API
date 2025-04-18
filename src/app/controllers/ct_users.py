@@ -53,3 +53,11 @@ def login_user():
     except Exception as e:
         print(e)
         return jsonify({"status": False,"mensagem": "Erro ao logar!"}), 400
+    
+def login_required_user(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'usuario' not in session:
+            return redirect(url_for('home'))
+        return f(*args, **kwargs)
+    return decorated_function

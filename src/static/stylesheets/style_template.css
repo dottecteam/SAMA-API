@@ -7,6 +7,24 @@
   font-family: "Quicksand", sans-serif;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer{
+  width: 100%;
+  }
+
 ::-webkit-scrollbar {
   width: 7px;
   height: 8px;
@@ -32,22 +50,27 @@
   transform: scale(1.05);
   background-color: var(--cor-secundaria);
 }
+
 .navbar-icon-custom {
   color: #ffffff;
   font-size: 40px;
   font-weight: bold;
 }
+
 .navbar-toggler {
   border: none;
 }
+
 .navbar-toggler:focus {
   background-color: var(--cor-secundaria);
   outline: none;
   box-shadow: none;
 }
-.btn:hover{
+
+.btn:hover {
   transition: all .3s;
 }
+
 /**/
 
 /* Estilo do Main */
@@ -83,12 +106,16 @@
 
 .search-container input {
   width: 100%;
-  padding: 8px 35px 8px 12px; /* Reduzi o padding */
-  border: 1.5px solid rgba(255, 255, 255, 0.5); /* Borda mais fina */
+  padding: 8px 35px 8px 12px;
+  /* Reduzi o padding */
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  /* Borda mais fina */
   background: transparent;
-  border-radius: 20px; /* Mantém arredondado */
+  border-radius: 20px;
+  /* Mantém arredondado */
   color: white;
-  font-size: 14px; /* Texto levemente menor */
+  font-size: 14px;
+  /* Texto levemente menor */
   outline: none;
   transition: 0.3s;
 }
@@ -110,32 +137,42 @@
   font-size: 18px;
   cursor: pointer;
 }
+
 .search-container .bi-search:hover {
   color: rgba(255, 255, 255, 0.5);
   transition: all 0.3s;
 }
 
 .navbar.scrolled {
-    opacity: 0.9;
-  }
+  opacity: 0.9;
+}
 
 /**/
 
 /* Estilo do Footer */
 
+footer {
+  bottom: 0;
+  width: 100%;
+  /* Garante que o footer ocupe toda a largura da tela */
+}
+
 .footer-logo-custom {
   width: 400px;
 }
+
 @media only screen and (max-width: 1080px) {
   .footer-logo-custom {
     width: 350px;
   }
 }
+
 @media only screen and (max-width: 960px) {
   .footer-logo-custom {
     width: 300px;
   }
 }
+
 @media only screen and (max-width: 840px) {
   .footer-logo-custom {
     width: 250px;
@@ -155,6 +192,7 @@ a {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -194,7 +232,3 @@ a {
   margin: auto;
   transform: translateY(-50%);
 }
-
-
-
-

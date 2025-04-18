@@ -27,6 +27,7 @@ def cadastro_usuario():
 
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
+@login_required_user
 def cadastro_atestados():
     return render_template('certificates/vw_form_upload.html')
 
