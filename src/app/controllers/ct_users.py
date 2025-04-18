@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.controllers.ct_validation import Validade
 from app.models.md_users import Users
-import uuid
+from functools import wraps
 
 def validar_email_usuario():
     try:
@@ -40,3 +40,16 @@ def cadastrar_usuario():
     except Exception as e:
         print(e)
         return jsonify({"status": False, "mensagem": "Erro ao cadastrar atestado!"}), 400
+
+def login_user():
+    try:
+        email=request.form.get('input-user-form-login')
+        senha=request.form.get('input-password-form-login')
+        response=Users.login(email,senha)
+        if response:
+            return jsonify({"status": True,"mensagem": "Logado com sucesso!"}), 200
+        else:
+            return jsonify({"status": False, "mensagem": "Credenciais inválidas."}), 400
+    except Exception as e:
+        print(e)
+        return jsonify({"status": False,"mensagem": "Erro ao logar!"}), 400

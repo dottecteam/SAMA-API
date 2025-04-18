@@ -102,6 +102,11 @@ def cadastrar_usuarios():
     response = cadastrar_usuario()
     return response 
 
+@app.route("/usuarios/logar",methods=['post'])
+def logar_usuario():
+    response=login_user()
+    return response
+
 #Validar cid
 @app.route("/atestados/cadastro/validar", methods=['POST'])
 def validar_atestado():
@@ -119,9 +124,11 @@ def cadastrar_atestados():
 
 
 @app.route('/atestados/acesso/logar', methods=['POST'])
-def logar():
+def logar_coordenacao():
     response = logar_secretaria()
     return response
+
+
 
 @app.route('/atestados/acesso/logout')
 def logout():

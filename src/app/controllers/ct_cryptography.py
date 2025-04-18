@@ -9,4 +9,3 @@ class Criptography:
 
     def decriptografar(linha):
         return Criptography.fernet.decrypt(linha.encode()).decode()
-

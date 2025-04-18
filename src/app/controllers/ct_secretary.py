@@ -14,9 +14,7 @@ def logar_secretaria():
     try:
         senha = request.form.get('senha')
         response = Secretaria.logar(senha)
-        print(response)
         if response:
-            print("aqui")
             return jsonify({"status": True,"mensagem": "Secretaria logada com sucesso!"}), 200
         else:
             return jsonify({"status": False, "mensagem": "Senha incorreta."}), 400

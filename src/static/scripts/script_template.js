@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    const ModalLogin = new bootstrap.Modal(document.getElementById("loginModal"));
     // Detecta quando a página é rolada
     $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
@@ -33,4 +34,35 @@ $(document).ready(function () {
 
         $(this).val(cpf);
     });
+
+    $('#btn-login').on('click', function (){
+        ModalLogin.show()
+    })
+
+    $('.modal').each(function () {
+        const $modal = $(this);
+  
+        // Flag pra evitar loop infinito
+        let closing = false;
+  
+        $modal.on('hide.bs.modal', function (e) {
+          if (closing) {
+            // já estamos no meio de um fechamento programado, deixa passar
+            return;
+          }
+  
+          e.preventDefault(); // cancela fechamento automático
+  
+          $modal.removeClass('show'); // remove show pra iniciar animação de saída
+  
+          closing = true; // marca que o fechamento está sendo tratado
+  
+          setTimeout(function () {
+            // Chama a função original do Bootstrap pra esconder o modal
+            const modalInstance = bootstrap.Modal.getInstance($modal[0]);
+            modalInstance.hide(); // isso vai rodar de novo o evento, mas com flag ativado
+            closing = false; // libera pro futuro
+          }, 200); // tempo da sua animação CSS
+        });
+      });
 });
