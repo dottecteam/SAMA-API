@@ -103,7 +103,7 @@ body {
 }
 
 .botao-estado:hover , #botao-x:hover, #botao-x-cids:hover {
-    background-color: rgb(19, 100, 70);
+    background-color: rgb(11, 43, 64);
 }
 .botao-estado:focus {
     background-color: rgb(11, 43, 64);
