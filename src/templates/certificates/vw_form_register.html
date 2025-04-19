@@ -1,18 +1,12 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
 
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='stylesheets/certificates/style_form_register.css') }}"
-/>
-
 <!-- Modal de confirmação de e-mail -->
 <div
   class="modal fade"
   id="modalConfirmacao"
   tabindex="-1"
   aria-labelledby="modalConfirmacaoLabel"
-  aria-hidden="true"
->
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-header">
@@ -22,21 +16,22 @@
       </div>
       <div class="modal-body">
         <p>
-          Enviamos um código para <strong id="email-destino"></strong>. Por
+          Enviamos um código para <strong
+            id="email-destino"></strong>. Verifique na sua caixa de span! Por
           favor, digite abaixo:
         </p>
         <form id="form-confirmacao">
           <input
             type="int"
             class="form-control mb-3"
-            id="input-codigo-form-atestados"
-            name="input-codigo-form-atestados"
+            id="input-codigo-form-users"
+            name="input-codigo-form-users"
             placeholder="Digite o código"
             autocomplete="off"
-            required
-          />
+            required />
           <div class="text-end">
-            <button type="submit" class="btn btn-custom">Confirmar</button>
+            <button type="submit"
+              class="btn btn-custom">Confirmar</button>
           </div>
         </form>
       </div>
@@ -44,104 +39,92 @@
   </div>
 </div>
 
-<section id="atestados-section" class="container-fluid">
-  <h1 class="text-center form-register-title">Cadastro de Atestados Médicos</h1>
+<section class="container-fluid">
+  <h1 class="text-center form-register-title">Cadastro de Usuários</h1>
+
   <div class="container bg-light p-4 mb-4 rounded">
-    <form id="form-atestados" method="post" enctype="multipart/form-data">
+    <form id="form-users" method="post">
       <div class="row">
-        <!-- Primeiros dois campos à esquerda -->
+        <!-- Campos à esquerda -->
         <div class="col-md-6">
           <div class="form-group p-2">
-            <label for="input-email-form-atestados" class="input-title">E-mail:</label>
+            <label for="input-email-form-users"
+              class="input-title">E-mail:</label>
             <input
               type="email"
               class="form-control"
-              id="input-email-form-atestados"
-              name="input-email-form-atestados"
+              id="input-email-form-users"
+              name="input-email-form-users"
               aria-describedby="emailHelp"
               placeholder="Seu email"
               required
-              autocomplete="off"
-            />
-            <small id="emailHelp" class="form-text text-muted"
-              >Nunca vamos compartilhar seu email, com ninguém.</small
-            >
+              autocomplete="off" />
           </div>
 
           <div class="form-group p-2">
-            <label for="input-nome-form-atestados" class="input-title">Nome completo:</label>
+            <label for="input-nome-form-users" class="input-title">Nome
+              completo:</label>
             <input
               type="text"
               class="form-control"
-              id="input-nome-form-atestados"
-              name="input-nome-form-atestados"
+              id="input-nome-form-users"
+              name="input-nome-form-users"
               aria-describedby="nameHelp"
               placeholder="Nome"
               required
-              autocomplete="off"
-            />
+              autocomplete="off" />
           </div>
 
           <div class="form-group p-2">
-            <label for="input-cid-form-atestados" class="input-title">CID do afastamento:</label>
+            <label for="input-senha-form-users"
+              class="input-title">Senha:</label>
             <input
-              type="text"
+              type="password"
               class="form-control"
-              id="input-cid-form-atestados"
-              name="input-cid-form-atestados"
-              aria-describedby="cidHelp"
-              placeholder="Ex: M51.4"
+              id="input-senha-form-users"
+              name="input-senha-form-users"
+              aria-describedby="passwordHelp"
+              placeholder="Senha"
               required
-              autocomplete="off"
-            />
+              autocomplete="off" />
           </div>
+
         </div>
 
-        <!-- Dois seguintes à direita -->
+        <!-- Seguintes à direita -->
         <div class="col-md-6">
           <div class="form-group p-2">
-            <label for="input-cpf-form-atestados" class="input-title">CPF:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="input-cpf-form-atestados"
-              name="input-cpf-form-atestados"
-              aria-describedby="cpfHelp"
-              placeholder="Seu CPF"
-              required
-              autocomplete="off"
-            />
-            <small id="cpfHelp" class="form-text text-muted"
-              >Nunca vamos compartilhar seu CPF, com ninguém.</small
-            >
-          </div>
-
-          <div class="form-group p-2">
-            <label for="input-curso-form-atestados" class="input-title">Curso:</label>
+            <label for="input-curso-form-users"
+              class="input-title">Curso:</label>
             <select
               class="form-control"
-              id="input-curso-form-atestados"
-              name="input-curso-form-atestados"
-            >
-              <option value="Análise e Desenvolvimento de Sistemas">Análise e Desenvolvimento de Sistemas</option>
+              id="input-curso-form-users"
+              name="input-curso-form-users">
+              <option value="Análise e Desenvolvimento de Sistemas">Análise e
+                Desenvolvimento de Sistemas</option>
               <option value="Banco de Dados">Banco de Dados</option>
-              <option value="Desenvolvimento de Software Multiplataforma">Desenvolvimento de Software Multiplataforma</option>
-              <option value="Gestão da Produção Industrial">Gestão da Produção Industrial</option>
-              <option value="Gestão Empresarial">Gestão Empresarial</option>              
+              <option
+                value="Desenvolvimento de Software Multiplataforma">Desenvolvimento
+                de Software Multiplataforma</option>
+              <option value="Gestão da Produção Industrial">Gestão da Produção
+                Industrial</option>
+              <option value="Gestão Empresarial">Gestão Empresarial</option>
               <option value="Logística">Logística</option>
               <option value="Manufatura Avançada">Manufatura Avançada</option>
-              <option value="Manutenção de Aeronaves">Manutenção de Aeronaves</option>
-              <option value="Projeto de Estruturas Aeronáuticas">Projeto de Estruturas Aeronáuticas</option>
+              <option value="Manutenção de Aeronaves">Manutenção de
+                Aeronaves</option>
+              <option value="Projeto de Estruturas Aeronáuticas">Projeto de
+                Estruturas Aeronáuticas</option>
             </select>
           </div>
 
           <div class="form-group p-2">
-            <label for="select-form-atestados" class="input-title">Semestre:</label>
+            <label for="select-form-users"
+              class="input-title">Semestre:</label>
             <select
               class="form-control"
-              id="select-form-atestados"
-              name="select-form-atestados"
-            >
+              id="select-form-users"
+              name="select-form-users">
               <option value="1">1°</option>
               <option value="2">2°</option>
               <option value="3">3°</option>
@@ -154,61 +137,22 @@
               <option value="10">10°</option>
             </select>
           </div>
-        </div>
-      </div>
-
-      <!-- Campos centrais -->
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="form-group p-2 text-center">
-            <label for="date-form-atestados-1" class="input-title">Período de afastamento:</label>
-            <input
-              type="date"
-              id="date-form-atestados-1"
-              name="date-form-atestados-1"
-              required
-            />
-            até
-            <input
-              type="date"
-              id="date-form-atestados-2"
-              name="date-form-atestados-2"
-              required
-            />, inclusive.
-          </div>
-
           <div class="form-group p-2">
-            <label for="file-form-atestados"
-              >Anexar Atestado
-              <strong>(Deve conter assinatura do médico com CRM)</strong>:</label
-            >
-            <div class="file-upload-area" id="file-upload-area">
-              <input
-                type="file"
-                class="form-control-file"
-                id="file-form-atestados"
-                name="file-form-atestados"
-                style="display: none"
-                accept=".pdf"
-                required
-              />
-              <span>Arraste ou clique para escolher o arquivo</span>
-            </div>
-          </div>
-
-          <div class="form-group form-check p-2 text-center">
+            <label for="input-confirmarsenha-form-users" class="input-title">Confirmar
+              Senha:</label>
             <input
-              type="checkbox"
-              class="form-check-input"
-              id="checkbox-form-atestados"
+              type="password"
+              class="form-control"
+              id="input-confirmarsenha-form-users"
+              name="input-confirmarsenha-form-users"
+              aria-describedby="confirmpasswordHelp"
+              placeholder="Confirme a senha"
               required
-            />
-            <label class="form-check-label" for="checkbox-form-atestados"
-              style="font-weight: bold;">DECLARO VERACIDADE DAS INFORMAÇÕES FORNECIDAS</label
-            >
+              autocomplete="off" />
           </div>
         </div>
       </div>
+
       <div class="text-center p-2">
         <button type="submit" class="btn btn-custom">Validar</button>
       </div>
@@ -216,5 +160,6 @@
   </div>
 </section>
 
-<script src="{{ url_for('static', filename='scripts/certificates/script_form_register.js') }}"></script>
+<script
+  src="{{ url_for('static', filename='scripts/certificates/script_form_register.js') }}"></script>
 {% endblock %}

@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, redirect, url_for, session, send_from_directory
 from app.controllers.ct_certificates import *
+from app.controllers.ct_users import *
 from app.controllers.ct_secretary import *
 from app.controllers.ct_dashboard_atestados import *
 import os
@@ -10,19 +11,24 @@ import os
 @app.route("/")
 def home():
     return render_template("certificates/vw_home.html")
-
 @app.route("/home")
 def home_redirect():
     return redirect(url_for('home'))
 
+#FAQ
 @app.route("/faq")
 def faq():
     return render_template("certificates/vw_faq.html")
 
+#Página de cadastro de usuários
+@app.route("/usuarios/cadastro")
+def cadastro_usuario():
+    return render_template('certificates/vw_form_register.html')
+
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
-def atestados():
-    return render_template('certificates/vw_form_register.html')
+def cadastro_atestados():
+    return render_template('certificates/vw_form_upload.html')
 
 #Página de login
 @app.route("/atestados/acesso")
@@ -52,6 +58,8 @@ def painel_atestados():
     return render_template("certificates/vw_dashboard.html", metricas = metricas, estado = estado, cids = cids)
 #TELAS
 
+
+
 #FUNÇÕES
 #Função para servir arquivos de atestados
 @app.route('/uploads/atestados/<filename>')
@@ -70,6 +78,7 @@ def consultar_atestados_id():
     dados = consultar_atestados_secretaria_id()
     return dados
 
+#Função de trocar o status do atestado
 @app.route('/atestado/consulta/secretaria/status', methods=['POST'])
 def atualizar_status():
     dados = request.get_json()
@@ -81,17 +90,32 @@ def atualizar_status():
     else:
         return jsonify({"mensagem": "Erro ao atualizar status."}), 500
 
-#Cadastrar atestados
+#Validar email
+@app.route("/usuarios/cadastro/validar", methods=['POST'])
+def validar_usuario():
+    response = validar_email_usuario()
+    return response
+
+#Cadastrar usuarios
+@app.route("/usuarios/cadastro/cadastrar", methods=['POST'])
+def cadastrar_usuarios():
+    response = cadastrar_usuario()
+    return response 
+
+#Validar cid
 @app.route("/atestados/cadastro/validar", methods=['POST'])
-def validar():
+def validar_atestado():
     response = validar_dados()
     return response  
 
+#Cadastrar atestados
 @app.route("/atestados/cadastro/cadastrar", methods=['POST'])
-def cadastrar():
+def cadastrar_atestados():
     response = cadastrar_atestado()
     return response  
-#Cadastrar atestados
+
+ 
+
 
 
 @app.route('/atestados/acesso/logar', methods=['POST'])
