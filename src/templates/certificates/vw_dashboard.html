@@ -1,4 +1,4 @@
-{% extends "certificates/vw_template.html" %} {% block content %}
+{% extends "certificates/vw_template.html" %} {% block content %}   
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_dashboard.css') }}">
 
@@ -9,6 +9,11 @@ var estado = JSON.parse('{{ estado | tojson | safe }}');
 const cids = JSON.parse('{{ cids | tojson | safe }}');
 </script>
 
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script defer src="{{ url_for('static', filename='scripts/certificates/script_dashboard.js') }}"></script>
 <!---->
@@ -140,6 +145,8 @@ const cids = JSON.parse('{{ cids | tojson | safe }}');
         <div id="mensal" class="card-body"></div>
         {% endif %}
     </section>
+    <button class="btn btn-custom" id="btnExportarPDF">Exportar Gráfico como PDF</button>
+    
 
     <!-- Donut Chart CIDs -->
     
@@ -184,6 +191,5 @@ const cids = JSON.parse('{{ cids | tojson | safe }}');
         {% endif %}
     </section>
 </section>
-
 
 {% endblock %}

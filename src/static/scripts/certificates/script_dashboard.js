@@ -376,3 +376,73 @@ function fecharCidsDescricoes() {
 document.getElementById('botao-x-cids').addEventListener('click', function() {
   fecharCidsDescricoes();
 });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const { jsPDF } = window.jspdf;
+
+        // Função para gerar o PDF
+        function gerarPDF() {
+            // Selecionar o elemento com o gráfico
+            const elemento = document.getElementById('card-mensal');
+
+            // Usar html2canvas para capturar o gráfico
+            html2canvas(elemento).then(function(canvas) {
+                // Criar um novo PDF
+                const doc = new jsPDF();
+
+                // Adicionar a imagem (gráfico) ao PDF
+                const imgData = canvas.toDataURL('image/png');
+                doc.addImage(imgData, 'PNG', 10, 10, 180, 160); // Ajuste de tamanho e posição da imagem
+
+                // Salvar o PDF gerado
+                doc.save('grafico_atestado.pdf');
+            });
+        }
+
+        // Adicionar evento de clique para gerar o PDF
+        const btnExportarPDF = document.createElement('button');
+        btnExportarPDF.innerText = 'Exportar Gráfico como PDF';
+        btnExportarPDF.addEventListener('click', gerarPDF);
+        document.body.appendChild(btnExportarPDF);  // Coloca o botão na página
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const { jsPDF } = window.jspdf;
+
+      const botaoExportar = document.getElementById('btnExportarPDF');
+
+      if (botaoExportar) {
+          botaoExportar.addEventListener('click', function () {
+              const elemento = document.getElementById('card-mensal');
+
+              if (!elemento) {
+                  alert("Gráfico não encontrado!");
+                  return;
+              }
+
+              html2canvas(elemento, {
+                  scale: 2, // Melhor qualidade no PDF
+                  useCORS: true
+              }).then(canvas => {
+                  const imgData = canvas.toDataURL('image/png');
+
+                  const pdf = new jsPDF({
+                      orientation: 'portrait',
+                      unit: 'mm',
+                      format: 'a4'
+                  });
+
+                  const pageWidth = pdf.internal.pageSize.getWidth();
+                  const imgProps = pdf.getImageProperties(imgData);
+                  const pdfWidth = pageWidth - 20;
+                  const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                  pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth, pdfHeight);
+                  pdf.save('grafico_atestados_mensais.pdf');
+              }).catch(error => {
+                  console.error("Erro ao gerar PDF:", error);
+                  alert("Houve um erro ao exportar o gráfico.");
+              });
+          });
+      }
+  });
