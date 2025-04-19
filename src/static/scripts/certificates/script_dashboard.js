@@ -377,72 +377,75 @@ document.getElementById('botao-x-cids').addEventListener('click', function() {
   fecharCidsDescricoes();
 });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const { jsPDF } = window.jspdf;
 
-        // Função para gerar o PDF
-        function gerarPDF() {
-            // Selecionar o elemento com o gráfico
-            const elemento = document.getElementById('card-mensal');
+document.addEventListener('DOMContentLoaded', function () {
+  const { jsPDF } = window.jspdf;
+  const btn = document.getElementById('btnExportarPagina');
+  const msg = document.getElementById('mensagemPDF');
 
-            // Usar html2canvas para capturar o gráfico
-            html2canvas(elemento).then(function(canvas) {
-                // Criar um novo PDF
-                const doc = new jsPDF();
+  if (!btn) return;
 
-                // Adicionar a imagem (gráfico) ao PDF
-                const imgData = canvas.toDataURL('image/png');
-                doc.addImage(imgData, 'PNG', 10, 10, 180, 160); // Ajuste de tamanho e posição da imagem
+  btn.addEventListener('click', function () {
+    btn.style.display = 'none';
+    if (msg) msg.style.display = 'block';
 
-                // Salvar o PDF gerado
-                doc.save('grafico_atestado.pdf');
-            });
+    const logoUrl = '/static/images/logo.jpg';
+    const logoImage = new Image();
+    logoImage.crossOrigin = 'Anonymous';
+    logoImage.src = logoUrl;
+
+    logoImage.onload = function () {
+      html2canvas(document.querySelector('.graficos-container'), {
+        scale: 2,
+        useCORS: true
+      }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = pageWidth;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+
+        let heightLeft = imgHeight;
+        let position = 40;
+
+        // Centraliza o logo
+        const logoWidth = 40;
+        const logoHeight = 20;
+        const logoX = (pageWidth - logoWidth) / 2;
+        pdf.addImage(logoImage, 'JPEG', logoX, 10, logoWidth, logoHeight);
+
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= (pageHeight - position);
+
+        while (heightLeft > 0) {
+          position -= pageHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
         }
 
-        // Adicionar evento de clique para gerar o PDF
-        const btnExportarPDF = document.createElement('button');
-        btnExportarPDF.innerText = 'Exportar Gráfico como PDF';
-        btnExportarPDF.addEventListener('click', gerarPDF);
-        document.body.appendChild(btnExportarPDF);  // Coloca o botão na página
-    });
+        const agora = new Date();
+        const data = agora.toISOString().split('T')[0];
+        const hora = agora.toLocaleTimeString();
+        pdf.setFontSize(10);
+        pdf.text(`Gerado em: ${data} ${hora}`, 10, pageHeight - 10);
 
-    document.addEventListener('DOMContentLoaded', function () {
-      const { jsPDF } = window.jspdf;
+        const nomeArquivo = `relatorio_${data}_${hora.replace(/:/g, '-')}.pdf`;
+        pdf.save(nomeArquivo);
+      }).catch(err => {
+        console.error('Erro ao gerar PDF:', err);
+        alert("Erro ao gerar PDF.");
+      }).finally(() => {
+        btn.style.display = 'inline-block';
+        if (msg) msg.style.display = 'none';
+      });
+    };
 
-      const botaoExportar = document.getElementById('btnExportarPDF');
-
-      if (botaoExportar) {
-          botaoExportar.addEventListener('click', function () {
-              const elemento = document.getElementById('card-mensal');
-
-              if (!elemento) {
-                  alert("Gráfico não encontrado!");
-                  return;
-              }
-
-              html2canvas(elemento, {
-                  scale: 2, // Melhor qualidade no PDF
-                  useCORS: true
-              }).then(canvas => {
-                  const imgData = canvas.toDataURL('image/png');
-
-                  const pdf = new jsPDF({
-                      orientation: 'portrait',
-                      unit: 'mm',
-                      format: 'a4'
-                  });
-
-                  const pageWidth = pdf.internal.pageSize.getWidth();
-                  const imgProps = pdf.getImageProperties(imgData);
-                  const pdfWidth = pageWidth - 20;
-                  const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-                  pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth, pdfHeight);
-                  pdf.save('grafico_atestados_mensais.pdf');
-              }).catch(error => {
-                  console.error("Erro ao gerar PDF:", error);
-                  alert("Houve um erro ao exportar o gráfico.");
-              });
-          });
-      }
+    logoImage.onerror = function () {
+      alert("Erro ao carregar o logotipo.");
+      btn.style.display = 'inline-block';
+      if (msg) msg.style.display = 'none';
+    };
   });
+});

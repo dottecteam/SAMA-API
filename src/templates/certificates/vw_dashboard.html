@@ -145,7 +145,6 @@ const cids = JSON.parse('{{ cids | tojson | safe }}');
         <div id="mensal" class="card-body"></div>
         {% endif %}
     </section>
-    <button class="btn btn-custom" id="btnExportarPDF">Exportar Gráfico como PDF</button>
     
 
     <!-- Donut Chart CIDs -->
@@ -190,6 +189,11 @@ const cids = JSON.parse('{{ cids | tojson | safe }}');
         </section>
         {% endif %}
     </section>
-</section>
-
+    </section>
+    <button id="btnExportarPagina" class="btn btn-success">Exportar Gráfico como PDF</button>
+    <p id="mensagemPDF" style="display: none; font-weight: bold; margin-top: 10px;">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Gerando PDF...
+      </p>
+      
 {% endblock %}
