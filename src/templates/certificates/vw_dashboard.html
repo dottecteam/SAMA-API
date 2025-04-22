@@ -111,7 +111,7 @@ const cids = JSON.parse('{{ cids | tojson | safe }}');
                         <tr>
                             <th style="width: 4%;">N°</th>
                             <th style="width: 24%;">Nome</th>
-                            <th style="width: 24%;">CPF</th>
+                            <th style="width: 24%;">Email</th>
                             <th style="width: 24%;">Início</th>
                             <th style="width: 24%;">Término</th>
                         </tr>
@@ -190,7 +190,7 @@ const cids = JSON.parse('{{ cids | tojson | safe }}');
         {% endif %}
     </section>
     </section>
-    <button id="btnExportarPagina" class="btn btn-success">Exportar Gráfico como PDF</button>
+    <button id="btnExportarPagina" class="btn btn-custom">Exportar Gráfico como PDF</button>
     <p id="mensagemPDF" style="display: none; font-weight: bold; margin-top: 10px;">
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Gerando PDF...

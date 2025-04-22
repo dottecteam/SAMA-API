@@ -99,7 +99,7 @@ function construirTabelaAtestados(estadoAtestados) {
   for (var i = 0; i < Object.keys(atestadosFiltrados).length; i++) {
     var row =   `<tr>
                   <td>${i+1}°</td>
-                  <td>${ atestadosFiltrados[i][0] }</td>
+                  <td>${ atestadosFiltrados[i][1] }</td>
                   <td>${ atestadosFiltrados[i][2] }</td>
                   <td>${ atestadosFiltrados[i][5] }</td>
                   <td>${ atestadosFiltrados[i][6] }</td>
