@@ -144,6 +144,16 @@ class Certificates:
             print(f"Error: {e}")
             return False
         
+    def deleteData(self, id):
+        try:
+            certificate=self.readDataById(id=id)
+            
+
+        except Exception as e:
+            print(f"Erro ao deletar certificado: {e}")
+            return False
+
+        
     #Atualizar a situação de um atestado
     def updateStatus(self, status, id):
         certificates = []
@@ -160,5 +170,8 @@ class Certificates:
                     line=Criptography.encrypt(line)
                     file.write(f'{line}\n')
             return True
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             return False
+    
+   
