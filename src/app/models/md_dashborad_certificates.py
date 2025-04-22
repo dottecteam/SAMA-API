@@ -1,9 +1,10 @@
 from datetime import datetime
 import os
 import json
+from app.utilities.ut_cryptography import Criptography
 
 class AtestadoMetricas:
-    caminho_arquivo = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "atestados", "alunos.txt")
+    caminho_arquivo = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "certificates", "certificates.txt")
     caminho_json = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "cid11.json")
     with open(caminho_json, "r", encoding="utf-8") as jsonfile:
         dados = json.load(jsonfile)
@@ -34,7 +35,7 @@ class AtestadoMetricas:
         with open(self.arquivo, "r", encoding="utf-8") as usuarios:
             for linha in usuarios:
                 if linha.strip():
-                    dados = linha.strip().split(";")
+                    dados = Criptography.decrypt(linha).strip().split(";")
                     self.atestados.append(dados)
 
     def dif_atestados(self):

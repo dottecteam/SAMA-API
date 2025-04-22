@@ -1,12 +1,13 @@
 from flask import session
 from app import secretary_password
 
-class Secretaria:
-    password = secretary_password
+class Secretary:
+    def __init__(self):
+        self.password = secretary_password
 
-    def logar(senha):
-        if senha == Secretaria.password:
-            session['secretaria'] = senha
+    def login(self, password):
+        if password == self.password:
+            session['secretary'] = password
             return True
         else:
             return False

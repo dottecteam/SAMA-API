@@ -7,15 +7,15 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="modalDados"
+  id="modal-data"
   tabindex="-1"
-  aria-labelledby="modalLabel"
+  aria-labelledby="label-modal-data"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content mx-auto" style="width: 90%">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">Detalhes do Estudante</h5>
+        <h5 class="modal-title">Detalhes do Estudante</h5>
         <button
           type="button"
           class="btn-close"
@@ -28,47 +28,43 @@
         <div class="row mb-4">
           <!-- Adicionando margem inferior -->
           <!-- Coluna esquerda: Dados Pessoais -->
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="mb-3">
               <!-- Adicionando margem inferior -->
               <div><strong>Email:</strong> <span id="data-email"></span></div>
             </div>
             <div class="mb-3">
               <!-- Adicionando margem inferior -->
-              <div><strong>Nome:</strong> <span id="data-nome"></span></div>
+              <div><strong>Nome:</strong> <span id="data-name"></span></div>
             </div>
+           
             <div class="mb-3">
               <!-- Adicionando margem inferior -->
-              <div><strong>CPF:</strong> <span id="data-cpf"></span></div>
-            </div>
-            <div class="mb-3">
-              <!-- Adicionando margem inferior -->
-              <div><strong>Curso:</strong> <span id="data-curso"></span></div>
+              <div><strong>Curso:</strong> <span id="data-course"></span></div>
             </div>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="mb-3">
               <!-- Adicionando margem inferior -->
               <div>
-                <strong>Semestre:</strong> <span id="data-semestre"></span>
+                <strong>Semestre:</strong> <span id="data-semester"></span>
               </div>
             </div>
             <div class="mb-3">
               <!-- Adicionando margem inferior -->
               <div><strong>CID:</strong> <span id="data-cid"></span></div>
             </div>
-
             <div class="mb-3">
               <div>
-                <strong>Data:</strong> De <span id="data-dataIn"></span> até
-                <span id="data-dataFin"></span>
+                <strong>Período:</strong> <span id="data-period"></span>
               </div>
             </div>
-            <div class="mb-3">
-              <div>
-                <strong>Período:</strong> <span id="data-periodo"></span>
-              </div>
+          </div>
+          <div class="mb-3">
+            <div class="text-center">
+              <strong>Data:</strong> De <span id="data-dateIn"></span> até
+              <span id="data-dateFin"></span>
             </div>
           </div>
         </div>
@@ -78,10 +74,10 @@
           Visualizar Atestado
         </button>
         <div id="btns-status">
-          <button class="btn btn-custom" id="btn-aprovar">
+          <button class="btn btn-custom" id="btn-aprove">
             Aprovar
           </button>
-          <button class="btn btn-custom" id="btn-rejeitar">
+          <button class="btn btn-custom" id="btn-reject">
             Rejeitar
           </button>
         </div>
@@ -91,7 +87,7 @@
 </div>
 
 <!-- Alerta de sucesso para quando o status for alterado -->
-<div id="alert-sucesso" 
+<div id="alert-success" 
       class="alert alert-success alert-dismissible fade show"
       role="alert"
       style="position: fixed;left: 50%; transform: translateX(-50%); display: none; text-align: center; margin-top: 2%; z-index: 2000;"
@@ -101,7 +97,7 @@
 </div>
 
 <!-- Modal Bootstrap para confirmar alteração no status do atestado -->
-<div class="modal fade" id="confirmModal">
+<div class="modal fade" id="modal-confirm">
   <div class="modal-dialog mx-auto" style="margin-top: 1%;">
     <div class="modal-content">
       <div class="modal-header">
@@ -113,7 +109,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-        <button class="btn btn-custom" id="btn-confirmar" data-bs-dismiss="modal">Confirmar</button>
+        <button class="btn btn-custom" id="btn-confirm" data-bs-dismiss="modal">Confirmar</button>
       </div>
     </div>
   </div>
@@ -123,16 +119,16 @@
 <!-- Modal Bootstrap para exibir o PDF -->
 <div
   class="modal fade"
-  id="pdfModal"
+  id="modal-pdf"
   tabindex="-1"
-  aria-labelledby="pdfModalLabel"
+  aria-labelledby="label-modal-pdf"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <!-- modal-lg para mais espaço -->
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="pdfModalLabel">Visualizar PDF</h5>
+        <h5 class="modal-title">Visualizar PDF</h5>
         <button
           type="button"
           class="btn-close"
@@ -159,7 +155,7 @@
         <div class="card-body overflow-auto">
           <table id="table-query">
             <thead>
-              <tr class="bg-primario">
+              <tr class="bg-custom-primary">
                 <th>Nome</th>
                 <th>Data Inicial</th>
                 <th>Data Final</th>
@@ -168,13 +164,13 @@
               </tr>
             </thead>
             <tbody>
-              {% if dados %} {% for atestado in dados %}
-              <tr class="table-query-tr" data-id="{{ atestado.id }}" data-status="{{ atestado.situacao }}">
-                <td>{{ atestado.nome }}</td>
-                <td>{{ atestado.dataIn }}</td>
-                <td>{{ atestado.dataFin }}</td>
-                <td>{{ atestado.periodo }}</td>
-                <td>{{ atestado.situacao }}</td>
+              {% if data %} {% for certificate in data %}
+              <tr class="table-query-tr" data-id="{{ certificate.id }}" data-status="{{ certificate.status }}">
+                <td>{{ certificate.name }}</td>
+                <td>{{ certificate.dateIn }}</td>
+                <td>{{ certificate.dateFin }}</td>
+                <td>{{ certificate.period }}</td>
+                <td>{{ certificate.status }}</td>
               </tr>
               {% endfor %} {% else %}
               <tr>

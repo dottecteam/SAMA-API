@@ -4,8 +4,8 @@ from app import cripto_key
 class Criptography:
     fernet=Fernet(cripto_key)
 
-    def criptografar(linha):
+    def encrypt(linha):
         return Criptography.fernet.encrypt(linha.encode()).decode()
 
-    def decriptografar(linha):
+    def decrypt(linha):
         return Criptography.fernet.decrypt(linha.encode()).decode()

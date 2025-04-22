@@ -3,29 +3,29 @@
 <!-- Modal de confirmação de e-mail -->
 <div
   class="modal fade"
-  id="modalConfirmacao"
+  id="modal-confirmation"
   tabindex="-1"
-  aria-labelledby="modalConfirmacaoLabel"
+  aria-labelledby="label-modal-confirmation"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalConfirmacaoLabel">
+        <h5 class="modal-title">
           Confirme seu e-mail
         </h5>
       </div>
       <div class="modal-body">
         <p>
           Enviamos um código para <strong
-            id="email-destino"></strong>. Verifique na sua caixa de span! Por
+            id="email-addressee"></strong>. Verifique na sua caixa de span! Por
           favor, digite abaixo:
         </p>
-        <form id="form-confirmacao">
+        <form id="form-confirmation">
           <input
             type="int"
             class="form-control mb-3"
-            id="input-codigo-form-users"
-            name="input-codigo-form-users"
+            id="input-code-form-users"
+            name="input-code-form-users"
             placeholder="Digite o código"
             autocomplete="off"
             required />
@@ -40,7 +40,7 @@
 </div>
 
 <section class="container-fluid">
-  <h1 class="text-center form-register-title">Cadastro de Usuários</h1>
+  <h1 class="text-center" id="form-register-title">Cadastro de Usuários</h1>
 
   <div class="container bg-light p-4 mb-4 rounded">
     <form id="form-users" method="post">
@@ -55,36 +55,36 @@
               class="form-control"
               id="input-email-form-users"
               name="input-email-form-users"
-              aria-describedby="emailHelp"
-              placeholder="Seu email"
+              aria-describedby="email-help"
+              placeholder="seuemail@exemplo.com"
               required
               autocomplete="off" />
           </div>
 
           <div class="form-group p-2">
-            <label for="input-nome-form-users" class="input-title">Nome
+            <label for="input-name-form-users" class="input-title">Nome
               completo:</label>
             <input
               type="text"
               class="form-control"
-              id="input-nome-form-users"
-              name="input-nome-form-users"
-              aria-describedby="nameHelp"
-              placeholder="Nome"
+              id="input-name-form-users"
+              name="input-name-form-users"
+              aria-describedby="name-help"
+              placeholder="Egydio da Silva"
               required
               autocomplete="off" />
           </div>
 
           <div class="form-group p-2">
-            <label for="input-senha-form-users"
+            <label for="input-password-form-users"
               class="input-title">Senha:</label>
             <input
               type="password"
               class="form-control"
-              id="input-senha-form-users"
-              name="input-senha-form-users"
-              aria-describedby="passwordHelp"
-              placeholder="Senha"
+              id="input-password-form-users"
+              name="input-password-form-users"
+              aria-describedby="password-help"
+              placeholder="*********"
               required
               autocomplete="off" />
           </div>
@@ -94,12 +94,12 @@
         <!-- Seguintes à direita -->
         <div class="col-md-6">
           <div class="form-group p-2">
-            <label for="input-curso-form-users"
+            <label for="select-course-form-users"
               class="input-title">Curso:</label>
             <select
               class="form-control"
-              id="input-curso-form-users"
-              name="input-curso-form-users">
+              id="select-course-form-users"
+              name="select-course-form-users">
               <option value="Análise e Desenvolvimento de Sistemas">Análise e
                 Desenvolvimento de Sistemas</option>
               <option value="Banco de Dados">Banco de Dados</option>
@@ -119,12 +119,12 @@
           </div>
 
           <div class="form-group p-2">
-            <label for="select-form-users"
+            <label for="select-semester-form-users"
               class="input-title">Semestre:</label>
             <select
               class="form-control"
-              id="select-form-users"
-              name="select-form-users">
+              id="select-semester-form-users"
+              name="select-semester-form-users">
               <option value="1">1°</option>
               <option value="2">2°</option>
               <option value="3">3°</option>
@@ -138,14 +138,15 @@
             </select>
           </div>
           <div class="form-group p-2">
-            <label for="input-confirmarsenha-form-users" class="input-title">Confirmar
+            <label for="input-confirm-password-form-users"
+              class="input-title">Confirmar
               Senha:</label>
             <input
               type="password"
               class="form-control"
-              id="input-confirmarsenha-form-users"
-              name="input-confirmarsenha-form-users"
-              aria-describedby="confirmpasswordHelp"
+              id="input-confirm-password-form-users"
+              name="input-confirm-password-form-users"
+              aria-describedby="confirm-password-help"
               placeholder="Confirme a senha"
               required
               autocomplete="off" />

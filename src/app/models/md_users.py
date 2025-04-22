@@ -1,60 +1,65 @@
 import os
-from app.controllers.ct_cryptography import Criptography
+from app.utilities.ut_cryptography import Criptography
 from flask import session
 
 class Users:
     #Caminho do arquivo .txt
-    caminho_arquivo = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "usuarios", "usuarios.txt")
+    srcData = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "users", "users.txt")
 
-    def __init__(self, nome, email, curso, semestre, senha):
-        self.nome = nome
+    #Construtor da classe
+    def __init__(self, name='', email='', course='', semester='', password=''):
+        self.name = name
         self.email = email
-        self.curso = curso
-        self.semestre=semestre
-        self.senha=senha
+        self.course = course
+        self.semester=semester
+        self.password=password
     
-    def salvar_dados(nome, email, curso, semestre, senha):
+    #Função para salvar dados
+    def saveData(self, name, email, course, semester, password):
         try:
-            usuarios=Users.ler_usuario(email)
-            if len(usuarios)>0:
+            users=self.readUser(email)
+            if len(users)>0:
                 return False
-            dados=Criptography.criptografar(linha=f"{nome};{email};{curso};{semestre};{senha}")
-            with open(Users.caminho_arquivo, "a", encoding="utf-8") as arquivo:
-                arquivo.write(f"{dados}\n")
+            data=Criptography.encrypt(linha=f"{name};{email};{course};{semester};{password}")
+            with open(self.srcData, "a", encoding="utf-8") as file:
+                file.write(f"{data}\n")
                 return True
         except Exception as e:
-            print(f"Erro ao salvar os dados: {e}")
+            print(f"Error: {e}")
             return False
         
-    def ler_usuario(email):
-        usuarios = []
+    #Função para ler o usuario
+    def readUser(self, email):
+        users = []
         try:
-            with open(Users.caminho_arquivo, "r", encoding="utf-8") as arquivo:
-                linhas = arquivo.readlines()
-                for linha in linhas:
-                    dados=Criptography.decriptografar(linha).strip().split(';')
-                    if dados and dados[1]==email and len(dados)>=5:
-                        usuario=Users(
-                            nome=dados[0],
-                            email=dados[1],
-                            curso=dados[2],
-                            semestre=dados[3],
-                            senha=dados[4]
+            with open(self.srcData, "r", encoding="utf-8") as file:
+                lines = file.readlines()
+                for line in lines:
+                    data=Criptography.decrypt(line).strip().split(';')
+                    if data and data[1]==email and len(data)>=5:
+                        user=Users(
+                            name=data[0],
+                            email=data[1],
+                            course=data[2],
+                            semester=data[3],
+                            password=data[4]
                         )
-                        usuarios.append(usuario)
-                return usuarios
-        except FileNotFoundError:
+                        users.append(user)
+                return users
+        except FileNotFoundError as e:
+            print(f"Error: {e}")
             return False
 
-    def login(email,senha):
-        usuarios=Users.ler_usuario(email)
-        if usuarios[0].senha==senha:
-            session['usuario'] = {
-                'nome':usuarios[0].nome,
-                'email':usuarios[0].email,
-                'curso':usuarios[0].curso,
-                'semestre':usuarios[0].semestre,
-                'senha':usuarios[0].senha
+    #Função para logar na conta
+    def login(self,email,password):
+        user=self.readUser(email)
+        if user[0].password==password:
+            session['user'] = {
+                'name':user[0].name,
+                'email':user[0].email,
+                'course':user[0].course,
+                'semester':user[0].semester,
+                'password':user[0].password
             }
             return True
         else:

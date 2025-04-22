@@ -22,7 +22,7 @@
 }
 
 /* Titulos */
-.form-register-title {
+#form-register-title {
     font-family: "Archivo Black", sans-serif;
     font-weight: bold;
   }

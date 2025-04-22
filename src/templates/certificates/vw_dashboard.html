@@ -100,15 +100,15 @@ const cids = JSON.parse('{{ cids | tojson | safe }}');
         </div>
         <div class="card-body">
             <article id="atestado">
-                <table class="table table-striped">
+                <table class="table" style="text-align: left; border-color: rgb(59, 140, 110);">
                     {% if estado["afastados"]|length > 0 %}
                     <thead>
                         <tr>
-                            <th>N°</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Início</th>
-                            <th>Término</th>
+                            <th style="width: 4%;">N°</th>
+                            <th style="width: 24%;">Nome</th>
+                            <th style="width: 24%;">CPF</th>
+                            <th style="width: 24%;">Início</th>
+                            <th style="width: 24%;">Término</th>
                         </tr>
                     </thead>
                     {% endif %}

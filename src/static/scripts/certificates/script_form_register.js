@@ -1,22 +1,22 @@
 $(document).ready(function () {
   //Modais
   const ModalLoading = new bootstrap.Modal(
-    document.getElementById("loadingModal"),
+    $("#modal-loading"),
     {
       backdrop: "static",
       keyboard: false,
     }
   );
-  const ModalError = new bootstrap.Modal(document.getElementById("errorModal"));
-  const ModalSuccess = new bootstrap.Modal(document.getElementById("successModal"));
-  const ModalConfirmacao = new bootstrap.Modal(document.getElementById("modalConfirmacao"), {
+  const ModalConfirmacao = new bootstrap.Modal($("#modal-confirmation"), {
     backdrop: "static",
     keyboard: false,
   });
+  const ModalError = new bootstrap.Modal($("#modal-error"));
+  const ModalSuccess = new bootstrap.Modal($("#modal-success"));
 
 
   //ENVIO DO FORMULÁRIO
-  // validação de email
+  // Validação de email
   $("#form-users").on("submit", function (event) {
     event.preventDefault();
     let formData = new FormData(this);
@@ -31,10 +31,10 @@ $(document).ready(function () {
       success: function (response) {
         ModalLoading.hide();
         if (response.status) {
-          $("#email-destino").html(formData.get("input-email-form-users"));
+          $("#email-addressee").html(formData.get("input-email-form-users"));
           ModalConfirmacao.show();
         } else {
-          $("#error-message").html(response.mensagem);
+          $("#error-message").html(response.message);
           ModalError.show();
         }
       },
@@ -42,7 +42,7 @@ $(document).ready(function () {
         setTimeout(function () {
           ModalLoading.hide();
           var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
-          var errorMessage = response.mensagem;
+          var errorMessage = response.message;
           $("#error-message").html(errorMessage);
           ModalError.show();
         }, 1000);
@@ -51,7 +51,8 @@ $(document).ready(function () {
     });
   });
 
-  $("#form-confirmacao").on("submit", function (event) {
+
+  $("#form-confirmation").on("submit", function (event) {
     event.preventDefault();
     let formData = new FormData(this);
 
@@ -64,26 +65,22 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status) {
           ModalConfirmacao.hide();
-
           ModalSuccess.show();
-          $("#form-confirmacao")[0].reset();
+          $("#form-confirmation")[0].reset();
           $("#form-users")[0].reset();
-          // $("#file-upload-area span").text(
-          //   "Arraste ou clique para escolher o arquivo"
-          // );
+
         } else {
           ModalConfirmacao.hide();
-          $("#form-confirmacao")[0].reset();
-          $("#error-message").html(response.mensagem);
+          $("#form-confirmation")[0].reset();
+          $("#error-message").html(response.message);
           ModalError.show();
         }
       },
       error: function (xhr, status, error) {
         ModalConfirmacao.hide();
-        $("#form-confirmacao")[0].reset();
-
+        $("#form-confirmation")[0].reset();
         var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
-        var errorMessage = response.mensagem;
+        var errorMessage = response.message;
         $("#error-message").html(errorMessage);
         ModalError.show();
       },

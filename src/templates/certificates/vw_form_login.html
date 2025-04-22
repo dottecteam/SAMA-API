@@ -5,12 +5,6 @@
   href="{{ url_for('static', filename='stylesheets/certificates/style_form_login.css') }}"
 />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-/>
-
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
@@ -19,23 +13,23 @@
           <h4 class="text-center align-self-center form-login-title">Acesso da Secretaria</h4>
         </div>
         <div class="card-body">
-          <form id="form-login-secretaria" method="POST">
+          <form id="form-login-secretary" method="POST">
             <p style="text-align: center">
               Informe o código de funcionário da secretaria para acessar o
               sistema:
             </p>
-            <label for="senha" style="font-weight: bold;">Código: </label>
+            <label for="input-password-secretary" style="font-weight: bold;">Código: </label>
             <div class="input-group mb-3">
               <input
                 autocomplete="off"
                 type="password"
-                name="senha"
-                id="senha"
+                name="input-password-secretary"
+                id="input-password-secretary"
                 class="form-control"
                 style="width: flex; float: left"
                 required
               />
-              <i class="bi bi-eye-fill" id="ver_senha" style="z-index: 10;" onclick="mostrarSenha()">
+              <i class="bi bi-eye-fill" id="show-password" style="z-index: 10;" onclick="showPassword()">
               </i>
             </div>
             <div class="form-group mb-3 text-center">
@@ -48,5 +42,5 @@
   </div>
 </div>
 
-<script src="{{ url_for('static', filename='scripts/certificates/script_form_login.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/certificates/script_form_login_secretary.js') }}"></script>
 {% endblock %}

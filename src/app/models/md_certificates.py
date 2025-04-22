@@ -2,160 +2,163 @@ import os
 from datetime import datetime
 from app import app
 import uuid
+from app.utilities.ut_cryptography import Criptography
 
-
-class Atestados:
+class Certificates:
     #Caminho do arquivo .txt
-    caminho_arquivo = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "atestados", "alunos.txt")
-    #Caminho dos uploads de atestados
-    caminho_atestados = os.path.abspath(os.path.join(app.config['UPLOAD_FOLDER'], "atestados"))
+    srcData = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "certificates", "certificates.txt")
 
-    def __init__(self, nome, email, curso, semestre, dataIn, dataFin, cid, pdf, cpf, situacao, periodo, id):
-        self.nome = nome
+    #Caminho dos uploads de atestados
+    srcUpload = os.path.abspath(os.path.join(app.config['UPLOAD_FOLDER'], "certificates"))
+
+    #Caminho dos CIDs existentes
+    srcCids = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "cid11.json")
+
+    #Construtor da classe
+    def __init__(self, name='', email='', course='', semester='', dateIn='', dateFin='', cid='', pdf='', status='', period='', id=''):
+        self.name = name
         self.email = email
-        self.curso = curso
-        self.semestre=semestre
-        self.dataIn=dataIn
-        self.dataFin=dataFin
+        self.course = course
+        self.semester=semester
+        self.dateIn=dateIn
+        self.dateFin=dateFin
         self.cid=cid
         self.pdf=pdf
-        self.cpf=cpf
-        self.situacao=situacao
-        self.periodo=periodo
+        self.status=status
+        self.period=period
         self.id=id
 
-    
+    #Funções de salvar dados
     #Função para salvar os dados no arquivo .txt
-    def salvar_dados(nome, email, curso, semestre, dataIn, dataFin, cid, nome_unico, cpf):
+    def saveData(self, name, email, course, semester, dateIn, dateFin, cid, uniqueName):
         try:
-            id_atestado = str(uuid.uuid4())
-            with open(Atestados.caminho_arquivo, "a", encoding="utf-8") as arquivo:
-                arquivo.write(f"{nome};{email};{cpf};{curso};{semestre};{dataIn};{dataFin};{cid.upper()};{nome_unico};Pendente;{id_atestado}\n")
+            idCertificate = str(uuid.uuid4())
+            with open(self.srcData, "a", encoding="utf-8") as file:
+                line=Criptography.encrypt(f"{idCertificate};{name};{email};{course};{semester};{dateIn};{dateFin};{cid.upper()};{uniqueName};Pendente")
+                file.write(f"{line}\n")
                 return True
         except Exception as e:
-            print(f"Erro ao salvar os dados: {e}")
+            print(f"Error: {e}")
+            return False
+        
+    #Função para salvar atestados em .pdf
+    def saveFile(self, file, uniqueName):
+        try:
+            with open(os.path.join(self.srcUpload, uniqueName), "wb") as f:
+                f.write(file.read())
+            return True
+        except Exception as e:
+            print(f"Error: {e}")
             return False
 
-    #Função para ler os dados do arquivo .txt
-    def ler_dados_cpf(cpf):
-        atestados_encontrados = []  # Lista para armazenar os objetos Atestados encontrados
+    #Funções de ler os dados
+    #Função para ler todos os atestados
+    def readAllData(self):
+        certificates = [] 
         try:
-            with open(Atestados.caminho_arquivo, "r", encoding="utf-8") as arquivo:
-                linhas = arquivo.readlines()
+            with open(self.srcData, "r", encoding="utf-8") as file:
+                lines = file.readlines()
             
-                # Loop para verificar cada linha
-                for linha in linhas:
-                    dados = linha.strip().split(";")
-                    if dados and dados[2] == cpf and len(dados) >= 10:  # O CPF está na terceira posição (índice 2)
-                        # Criando um objeto Atestados e adicionando à lista
-                        atestado = Atestados(
-                            nome=dados[0],
-                            email=dados[1],
-                            cpf=dados[2],
-                            curso=dados[3],
-                            semestre=dados[4],
-                            dataIn=datetime.strptime(dados[5], "%Y-%m-%d").strftime("%d/%m/%Y"),
-                            dataFin=datetime.strptime(dados[6], "%Y-%m-%d").strftime("%d/%m/%Y"),
-                            cid=dados[7],
-                            pdf=dados[8],
-                            situacao=dados[9],
-                            periodo=str((datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days > 1 else " dia",
-                            id=dados[10]
+                for line in lines:
+                    data = Criptography.decrypt(line).strip().split(";")
+                    if data and len(data) >= 9:
+                        certificate = Certificates(
+                            id=data[0],
+                            name=data[1],
+                            email=data[2],
+                            course=data[3],
+                            semester=data[4],
+                            dateIn=datetime.strptime(data[5], "%Y-%m-%d").strftime("%d/%m/%Y"),
+                            dateFin=datetime.strptime(data[6], "%Y-%m-%d").strftime("%d/%m/%Y"),
+                            cid=data[7],
+                            pdf=data[8],
+                            status=data[9],
+                            period=str((datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days > 1 else " dia"
                         )
-                        atestados_encontrados.append(atestado)
-                return atestados_encontrados
+                        certificates.append(certificate)
+                return certificates
         except FileNotFoundError:
             return False
         
-    def ler_dados():
-        atestados_encontrados = []
+    #Função para ler os atestados de um certo email
+    def readDataByEmail(self, email):
+        certificates = [] 
         try:
-            with open(Atestados.caminho_arquivo, "r", encoding="utf-8") as arquivo:
-                linhas = arquivo.readlines()
+            with open(self.srcData, "r", encoding="utf-8") as file:
+                lines = file.readlines()
             
-                # Loop para verificar cada linha
-                for linha in linhas:
-                    dados = linha.strip().split(";")
-                    if dados and len(dados) >= 10:  # Verifica se a linha tem pelo menos 9 elementos
-                        # Criando um objeto Atestados e adicionando à lista
-                        atestado = Atestados(
-                            nome=dados[0],
-                            email=dados[1],
-                            cpf=dados[2],
-                            curso=dados[3],
-                            semestre=dados[4],
-                            dataIn=datetime.strptime(dados[5], "%Y-%m-%d").strftime("%d/%m/%Y"),
-                            dataFin=datetime.strptime(dados[6], "%Y-%m-%d").strftime("%d/%m/%Y"),
-                            cid=dados[7],
-                            pdf=dados[8],
-                            situacao=dados[9],
-                            periodo=str((datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days > 1 else "1 dia",
-                            id=dados[10]
+                for line in lines:
+                    data = Criptography.decrypt(line).strip().split(";")
+                    if data and data[2] == email and len(data) >= 9:
+                        certificate = Certificates(
+                            id=data[0],
+                            name=data[1],
+                            email=data[2],
+                            course=data[3],
+                            semester=data[4],
+                            dateIn=datetime.strptime(data[5], "%Y-%m-%d").strftime("%d/%m/%Y"),
+                            dateFin=datetime.strptime(data[6], "%Y-%m-%d").strftime("%d/%m/%Y"),
+                            cid=data[7],
+                            pdf=data[8],
+                            status=data[9],
+                            period=str((datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days > 1 else " dia"
                         )
-                        atestados_encontrados.append(atestado)
-                return atestados_encontrados
+                        certificates.append(certificate)
+                return certificates
         except FileNotFoundError:
             return False
         
-    def ler_dados_id(id):
+    #Função para ler os atestados com um certo id
+    def readDataById(self, id):
         try:
-            with open(Atestados.caminho_arquivo, "r", encoding="utf-8") as arquivo:
-                linhas = arquivo.readlines()
+            with open(self.srcData, "r", encoding="utf-8") as file:
+                lines = file.readlines()
             
-                # Loop para verificar cada linha
-                for linha in linhas:
-                    dados = linha.strip().split(";")
-                    if dados and len(dados) >= 10 and dados[10] == id:  # Verifica se a linha tem pelo menos 9 elementos
-                        # Criando um objeto Atestados e adicionando à lista
-                        atestado = Atestados(
-                            nome=dados[0],
-                            email=dados[1],
-                            cpf=dados[2],
-                            curso=dados[3],
-                            semestre=dados[4],
-                            dataIn=datetime.strptime(dados[5], "%Y-%m-%d").strftime("%d/%m/%Y"),
-                            dataFin=datetime.strptime(dados[6], "%Y-%m-%d").strftime("%d/%m/%Y"),
-                            cid=dados[7],
-                            pdf=dados[8],
-                            situacao=dados[9],
-                            periodo=str((datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(dados[6], "%Y-%m-%d")-datetime.strptime(dados[5], "%Y-%m-%d")).days > 1 else "1 dia",
-                            id=dados[10]
+                for line in lines:
+                    data = Criptography.decrypt(line).strip().split(";")
+                    if data and data[0] == id and len(data) >= 9:
+                        certificate = Certificates(
+                            id=data[0],
+                            name=data[1],
+                            email=data[2],
+                            course=data[3],
+                            semester=data[4],
+                            dateIn=datetime.strptime(data[5], "%Y-%m-%d").strftime("%d/%m/%Y"),
+                            dateFin=datetime.strptime(data[6], "%Y-%m-%d").strftime("%d/%m/%Y"),
+                            cid=data[7],
+                            pdf=data[8],
+                            status=data[9],
+                            period=str((datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days > 1 else " dia"
                         )
-                return atestado
+                        break
+                return certificate
         except FileNotFoundError:
             return False
     
-    #Função para salvar atestados em .pdf
-    def salvar_arquivo(arquivo, nome_unico):
+    #Deletar um arquivo pdf
+    def deleteFile(self, uniqueName):
         try:
-            with open(os.path.join(Atestados.caminho_atestados, nome_unico), "wb") as f:
-                f.write(arquivo.read())
+            os.remove(os.path.join(self.srcUpload, uniqueName))
             return True
         except Exception as e:
-            print(f"Erro ao salvar o arquivo: {e}")
+            print(f"Error: {e}")
             return False
         
-    def remover_arquivo(nome_unico):
+    #Atualizar a situação de um atestado
+    def updateStatus(self, status, id):
+        certificates = []
         try:
-            os.remove(os.path.join(Atestados.caminho_atestados, nome_unico))
-            return True
-        except Exception as e:
-            print(f"Erro ao excluir o arquivo: {e}")
-            return False
-        
-    def atualizar_status(status, id):
-        atestados_atualizados = []
-        try:
-            with open(Atestados.caminho_arquivo, "r", encoding="utf-8") as arquivo:
-                for atestado in arquivo:
-                    atestado = atestado.strip().split(';')
-                    if atestado[10] == id:
-                        atestado[9] = status 
-                    atestados_atualizados.append(';'.join(atestado)) 
+            with open(self.srcData, "r", encoding="utf-8") as file:
+                for certificate in file:
+                    certificate = Criptography.decrypt(certificate).strip().split(';')
+                    if certificate[0] == id:
+                        certificate[9] = status 
+                    certificates.append(';'.join(certificate)) 
 
-            with open(Atestados.caminho_arquivo, "w", encoding="utf-8") as arquivo:
-                for linha in atestados_atualizados:
-                    arquivo.write(linha + '\n')
+            with open(self.srcData, "w", encoding="utf-8") as file:
+                for line in certificates:
+                    line=Criptography.encrypt(line)
+                    file.write(f'{line}\n')
             return True
         except:
             return False

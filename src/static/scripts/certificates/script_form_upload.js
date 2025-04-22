@@ -1,34 +1,33 @@
 $(document).ready(function () {
-    //Modais
+  //Modais
   const ModalLoading = new bootstrap.Modal(
-    document.getElementById("loadingModal"),
+    $("#modal-loading"),
     {
       backdrop: "static",
       keyboard: false,
     }
   );
-  const ModalError = new bootstrap.Modal(document.getElementById("errorModal"));
-  const ModalSuccess = new bootstrap.Modal(document.getElementById("successModal"));
+  const ModalError = new bootstrap.Modal($("#modal-error"));
+  const ModalSuccess = new bootstrap.Modal($("#modal-success"));
 
   // Quando a área de upload é clicada, dispara o clique no input file
   $("#file-upload-area").on("click", function () {
-    $("#file-form-atestados")[0].click(); // Dispara o clique no input file
+    $("#file-form-certificates")[0].click(); // Dispara o clique no input file
   });
 
   // Quando um arquivo é selecionado via input file
-  $("#file-form-atestados").on("change", function (event) {
+  $("#file-form-certificates").on("change", function (event) {
     var file = event.target.files[0];
     // Verifica se o arquivo tem a extensão .pdf
     if (file && file.name.endsWith(".pdf")) {
       $("#file-upload-area span").text(file.name); // Atualiza o nome do arquivo na área
     } else {
-      var myModal = new bootstrap.Modal($("#errorModal"));
-      myModal.show();
+      ModalError.show();
       $("#error-message").html("Formato de arquivo inválido.");
       $("#file-upload-area span").text(
         "Arraste ou clique para escolher o arquivo"
       ); // Reseta o texto da área
-      $("#file-form-atestados").val(""); // Limpa o input file
+      $("#file-form-certificates").val(""); // Limpa o input file
     }
   });
 
@@ -62,8 +61,42 @@ $(document).ready(function () {
     }
   });
 
+  $("#form-certificates").on("submit", function (event) {
+    event.preventDefault();
+    let formData = new FormData(this);
 
-  
+    ModalLoading.show();
+    $.ajax({
+      type: "POST",
+      url: "/atestados/cadastro/cadastrar",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        setTimeout(function () {
+          ModalLoading.hide();
+          if (response.status) {
+            ModalSuccess.show();
+            $("#form-certificates")[0].reset();
+            $("#file-upload-area span").text(
+              "Arraste ou clique para escolher o arquivo"
+            );
+          } else {
+            $("#error-message").html(response.message);
+            ModalError.show();
+          }
+        }, 1000);
+      },
+      error: function (xhr, status, error) {
+        setTimeout(function () {
+          ModalLoading.hide();
+          var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
+          var errorMessage = response.message;
+          $("#error-message").html(errorMessage);
+          ModalError.show();
+        }, 1000);
 
-
+      }
+    });
+  });
 });

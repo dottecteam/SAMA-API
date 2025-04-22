@@ -1,5 +1,4 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
-
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename='stylesheets/certificates/style_query.css') }}"
@@ -12,14 +11,14 @@
       <div class="card mt-3">
         <div class="card-header">
           <h4 class="text-center align-self-center" style="font-size: 35px">
-            Consulta de Atestados
+            Meus Atestados
           </h4>
         </div>
         <div class="card-body overflow-auto">
           <table id="table-query">
             <thead>
-              <tr class="bg-primario">
-                <th>Nome</th>
+              <tr class="bg-custom-primary">
+                <th>CID</th>
                 <th>Data Inicial</th>
                 <th>Data Final</th>
                 <th>Período de Afastamento</th>
@@ -28,13 +27,13 @@
             </thead>
             <!--Fileiras de Atestados, Substituir por valores reais quando o Banco de dados estiver pronto-->
             <tbody>
-              {% if dados %} {% for atestado in dados %}
+              {% if data %} {% for certificates in data %}
               <tr>
-                <td>{{ atestado.nome }}</td>
-                <td>{{ atestado.dataIn }}</td>
-                <td>{{ atestado.dataFin }}</td>
-                <td>{{ atestado.periodo }}</td>
-                <td>{{ atestado.situacao }}</td>
+                <td>{{ certificates.cid }}</td>
+                <td>{{ certificates.dateIn }}</td>
+                <td>{{ certificates.dateFin }}</td>
+                <td>{{ certificates.period }}</td>
+                <td>{{ certificates.status }}</td>
               </tr>
               {% endfor %} {% else %}
               <tr>
@@ -51,5 +50,6 @@
   </div>
 </div>
 
-<script src="{{ url_for('static', filename='scripts/certificates/script_search.js') }}"></script>
+<script
+    src="{{ url_for('static', filename='scripts/certificates/script_query.js') }}"></script>
 {% endblock %}

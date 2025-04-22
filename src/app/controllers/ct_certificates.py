@@ -1,90 +1,84 @@
-from flask import render_template, request, redirect, url_for, jsonify, session
-from app.models.md_certificates import Atestados
-from app.controllers.ct_validation import Validade
 import uuid
+from flask import render_template, request, redirect, url_for, jsonify, session
+from app.models.md_certificates import Certificates
+from app.utilities.ut_validation import Validation
 
+class CertificatesController:
 
+    #Função para ler os certificados de uma pessoa
+    def readUserCertificates():
+        return Certificates().readDataByEmail(session['user']['email'])
+         
+    def readAllCertificates():
+        return Certificates().readAllData()
 
-def consultar_atestados_alunos():
-    cpf = request.args.get('cpf')
+    def searchCertificatesById():
+        data = request.get_json()
+        id = data.get('id')
+        certificate=Certificates()
+        data = certificate.readDataById(id)
+        response = jsonify({
+            "status": True,
+            "message": "Dados encontrados!",
+            "name": data.name,
+            "email": data.email,
+            "course": data.course,
+            "semester": data.semester,
+            "dateIn": data.dateIn,
+            "dateFin": data.dateFin,
+            "cid": data.cid,
+            "pdf": data.pdf,
+            "status": data.status,
+            "period": data.period,
+            "id": data.id
+        }), 200
+        print(response)
+        return response
 
-    response = Atestados.ler_dados_cpf(cpf)
-    return response
-
-def consultar_atestados_secretaria():
-    response = Atestados.ler_dados()
-    return response
-
-def consultar_atestados_secretaria_id():
-    data = request.get_json()
-    id = data.get('id')
-    dados = Atestados.ler_dados_id(id)
-    response = jsonify({
-        "status": True,
-        "mensagem": "Dados encontrados!",
-        "nome": dados.nome,
-        "email": dados.email,
-        "curso": dados.curso,
-        "semestre": dados.semestre,
-        "dataIn": dados.dataIn,
-        "dataFin": dados.dataFin,
-        "cid": dados.cid,
-        "pdf": dados.pdf,
-        "cpf": dados.cpf,
-        "situacao": dados.situacao,
-        "periodo": dados.periodo,
-        "id": dados.id
-    }), 200
-    return response
-
-def validar_dados():
-    try:
+    def registerCertificate():
+        try:
+            dateIn = request.form['date-form-certificates-1']
+            dateFin = request.form['date-form-certificates-2']
+            cid = request.form['input-cid-form-certificates']
+            file = request.files['file-form-certificates']
+            certificates=Certificates()
+        #Validações
+            if Validation.valideCid(cid) == False:
+                return jsonify({"status": False, "message": "CID inválida!"}), 400
+            
+            if Validation.validePeriod(dateIn,dateFin) == False:
+                return jsonify({"status": False, "message": "Período inválido!"}), 400
         
-        session['dataIn'] = request.form['date-form-atestados-1']
-        session['dataFin'] = request.form['date-form-atestados-2']
-        session['cid'] = request.form['input-cid-form-atestados']
-        arquivo = request.files['file-form-atestados']
-        session['cpf'] = request.form['input-cpf-form-atestados']
-       
-        if Validade.validar_cid(session['cid']) == False:
-            return jsonify({"status": False, "mensagem": "CID inválida!"}), 400
-    
-        if Validade.validar_arquivo(arquivo) == False:
-            return jsonify({"status": False, "mensagem": "Arquivo inválido!"}), 400
-        session['arquivo'] = str(uuid.uuid4()) + ".pdf"
-        response = Atestados.salvar_arquivo(arquivo, session['arquivo']) 
-        if response != True:
-            return jsonify({"status": False, "mensagem": "Erro ao salvar arquivo!"}), 400
-    
-        return jsonify({"status": True, "mensagem": "Código enviado com sucesso!"}), 200
-    except Exception as e:
-        print(e)
-        return jsonify({"status": False, "mensagem": "Erro ao validar dados!"}), 500
+            if Validation.valideFile(file) == False:
+                return jsonify({"status": False, "message": "Arquivo inválido!"}), 400
+            
+            uniqueName = str(uuid.uuid4()) + ".pdf"
+            response = certificates.saveFile(file, uniqueName) 
+            if response != True:
+                return jsonify({"status": False, "message": "Erro ao salvar arquivo!"}), 400
+        
+            response = certificates.saveData(name=session['user']['name'],email=session['user']['email'],course=session['user']['course'],semester=session['user']['semester'],dateIn=dateIn,dateFin=dateFin,cid=cid,uniqueName=uniqueName)
+            if response != True:
+                certificates.deleteFile(uniqueName)
+                return jsonify({"status": False, "message": "Erro ao salvar data!"}), 400
 
+            return jsonify({"status": True, "message": "Código enviado com sucesso!"}), 200
+        except Exception as e:
+            print(e)
+            certificates.deleteFile(uniqueName)
+            return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
 
-def cadastrar_atestado():
-    codigo = request.form['input-codigo-form-atestados']
+        
+    def updateCertificate():
+        data = request.get_json()
+        status = data.get('status')
+        id = data.get('id')
+        if Certificates().updateStatus(status, id):
+            return jsonify({"mensagem": "Status atualizado com sucesso!"}), 200
+        else:
+            return jsonify({"mensagem": "Erro ao atualizar status."}), 500
+            
     
-    try:
-        if codigo != session['codigo']:
-            Atestados.remover_arquivo(session['arquivo'])
-            return jsonify({"status": False, "mensagem": "Código incorreto!"}), 400
-
-        response = Atestados.salvar_dados(session['nome'], session['email'], session['curso'], session['semestre'], session['dataIn'], session['dataFin'], session['cid'], session['arquivo'], session['cpf'])
-        if response != True:
-            Atestados.remover_arquivo(session['arquivo'])
-            return jsonify({"status": False, "mensagem": "Erro ao salvar dados!"}), 400
-
-        session.clear()
-        return jsonify({"status": True, "mensagem": "Atestado cadastrado com sucesso!"}), 200 
-    except Exception as e:
-        print(e)
-        Atestados.remover_arquivo(session['arquivo'])
-        return jsonify({"status": False, "mensagem": "Erro ao cadastrar atestado!"}), 400
-    
-def atualizar_status_atestado(status, id):
-    response = Atestados.atualizar_status(status, id)
-    return response
 
         
 

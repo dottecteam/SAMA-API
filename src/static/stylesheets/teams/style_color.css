@@ -19,7 +19,7 @@
   background-color: rgba(var(--cor-secundaria));
 }
 
-.bg-primario {
+.bg-custom-primary {
   background-color: rgba(var(--cor-primaria));
 }
 
