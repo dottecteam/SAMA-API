@@ -14,14 +14,14 @@ $(document).ready(function () {
                     <label for="input-nome-form-devteam-${fieldCounter}">Nome do Dev:</label>
                     <input type="text" class="form-control"
                            id="input-nome-form-devteam-${fieldCounter}" 
-                           name="input-nome-form-devteam" 
+                           name="dev_name[]" 
                            placeholder="Nome" required />
                 </div>
                 <div class="col-md-6">
                     <label for="input-email-form-devteam-${fieldCounter}">Email do Dev:</label>
                     <input type="email" class="form-control"
                            id="input-email-form-devteam-${fieldCounter}" 
-                           name="input-email-form-devteam" 
+                           name="dev_email[]" 
                            placeholder="Email" required />
                 </div>
                 <div class="col-md-12 d-flex align-items-end mt-2">
@@ -32,6 +32,7 @@ $(document).ready(function () {
 
     // Adicionar o novo campo ao contêiner
     $("#devFieldsContainer").append(newField);
+
 
     // Adicionar a função para remover o campo quando o botão for clicado
     newField.find(".removeFieldBtn").click(function () {
