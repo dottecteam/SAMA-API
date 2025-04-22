@@ -1,0 +1,106 @@
+.title  {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+
+.input-title{
+  font-weight: bold;
+}
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.team-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.team-card h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+}
+
+.team-meta {
+    color: #7f8c8d;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.member-list {
+    margin-top: 20px;
+}
+
+.member-list h4 {
+    color: #3498db;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.member-list ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.member-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.member-list li:last-child {
+    border-bottom: none;
+}
+
+.member-role {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.member-email {
+    color: #3498db;
+    font-size: 0.85em;
+}
+
+.dev-badge {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.no-teams {
+    text-align: center;
+    padding: 40px;
+    color: #7f8c8d;
+    grid-column: 1 / -1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .team-container {
+        grid-template-columns: 1fr;
+    }
+}

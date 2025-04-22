@@ -3,8 +3,6 @@ from flask import render_template, redirect, url_for, session, send_from_directo
 from app.controllers.ct_teams import *
 import os
 
-
-
 #TELAS
 #Página de painel de atestados
 @app.route("/painel/equipes")
@@ -12,7 +10,7 @@ def painel_equipes():
     return render_template("teams/vw_dashboard.html")
 
 #Página de cadastro de equipes
-@app.route("/equipes/cadastro")
+@app.route("/equipes/cadastro", methods=['GET', 'POST'])
 def equipes():
     return render_template("teams/vw_form_register.html")
 
@@ -24,7 +22,7 @@ def equipesCadastrar():
 #Página de visualização de equipes
 @app.route("/equipes/visualizar")
 def viewTeams():
-    return render_template("teams/vw_view_teams_test.html", teams=TeamsController.readTeam())
+    return render_template("teams/vw_view_teams.html", teams=TeamsController.readTeam())
 
 #Página de criar avaliações
 @app.route("/equipes/avaliacoes")

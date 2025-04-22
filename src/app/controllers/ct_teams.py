@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_teams import Teams
 from app.utilities.ut_validation import Validation
 from app.utilities.ut_cryptography import Criptography
+import json
 
 class TeamsController:
 
@@ -15,8 +16,14 @@ class TeamsController:
             password = request.form['input-password-form']
             EmMaster = request.form['input-email-form-scmaster']
             EmPOwner = request.form['input-email-form-po']
+
+            # Recebe os desenvolvedores como listas
+            dev_nomes = request.form.getlist('dev_name[]')
+            dev_emails = request.form.getlist('dev_email[]')
+
             teams=Teams()
-            if teams.saveDataTeam(team, master, pOwner, password, EmMaster, EmPOwner):
+            
+            if teams.saveDataTeam(team, master, pOwner, password, EmMaster, EmPOwner, dev_nomes, dev_emails):
                 return jsonify({"status": True, "mensagem": "Equipe cadastrada com sucesso!"}), 200
             else:
                 return jsonify({"status": True, "mensagem": "Erro ao cadastrar equipe."}), 400
