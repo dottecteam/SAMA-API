@@ -41,6 +41,20 @@ class Certificates:
             print(f"Error: {e}")
             return False
         
+    #Recebe uma lista e reescreve todo o banco de atestados
+    def writeAllData(self,list):
+        try:
+            with open(self.srcData,'w',encoding="utf-8") as file:
+                for item in list:
+                    line=Criptography.encrypt(f"{item.id};{item.name};{item.email};{item.course};{item.semester};{datetime.strptime(item.dateIn.split()[0],"%d/%m/%Y").strftime("%Y-%m-%d")};{datetime.strptime(item.dateFin.split()[0],"%d/%m/%Y").strftime("%Y-%m-%d")};{item.cid};{item.pdf};{item.status}")
+                    print(line)
+                    file.write(f"{line}\n")
+            return True
+        except Exception as e:
+            print(f"Error: {e}")
+            return False
+
+        
     #Função para salvar atestados em .pdf
     def saveFile(self, file, uniqueName):
         try:
@@ -144,13 +158,24 @@ class Certificates:
             print(f"Error: {e}")
             return False
         
+    #Função para deletar um certificado
     def deleteData(self, id):
         try:
-            certificate=self.readDataById(id=id)
-            
-
+            certificateExcluded=self.readDataById(id=id)
+            certificates=self.readAllData()
+            filteredCertificates=[]
+            for certificate in certificates:
+                if certificate.id!=certificateExcluded.id:
+                    filteredCertificates.append(certificate)
+            if self.writeAllData(filteredCertificates):
+                if self.deleteFile(certificateExcluded.pdf):
+                    return True
+                else:
+                    return False
+            else:
+                return False
         except Exception as e:
-            print(f"Erro ao deletar certificado: {e}")
+            print(f"Error: {e}")
             return False
 
         
@@ -174,4 +199,5 @@ class Certificates:
             print(f"Error: {e}")
             return False
     
+
    
