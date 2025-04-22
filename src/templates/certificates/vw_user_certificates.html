@@ -1,8 +1,25 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='stylesheets/certificates/style_query.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_query.css') }}" />
+
+
+<!-- Modal Bootstrap para confirmar alteração no status do atestado -->
+<div class="modal fade" id="modal-confirm">
+  <div class="modal-dialog modal-dialog-centered mx-auto" style="margin-top: 1%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmar ação</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza de que deseja deletar esse atestado?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-custom" id="btn-confirm" data-bs-dismiss="modal">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div class="container">
@@ -23,6 +40,7 @@
                 <th>Data Final</th>
                 <th>Período de Afastamento</th>
                 <th>Status do Atestado</th>
+                <th></th>
               </tr>
             </thead>
             <!--Fileiras de Atestados, Substituir por valores reais quando o Banco de dados estiver pronto-->
@@ -34,6 +52,13 @@
                 <td>{{ certificates.dateFin }}</td>
                 <td>{{ certificates.period }}</td>
                 <td>{{ certificates.status }}</td>
+                <td>
+                  {% if certificates.status!='Aprovado' %}
+                  <button class="btn-delete-certificate btn btn-danger" data-id="{{certificates.id}}">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  {% endif %}
+                </td>
               </tr>
               {% endfor %} {% else %}
               <tr>
@@ -50,6 +75,5 @@
   </div>
 </div>
 
-<script
-    src="{{ url_for('static', filename='scripts/certificates/script_query.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/certificates/script_user_certificates.js') }}"></script>
 {% endblock %}

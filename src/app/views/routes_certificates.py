@@ -80,6 +80,12 @@ def valide_email():
 def register_user():
     return UserController.registerUser()
 
+#Função para deslogar de contas  
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
+
 #ATESTADOS
 #Função para fazer o login da secretaria
 @app.route('/atestados/acesso/logar', methods=['POST'])
@@ -110,11 +116,12 @@ def update_status():
 
 #Função para pegar o atestado pelo id
 @app.route('/atestado/consulta/id', methods=['POST'])
-def consultar_atestados_id():
+def search_certificates_id():
     return CertificatesController.searchCertificatesById()
-    
-@app.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for('home'))
+
+#Função para pegar o atestado pelo id
+@app.route('/atestado/deletar', methods=['POST'])
+def delete_certificates():
+    return CertificatesController.deleteCertificates()
+
 #FUNÇÕES

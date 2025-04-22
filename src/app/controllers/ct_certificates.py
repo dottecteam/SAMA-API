@@ -70,13 +70,28 @@ class CertificatesController:
 
         
     def updateCertificate():
-        data = request.get_json()
-        status = data.get('status')
-        id = data.get('id')
-        if Certificates().updateStatus(status, id):
-            return jsonify({"mensagem": "Status atualizado com sucesso!"}), 200
-        else:
-            return jsonify({"mensagem": "Erro ao atualizar status."}), 500
+        try:
+            data = request.get_json()
+            status = data.get('status')
+            id = data.get('id')
+            if Certificates().updateStatus(status, id):
+                return jsonify({"mensagem": "Status atualizado com sucesso!"}), 200
+            else:
+                return jsonify({"mensagem": "Erro ao atualizar status."}), 400
+        except Exception as e:
+            print(e)
+            return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
+        
+    def deleteCertificates():
+        try:
+            id=request.form.get("id")
+            if Certificates().deleteData(id):
+                return jsonify({"status": True,"mensagem": "Status atualizado com sucesso!"}), 200
+            else:
+                return jsonify({"status": False,"mensagem": "Erro ao atualizar status."}), 400
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
             
     
 
