@@ -374,3 +374,11 @@ select#selectAno:focus {
         font-size: 14px;
     }
 }
+
+#mensagemPDF {
+    font-size: 16px;
+    color: rgb(11, 43, 64);
+    text-align: center;
+    margin-top: 15px;
+  }
+

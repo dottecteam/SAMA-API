@@ -376,3 +376,76 @@ function fecharCidsDescricoes() {
 document.getElementById('botao-x-cids').addEventListener('click', function() {
   fecharCidsDescricoes();
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const { jsPDF } = window.jspdf;
+  const btn = document.getElementById('btnExportarPagina');
+  const msg = document.getElementById('mensagemPDF');
+
+  if (!btn) return;
+
+  btn.addEventListener('click', function () {
+    btn.style.display = 'none';
+    if (msg) msg.style.display = 'block';
+
+    const logoUrl = '/static/images/logo.jpg';
+    const logoImage = new Image();
+    logoImage.crossOrigin = 'Anonymous';
+    logoImage.src = logoUrl;
+
+    logoImage.onload = function () {
+      html2canvas(document.querySelector('.graficos-container'), {
+        scale: 2,
+        useCORS: true
+      }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = pageWidth;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+
+        let heightLeft = imgHeight;
+        let position = 40;
+
+        // Centraliza o logo
+        const logoWidth = 40;
+        const logoHeight = 20;
+        const logoX = (pageWidth - logoWidth) / 2;
+        pdf.addImage(logoImage, 'JPEG', logoX, 10, logoWidth, logoHeight);
+
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= (pageHeight - position);
+
+        while (heightLeft > 0) {
+          position -= pageHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+
+        const agora = new Date();
+        const data = agora.toISOString().split('T')[0];
+        const hora = agora.toLocaleTimeString();
+        pdf.setFontSize(10);
+        pdf.text(`Gerado em: ${data} ${hora}`, 10, pageHeight - 10);
+
+        const nomeArquivo = `relatorio_${data}_${hora.replace(/:/g, '-')}.pdf`;
+        pdf.save(nomeArquivo);
+      }).catch(err => {
+        console.error('Erro ao gerar PDF:', err);
+        alert("Erro ao gerar PDF.");
+      }).finally(() => {
+        btn.style.display = 'inline-block';
+        if (msg) msg.style.display = 'none';
+      });
+    };
+
+    logoImage.onerror = function () {
+      alert("Erro ao carregar o logotipo.");
+      btn.style.display = 'inline-block';
+      if (msg) msg.style.display = 'none';
+    };
+  });
+});
