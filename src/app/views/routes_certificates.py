@@ -28,6 +28,11 @@ def user_register():
     session.clear()
     return render_template('certificates/vw_form_register.html')
 
+#Página da política de privacidade
+@app.route("/usuarios/politica_privacidade_atestados")
+def privacy_policy_certificates():
+    return render_template("certificates/vw_politica_privacidade.html")
+
 #Página de consulta de atestados
 @app.route("/usuarios/atestados")
 def user_certificates():
