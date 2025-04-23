@@ -163,7 +163,7 @@
                 <th>Status do Atestado</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="table-query-body">
               {% if data %} {% for certificate in data %}
               <tr class="table-query-tr" data-id="{{ certificate.id }}" data-status="{{ certificate.status }}">
                 <td>{{ certificate.name }}</td>

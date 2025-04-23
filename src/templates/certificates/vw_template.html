@@ -258,7 +258,7 @@
                   class="nav-link dropdown-toggle rounded text-center" href="#"
                   id="dropdown-user" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  Olá, {{ session['user'].name }}!
+                  Olá, {{ session['user'].name.split()[0] }}!
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown-user">
                   <li>
