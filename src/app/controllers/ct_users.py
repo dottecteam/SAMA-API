@@ -64,37 +64,17 @@ class UserController:
                 return redirect(url_for('home'))
             return f(*args, **kwargs)
         return decorated_function
-def login_user():
-    try:
-        email=request.form.get('input-user-form-login')
-        senha=request.form.get('input-password-form-login')
-        response=Users.login(email,senha)
-        if response:
-            return jsonify({"status": True,"mensagem": "Logado com sucesso!"}), 200
-        else:
-            return jsonify({"status": False, "mensagem": "Credenciais inválidas."}), 400
-    except Exception as e:
-        print(e)
-        return jsonify({"status": False,"mensagem": "Erro ao logar!"}), 400 
-      
-def login_required_user(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if 'usuario' not in session:
-            return redirect(url_for('home'))
-        return f(*args, **kwargs)
-    return decorated_function
 
-def alterar_senha():
-    email = session['usuario']['email']
-    senha_atual = request.form['senha_atual']
-    nova_senha = request.form['nova_senha']
-    confirmar_senha = request.form['confirmar_senha']
+    def changePassword():
+        email = session['user']['email']
+        senha_atual = request.form['senha_atual']
+        nova_senha = request.form['nova_senha']
+        confirmar_senha = request.form['confirmar_senha']
 
-    if session['usuario']['senha'] != senha_atual:
-        return jsonify({'success': False, 'mensagem': 'Senha Incorreta'})
-    if nova_senha != confirmar_senha:
-        return jsonify({'success': False, 'mensagem': 'As novas senhas não coincidem'})
-    
-    response = Users.alterar_senha(email, senha_atual, nova_senha)
-    return jsonify({'mensagem': response})
+        if session['user']['password'] != senha_atual:
+            return jsonify({'success': False, 'mensagem': 'Senha Incorreta'})
+        if nova_senha != confirmar_senha:
+            return jsonify({'success': False, 'mensagem': 'As novas senhas não coincidem'})
+        
+        response = Users.change_password(email, nova_senha)
+        return jsonify({'mensagem': response})

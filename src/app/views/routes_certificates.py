@@ -41,7 +41,7 @@ def user_certificates():
 #Atestados
 #Página de Perfil
 @app.route("/usuarios/perfil")
-@login_required_user
+@UserController.loginRequired
 def perfil_usuario():
     return render_template('certificates/vw_profile.html')
 
@@ -90,6 +90,10 @@ def valide_email():
 @app.route("/usuarios/cadastro/cadastrar", methods=['POST'])
 def register_user():
     return UserController.registerUser()
+
+@app.route("/usuarios/alterar_senha", methods=['POST'])
+def user_change_password():
+    return UserController.changePassword()
 
 #Função para deslogar de contas  
 @app.route('/logout')
