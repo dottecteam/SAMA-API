@@ -4,6 +4,13 @@ from app.controllers.ct_teams import *
 import os
 
 #TELAS
+
+#Página de login
+@app.route("/acesso/equipes")
+def login():
+    session.clear()
+    return render_template("teams/vw_form_login.html")
+
 #Página de painel de atestados
 @app.route("/painel/equipes")
 def painel_equipes():

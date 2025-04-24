@@ -5,39 +5,42 @@
   href="{{ url_for('static', filename='stylesheets/certificates/style_form_login.css') }}"
 />
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="card mt-5">
-        <div class="card-header">
-          <h4 class="text-center align-self-center form-login-title">Acesso da Secretaria</h4>
+<div class="container d-flex justify-content-center align-items-start" style="min-height: 100vh; padding-top: 50px;">
+  <div class="card shadow-lg" style="width: 100%; max-width: 520px; border-radius: 15px; font-size: 1.3rem;">
+    <div class="card-header text-center text-white" style="border-radius: 15px 15px 0 0; background-color: #3B8C6E;;">
+      <h4 class="mb-0" style="font-size: 1.95rem;">Bem-vindo à Administração da Secretaria</h4>
+    </div>
+    <div class="card-body p-4">
+      <form id="form-login-secretary" method="POST">
+        <p class="text-center text-muted mb-4" style="font-size: 1.3rem;">
+          Por favor, insira seu código de funcionário para acessar o sistema.
+        </p>
+        <div class="form-group m-3 position-relative">
+          <label for="input-password-secretary" class="form-label fw-bold" style="font-size: 1.3rem;">Código</label>
+          <input
+            autocomplete="off"
+            type="password"
+            name="input-password-secretary"
+            id="input-password-secretary"
+            class="form-control"
+            placeholder="Digite seu código"
+            style="font-size: 1.3rem;"
+            required
+          />
+          <i
+            class="bi bi-eye-fill position-absolute"
+            id="show-password"
+            style="top: calc(50% + 18px); right: 10px; transform: translateY(-50%); cursor: pointer; font-size: 1.625rem; line-height: 1;"
+            onclick="showPassword()"
+          ></i>
         </div>
-        <div class="card-body">
-          <form id="form-login-secretary" method="POST">
-            <p style="text-align: center">
-              Informe o código de funcionário da secretaria para acessar o
-              sistema:
-            </p>
-            <label for="input-password-secretary" style="font-weight: bold;">Código: </label>
-            <div class="input-group mb-3">
-              <input
-                autocomplete="off"
-                type="password"
-                name="input-password-secretary"
-                id="input-password-secretary"
-                class="form-control"
-                style="width: flex; float: left"
-                required
-              />
-              <i class="bi bi-eye-fill" id="show-password" style="z-index: 10;" onclick="showPassword()">
-              </i>
-            </div>
-            <div class="form-group mb-3 text-center">
-              <button type="submit" class="btn btn-custom">Entrar</button>
-            </div>
-          </form>
+        <div class="form-group text-center">
+          <button type="submit" class="btn w-100 text-white" style="border-radius: 25px; font-size: 1.3rem; background-color: #3B8C6E;;">Entrar</button>
         </div>
-      </div>
+      </form>
+    </div>
+    <div class="card-footer text-center text-muted" style="border-radius: 0 0 15px 15px; font-size: 1.15rem;">
+      <small>© 2025 SAMA. Todos os direitos reservados.</small>
     </div>
   </div>
 </div>
