@@ -14,6 +14,11 @@ def painel_equipes():
 def equipes():
     return render_template("teams/vw_form_register.html")
 
+# Página de política de privacidade
+@app.route("/equipes/privacidade")
+def privacy_policy_teams():
+    return render_template("teams/vw_privacy_policy.html")
+
 #Página de cadastro de equipes (Back)
 @app.route("/equipes/cadastro/cadastrar", methods=['POST'])
 def equipesCadastrar():
