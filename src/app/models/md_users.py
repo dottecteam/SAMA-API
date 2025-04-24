@@ -49,6 +49,28 @@ class Users:
         except FileNotFoundError as e:
             print(f"Error: {e}")
             return False
+        
+    def alterar_senha(email, senha_atual, nova_senha):
+        try:
+            with open(Users.caminho_arquivo, "r", encoding="utf-8") as arquivo:
+                linhas = arquivo.readlines()
+
+            novas_linhas = []
+
+            for linha in linhas:
+                dados = Criptography.decriptografar(linha).strip().split(';')
+                if dados[1] == email:
+                    dados[4] = nova_senha
+                nova_linha = Criptography.criptografar(';'.join(dados))
+                novas_linhas.append(nova_linha + "\n")
+
+            with open(Users.caminho_arquivo, "w", encoding="utf-8") as arquivo:
+                arquivo.writelines(novas_linhas)
+            return "Senha alterada com sucesso!"
+
+        except Exception as e:
+            print(f"Erro ao alterar senha: {e}")
+            return "Erro interno ao alterar senha"
 
     #Função para logar na conta
     def login(self,email,password):

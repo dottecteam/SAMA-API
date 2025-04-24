@@ -1,0 +1,72 @@
+{% extends "certificates/vw_template.html" %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_profile.css') }}">
+
+<section id="profile-container">
+    <section id="profile-content">
+
+        <!-- Botões de Navegação -->
+        <section id="navigation">
+            <div class="card" style="border: none;">
+                <div class="card-header" style="background-color: transparent; border-radius: none;">
+                    <h3>{{session['usuario']['nome']}}</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="nav flex-column" style="margin: 10px; align-items: center;">
+                        <li class="nav-item" style="width: 100%;">
+                            <button class="nav-button">Informações Pessoais</button>
+                        </li>
+                        <li class="nav-item" style="width: 100%;">
+                            <button class="nav-button">Alterar Senha</button>
+                        </li>
+                        <li class="nav-item">
+                            <a id="sair-button" href="/atestados/acesso/logout">Sair</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de informações -->
+        <section id="information">
+            <section id="personal-info" class="container-info">
+                <h4>Informações Pessoais</h4>
+                <ul class="list-group" id="list-personal-info">
+                    <li  class="list-group-item">Nome: {{session['usuario']['nome']}}</li>
+                    <li  class="list-group-item">Email: {{session['usuario']['email']}}</li>
+                    <li  class="list-group-item">Curso: {{session['usuario']['curso']}}</li>
+                    <li  class="list-group-item">Semestre: {{session['usuario']['semestre']}}°</li>
+                </ul>
+            </section>
+
+            <!-- Alteração de Senha -->
+            <section id="security" class="container-info" style="display: none;">
+                <h2>Alterar Senha</h2>
+                <h4>Email: {{session['usuario']['email']}}</h4>
+                <section id="change-password-section" class="container bg-light p-4 mb-4 rounded">
+                    <form id="change-password-form">
+                        <div>
+                            <label class="input-title">Senha Atual:</label>
+                            <input class="form-control" type="password" id="senha_atual" name="senha_atual" required>
+                        </div>
+                        <div>
+                            <label class="input-title">Nova Senha:</label>
+                            <input class="form-control" type="password" id="nova_senha" name="nova_senha" required>
+                        </div>
+                        <div>
+                            <label class="input-title">Confirmar Nova Senha:</label>
+                            <input class="form-control" type="password" id="confirmar_senha" name="confirmar_senha" required>
+                        </div>
+                        <button class="btn btn-custom" type="submit" style="margin-top: 40px;">Confirmar</button>
+                    </form>
+                    <!-- Mensagens de Sucesso/Erro -->
+                    <div id="success-msg" class="alert alert-success" style="display: none; margin: 20px 0;"></div> 
+                    <div id="error-msg" class="alert alert-danger" style="display: none; margin: 20px 0;"></div>
+                </section>                             
+            </section>
+        </section>
+
+    </section>
+</section>
+
+<script src="{{ url_for('static', filename='scripts/certificates/script_profile.js') }}"></script>
+{% endblock %}

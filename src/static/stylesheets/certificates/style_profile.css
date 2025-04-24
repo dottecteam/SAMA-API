@@ -1,0 +1,97 @@
+:root {
+    --cor-principal: rgb(59, 140, 110);
+    --cor-segunda: rgb(11, 43, 64);
+}
+
+#profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+#profile-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    width: 97%;
+    border-radius: 10px;
+    border: 1px solid var(--cor-principal);
+    overflow: hidden;
+    font-size: 18px;
+}
+
+/* Áreas de Navegação e Informação */
+
+#navigation {
+    height: 100%;
+    width: 100%;
+    border-right: solid 1px var(--cor-principal);
+}
+
+#information{
+    height: 100%;
+    width: 100%;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Botões */
+
+.nav-button {
+    background-color: var(--cor-principal);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 2px 5px;
+    border: transparent;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+.nav-button:hover {
+    background-color: var(--cor-segunda);
+}
+
+#sair-button {
+    font-size: 15px;
+    color: red;
+    background-color: rgb(255, 255, 255);
+    padding: 2px 20px;
+    border-radius: 10px;
+}
+#sair-button:hover{
+    background-color: var(--cor-segunda);
+    color: white;
+}
+
+.container-info {
+    width: 95%;
+    margin-top: 20px;
+}
+
+
+/* Form alterar senha */
+
+#change-password-form {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+
+@media (max-width: 735px) {
+    #profile-content {
+        display: flex;
+        flex-direction: column;
+    }
+    #navigation {
+        width: 100%;
+        border: none;
+    }
+    #information {
+        width: 100%;
+    }
+}

@@ -39,6 +39,12 @@ def user_certificates():
     return render_template("certificates/vw_user_certificates.html", data=CertificatesController.readUserCertificates())
 
 #Atestados
+#Página de Perfil
+@app.route("/usuarios/perfil")
+@login_required_user
+def perfil_usuario():
+    return render_template('certificates/vw_profile.html')
+
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
 @UserController.loginRequired
