@@ -64,3 +64,17 @@ class UserController:
                 return redirect(url_for('home'))
             return f(*args, **kwargs)
         return decorated_function
+
+    def changePassword():
+        email = session['user']['email']
+        senha_atual = request.form['senha_atual']
+        nova_senha = request.form['nova_senha']
+        confirmar_senha = request.form['confirmar_senha']
+
+        if session['user']['password'] != senha_atual:
+            return jsonify({'success': False, 'mensagem': 'Senha Incorreta'})
+        if nova_senha != confirmar_senha:
+            return jsonify({'success': False, 'mensagem': 'As novas senhas não coincidem'})
+        
+        response = Users.change_password(email, nova_senha)
+        return jsonify({'mensagem': response})

@@ -5,13 +5,15 @@ from app.utilities.ut_validation import Validation
 
 class CertificatesController:
 
-    #Função para ler os certificados de uma pessoa
+    #Função para ler os aterstados de uma pessoa
     def readUserCertificates():
         return Certificates().readDataByEmail(session['user']['email'])
          
+    #Função para ler todos os atestados
     def readAllCertificates():
         return Certificates().readAllData()
 
+    #Função que procura os atestados pelo id
     def searchCertificatesById():
         data = request.get_json()
         id = data.get('id')
@@ -35,6 +37,7 @@ class CertificatesController:
         print(response)
         return response
 
+    #Função que registra os atestados
     def registerCertificate():
         try:
             dateIn = request.form['date-form-certificates-1']
@@ -69,6 +72,7 @@ class CertificatesController:
             return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
 
         
+    #Função que atualiza o status do atestado
     def updateCertificate():
         try:
             data = request.get_json()
@@ -82,17 +86,38 @@ class CertificatesController:
             print(e)
             return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
         
+    #Função que deleta o atestado
     def deleteCertificates():
         try:
             id=request.form.get("id")
             if Certificates().deleteData(id):
-                return jsonify({"status": True,"mensagem": "Status atualizado com sucesso!"}), 200
+                return jsonify({"status": True,"message": "Status atualizado com sucesso!"}), 200
             else:
-                return jsonify({"status": False,"mensagem": "Erro ao atualizar status."}), 400
+                return jsonify({"status": False,"message": "Erro ao atualizar status."}), 400
         except Exception as e:
             print(f"Error: {e}")
             return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
             
+    #Função que atualiza a tabela dos atestados
+    def updateTableAllCertificates():
+        try:
+            certificates=Certificates().readAllData()
+            if certificates:
+                table=''
+                for certificate in certificates:
+                    table+=f'''<tr class="table-query-tr" data-id="{certificate.id}" data-status="{certificate.status}">
+                                    <td>{ certificate.name }</td>
+                                    <td>{ certificate.dateIn }</td>
+                                    <td>{ certificate.dateFin }</td>
+                                    <td>{ certificate.period }</td>
+                                    <td>{ certificate.status }</td>
+                                </tr>'''
+                return jsonify({"status": True,"message": "Tabela atualizada com sucesso!", "table": table}), 200
+            else:
+                return jsonify({"status": False, "message": "Erro ao atualizar tabela!"}), 500
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"status": False, "message": "Erro ao atualizar tabela!"}), 500
     
 
         

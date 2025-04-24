@@ -28,12 +28,23 @@ def user_register():
     session.clear()
     return render_template('certificates/vw_form_register.html')
 
+# Página da política de privacidade
+@app.route("/usuarios/privacidade")
+def privacy_policy_certificates():
+    return render_template("certificates/vw_privacy_policy.html")
+
 #Página de consulta de atestados
 @app.route("/usuarios/atestados")
 def user_certificates():
     return render_template("certificates/vw_user_certificates.html", data=CertificatesController.readUserCertificates())
 
 #Atestados
+#Página de Perfil
+@app.route("/usuarios/perfil")
+@UserController.loginRequired
+def perfil_usuario():
+    return render_template('certificates/vw_profile.html')
+
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
 @UserController.loginRequired
@@ -80,6 +91,10 @@ def valide_email():
 def register_user():
     return UserController.registerUser()
 
+@app.route("/usuarios/alterar_senha", methods=['POST'])
+def user_change_password():
+    return UserController.changePassword()
+
 #Função para deslogar de contas  
 @app.route('/logout')
 def logout():
@@ -123,5 +138,11 @@ def search_certificates_id():
 @app.route('/atestado/deletar', methods=['POST'])
 def delete_certificates():
     return CertificatesController.deleteCertificates()
+
+#Função para pegar o atestado pelo id
+@app.route('/atestado/consulta/tabela', methods=['POST'])
+def update_table_query():
+    return CertificatesController.updateTableAllCertificates()
+
 
 #FUNÇÕES
