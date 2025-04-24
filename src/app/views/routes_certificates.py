@@ -29,9 +29,9 @@ def user_register():
     return render_template('certificates/vw_form_register.html')
 
 #Página da política de privacidade
-@app.route("/usuarios/politica_privacidade_atestados")
+@app.route("/usuarios/privacidade")
 def privacy_policy_certificates():
-    return render_template("certificates/vw_politica_privacidade.html")
+    return render_template("certificates/vw_privacy_policy.html")
 
 #Página de consulta de atestados
 @app.route("/usuarios/atestados")
