@@ -11,6 +11,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
+        <input type="hidden" id="data-id">
         Tem certeza de que deseja deletar esse atestado?
       </div>
       <div class="modal-footer">
@@ -44,7 +45,7 @@
               </tr>
             </thead>
             <!--Fileiras de Atestados, Substituir por valores reais quando o Banco de dados estiver pronto-->
-            <tbody>
+            <tbody id="table-certificates-body">
               {% if data %} {% for certificates in data %}
               <tr>
                 <td>{{ certificates.cid }}</td>
@@ -53,7 +54,7 @@
                 <td>{{ certificates.period }}</td>
                 <td>{{ certificates.status }}</td>
                 <td>
-                  {% if certificates.status!='Aprovado' %}
+                  {% if certificates.status=='Pendente' %}
                   <button class="btn-delete-certificate btn btn-danger" data-id="{{certificates.id}}">
                     <i class="bi bi-trash"></i>
                   </button>

@@ -47,7 +47,6 @@ class Certificates:
             with open(self.srcData,'w',encoding="utf-8") as file:
                 for item in list:
                     line=Criptography.encrypt(f"{item.id};{item.name};{item.email};{item.course};{item.semester};{datetime.strptime(item.dateIn.split()[0],"%d/%m/%Y").strftime("%Y-%m-%d")};{datetime.strptime(item.dateFin.split()[0],"%d/%m/%Y").strftime("%Y-%m-%d")};{item.cid};{item.pdf};{item.status}")
-                    print(line)
                     file.write(f"{line}\n")
             return True
         except Exception as e:
@@ -87,7 +86,7 @@ class Certificates:
                             cid=data[7],
                             pdf=data[8],
                             status=data[9],
-                            period=str((datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days > 1 else " dia"
+                            period=str((datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days > 1 else "1 dia"
                         )
                         certificates.append(certificate)
                 return certificates
@@ -115,7 +114,7 @@ class Certificates:
                             cid=data[7],
                             pdf=data[8],
                             status=data[9],
-                            period=str((datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days > 1 else " dia"
+                            period=str((datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days) + " dias" if (datetime.strptime(data[6], "%Y-%m-%d")-datetime.strptime(data[5], "%Y-%m-%d")).days > 1 else "1 dia"
                         )
                         certificates.append(certificate)
                 return certificates

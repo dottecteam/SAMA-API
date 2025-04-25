@@ -144,5 +144,10 @@ def delete_certificates():
 def update_table_query():
     return CertificatesController.updateTableAllCertificates()
 
+#Função para pegar o atestado pelo id
+@app.route('/usuarios/atestados/tabela', methods=['POST'])
+def update_table_user_certificates():
+    return CertificatesController.updateTableUserCertificates()
+
 
 #FUNÇÕES

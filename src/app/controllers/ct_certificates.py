@@ -34,7 +34,6 @@ class CertificatesController:
             "period": data.period,
             "id": data.id
         }), 200
-        print(response)
         return response
 
     #Função que registra os atestados
@@ -67,7 +66,7 @@ class CertificatesController:
 
             return jsonify({"status": True, "message": "Código enviado com sucesso!"}), 200
         except Exception as e:
-            print(e)
+            print(f"Error: {e}")
             certificates.deleteFile(uniqueName)
             return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
 
@@ -83,7 +82,7 @@ class CertificatesController:
             else:
                 return jsonify({"mensagem": "Erro ao atualizar status."}), 400
         except Exception as e:
-            print(e)
+            print(f"Error: {e}")
             return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
         
     #Função que deleta o atestado
@@ -99,6 +98,35 @@ class CertificatesController:
             return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
             
     #Função que atualiza a tabela dos atestados
+    def updateTableUserCertificates():
+        try:
+            certificates=Certificates().readDataByEmail(session['user']['email'])
+            if certificates:
+                table=''
+                for certificate in certificates:
+                    table+=f'''<tr>
+                                    <td>{ certificate.cid }</td>
+                                    <td>{ certificate.dateIn }</td>
+                                    <td>{ certificate.dateFin }</td>
+                                    <td>{ certificate.period }</td>
+                                    <td>{ certificate.status }</td>
+                                    <td>'''
+                    if certificate.status=='Pendente':
+                        table+=f'''
+                                    <button class="btn-delete-certificate btn btn-danger" data-id="{ certificate.id }">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                '''
+                    table+=f'''
+                            </td>
+                        </tr>'''
+                return jsonify({"status": True,"message": "Tabela atualizada com sucesso!", "table": table}), 200
+            else:
+                return jsonify({"status": False, "message": "Erro ao atualizar tabela!"}), 500
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"status": False, "message": "Erro ao atualizar tabela!"}), 500
+        
     def updateTableAllCertificates():
         try:
             certificates=Certificates().readAllData()
