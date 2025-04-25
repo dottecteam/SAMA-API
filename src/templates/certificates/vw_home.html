@@ -18,7 +18,7 @@
           atestado médico pelo nosso formulário de cadastro clicando no botão
           abaixo:
         </p>
-        <a href="/atestados/cadastro" class="btn btn-custom" style="font-weight: bold;"
+        <a href="/atestados/cadastro" class="btn btn-custom" id="link-register-certificate" style="font-weight: bold;"
           >Cadastrar Atestado</a
         >
       </div>
@@ -90,4 +90,7 @@
     </div>
   </div>
 </section>
+
+<script
+    src="{{ url_for('static', filename='scripts/certificates/script_home.js') }}"></script>
 {% endblock %}

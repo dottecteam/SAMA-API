@@ -19,28 +19,4 @@ $(document).ready(function () {
         }
     );
 
-    
-
-    //Fechar modais com animação
-    $('.modal').each(function () {
-        const $modal = $(this);
-        let closing = false;
-  
-        $modal.on('hide.bs.modal', function (e) {
-          if (closing) {
-            return;
-          }
-  
-          e.preventDefault();
-
-          $modal.removeClass('show');
-          closing = true;
-  
-          setTimeout(function () {
-            const modalInstance = bootstrap.Modal.getInstance($modal[0]);
-            modalInstance.hide();
-            closing = false;
-          }, 200);
-        });
-      });
 });

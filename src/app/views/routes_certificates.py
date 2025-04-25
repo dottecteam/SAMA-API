@@ -149,5 +149,10 @@ def update_table_query():
 def update_table_user_certificates():
     return CertificatesController.updateTableUserCertificates()
 
+#Função para pegar o atestado pelo id
+@app.route('/usuarios/sessao', methods=['POST'])
+def is_logged():
+    return UserController.isLogged()
+
 
 #FUNÇÕES

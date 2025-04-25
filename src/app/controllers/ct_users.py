@@ -78,3 +78,12 @@ class UserController:
         
         response = Users.change_password(email, nova_senha)
         return jsonify({'mensagem': response})
+    
+    def isLogged():
+        try:
+            if session['user']:
+                return jsonify({"status": True,"message": "Está logado!"})
+            else:
+                return jsonify({"status": False,"message": "Não está logado!"})
+        except:
+            return jsonify({"status": False,"message": "Não está logado!"})
