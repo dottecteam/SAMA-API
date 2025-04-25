@@ -123,7 +123,6 @@ function updateTable() {
                 deactiveEvents();
                 activeEvents();
             } else {
-                console.error('Error with response status:', response.message);
                 $("#error-message").html(response.message);
                 ModalError.show();
             }
@@ -131,7 +130,6 @@ function updateTable() {
         error: function (xhr, status, error) {
             var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
             var errorMessage = response.message;
-            console.error('Error updating table:', errorMessage);
             $("#error-message").html(errorMessage);
             ModalError.show();
         }

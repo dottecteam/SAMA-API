@@ -1,23 +1,27 @@
-$(document).ready(function () {
-    const ModalError = new bootstrap.Modal($("#modal-error"))
-    const ModalSuccess = new bootstrap.Modal($("#modal-success"))
-    const ModalConfirm = new bootstrap.Modal($("#modal-confirm"))
-    const ModalLoading = new bootstrap.Modal($("#modal-loading"), {
-        backdrop: "static",
-        keyboard: false,
-    })
+const ModalError = new bootstrap.Modal($("#modal-error"))
+const ModalSuccess = new bootstrap.Modal($("#modal-success"))
+const ModalConfirm = new bootstrap.Modal($("#modal-confirm"))
+const ModalLoading = new bootstrap.Modal($("#modal-loading"), {
+    backdrop: "static",
+    keyboard: false,
+})
 
+$(document).ready(function () {
+    activeEvents();
+});
+
+function activeEvents() {
     $(".btn-delete-certificate").click(function () {
-        var id = $(this).data('id');
+        let id = $(this).data('id');
         ModalConfirm.show()
-        $("#btn-confirm").attr('data-id', id);
+        $("#data-id").val(id);
     });
 
     $("#btn-confirm").click(function () {
-        var id = $(this).data('id');
-        let formdata= new FormData();
-        formdata.append('id',id)
-        ModalLoading.show();
+        let id = $("#data-id").val();
+        let formdata = new FormData();
+        formdata.append('id', id)
+        ModalConfirm.hide();
         $.ajax({
             type: "POST",
             url: "/atestado/deletar",
@@ -25,26 +29,54 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                setTimeout(function () {
-                    ModalLoading.hide();
-                    if (response.status) {
-                        ModalSuccess.show();
-                      } else {
-                        $("#error-message").html(response.message);
-                        ModalError.show();
-                      }
-                }, 500);
+
+                if (response.status) {
+                    updateTable();
+                } else {
+                    $("#error-message").html(response.message);
+                    ModalError.show();
+                }
+
             },
             error: function (xhr, status, error) {
-                
-                setTimeout(function () {
-                    ModalLoading.hide();
-                    var response = JSON.parse(xhr.responseText);
-                    var errorMessage = response.message;
-                    $("#error-message").html(errorMessage);
-                    ModalError.show();
-                }, 500);
+
+
+                ModalLoading.hide();
+                var response = JSON.parse(xhr.responseText);
+                var errorMessage = response.message;
+                $("#error-message").html(errorMessage);
+                ModalError.show();
+
             }
         });
     });
-});
+}
+
+function deactiveEvents() {
+    $(".btn-delete-certificate").off('click');
+    $("#btn-confirm").off('click');
+}
+
+function updateTable() {
+    $.ajax({
+        url: "/usuarios/atestados/tabela",
+        type: "POST",
+        contentType: 'application/json',
+        success: function (response) {
+            if (response.status) {
+                $("#table-certificates-body").html(response.table);
+                deactiveEvents();
+                activeEvents();
+            } else {
+                $("#error-message").html(response.message);
+                ModalError.show();
+            }
+        },
+        error: function (xhr, status, error) {
+            var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
+            var errorMessage = response.message;
+            $("#error-message").html(errorMessage);
+            ModalError.show();
+        }
+    });
+}
