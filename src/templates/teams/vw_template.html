@@ -170,12 +170,9 @@
             </ul>
           </li>
         </ul>
-        <div class="nav-item p-2">
-          <form class="search-container mx-auto" id="form-search-atestados" method="get"
-            action="/atestados/consulta/aluno">
-            <input type="text" placeholder="Pesquise o atestado médico pelo CPF" name="cpf" autocomplete="off" />
-            <button class="bi bi-search border-0 bg-transparent"></button>
-          </form>
+        <div class="nav-item dropdown p-2">
+        <button class="btn btn-custom" style="border: 1px solid #ffffff;"
+          id="btn-login">Acesse sua Equipe!</button>
         </div>
       </div>
     </div>
@@ -186,10 +183,20 @@
   <footer class="footer-custom-bg footer-custom text-white py-4">
     <div class="container-fluid text-center">
       <div class="row">
+        <div class="col-12 mb-3">
+          <!-- FAQ Link -->
+          <p class="mb-0">
+            <span>Se você tem alguma dúvida, acesse nosso
+              <a href="/faq" class="text-white">FAQ</a></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
         <!-- Logo -->
         <div class="col-md-4 mb-3">
           <a href="/">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo SAMA" class="footer-logo-custom" />
+            <img src="{{ url_for('static', filename='images/logo.png') }}"
+              alt="Logo SAMA" class="footer-logo-custom" />
           </a>
         </div>
 

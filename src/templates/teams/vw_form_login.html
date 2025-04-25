@@ -2,7 +2,7 @@
 
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='stylesheets/style_form_login.css') }}"
+  href= "src/static/stylesheets/style_form_login.css"
 />
 
 <div class="container d-flex justify-content-center align-items-start" style="min-height: 100vh; padding-top: 50px;">
@@ -13,17 +13,17 @@
     <div class="card-body p-4">
       <form id="form-login-secretaria" method="POST">
         <p class="text-center text-muted mb-4" style="font-size: 1.3rem;">
-          Por favor, insira seu ID para acessar o painel da equipe.
+          Por favor, insira sua senha para acessar o painel da equipe.
         </p>
         <div class="form-group m-3">
-          <label for="ID" class="form-label fw-bold" style="font-size: 1.3rem;">ID</label>
+          <label for="password-form" class="form-label fw-bold" style="font-size: 1.3rem;">Senha:</label>
           <input
             autocomplete="off"
             type="password"
-            name="ID"
-            id="ID"
+            name="password-form"
+            id="password-form"
             class="form-control"
-            placeholder="Digite seu ID"
+            placeholder="Digite sua Senha"
             style="font-size: 1.3rem;"
             required
           />
