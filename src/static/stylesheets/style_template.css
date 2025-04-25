@@ -35,9 +35,21 @@ footer{
 }
 
 /* Estilo da Navbar */
+.navbar-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar-custom .navbar-logo-custom {
   height: 50px;
   width: 120px;
+}
+
+.navbar-custom .navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar-custom .navbar-nav .nav-link {

@@ -4,6 +4,13 @@ from app.controllers.ct_teams import *
 import os
 
 #TELAS
+
+#Página de login
+@app.route("/acesso/equipes")
+def login():
+    session.clear()
+    return render_template("teams/vw_form_login.html")
+
 #Página de painel de atestados
 @app.route("/painel/equipes")
 def painel_equipes():
@@ -13,6 +20,11 @@ def painel_equipes():
 @app.route("/equipes/cadastro", methods=['GET', 'POST'])
 def equipes():
     return render_template("teams/vw_form_register.html")
+
+# Página de política de privacidade
+@app.route("/equipes/privacidade")
+def privacy_policy_teams():
+    return render_template("teams/vw_privacy_policy.html")
 
 #Página de cadastro de equipes (Back)
 @app.route("/equipes/cadastro/cadastrar", methods=['POST'])

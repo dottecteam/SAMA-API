@@ -7,7 +7,7 @@ body {
 }
 
 /* Container principal dos gráficos */
-.graficos-container {
+#graficos-container {
     margin-top: 3%;
     display: flex;
     flex-wrap: wrap;

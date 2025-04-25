@@ -28,7 +28,7 @@ def user_register():
     session.clear()
     return render_template('certificates/vw_form_register.html')
 
-#Página da política de privacidade
+# Página da política de privacidade
 @app.route("/usuarios/privacidade")
 def privacy_policy_certificates():
     return render_template("certificates/vw_privacy_policy.html")
@@ -39,6 +39,12 @@ def user_certificates():
     return render_template("certificates/vw_user_certificates.html", data=CertificatesController.readUserCertificates())
 
 #Atestados
+#Página de Perfil
+@app.route("/usuarios/perfil")
+@UserController.loginRequired
+def perfil_usuario():
+    return render_template('certificates/vw_profile.html')
+
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")
 @UserController.loginRequired
@@ -84,6 +90,10 @@ def valide_email():
 @app.route("/usuarios/cadastro/cadastrar", methods=['POST'])
 def register_user():
     return UserController.registerUser()
+
+@app.route("/usuarios/alterar_senha", methods=['POST'])
+def user_change_password():
+    return UserController.changePassword()
 
 #Função para deslogar de contas  
 @app.route('/logout')
