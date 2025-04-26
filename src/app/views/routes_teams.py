@@ -4,7 +4,6 @@ from app.controllers.ct_teams import *
 import os
 
 #TELAS
-
 #Página de login
 @app.route("/acesso/equipes")
 def login():
@@ -17,7 +16,7 @@ def painel_equipes():
     return render_template("teams/vw_dashboard.html")
 
 #Página de cadastro de equipes
-@app.route("/equipes/cadastro", methods=['GET', 'POST'])
+@app.route("/equipes/cadastro")
 def equipes():
     return render_template("teams/vw_form_register.html")
 
@@ -25,11 +24,6 @@ def equipes():
 @app.route("/equipes/privacidade")
 def privacy_policy_teams():
     return render_template("teams/vw_privacy_policy.html")
-
-#Página de cadastro de equipes (Back)
-@app.route("/equipes/cadastro/cadastrar", methods=['POST'])
-def equipesCadastrar():
-    return TeamsController.registerTeam()
 
 #Página de visualização de equipes
 @app.route("/equipes/visualizar")
@@ -42,3 +36,11 @@ def avaliacao():
     return render_template("teams/vw_form_evaluate.html")
 
 #TELAS
+
+
+#FUNÇÕES
+#Página de cadastro de equipes (Back)
+@app.route("/equipes/cadastro/cadastrar", methods=['POST'])
+def equipesCadastrar():
+    return TeamsController.registerTeam()
+#FUNÇÕES

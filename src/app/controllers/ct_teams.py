@@ -26,7 +26,7 @@ class TeamsController:
             if teams.saveDataTeam(team, master, pOwner, password, EmMaster, EmPOwner, dev_nomes, dev_emails):
                 return jsonify({"status": True, "mensagem": "Equipe cadastrada com sucesso!"}), 200
             else:
-                return jsonify({"status": True, "mensagem": "Erro ao cadastrar equipe."}), 400
+                return jsonify({"status": False, "mensagem": "Erro ao cadastrar equipe."}), 400
         #Validações
         except Exception as e:
             print(f"Error: {e}")
