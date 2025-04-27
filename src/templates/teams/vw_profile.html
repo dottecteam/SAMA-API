@@ -1,0 +1,42 @@
+{% extends "teams/vw_template.html" %} {% block content %}
+
+<div class="container mt-4">
+    <div class="row align-items-stretch">
+        <!-- Left container -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title text-center">Informações</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Equipe:</strong> {{ team.team }}</p>
+                    <p class="card-text"><strong>ID:</strong> {{ team.id }}</p>
+                    <p class="card-text"><strong>PO:</strong> {{ team.pOwner }} ({{ team.EmPOwner }})</p>
+                    <p class="card-text"><strong>Master:</strong> {{ team.master }} ({{ team.EmMaster }})</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right container -->
+        <div class="col-md-8 d-flex">
+            <div class="card flex-fill">
+                <div class="card-header">
+                    <h3 class="card-title text-center">Desenvolvedores</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% if team.devs %}
+                        {% for dev in team.devs %}
+                        <li class="list-group-item">{{ dev.nome }} ({{ dev.email }})</li>
+                        {% endfor %}
+                        {% else %}
+                        <li class="list-group-item"><h3 class="text-center">No developers found.</h3></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

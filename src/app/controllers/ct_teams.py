@@ -52,11 +52,20 @@ class TeamsController:
         
 
     #Função para ler os dados
-    def readTeam():
+    def readAllTeams():
         teams=Teams()
         return teams.readTeam()
         
-
+    def readTeamById():
+        try:
+            teams=Teams().readTeam()
+            for team in teams:
+                if team.id == session['team']['id']:
+                    return team
+            return None
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"status": False, "message": "Erro ao ler dados da equipe!"}), 500
             
     
 

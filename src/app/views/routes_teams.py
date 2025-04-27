@@ -28,8 +28,13 @@ def privacy_policy_teams():
 
 #Página de visualização de equipes
 @app.route("/equipes/visualizar")
-def viewTeams():
-    return render_template("teams/vw_view_teams.html", teams=TeamsController.readTeam())
+def view_teams():
+    return render_template("teams/vw_view_teams.html", teams=TeamsController.readAllTeams())
+
+#Página de minha equipe
+@app.route("/equipes/equipe")
+def team_profile():
+    return render_template("teams/vw_profile.html", team=TeamsController.readTeamById())
 
 #Página de criar avaliações
 @app.route("/equipes/avaliacoes")
@@ -37,3 +42,18 @@ def avaliacao():
     return render_template("teams/vw_form_evaluate.html")
 
 #TELAS
+
+
+#FUNÇÕES
+#Página de cadastro de equipes (Back)
+@app.route("/equipes/cadastro/cadastrar", methods=['POST'])
+def equipesCadastrar():
+    return TeamsController.registerTeam()
+
+#Função para fazer o login da equipe
+@app.route('/equipes/acesso/logar', methods=['POST'])
+def login_team():
+    return TeamsController.loginTeam()
+
+
+#FUNÇÕES
