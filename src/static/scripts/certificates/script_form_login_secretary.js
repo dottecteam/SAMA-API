@@ -1,4 +1,3 @@
-$(document).ready(function () {
     //Modais
     const ModalLoading = new bootstrap.Modal(
         $("#modal-loading"),
@@ -9,8 +8,7 @@ $(document).ready(function () {
     );
     const ModalError = new bootstrap.Modal($("#modal-error"));
     const ModalSuccess = new bootstrap.Modal($("#modal-success"));
-
-
+$(document).ready(function () {
     // Formulário de acesso
     $('#form-login-secretary').submit(function (event) {
         event.preventDefault();

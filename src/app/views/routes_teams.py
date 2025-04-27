@@ -5,19 +5,20 @@ import os
 
 #TELAS
 #Página de login
-@app.route("/acesso/equipes")
-def login():
+@app.route("/equipes/acesso")
+def teams_access():
     session.clear()
     return render_template("teams/vw_form_login.html")
 
 #Página de painel de atestados
 @app.route("/painel/equipes")
-def painel_equipes():
+@TeamsController.loginRequired
+def teams_panel():
     return render_template("teams/vw_dashboard.html")
 
 #Página de cadastro de equipes
 @app.route("/equipes/cadastro")
-def equipes():
+def register_teams():
     return render_template("teams/vw_form_register.html")
 
 # Página de política de privacidade
@@ -43,4 +44,11 @@ def avaliacao():
 @app.route("/equipes/cadastro/cadastrar", methods=['POST'])
 def equipesCadastrar():
     return TeamsController.registerTeam()
+
+#Função para fazer o login da equipe
+@app.route('/equipes/acesso/logar', methods=['POST'])
+def login_team():
+    return TeamsController.loginTeam()
+
+
 #FUNÇÕES
