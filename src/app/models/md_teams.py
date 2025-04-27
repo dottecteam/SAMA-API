@@ -1,6 +1,6 @@
 import os
 from app import app
-import uuid
+import shortuuid
 import json
 from app.utilities.ut_cryptography import Criptography
 
@@ -23,7 +23,7 @@ class Teams:
     #Função para salvar os dados no arquivo .txt
     def saveDataTeam(self, team, master, pOwner, password, EmMaster, EmPOwner, dev_nomes, dev_emails):
         try:
-            idTeam = str(uuid.uuid4())
+            idTeam = str(shortuuid.uuid())
             devs = [{"nome": nome, "email": email} for nome, email in zip(dev_nomes, dev_emails)]
             
             # Formata os dados antes de criptografar
