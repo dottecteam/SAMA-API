@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from app import app
-import uuid
+import shortuuid
 from app.utilities.ut_cryptography import Criptography
 
 class Certificates:
@@ -32,7 +32,7 @@ class Certificates:
     #Função para salvar os dados no arquivo .txt
     def saveData(self, name, email, course, semester, dateIn, dateFin, cid, uniqueName):
         try:
-            idCertificate = str(uuid.uuid4())
+            idCertificate = str(shortuuid.uuid())
             with open(self.srcData, "a", encoding="utf-8") as file:
                 line=Criptography.encrypt(f"{idCertificate};{name};{email};{course};{semester};{dateIn};{dateFin};{cid.upper()};{uniqueName};Pendente")
                 file.write(f"{line}\n")

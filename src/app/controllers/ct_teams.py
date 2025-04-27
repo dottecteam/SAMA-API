@@ -1,11 +1,29 @@
-import uuid
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_teams import Teams
-from app.utilities.ut_validation import Validation
-from app.utilities.ut_cryptography import Criptography
-import json
+from functools import wraps
 
 class TeamsController:
+    def loginRequired(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if 'team' not in session:
+                return redirect(url_for('teams_access'))
+            return f(*args, **kwargs)
+        return decorated_function
+    
+    def loginTeam():
+        try:
+            id=request.form.get('input-id-team')
+            password = request.form.get('input-password-team')
+            teams=Teams()
+            response = teams.login(id,password)
+            if response:
+                return jsonify({"status": True,"message": "Equipe logada com sucesso!"}), 200
+            else:
+                return jsonify({"status": False, "message": "Credenciais incorretas."}), 400
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"status": False,"message": "Erro ao logar equipe!"}), 400 
 
     #Função que recebe os dados
     def registerTeam():
@@ -26,7 +44,7 @@ class TeamsController:
             if teams.saveDataTeam(team, master, pOwner, password, EmMaster, EmPOwner, dev_nomes, dev_emails):
                 return jsonify({"status": True, "mensagem": "Equipe cadastrada com sucesso!"}), 200
             else:
-                return jsonify({"status": True, "mensagem": "Erro ao cadastrar equipe."}), 400
+                return jsonify({"status": False, "mensagem": "Erro ao cadastrar equipe."}), 400
         #Validações
         except Exception as e:
             print(f"Error: {e}")
@@ -38,17 +56,7 @@ class TeamsController:
         teams=Teams()
         return teams.readTeam()
         
-        
 
-        
-    def updateCertificate():
-        data = request.get_json()
-        status = data.get('status')
-        id = data.get('id')
-        if Teams().updateStatus(status, id):
-            return jsonify({"mensagem": "Status atualizado com sucesso!"}), 200
-        else:
-            return jsonify({"mensagem": "Erro ao atualizar status."}), 500
             
     
 

@@ -180,7 +180,8 @@
                   </li>
 
                   <li>
-                    <a class="dropdown-item" href="/usuarios/atestados">Meus Atestados</a>
+                    <a class="dropdown-item" href="/usuarios/atestados">Meus
+                      Atestados</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/atestados/acesso">Acesso
@@ -211,6 +212,7 @@
               </li>
 
               <!-- Dropdown Equipes -->
+              <!-- Dropdown Equipes -->
               <li class="nav-item dropdown p-2">
                 <a class="nav-link dropdown-toggle rounded text-center" href="#"
                   id="dropdown-teams" role="button"
@@ -218,17 +220,33 @@
                   Equipes
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown-teams">
+
+                  {% if session['team'] %}
+
+                  <li>
+                    <a class="dropdown-item"
+                      href="/equipes/avaliacoes">Avaliações</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item"
+                      href="/equipes/visualizar">Equipes</a>
+                  </li>
+
+                  {% else %}
+
                   <li>
                     <a class="dropdown-item" href="/equipes/cadastro">Cadastro
                       de Equipes</a>
                   </li>
                   <li>
                     <a class="dropdown-item"
-                      href="/equipes/avaliacoes">Avaliações</a>
+                      href="/equipes/visualizar">Equipes</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="/equipes/visualizar">Equipes</a>
+                    <a class="dropdown-item"
+                      href="/equipes/acesso">Acesso Equipe</a>
                   </li>
+                  {% endif %}
                 </ul>
               </li>
 
@@ -272,11 +290,26 @@
               {% elif session['secretary'] %}
               <div class="nav-item dropdown p-2"><a
                   class="nav-link dropdown-toggle rounded text-center" href="#"
-                  id="dropdown-usuario" role="button"
+                  id="dropdown-secretary" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
                   Acesso Secretaria
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown-usuario">
+                <ul class="dropdown-menu" aria-labelledby="dropdown-secretary">
+                  <li>
+                    <a class="dropdown-item"
+                      href="/logout">Sair</a>
+                  </li>
+                </ul>
+              </div>
+
+              {% elif session['team'] %}
+              <div class="nav-item dropdown p-2"><a
+                  class="nav-link dropdown-toggle rounded text-center" href="#"
+                  id="dropdown-team" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ session['team'].team.split()[0] }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown-team">
                   <li>
                     <a class="dropdown-item"
                       href="/logout">Sair</a>

@@ -7,11 +7,11 @@
 />
 
 <!-- Container para o formulário de cadastro de equipes -->
-<section id="equipes-section" class="container-fluid">
+<section id="teams-section" class="container-fluid">
     <h1 class="text-center form-register-title">Cadastro de Equipes</h1>
     <p class="text-center">Forme sua equipe no modelo ágil Scrum:</p>
 
-    <form id="form-equipes" action="/equipes/cadastro/cadastrar" method="post" enctype="multipart/form-data">
+    <form id="form-teams" action="/equipes/cadastro/cadastrar" method="post" enctype="multipart/form-data">
         
         <!-- Container para Nome da Equipe e Scrum Master com fundo mais claro e bordas arredondadas -->
         <div class="container bg-light p-4 mb-4 rounded">
@@ -118,12 +118,12 @@
                 <div id="devFieldsContainer"></div>
             
             <div class="align-items-center text-center">
-                <button id="addFieldBtn" class="btn m-3 btn-primary">Adicionar Dev</button>
+                <button id="addFieldBtn" type="button" class="btn m-3 btn-primary">Adicionar Dev</button>
             </div>
         </div>
         <section style="text-align: center; margin-top: 30px;">
             <p>Ao selecionar a opção <strong>Criar Equipe</strong>, o usuário declara
-            estar de acordo com a nossa <a href="/equipes/privacidade" target="blank" class="text-secondary link-custom">
+            estar de acordo com a nossa <a href="/equipes/privacidade" target="blank" class="link-custom">
             política de privacidade</a>.</p>
         </section>
         <!-- Botão Criar Equipe -->

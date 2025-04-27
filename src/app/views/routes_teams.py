@@ -4,32 +4,27 @@ from app.controllers.ct_teams import *
 import os
 
 #TELAS
-
 #Página de login
-@app.route("/acesso/equipes")
-def login():
+@app.route("/equipes/acesso")
+def teams_access():
     session.clear()
     return render_template("teams/vw_form_login.html")
 
 #Página de painel de atestados
 @app.route("/painel/equipes")
-def painel_equipes():
+@TeamsController.loginRequired
+def teams_panel():
     return render_template("teams/vw_dashboard.html")
 
 #Página de cadastro de equipes
-@app.route("/equipes/cadastro", methods=['GET', 'POST'])
-def equipes():
+@app.route("/equipes/cadastro")
+def register_teams():
     return render_template("teams/vw_form_register.html")
 
 # Página de política de privacidade
 @app.route("/equipes/privacidade")
 def privacy_policy_teams():
     return render_template("teams/vw_privacy_policy.html")
-
-#Página de cadastro de equipes (Back)
-@app.route("/equipes/cadastro/cadastrar", methods=['POST'])
-def equipesCadastrar():
-    return TeamsController.registerTeam()
 
 #Página de visualização de equipes
 @app.route("/equipes/visualizar")
@@ -41,7 +36,4 @@ def viewTeams():
 def avaliacao():
     return render_template("teams/vw_form_evaluate.html")
 
-#Página de editar equipes
-@app.route("/equipes/editar")
-def editTeam():
-    return render_template("teams/vw_edit_team.html", teams=TeamsController.readTeam())
+#TELAS

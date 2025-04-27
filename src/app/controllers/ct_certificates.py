@@ -122,7 +122,14 @@ class CertificatesController:
                         </tr>'''
                 return jsonify({"status": True,"message": "Tabela atualizada com sucesso!", "table": table}), 200
             else:
-                return jsonify({"status": False, "message": "Erro ao atualizar tabela!"}), 500
+                table='''
+                <tr>
+                <td colspan="6" class="text-center">
+                  Nenhum atestado enviado.
+                </td>
+              </tr>
+              '''
+                return jsonify({"status": True, "message": "Tabela atualizada com sucesso!", "table": table}), 200
         except Exception as e:
             print(f"Error: {e}")
             return jsonify({"status": False, "message": "Erro ao atualizar tabela!"}), 500

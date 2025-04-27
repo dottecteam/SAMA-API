@@ -18,24 +18,31 @@
           atestado médico pelo nosso formulário de cadastro clicando no botão
           abaixo:
         </p>
-        <a href="/atestados/cadastro" class="btn btn-custom" style="font-weight: bold;"
+        <a href="/atestados/cadastro" class="btn btn-custom" id="link-register-certificate" style="font-weight: bold;"
           >Cadastrar Atestado</a
         >
       </div>
     </div>
-    <div class="col-6 overflow-hidden div-image">
-      <!-- Conteúdo do serviço de envio de atestados médicos -->
+    <div class="col-6 overflow-hidden position-relative div-image">
+      <!-- Imagem do médico -->
       <img
         id="img-home-doctor"
         src="{{ url_for('static', filename='images/doutor.png') }}"
-        class="mx-auto align-self-center"
+        class="mx-auto align-self-center img-fluid"
         alt="Doutor"
       />
+    
+       <!-- Legenda sobreposta -->
+       <p class="position-absolute bottom-0 translate-middle-x text-secondary small px-2 py-1 rounded" style="right: 5%; word-wrap: break-word; white-space: nowrap; transform: rotate(4.5deg) !important;">
+        Imagem gerada por IA para fins ilustrativos
+       </p>
     </div>
+    
   </div>
 </section>
 
 <section id="scrum-section" class="container-fluid">
+ 
   <div class="bottom-left"></div>
   <div class="bottom-right"></div>
   <div class="row m-2">
@@ -90,4 +97,7 @@
     </div>
   </div>
 </section>
+
+<script
+    src="{{ url_for('static', filename='scripts/certificates/script_home.js') }}"></script>
 {% endblock %}

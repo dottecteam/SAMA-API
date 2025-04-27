@@ -46,8 +46,13 @@
   transition: all 0.3s;
 }
 
-.link-custom:hover {
+.link-custom {
   color: rgba(var(--cor-primaria)) !important;
+  filter: brightness(125%);
+}
+
+.link-custom:hover {
+  filter: brightness(80%);
   transition: all 0.3s;
 }
 

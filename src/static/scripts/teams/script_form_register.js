@@ -1,8 +1,20 @@
+  //Modais
+  const ModalLoading = new bootstrap.Modal(
+    $("#modal-loading"),
+    {
+      backdrop: "static",
+      keyboard: false,
+    }
+  );
+  const ModalError = new bootstrap.Modal($("#modal-error"));
+  const ModalSuccess = new bootstrap.Modal($("#modal-success"));
+
 $(document).ready(function () {
   let fieldCounter = 0; // Contador para gerar IDs únicos
 
   // Função para adicionar o novo campo
   $("#addFieldBtn").click(function (event) {
+    console.log('a');
     event.preventDefault(); // Impede o envio do formulário
 
     fieldCounter++; // Incrementa o contador
@@ -37,6 +49,34 @@ $(document).ready(function () {
     // Adicionar a função para remover o campo quando o botão for clicado
     newField.find(".removeFieldBtn").click(function () {
       newField.remove();
+    });
+  });
+
+  $('#form-teams').on('submit', function (event) {
+    event.preventDefault();
+    let formData = new FormData(this);
+    $.ajax({
+      type: "POST",
+      url: "/equipes/cadastro/cadastrar",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        if (response.status) {
+          ModalSuccess.show();
+          $("#form-teams")[0].reset();
+
+        } else {
+          $("#error-message").html(response.message);
+          ModalError.show();
+        }
+      },
+      error: function (xhr, status, error) {
+        var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
+        var errorMessage = response.message;
+        $("#error-message").html(errorMessage);
+        ModalError.show();
+      },
     });
   });
 });

@@ -1,27 +1,40 @@
 {% extends "teams/vw_template.html" %} {% block content %}
-
 <link
   rel="stylesheet"
-  href= "src/static/stylesheets/style_form_login.css"
+  href="{{ url_for('static', filename='stylesheets/teams/style_form_login.css') }}"
 />
 
-<div class="container d-flex justify-content-center align-items-start" style="min-height: 100vh; padding-top: 50px;">
+<div class="container d-flex justify-content-center align-items-start" style="padding-top: 50px;">
   <div class="card shadow-lg" style="width: 100%; max-width: 520px; border-radius: 15px; font-size: 1.3rem;">
     <div class="card-header text-center text-white" style="border-radius: 15px 15px 0 0; background-color: #154773;">
       <h4 class="mb-0" style="font-size: 1.95rem;">Bem-vindo à Administração de Equipe</h4>
     </div>
     <div class="card-body p-4">
-      <form id="form-login-secretaria" method="POST">
+      <form id="form-login-team" method="POST">
         <p class="text-center text-muted mb-4" style="font-size: 1.3rem;">
           Por favor, insira sua senha para acessar o painel da equipe.
         </p>
+        
         <div class="form-group m-3">
-          <label for="password-form" class="form-label fw-bold" style="font-size: 1.3rem;">Senha:</label>
+          <label for="input-id-team" class="form-label fw-bold" style="font-size: 1.3rem;">ID:</label>
+          <input
+            autocomplete="off"
+            type="text"
+            name="input-id-team"
+            id="input-id-team"
+            class="form-control"
+            placeholder="Digite seu ID"
+            style="font-size: 1.3rem;"
+            required
+          />
+        </div>
+        <div class="form-group m-3">
+          <label for="input-password-team" class="form-label fw-bold" style="font-size: 1.3rem;">Senha:</label>
           <input
             autocomplete="off"
             type="password"
-            name="password-form"
-            id="password-form"
+            name="input-password-team"
+            id="input-password-team"
             class="form-control"
             placeholder="Digite sua Senha"
             style="font-size: 1.3rem;"
@@ -29,7 +42,7 @@
           />
         </div>
         <div class="form-group text-center">
-          <button type="submit" class="btn text-white w-100" style="border-radius: 25px; font-size: 1.3rem; background-color: #154773;">Entrar</button>
+          <button type="submit" class="btn btn-custom text-white w-75" style=" font-size: 1.3rem;">Entrar</button>
         </div>
       </form>
     </div>
@@ -39,5 +52,5 @@
   </div>
 </div>
 
-<script src="{{ url_for('static', filename='scripts/script_form_login.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/teams/script_form_login.js') }}"></script>
 {% endblock %}

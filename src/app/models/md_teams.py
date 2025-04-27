@@ -1,8 +1,9 @@
 import os
 from app import app
-import uuid
+import shortuuid
 import json
 from app.utilities.ut_cryptography import Criptography
+from flask import session
 
 class Teams:
     #Caminho do arquivo .txt
@@ -23,7 +24,7 @@ class Teams:
     #Função para salvar os dados no arquivo .txt
     def saveDataTeam(self, team, master, pOwner, password, EmMaster, EmPOwner, dev_nomes, dev_emails):
         try:
-            idTeam = str(uuid.uuid4())
+            idTeam = str(shortuuid.uuid())
             devs = [{"nome": nome, "email": email} for nome, email in zip(dev_nomes, dev_emails)]
             
             # Formata os dados antes de criptografar
@@ -99,21 +100,25 @@ class Teams:
             print("Arquivo de equipes não encontrado. Criando novo...")
             return []
         
-    #Atualizar a situação de um atestado
-    # def updateStatus(self, status, id):
-    #     teams = []
-    #     try:
-    #         with open(self.srcData, "r", encoding="utf-8") as file:
-    #             for team in file:
-    #                 teams = Criptography.decrypt(team).strip().split(';')
-    #                 if certificate[0] == id:
-    #                     certificate[9] = status 
-    #                 certificates.append(';'.join(certificate)) 
-
-    #         with open(self.srcData, "w", encoding="utf-8") as file:
-    #             for line in certificates:
-    #                 line=Criptography.encrypt(line)
-    #                 file.write(f'{line}\n')
-    #         return True
-    #     except:
-    #         return False
+    def login(self, id,password):
+        try:
+            print(id,password)
+            teams=self.readTeam()
+            for team in teams:
+                print(team)
+                if team.id==id and team.password==password:
+                    session['team']={
+                        'id': team.id,
+                        'team': team.team,
+                        'master': team.master,
+                        'pOwner': team.pOwner,
+                        'EmMaster': team.EmMaster,
+                        'EmPOwner': team.EmPOwner,
+                        'devs': team.devs
+                    }
+                    return True
+            return False
+        except Exception as e:
+            print(f"Error: {e}")
+            return False
+        
