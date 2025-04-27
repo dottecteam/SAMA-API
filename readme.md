@@ -90,9 +90,10 @@ Comparação de gráficos | Um sistema que deve permitir que o avaliador selecio
 Para garantir um sistema mais funcional e eficiente, o **SAMA** está sendo desenvolvido utilizando as seguintes tecnologias:
 
 - **[Bootstrap](https://getbootstrap.com/)**: Biblioteca de CSS para criar interfaces modernas, responsivas e com design flexível.
-- **[Bootstrap Icons](https://icons.getbootstrap.com/)**: Conjunto de ícones de alta qualidade que foram integrados para melhorar a experiência visual do usuário.
-- **[jQuery](https://jquery.com/)**: Biblioteca JavaScript que facilita a manipulação de elementos HTML e a criação de interações dinâmicas no frontend.
-- **[Flask](https://flask.palletsprojects.com/)**: Framework web em Python utilizado para o desenvolvimento do backend, garantindo um servidor simples e poderoso para o gerenciamento de requisições.
+- **[jQuery](https://jquery.com/)**: Biblioteca de JavaScript que facilita a manipulação de elementos HTML e a criação de interações dinâmicas no front-end.
+- **[Flask](https://flask.palletsprojects.com/)**: Biblioteca de Python para o desenvolvimento do back-end, garantindo um servidor simples para o gerenciamento de requisições.
+- **[Visual Studio Code](https://code.visualstudio.com/)**: Editor de código leve e versátil, com suporte a extensões e múltiplas linguagens.
+- **Ajax**: Tecnologia web que permite a atualização dinâmica de partes da página.
 
 <br>
 <br>
