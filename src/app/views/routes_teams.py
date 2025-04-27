@@ -41,4 +41,7 @@ def viewTeams():
 def avaliacao():
     return render_template("teams/vw_form_evaluate.html")
 
-#TELAS
+#Página de editar equipes
+@app.route("/equipes/editar")
+def editTeam():
+    return render_template("teams/vw_edit_team.html", teams=TeamsController.readTeam())

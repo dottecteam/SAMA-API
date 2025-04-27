@@ -1,0 +1,113 @@
+{% extends "teams/vw_template.html" %}
+{% block content %}
+
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='stylesheets/teams/style_edit_team.css') }}"
+/>
+
+<div class="team-container">
+    {% if teams %}
+      {% for team in teams %}
+      <div class="team-card">
+        <h3 style="text-align: center; font-weight: bold;">{{ team.team }}</h3>
+        <div class="team-meta">
+          <div>ID: <strong>{{ team.id }}</strong></div>
+          <div>Status: <span class="dev-badge">Ativa</span></div>
+        </div>
+  
+        <div class="member-list">
+          <h4 style="margin-top: 30px;">Liderança</h4>
+          <ul>
+            <li style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="flex: 0 0 120px;"> <!-- Shortened name column -->
+                <span class="member-role">Scrum Master:</span>
+              </div>
+              <div style="flex: 2; margin-left: 10px;">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nome do Master"
+                  value="{{ team.master }}"
+                />
+              </div>
+              <div style="flex: 0 0 150px; margin-left: 10px; text-align: right;"> <!-- Reverted email column size -->
+                <input
+                  type="email"
+                  class="form-control email-input"
+                  placeholder="{{ team.EmMaster }}"
+                  value=""
+                />
+              </div>
+              <div style="flex: 0 0 100px; margin-left: 10px; text-align: right; color: red;"> <!-- Reverted remove column size -->
+                <button class="remove-btn" style="color: red; border: none; background: none;">&#x2716;</button> Remover
+              </div>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="flex: 0 0 120px;"> <!-- Shortened name column -->
+                <span class="member-role">Product Owner:</span>
+              </div>
+              <div style="flex: 2; margin-left: 10px;">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nome do P.O."
+                  value="{{ team.pOwner }}"
+                />
+              </div>
+              <div style="flex: 0 0 150px; margin-left: 10px; text-align: right;"> <!-- Reverted email column size -->
+                <input
+                  type="email"
+                  class="form-control email-input"
+                  placeholder="{{ team.EmPOwner }}"
+                  value=""
+                />
+              </div>
+              <div style="flex: 0 0 100px; margin-left: 10px; text-align: right; color: red;"> <!-- Reverted remove column size -->
+                <button class="remove-btn" style="color: red; border: none; background: none;">&#x2716;</button> Remover
+              </div>
+            </li>
+          </ul>
+  
+          {% if team.devs %}
+          <h4 style="margin-top: 20px;;">Desenvolvedores</h4>
+          <ul>
+            {% for dev in team.devs %}
+            <li style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="flex: 0 0 120px;"> <!-- Shortened name column -->
+                <span class="member-role">Desenvolvedor:</span>
+              </div>
+              <div style="flex: 2; margin-left: 10px;">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ dev.nome }}"
+                />
+              </div>
+              <div style="flex: 0 0 150px; margin-left: 10px; text-align: right;"> <!-- Reverted email column size -->
+                <input
+                  type="email"
+                  class="form-control email-input"
+                  placeholder="{{ dev.email }}"
+                  value=""
+                />
+              </div>
+              <div style="flex: 0 0 100px; margin-left: 10px; text-align: right; color: red;"> <!-- Reverted remove column size -->
+                <button class="remove-btn" style="color: red; border: none; background: none;">&#x2716;</button> Remover
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <a class="btn btn-edit text-white" style="display: block; text-align: center; margin: 10px 0; background-color: #154773;">Salvar Edição</a>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="no-teams">
+        <h3>Erro em carregar equipe</h3>
+
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

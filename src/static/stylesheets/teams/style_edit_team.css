@@ -1,0 +1,168 @@
+.title  {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+
+.input-title{
+  font-weight: bold;
+}
+
+.team-container {
+    display: grid; 
+    gap: 30px; /* Increased gap between cards */
+    padding: 40px; /* Increased padding around the container */
+    max-width: 1600px; /* Explicitly increased maximum width for the container */
+    margin: 0 auto; /* Center the container */
+}
+
+.team-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px; /* Increased padding */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+    width: 60%; /* Ensure the card takes full width of the container */
+    max-width: 1800px; /* Increased maximum width for the card */
+    margin: 0 auto; /* Center the card */
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.team-card h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+}
+
+.team-meta {
+    color: #7f8c8d;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.member-list {
+    margin-top: 20px;
+}
+
+.member-list h4 {
+    color: #3498db;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.member-list ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.member-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.member-list li div {
+    flex: 1;
+}
+
+.member-list li div:first-child {
+    flex: 0 0 120px; /* Shortened name column */
+}
+
+.member-list li div:nth-child(3) {
+    flex: 0 0 150px; /* Reverted email column size */
+    text-align: right; /* Align email column to the right */
+}
+
+.member-list li div:nth-child(4) {
+    flex: 0 0 100px; /* Reverted remove column size */
+    text-align: right;
+    color: red;
+}
+
+.member-list li div:nth-child(5) {
+    display: none; /* Remove the separate "Remover" column */
+}
+
+.member-list li div + div {
+    margin-left: 10px;
+}
+
+.member-list li input {
+    width: 100%; /* Ensure input boxes fill their column */
+}
+
+.member-list li:last-child {
+    border-bottom: none;
+}
+
+.member-role {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.member-email {
+    color: #3498db;
+    font-size: 0.85em;
+}
+
+.dev-badge {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.no-teams {
+    text-align: center;
+    padding: 40px;
+    color: #7f8c8d;
+    grid-column: 1 / -1;
+}
+
+.form-control {
+  padding: 4px; /* Reduced padding */
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.85rem; /* Slightly smaller font size */
+  color: #495057;
+  background-color: #fff;
+  width: 100%; /* Fill the entire area */
+  box-sizing: border-box;
+  text-align: left; /* Align text to the left */
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.email-input {
+  color: #3498db; /* Maintain blue font color */
+}
+
+.email-input::placeholder {
+  color: #3498db; /* Blue font color for placeholder */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .team-container {
+        grid-template-columns: 1fr;
+    }
+}
