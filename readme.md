@@ -27,7 +27,7 @@ O desenvolvimento do projeto segue a metodologia ágil **Scrum**, uma forma adap
 ## **📦 MVP**
 
 ✔ **Sprint 1** - Home page, cadastro de atestados, consulta de atestados e página FAQ. <a href='https://drive.google.com/file/d/1ywzBtuB1bd4RrZu-ZCTQt8jgHP-A-EsA/view?usp=sharing'>Clique aqui para acessar o vídeo!</a><br>
-⌚ **Sprint 2** - Dashboards, cadastro de equipes ágeis, consulta de equipes ágeis e seção para avaliações.<br>
+⌚ **Sprint 2** - Cadastro de usuários, aprovação de atestados, dashboard de atestados, cadastro de equipes ágeis. <a href='https://drive.google.com/file/d/1jTk7eODt-Jak68Yrb946AIikA18FqWzU/view?usp=sharing'>Clique aqui para acessar o vídeo!</a><br>
 ⌚ **Sprint 3** - Comparador de gráficos e correção de detalhes.<br>
 
 <br> 

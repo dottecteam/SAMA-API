@@ -2,25 +2,3 @@
     font-family: "Archivo Black", sans-serif;
     font-weight: bold;
   }
-
-.input-title{
-  font-weight: bold;
-}
-
-.form-control {
-  padding: 4px; /* Reduced padding */
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  font-size: 0.85rem; /* Slightly smaller font size */
-  color: #495057;
-  background-color: #fff;
-  width: 100%; /* Fill the entire area */
-  box-sizing: border-box;
-  text-align: left; /* Align text to the left */
-}
-
-.form-control:focus {
-  border-color: #80bdff;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}

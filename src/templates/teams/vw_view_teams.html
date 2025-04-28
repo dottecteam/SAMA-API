@@ -6,7 +6,7 @@ rel="stylesheet"
 href="{{ url_for('static', filename='stylesheets/teams/style_view_teams.css') }}"
 />
 
-<h1 class="title">Equipes Cadastradas</h1>
+<h1 class="title">Equipes Cadastradas (TESTE)</h1>
 
 <div class="team-container">
   {% if teams %}
@@ -15,6 +15,7 @@ href="{{ url_for('static', filename='stylesheets/teams/style_view_teams.css') }}
       <h3 style="text-align: center; font-weight: bold;">{{ team.team }}</h3>
       <div class="team-meta">
         <div>Status: <span class="dev-badge">Ativa</span></div>
+        <p>ID: <span class="dev-badge">{{ team.id }}</span></p>
       </div>
 
       <div class="member-list">

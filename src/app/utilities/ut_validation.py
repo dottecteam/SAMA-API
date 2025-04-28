@@ -27,13 +27,40 @@ class Validation:
         logo_path = os.path.join(app.root_path, "..", "static", "images", "logo.jpg")
         body = f"""
             <html>
-                <body style="font-family: Arial; color: #000000;">
-                    <img src="cid:logo" style="border-radius:15px;width: 500px; margin-bottom: 20px;">
-                    <h2 style="text-align:center">Confirmação de E-mail</h2>
-                    <p style="text-align:center">Seu código de confirmação:</p>
-                    <h1 style="color: #3b8c6e; text-align:center">{session['code']}</h1>
+                <body style="font-family: 'Arial', sans-serif; background-color: #f4f4f9; color: #333333; margin: 0; padding: 0;">
+                    <!-- Container Principal -->
+                    <div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        
+                        <!-- Logo -->
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <img src="cid:logo" style="border-radius: 15px; width: 200px; margin-bottom: 20px;" alt="Logo" />
+                        </div>
+
+                        <!-- Título -->
+                        <h2 style="text-align: center; font-size: 24px; color: #333333; font-weight: 600;">Confirmação de E-mail</h2>
+
+                        <!-- Mensagem -->
+                        <p style="text-align: center; font-size: 16px; color: #555555; margin-top: 10px;">Para concluir o processo, por favor, insira o código de confirmação abaixo:</p>
+
+                        <!-- Código de Confirmação -->
+                        <div style="text-align: center; margin: 20px 0;">
+                            <h1 style="color: #3b8c6e; font-size: 36px; font-weight: bold; padding: 20px; background-color: #f0f9f4; border-radius: 8px; display: inline-block; min-width: 120px;">
+                                {session['code']}
+                            </h1>
+                        </div>
+
+                        <!-- Instrução -->
+                        <p style="text-align: center; font-size: 14px; color: #777777;">Se você não solicitou essa confirmação, por favor, ignore este e-mail.</p>
+
+                        <!-- Rodapé -->
+                        <div style="text-align: center; margin-top: 30px; font-size: 12px; color: #888888;">
+                            <p>&copy; 2025 SAMA. Todos os direitos reservados.</p>
+                        </div>
+                    </div>
                 </body>
             </html>
+
+
             """
 
         # Criação da mensagem com partes (HTML + Imagem)
