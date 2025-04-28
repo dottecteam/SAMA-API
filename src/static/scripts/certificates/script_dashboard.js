@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
     logoImage.src = logoUrl;
 
     logoImage.onload = function () {
-      html2canvas(document.querySelector('.graficos-container'), {
+      html2canvas(document.getElementById('graficos-container'), {
         scale: 2,
         useCORS: true
       }).then(canvas => {
