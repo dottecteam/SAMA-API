@@ -91,6 +91,18 @@ def valide_email():
 def register_user():
     return UserController.registerUser()
 
+@app.route("/usuarios/alterar_info", methods=['POST'])
+def user_change_info():
+    return UserController.changeInformation()
+
+@app.route("/usuarios/deletar_conta/validar", methods=["POST"])
+def delete_val():
+    return UserController.deleteValidation()
+
+@app.route("/usuarios/deletar_conta", methods=["POST"])
+def delete_acc():
+    return UserController.deleteAccount()
+
 @app.route("/usuarios/alterar_senha", methods=['POST'])
 def user_change_password():
     return UserController.changePassword()

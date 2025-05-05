@@ -18,4 +18,9 @@ $(document).ready(function () {
             }
         }
     );
+
+    // Evita alerta no console ao fechar modais
+    document.addEventListener('hide.bs.modal', function() {
+        document.activeElement.blur();
+    });
 });
