@@ -14,10 +14,14 @@ class UserController:
             session['password']=request.form['input-password-form-users']
             session['confirmPassword']=request.form['input-confirm-password-form-users']
 
-            if Validation.validePassword(session['password'],session['confirmPassword'])==False:
+            if Validation.validePassword(session['password'],session['confirmPassword'])==0:
                 session.clear()
-                return jsonify({"status": False, "message": "Erro ao validar senha!"}), 400
+                return jsonify({"status": False, "message": "A senha deve possuir de 8 a 12 caracteres."}), 400
             
+            if Validation.validePassword(session["password"], session["confirmPassword"]) == 1:
+                session.clear()
+                return jsonify({"status": False, "message": "As senhas não coincidem."}), 400
+
             if Validation.sendEmail(session['email']) == False:
                 session.clear()
                 return jsonify({"status": False, "message": "Erro ao enviar email!"}), 400
