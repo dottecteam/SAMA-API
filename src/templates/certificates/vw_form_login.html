@@ -2,13 +2,16 @@
 
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='stylesheets/certificates/style_form_login.css') }}"
-/>
+  href="{{ url_for('static', filename='stylesheets/certificates/style_form_login.css') }}" />
 
-<div class="container d-flex justify-content-center align-items-start" style="padding-top: 50px;">
-  <div class="card shadow-lg" style="width: 100%; max-width: 520px; border-radius: 15px; font-size: 1.3rem;">
-    <div class="card-header text-center text-white" style="border-radius: 15px 15px 0 0; background-color: #3B8C6E;;">
-      <h4 class="mb-0" style="font-size: 1.95rem;">Bem-vindo à Administração da Secretaria</h4>
+<div class="container d-flex justify-content-center align-items-start"
+  style="padding-top: 50px;">
+  <div class="card shadow-lg"
+    style="width: 100%; max-width: 520px; border-radius: 15px; font-size: 1.3rem;">
+    <div class="card-header text-center text-white"
+      style="border-radius: 15px 15px 0 0; background-color: #3B8C6E;;">
+      <h4 class="mb-0" style="font-size: 1.95rem;">Bem-vindo à Administração da
+        Secretaria</h4>
     </div>
     <div class="card-body p-4">
       <form id="form-login-secretary" method="POST">
@@ -16,7 +19,8 @@
           Por favor, insira seu código de funcionário para acessar o sistema.
         </p>
         <div class="form-group m-3 position-relative">
-          <label for="input-password-secretary" class="form-label fw-bold" style="font-size: 1.3rem;">Código:</label>
+          <label for="input-password-secretary" class="form-label fw-bold"
+            style="font-size: 1.3rem;">Código:</label>
           <input
             autocomplete="off"
             type="password"
@@ -25,25 +29,27 @@
             class="form-control"
             placeholder="Digite seu código"
             style="font-size: 1.3rem;"
-            required
-          />
+            required />
           <i
             class="bi bi-eye-fill position-absolute"
             id="show-password"
             style="top: calc(50% + 18px); right: 10px; transform: translateY(-50%); cursor: pointer; font-size: 1.625rem; line-height: 1;"
-            onclick="showPassword()"
-          ></i>
+            onclick="showPassword()"></i>
         </div>
         <div class="form-group text-center">
-          <button type="submit" class="btn w-75 text-white btn-custom" style="font-size: 1.3rem;">Entrar</button>
+          <button type="submit" class="btn w-75 text-white btn-custom"
+            style="font-size: 1.3rem;">Entrar</button>
         </div>
       </form>
     </div>
-    <div class="card-footer text-center text-muted" style="border-radius: 0 0 15px 15px; font-size: 1.15rem;">
+    <div class="card-footer text-center text-muted"
+      style="border-radius: 0 0 15px 15px; font-size: 1.15rem;">
       <small>© 2025 SAMA. Todos os direitos reservados.</small>
     </div>
   </div>
 </div>
 
-<script src="{{ url_for('static', filename='scripts/certificates/script_form_login_secretary.js') }}"></script>
+<script
+  src="{{ url_for('static', filename='scripts/certificates/script_form_login_secretary.js') }}"></script>
+
 {% endblock %}
