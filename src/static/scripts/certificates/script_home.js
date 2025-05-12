@@ -3,7 +3,7 @@ const ModalError = new bootstrap.Modal($("#modal-error"));
 const ModalLogin = new bootstrap.Modal($("#modal-login"));
 
 $(document).ready(function () {
-    $('#link-register-certificate').on('click', function(){
+    $('#link-register-certificate').on('click', function(event){
         event.preventDefault();
 
         $.ajax({
