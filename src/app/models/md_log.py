@@ -8,7 +8,7 @@ class Log:
         if 'user' in session:
             account=session['user']['email']
         elif 'team' in session:
-            account=session['user']['team']
+            account=session['team']['team']
         elif 'secretary' in session:
             account='Secretary'
         else:
