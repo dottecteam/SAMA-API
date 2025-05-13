@@ -51,7 +51,6 @@ class Teams:
                 file.write("--- INÍCIO DA EQUIPE ---\n")
                 file.write(f"{encrypted_data}\n")
                 file.write("--- FIM DA EQUIPE ---\n\n")  # 2 quebras de linha para separação
-                
             return True
         except Exception as e:
             print(f"Erro ao salvar equipe: {e}")

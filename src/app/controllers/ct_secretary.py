@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_secretary import Secretary
 from functools import wraps
+from app.models.md_log import Log
 
 class SecretaryController:
     def loginRequired(f):
@@ -17,9 +18,12 @@ class SecretaryController:
             secretary=Secretary()
             response = secretary.login(password)
             if response:
+                Log().register(operation='Secretary: Login')
                 return jsonify({"status": True,"message": "Secretaria logada com sucesso!"}), 200
             else:
+                Log().register(operation='Secretary: Login Attempt')
                 return jsonify({"status": False, "message": "Senha incorreta."}), 400
         except Exception as e:
             print(f"Error: {e}")
+            Log().register(operation='Secretary: Login Attempt')
             return jsonify({"status": False,"message": "Erro ao logar secretaria!"}), 400 

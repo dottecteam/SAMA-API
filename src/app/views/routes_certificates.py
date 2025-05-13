@@ -4,6 +4,7 @@ from app.controllers.ct_certificates import *
 from app.controllers.ct_users import *
 from app.controllers.ct_secretary import *
 from app.controllers.ct_dashboard_certificates import *
+from app.models.md_log import Log
 import os
 
 #TELAS
@@ -110,6 +111,7 @@ def user_change_password():
 #Função para deslogar de contas  
 @app.route('/logout')
 def logout():
+    Log().register(operation='Account: Logout')
     session.clear()
     return redirect(url_for('home'))
 

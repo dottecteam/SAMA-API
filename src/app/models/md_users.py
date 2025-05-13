@@ -73,7 +73,6 @@ class Users:
 
             with open(Users.srcData, "w", encoding="utf-8") as arquivo:
                 arquivo.writelines(novas_linhas)
-
             return "Dados atualizados com sucesso!"
 
         except Exception as e:
