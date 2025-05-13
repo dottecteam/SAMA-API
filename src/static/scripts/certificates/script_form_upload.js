@@ -1,15 +1,4 @@
 $(document).ready(function () {
-  //Modais
-  const ModalLoading = new bootstrap.Modal(
-    $("#modal-loading"),
-    {
-      backdrop: "static",
-      keyboard: false,
-    }
-  );
-  const ModalError = new bootstrap.Modal($("#modal-error"));
-  const ModalSuccess = new bootstrap.Modal($("#modal-success"));
-
   // Quando a área de upload é clicada, dispara o clique no input file
   $("#file-upload-area").on("click", function () {
     $("#file-form-certificates")[0].click(); // Dispara o clique no input file
@@ -22,7 +11,7 @@ $(document).ready(function () {
     if (file && file.name.endsWith(".pdf")) {
       $("#file-upload-area span").text(file.name); // Atualiza o nome do arquivo na área
     } else {
-      ModalError.show();
+      $("#modal-error").modal('show');
       $("#error-message").html("Formato de arquivo inválido.");
       $("#file-upload-area span").text(
         "Arraste ou clique para escolher o arquivo"
@@ -53,7 +42,7 @@ $(document).ready(function () {
       $("#file-upload-area span").text(file.name); // Atualiza o nome do arquivo na área
       // Se quiser processar o arquivo aqui, como enviá-lo para o servidor, pode adicionar essa lógica
     } else {
-      ModalError.show();
+      $("#modal-error").modal('show');
       $("#error-message").html("Formato de arquivo inválido.");
       $("#file-upload-area span").text(
         "Arraste ou clique para escolher o arquivo"
@@ -65,7 +54,7 @@ $(document).ready(function () {
     event.preventDefault();
     let formData = new FormData(this);
 
-    ModalLoading.show();
+    $("#modal-loading").modal('show');
     $.ajax({
       type: "POST",
       url: "/atestados/cadastro/cadastrar",
@@ -74,26 +63,26 @@ $(document).ready(function () {
       contentType: false,
       success: function (response) {
         setTimeout(function () {
-          ModalLoading.hide();
+          $("#modal-loading").modal('hide');
           if (response.status) {
-            ModalSuccess.show();
+            $("#modal-success").modal('show');
             $("#form-certificates")[0].reset();
             $("#file-upload-area span").text(
               "Arraste ou clique para escolher o arquivo"
             );
           } else {
             $("#error-message").html(response.message);
-            ModalError.show();
+            $("#modal-error").modal('show');
           }
         }, 1000);
       },
       error: function (xhr, status, error) {
         setTimeout(function () {
-          ModalLoading.hide();
+          $("#modal-loading").modal('hide');
           var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
           var errorMessage = response.message;
           $("#error-message").html(errorMessage);
-          ModalError.show();
+          $("#modal-error").modal('show');
         }, 1000);
 
       }

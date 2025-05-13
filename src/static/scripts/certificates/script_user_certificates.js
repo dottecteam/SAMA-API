@@ -1,11 +1,3 @@
-const ModalError = new bootstrap.Modal($("#modal-error"))
-const ModalSuccess = new bootstrap.Modal($("#modal-success"))
-const ModalConfirm = new bootstrap.Modal($("#modal-confirm"))
-const ModalLoading = new bootstrap.Modal($("#modal-loading"), {
-    backdrop: "static",
-    keyboard: false,
-})
-
 $(document).ready(function () {
     activeEvents();
 });
@@ -13,7 +5,7 @@ $(document).ready(function () {
 function activeEvents() {
     $(".btn-delete-certificate").click(function () {
         let id = $(this).data('id');
-        ModalConfirm.show()
+        $("#modal-confirm").modal('show');
         $("#data-id").val(id);
     });
 
@@ -21,7 +13,7 @@ function activeEvents() {
         let id = $("#data-id").val();
         let formdata = new FormData();
         formdata.append('id', id)
-        ModalConfirm.hide();
+        $("#modal-confirm").modal('hide');
         $.ajax({
             type: "POST",
             url: "/atestado/deletar",
@@ -34,7 +26,7 @@ function activeEvents() {
                     updateTable();
                 } else {
                     $("#error-message").html(response.message);
-                    ModalError.show();
+                    $("#modal-error").modal('show');
                 }
 
             },
@@ -45,7 +37,7 @@ function activeEvents() {
                 var response = JSON.parse(xhr.responseText);
                 var errorMessage = response.message;
                 $("#error-message").html(errorMessage);
-                ModalError.show();
+                $("#modal-error").modal('show');
 
             }
         });
@@ -69,14 +61,14 @@ function updateTable() {
                 activeEvents();
             } else {
                 $("#error-message").html(response.message);
-                ModalError.show();
+                $("#modal-error").modal('show');
             }
         },
         error: function (xhr, status, error) {
             var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
             var errorMessage = response.message;
             $("#error-message").html(errorMessage);
-            ModalError.show();
+            $("#modal-error").modal('show');
         }
     });
 }

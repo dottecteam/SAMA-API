@@ -1,14 +1,3 @@
-  //Modais
-  const ModalLoading = new bootstrap.Modal(
-    $("#modal-loading"),
-    {
-      backdrop: "static",
-      keyboard: false,
-    }
-  );
-  const ModalError = new bootstrap.Modal($("#modal-error"));
-  const ModalSuccess = new bootstrap.Modal($("#modal-success"));
-
 $(document).ready(function () {
   let fieldCounter = 0; // Contador para gerar IDs únicos
 
@@ -63,19 +52,19 @@ $(document).ready(function () {
       contentType: false,
       success: function (response) {
         if (response.status) {
-          ModalSuccess.show();
+          $("#modal-success").modal('show');
           $("#form-teams")[0].reset();
 
         } else {
           $("#error-message").html(response.message);
-          ModalError.show();
+          $("#modal-error").modal('show');
         }
       },
       error: function (xhr, status, error) {
         var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
         var errorMessage = response.message;
         $("#error-message").html(errorMessage);
-        ModalError.show();
+        $("#modal-error").modal('show');
       },
     });
   });
