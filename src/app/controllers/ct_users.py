@@ -14,10 +14,6 @@ class UserController:
             session['semester'] = request.form['select-semester-form-users']
             session['password']=request.form['input-password-form-users']
             session['confirmPassword']=request.form['input-confirm-password-form-users']
-
-            if Validation.validePassword(session['password'],session['confirmPassword'])==0:
-                session.clear()
-                return jsonify({"status": False, "message": "A senha deve possuir de 8 a 12 caracteres."}), 400
             
             if Validation.validePassword(session["password"], session["confirmPassword"]) == 1:
                 session.clear()

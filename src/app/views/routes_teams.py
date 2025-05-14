@@ -36,6 +36,11 @@ def view_teams():
 def team_profile():
     return render_template("teams/vw_profile.html", team=TeamsController.readTeamById())
 
+#Página de edição de equipe
+@app.route("/equipes/editar")
+def edit_team():
+    return render_template("teams/vw_edit_team.html")
+
 #Página de criar avaliações
 @app.route("/equipes/avaliacoes")
 def avaliacao():

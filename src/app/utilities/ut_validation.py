@@ -118,10 +118,9 @@ class Validation:
             return True
         return False
     
-    #Função para validar a senha
+    #Função para validar a igualdade da senha
     def validePassword(password, confirmPassword):
-        if len(password)<8 or len(password)>12:
-            return 0
-        elif password != confirmPassword:
+        if password != confirmPassword:
             return 1
-        return True
+        else:
+            return True
