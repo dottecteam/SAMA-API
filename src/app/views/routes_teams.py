@@ -37,9 +37,10 @@ def team_profile():
     return render_template("teams/vw_profile.html", team=TeamsController.readTeamById())
 
 #Página de edição de equipe
-@app.route("/equipes/editar")
-def edit_team():
-    return render_template("teams/vw_edit_team.html")
+@app.route("/equipes/atualizar", methods=['POST'])
+@TeamsController.loginRequired  
+def update_team():
+    return TeamsController.update_team()
 
 #Página de criar avaliações
 @app.route("/equipes/avaliacoes")

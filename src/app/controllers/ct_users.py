@@ -87,7 +87,6 @@ class UserController:
             response = Certificates.changePersonalData(name = new_name, email = email, course = new_course, semester = new_semester)
             Log().register(operation=f'User: Change Data')
             return jsonify({'status': True, 'message': 'Dados alterados com sucesso!'})
-
         
     def deleteValidation():
         data = request.get_json()

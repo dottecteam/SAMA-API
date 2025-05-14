@@ -99,6 +99,7 @@ class Teams:
             print("Arquivo de equipes não encontrado. Criando novo...")
             return []
         
+    #Função de Login
     def login(self, id,password):
         try:
             print(id,password)
@@ -119,5 +120,50 @@ class Teams:
             return False
         except Exception as e:
             print(f"Error: {e}")
+            return False
+    
+    #Função de editar equipe
+    def update_team(self, team_id, new_team_name, new_master, new_pOwner, new_EmMaster, new_EmPOwner, new_devs):
+        try:
+            teams = self.readTeam()
+            updated = False
+            
+            with open(self.srcData, "w", encoding="utf-8") as file:
+                file.write("")
+                
+            for team in teams:
+                if team.id == team_id:
+                    team.team = new_team_name
+                    team.master = new_master
+                    team.pOwner = new_pOwner
+                    team.EmMaster = new_EmMaster
+                    team.EmPOwner = new_EmPOwner
+                    team.devs = new_devs
+                    updated = True
+                
+                plain_data = {
+                    "id": team.id,
+                    "team": team.team,
+                    "master": team.master,
+                    "pOwner": team.pOwner,
+                    "password": team.password,
+                    "EmMaster": team.EmMaster,
+                    "EmPOwner": team.EmPOwner,
+                    "status": "Pendente",
+                    "devs": team.devs
+                }
+                
+                json_data = json.dumps(plain_data, indent=2, ensure_ascii=False)
+                encrypted_data = Criptography.encrypt(json_data)
+                
+                with open(self.srcData, "a", encoding="utf-8") as file:
+                    file.write("--- INÍCIO DA EQUIPE ---\n")
+                    file.write(f"{encrypted_data}\n")
+                    file.write("--- FIM DA EQUIPE ---\n\n")
+            
+            return updated
+            
+        except Exception as e:
+            print(f"Erro ao atualizar equipe: {e}")
             return False
         

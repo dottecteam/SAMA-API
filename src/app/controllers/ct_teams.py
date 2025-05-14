@@ -71,20 +71,48 @@ class TeamsController:
         except Exception as e:
             print(f"Error: {e}")
             return jsonify({"status": False, "message": "Erro ao ler dados da equipe!"}), 500
+        
+    #Função para editar equipe
+    @staticmethod
+    def update_team():
+        try:
+            if 'team' not in session:
+                return jsonify({"status": False, "message": "Acesso não autorizado."}), 401
+
+            # Pega os dados do JSON enviado pelo frontend
+            data = request.get_json()
             
-    
+            team_id = session['team']['id']
+            team_name = data.get('teamName')
+            master = data.get('SMaster')
+            EmMaster = data.get('EmMaster')
+            pOwner = data.get('PO')
+            EmPOwner = data.get('EmPOwner')
+            dev_names = data.get('dev_name', [])  # Lista de nomes
+            dev_emails = data.get('dev_email', [])  # Lista de emails
 
-        
+            # Combina nomes e emails em uma lista de dicionários
+            devs = [{"nome": nome, "email": email} for nome, email in zip(dev_names, dev_emails)]
 
-        
-        
-       
-            
-    
-         
+            # Chama o método do model para atualizar
+            if Teams().update_team(team_id, team_name, master, pOwner, EmMaster, EmPOwner, devs):
+                # Atualiza a sessão
+                session['team'] = {
+                    'id': team_id,
+                    'team': team_name,
+                    'master': master,
+                    'pOwner': pOwner,
+                    'EmMaster': EmMaster,
+                    'EmPOwner': EmPOwner,
+                    'devs': devs
+                }
+                session.modified = True
 
+                Log().register(operation=f'Team: Update Team Data ({team_id})')
+                return jsonify({"status": True, "message": "Equipe atualizada com sucesso!"}), 200
+            else:
+                return jsonify({"status": False, "message": "Erro ao atualizar equipe."}), 400
 
-
-
-    
- 
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"status": False, "message": "Erro interno ao atualizar equipe."}), 500
