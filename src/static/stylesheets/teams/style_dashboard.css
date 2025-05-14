@@ -1,0 +1,56 @@
+#container-dashboard {
+    min-height: 80vh;
+}
+
+/* Texto responsivo */
+.text-dashboard h1 {
+    font-size: clamp(1.5rem, 4vw, 4rem);
+    font-weight: 700;
+    color: #000;
+}
+
+.team-developer {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 600;
+    color: #000;
+    transition: all .3s ease;
+    padding: 1rem 2rem;
+    white-space: nowrap;
+}
+
+/* Impede o gráfico de crescer demais */
+canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+/* Ajusta colunas nos gráficos somente no responsivo */
+@media (max-width: 768px) {
+    .col-md-2 {
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: row !important;
+    }
+
+    .col-md-2 > div {
+        flex: 1 1 48%;
+    }
+
+
+    .team-developer {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .text-dashboard h1 {
+        font-size: 2rem;
+    }
+
+    .col-md-10 > .row > .col-4, .col-md-10 > .row > .col-8, .col-md-10 > .row > .col-7, .col-md-10 > .row > .col-5 {
+        flex: 1 1 100%;
+    }
+
+    
+}

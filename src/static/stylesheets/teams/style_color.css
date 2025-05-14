@@ -79,6 +79,20 @@
 }
 
 .form-check-input:checked {
-  background-color: rgba(var(--cor-primaria)); /* azul claro (ou qualquer cor que você quiser) */
+  background-color: rgba(var(--cor-primaria));
+  /* azul claro (ou qualquer cor que você quiser) */
   border-color: rgba(var(--cor-primaria));
+}
+
+.team-developer:hover {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  background-color: rgba(var(--cor-primaria));
+  cursor: pointer;
+}
+
+.team-developer.active {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  background-color: rgba(var(--cor-primaria));
 }
