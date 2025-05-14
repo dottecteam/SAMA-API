@@ -4,6 +4,7 @@ from app.controllers.ct_certificates import *
 from app.controllers.ct_users import *
 from app.controllers.ct_secretary import *
 from app.controllers.ct_dashboard_certificates import *
+from app.models.md_log import Log
 import os
 
 #TELAS
@@ -91,6 +92,18 @@ def valide_email():
 def register_user():
     return UserController.registerUser()
 
+@app.route("/usuarios/alterar_info", methods=['POST'])
+def user_change_info():
+    return UserController.changeInformation()
+
+@app.route("/usuarios/deletar_conta/validar", methods=["POST"])
+def delete_val():
+    return UserController.deleteValidation()
+
+@app.route("/usuarios/deletar_conta", methods=["POST"])
+def delete_acc():
+    return UserController.deleteAccount()
+
 @app.route("/usuarios/alterar_senha", methods=['POST'])
 def user_change_password():
     return UserController.changePassword()
@@ -98,6 +111,7 @@ def user_change_password():
 #Função para deslogar de contas  
 @app.route('/logout')
 def logout():
+    Log().register(operation='Account: Logout')
     session.clear()
     return redirect(url_for('home'))
 

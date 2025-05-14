@@ -28,6 +28,7 @@
 .btn-custom {
   background-color: rgba(var(--cor-primaria));
   color: #ffffff;
+  transition: all .3s ease;
 }
 
 .btn-custom:hover {

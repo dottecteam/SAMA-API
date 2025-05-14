@@ -1,13 +1,3 @@
-    //Modais
-    const ModalLoading = new bootstrap.Modal(
-        $("#modal-loading"),
-        {
-            backdrop: "static",
-            keyboard: false,
-        }
-    );
-    const ModalError = new bootstrap.Modal($("#modal-error"));
-    const ModalSuccess = new bootstrap.Modal($("#modal-success"));
 $(document).ready(function () {
     // Formulário de acesso
     $('#form-login-secretary').submit(function (event) {
@@ -23,12 +13,12 @@ $(document).ready(function () {
                 if (response.status) {
                     window.location.href = "/painel/atestados";
                 } else {
-                    ModalError.show()
+                    $("#modal-error").modal('show');
                     $('#error-message').html(response.message);
                 }
             },
             error: function (xhr, status, error) {
-                ModalError.show()
+                $("#modal-error").modal('show');
                 var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
                 var errorMessage = response.message;
                 $('#error-message').html(errorMessage);

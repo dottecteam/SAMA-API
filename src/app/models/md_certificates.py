@@ -176,7 +176,24 @@ class Certificates:
         except Exception as e:
             print(f"Error: {e}")
             return False
-
+        
+    def deleteAllDataByEmail(self, email):
+        try:
+            certificatesExcluded=self.readDataByEmail(self, email)
+            certificates=self.readAllData(self)
+            filteredCertificates=[]
+            for certificate in certificates:
+                for certificateExcluded in certificatesExcluded:
+                    if certificate.email!=certificateExcluded.email:
+                        filteredCertificates.append(certificate)
+                    self.deleteFile(self, certificate.pdf)
+            if self.writeAllData(self, filteredCertificates):
+                return True
+            else:
+                return False
+        except Exception as e:
+            print(f"Error: {e}")
+            return False
         
     #Atualizar a situação de um atestado
     def updateStatus(self, status, id):
@@ -198,5 +215,21 @@ class Certificates:
             print(f"Error: {e}")
             return False
     
-
-   
+    def changePersonalData(name, email, course, semester):
+        certificates = Certificates.readAllData(Certificates)
+        fixedCertificates = []
+        try:
+            for certificate in certificates:
+                if certificate.email==email:
+                    certificate.name = name
+                    certificate.course = course
+                    certificate.semester = semester
+                fixedCertificates.append(certificate)
+            if Certificates.writeAllData(Certificates, fixedCertificates):
+                return True
+            else:
+                return False
+        except Exception as e:
+            print(f"Error: {e}")
+            return False
+            

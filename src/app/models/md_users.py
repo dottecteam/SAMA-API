@@ -50,8 +50,57 @@ class Users:
             print(f"Error: {e}")
             return False
         
+    def change_information(email, name, course, semester):
+        try:
+            session['user']['name'] = name
+            session['user']['course'] = course
+            session['user']['semester'] = semester
+            session.modified = True
+
+            with open(Users.srcData, "r", encoding="utf-8") as arquivo:
+                linhas = arquivo.readlines()
+
+            novas_linhas = []
+
+            for linha in linhas:
+                dados = Criptography.decrypt(linha).strip().split(';')
+                if dados[1] == email:
+                    dados[0] = session['user']['name']
+                    dados[2] = session['user']['course']
+                    dados[3] = session['user']['semester']
+                nova_linha = Criptography.encrypt(';'.join(dados))
+                novas_linhas.append(nova_linha + "\n")
+
+            with open(Users.srcData, "w", encoding="utf-8") as arquivo:
+                arquivo.writelines(novas_linhas)
+            return "Dados atualizados com sucesso!"
+
+        except Exception as e:
+            print(f"Erro ao atualizar dados: {e}")
+            return "Erro interno ao atualizar dados"
+        
+    def delete_account(email):
+        try:
+            with open(Users.srcData, "r", encoding="utf-8") as arquivo:
+                linhas = arquivo.readlines()
+            novas_linhas = []
+            for linha in linhas:
+                dados = Criptography.decrypt(linha).strip().split(';')
+                if dados[1] != email:
+                    nova_linha = Criptography.encrypt(';'.join(dados))
+                    novas_linhas.append(nova_linha + "\n")
+            with open(Users.srcData, "w", encoding="utf-8") as arquivo:
+                arquivo.writelines(novas_linhas)
+            return True
+        except Exception as e:
+            print(f"Erro ao excluir conta: {e}")
+            return False
+        
     def change_password(email, nova_senha):
         try:
+            session['user']['password'] = nova_senha
+            session.modified = True
+
             with open(Users.srcData, "r", encoding="utf-8") as arquivo:
                 linhas = arquivo.readlines()
 

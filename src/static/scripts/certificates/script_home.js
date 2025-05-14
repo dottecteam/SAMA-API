@@ -1,9 +1,5 @@
-//Modais
-const ModalError = new bootstrap.Modal($("#modal-error"));
-const ModalLogin = new bootstrap.Modal($("#modal-login"));
-
 $(document).ready(function () {
-    $('#link-register-certificate').on('click', function(){
+    $('#link-register-certificate').on('click', function (event) {
         event.preventDefault();
 
         $.ajax({
@@ -14,14 +10,14 @@ $(document).ready(function () {
                 if (response.status) {
                     window.location.href = "/atestados/cadastro";
                 } else {
-                    ModalLogin.show();
+                    $('#modal-login').modal('show');
                 }
             },
             error: function (xhr, status, error) {
-                var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
+                var response = JSON.parse(xhr.responseText);
                 var errorMessage = response.message;
                 $("#error-message").html(errorMessage);
-                ModalError.show();
+                $('#modal-error').modal('show');
             }
         });
     });

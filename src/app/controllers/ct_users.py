@@ -1,7 +1,9 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.utilities.ut_validation import Validation
 from app.models.md_users import Users
+from app.models.md_certificates import Certificates
 from functools import wraps
+from app.models.md_log import Log
 
 class UserController:
     def dataValidation():
@@ -13,14 +15,17 @@ class UserController:
             session['password']=request.form['input-password-form-users']
             session['confirmPassword']=request.form['input-confirm-password-form-users']
 
-            if Validation.validePassword(session['password'],session['confirmPassword'])==False:
+            if Validation.validePassword(session['password'],session['confirmPassword'])==0:
                 session.clear()
-                return jsonify({"status": False, "message": "Erro ao validar senha!"}), 400
+                return jsonify({"status": False, "message": "A senha deve possuir de 8 a 12 caracteres."}), 400
             
+            if Validation.validePassword(session["password"], session["confirmPassword"]) == 1:
+                session.clear()
+                return jsonify({"status": False, "message": "As senhas não coincidem."}), 400
+
             if Validation.sendEmail(session['email']) == False:
                 session.clear()
                 return jsonify({"status": False, "message": "Erro ao enviar email!"}), 400
-            
             return jsonify({"status": True, "message": "Código enviado com sucesso!"}), 200
         except Exception as e:
             print(f"Error: {e}")
@@ -37,6 +42,7 @@ class UserController:
             if response != True:
                 session.clear()
                 return jsonify({"status": False, "message": "Erro ao salvar dados!"}), 400
+            Log().register(operation=f'User: Register Account ({session['email']})')
             session.clear()
             return jsonify({"status": True, "message": "Atestado cadastrado com sucesso!"}), 200 
         except Exception as e:
@@ -50,11 +56,14 @@ class UserController:
             user=Users()
             response=user.login(email,password)
             if response:
+                Log().register(operation=f'User: Login')
                 return jsonify({"status": True,"message": "Logado com sucesso!"}), 200
             else:
+                Log().register(operation=f'User: Login Attempt')
                 return jsonify({"status": False, "message": "Credenciais inválidas."}), 400
         except Exception as e:
             print(f"Error: {e}")
+            Log().register(operation=f'User: Login Attempt')
             return jsonify({"status": False,"message": "Erro ao logar!"}), 400
         
     def loginRequired(f):
@@ -64,7 +73,63 @@ class UserController:
                 return redirect(url_for('home'))
             return f(*args, **kwargs)
         return decorated_function
+    
+    def changeInformation():
+        password = request.form['password']
+        new_name = request.form['new_name']
+        email = request.form['email']
+        new_course = request.form['new_course']
+        new_semester = request.form['new_semester']
+                
+        if password != session['user']['password']:
+            return jsonify({'status': False, 'message': 'Senha Incorreta'})
+                
+        else:
+            response = Users.change_information(email, new_name, new_course, new_semester)
+            if not response:
+                return jsonify({'status': False, 'message': 'Erro ao alterar dados'})
+            response = Certificates.changePersonalData(name = new_name, email = email, course = new_course, semester = new_semester)
+            Log().register(operation=f'User: Change Data')
+            return jsonify({'status': True, 'message': 'Dados alterados com sucesso!'})
 
+        
+    def deleteValidation():
+        data = request.get_json()
+        email = data.get('email')
+        password = data.get('password')
+        
+        if password != session['user']['password']:
+            Log().register(operation=f'User: Delete Account Attempt')
+            return jsonify({'status': False, 'message': 'Senha Incorreta'})
+
+        if Validation.sendEmail(email):
+            return jsonify({"status": True, "message": "Email enviado com sucesso!"})
+        else:
+            Log().register(operation=f'User: Delete Account Attempt')
+            return jsonify({"status": False, "message": "Erro ao enviar email!"}), 400
+
+        
+    def deleteAccount():
+        try:
+            data = request.get_json()
+            email = data.get('email')
+            code = data.get('code')
+
+            if not Validation.confirmEmail(code):
+                Log().register(operation=f'User: Delete Account Attempt')
+                return jsonify({"status": False, "message": "Código incorreto!"}), 400
+            
+            if Users.delete_account(email):
+                if Certificates.deleteAllDataByEmail(Certificates, email):
+                    Log().register(operation=f'User Account: Delete Account')
+                    session.clear()
+                    return jsonify({"status": True, "message": "Conta excluída com sucesso!"}) 
+            Log().register(operation=f'User: Delete Account Attempt')  
+            return jsonify({"status": False, "message": "Erro ao excluir conta"})
+        except:
+            Log().register(operation=f'User: Delete Account Attempt')
+            return jsonify({"status": False, "message": "Erro ao excluir conta"})
+            
     def changePassword():
         email = session['user']['email']
         senha_atual = request.form['senha_atual']
@@ -72,12 +137,15 @@ class UserController:
         confirmar_senha = request.form['confirmar_senha']
 
         if session['user']['password'] != senha_atual:
-            return jsonify({'success': False, 'mensagem': 'Senha Incorreta'})
+            return jsonify({'success': False, 'message': 'Senha Incorreta'})
         if nova_senha != confirmar_senha:
-            return jsonify({'success': False, 'mensagem': 'As novas senhas não coincidem'})
+            return jsonify({'success': False, 'message': 'As novas senhas não coincidem'})
+        if nova_senha == session['user']['password']:
+            return jsonify({'success': False, 'message': 'Nova senha igual senha atual'})
         
         response = Users.change_password(email, nova_senha)
-        return jsonify({'mensagem': response})
+        Log().register(operation=f'User: Change Password')
+        return jsonify({'message': response})
     
     def isLogged():
         try:

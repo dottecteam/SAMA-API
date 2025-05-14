@@ -1,72 +1,309 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_profile.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='stylesheets/certificates/style_profile.css') }}">
+<script defer
+    src="{{ url_for('static', filename='scripts/certificates/script_profile.js') }}"></script>
 
-<section id="profile-container">
-    <section id="profile-content">
+<section id="profile-container" class="container mb-5">
+    <!-- Data -->
+    <data id="name" value="{{session['user']['name']}}"></data>
+    <data id="email" value="{{session['user']['email']}}"></data>
+    <data id="course" value="{{session['user']['course']}}"></data>
+    <data id="semester" value="{{session['user']['semester']}}"></data>
 
-        <!-- Botões de Navegação -->
-        <section id="navigation">
-            <div class="card" style="border: none;">
-                <div class="card-header" style="background-color: transparent; border-radius: none;">
-                    <h3>{{session['user']['name']}}</h3>
+    <div class="row">
+        <!-- Navigation Buttons -->
+        <section id="navigation" class="col-md-4 mt-5">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h3 id="name-nav-header">{{session['user']['name']}}</h3>
                 </div>
                 <div class="card-body">
-                    <ul class="nav flex-column" style="margin: 10px; align-items: center;">
-                        <li class="nav-item" style="width: 100%;">
-                            <button class="nav-button">Informações Pessoais</button>
+                    <ul class="nav flex-column">
+                        <li class="nav-item w-100">
+                            <button class="nav-button btn-custom">Dados
+                                Pessoais</button>
                         </li>
-                        <li class="nav-item" style="width: 100%;">
-                            <button class="nav-button">Alterar Senha</button>
+                        <li class="nav-item w-100">
+                            <button class="nav-button btn-custom"
+                                id="btn-change-info-card">Controle de
+                                Dados</button>
                         </li>
-                        <li class="nav-item">
-                            <a id="sair-button" href="/atestados/acesso/logout">Sair</a>
+                        <li class="nav-item w-100">
+                            <button class="nav-button btn-custom">Alterar
+                                Senha</button>
                         </li>
                     </ul>
+                </div>
+                <div class="card-footer d-flex justify-content-evenly"
+                    style="background-color: transparent; border: none;">
+                    <a class="btn-small" id="sair-button"
+                        href="/logout">Sair</a>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de informações -->
-        <section id="information">
-            <section id="personal-info" class="container-info">
-                <h4>Informações Pessoais</h4>
-                <ul class="list-group" id="list-personal-info">
-                    <li  class="list-group-item">Nome: {{session['user']['name']}}</li>
-                    <li  class="list-group-item">Email: {{session['user']['email']}}</li>
-                    <li  class="list-group-item">Curso: {{session['user']['course']}}</li>
-                    <li  class="list-group-item">Semestre: {{session['user']['semester']}}°</li>
-                </ul>
+        <!-- Information Section -->
+        <section id="information" class="col-md-8 mt-5">
+
+            <!-- Personal Info -->
+            <section id="personal-info" class="container-info card w-100 h-100">
+                <div class="card-header">
+                    <h4>Dados Pessoais</h4>
+                </div>
+                <div class="card-body mt-3">
+                    <ul class="list-group list-group-flush"
+                        id="list-personal-info">
+                        <li id="li-name" class="list-group-item">Nome:
+                            {{session['user']['name']}}</li>
+                        <li class="list-group-item">Email:
+                            {{session['user']['email']}}</li>
+                        <li id="li-course" class="list-group-item">Curso:
+                            {{session['user']['course']}}</li>
+                        <li id="li-semester" class="list-group-item">Semestre:
+                            {{session['user']['semester']}}°</li>
+                    </ul>
+                </div>
             </section>
 
-            <!-- Alteração de Senha -->
-            <section id="security" class="container-info" style="display: none;">
-                <h2>Alterar Senha</h2>
-                <h4>Email: {{session['user']['email']}}</h4>
-                <section id="change-password-section" class="container bg-light p-4 mb-4 rounded">
-                    <form id="change-password-form">
-                        <div>
-                            <label class="input-title">Senha Atual:</label>
-                            <input class="form-control" type="password" id="senha_atual" name="senha_atual" required>
-                        </div>
-                        <div>
-                            <label class="input-title">Nova Senha:</label>
-                            <input class="form-control" type="password" id="nova_senha" name="nova_senha" required>
-                        </div>
-                        <div>
-                            <label class="input-title">Confirmar Nova Senha:</label>
-                            <input class="form-control" type="password" id="confirmar_senha" name="confirmar_senha" required>
-                        </div>
-                        <button class="btn btn-custom" type="submit" style="margin-top: 40px;">Confirmar</button>
-                    </form>
-                    <!-- Mensagens de Sucesso/Erro -->
-                    <div id="success-msg" class="alert alert-success" style="display: none; margin: 20px 0;"></div> 
-                    <div id="error-msg" class="alert alert-danger" style="display: none; margin: 20px 0;"></div>
-                </section>                             
+            <!-- Personal info Update -->
+            <section id="update-info" class="container-info card w-100 h-100"
+                style="display: none;">
+                <div class="card-header">
+                    <h4>Controle de Dados</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item mt-2">
+                            <h5>Atualizar dados pessoais</h5>
+                            <p>Atualize seus dados pessoais, como nome, curso e
+                                semestre, sempre que necessário.</p>
+                            <button class="btn-small"
+                                id="btn-update-info"><strong>Atualizar dados
+                                    pessoais</strong></button>
+                        </li>
+                        <li class="list-group-item mt-2">
+                            <h5>Excluir Conta</h5>
+                            <p>Ao excluir sua conta, todas as suas informações
+                                serão removidas do sistema, incluindo dados
+                                pessoais e atestados enviados.</p>
+                            <button class="btn-small"
+                                id="btn-delete-account"><strong>Excluir
+                                    conta</strong></button>
+                        </li>
+                    </ul>
+
+                </div>
+
             </section>
-        </section>
+
+            <!-- Password update -->
+            <section id="security" class="container-info card w-100 h-100"
+                style="display: none;">
+                <div class="card-header">
+                    <h4>Alterar Senha</h4>
+                </div>
+                <div style="display: flex;">
+                    <h4 class="mx-auto mt-4">{{session['user']['email']}}</h4>
+                </div>
+                <section id="change-password-section"
+                    class="container card-body">
+                    <form id="change-password-form">
+                        <div class="row">
+                            <div class="col-lg mt-3">
+                                <label class="input-title">Senha Atual:</label>
+                                <input class="form-control" type="password"
+                                    id="senha_atual" name="senha_atual"
+                                    required>
+                            </div>
+                            <div class="col-lg mt-3">
+                                <label class="input-title">Nova Senha:</label>
+                                <input class="form-control" type="password"
+                                    id="nova_senha" name="nova_senha"
+                                    minlength="8"
+                                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}"
+                                    title="A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula, uma minúscula e um número."
+                                    required>
+                            </div>
+                            <div class="col-lg mt-3">
+                                <label class="input-title">Confirmar
+                                    Senha:</label>
+                                <input class="form-control" type="password"
+                                    id="confirmar_senha" name="confirmar_senha"
+                                    minlength="8"
+                                    title="Confirmar senha"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md mt-3"
+                                style="display: flex; justify-content: flex-end;">
+                                <button class="btn btn-custom"
+                                    type="submit">Confirmar</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </section>
+        </div>
+
+        <!-- Modals -->
+
+        <!-- Update info modal -->
+        <div class="modal fade" id="modal-update-info">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h4 class="modal-title">Atualizar Dados</h4>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="change-personal-info-form">
+                            <div class="mt-3">
+                                <label for="nome-personal-info-form"
+                                    class="input-title">Nome:</label>
+                                <input class="form-control info-changer"
+                                    id="nome-personal-info-form"
+                                    name="nome-personal-info-form"
+                                    value="{{session['user']['name']}}">
+                            </div>
+                            <div class="mt-3">
+                                <label for="select-course-personal-info-form"
+                                    class="input-title">Curso:</label>
+                                <select class="form-control info-changer"
+                                    id="select-course-personal-info-form"
+                                    name="select-course-personal-info-form"
+                                    value="{{session['user']['course']}}">
+                                    <option
+                                        value="Análise e Desenvolvimento de Sistemas">Análise
+                                        e Desenvolvimento de Sistemas</option>
+                                    <option value="Banco de Dados">Banco de
+                                        Dados</option>
+                                    <option
+                                        value="Desenvolvimento de Software Multiplataforma">Desenvolvimento
+                                        de Software Multiplataforma</option>
+                                    <option
+                                        value="Gestão da Produção Industrial">Gestão
+                                        da Produção Industrial</option>
+                                    <option value="Gestão Empresarial">Gestão
+                                        Empresarial</option>
+                                    <option value="Logística">Logística</option>
+                                    <option
+                                        value="Manufatura Avançada">Manufatura
+                                        Avançada</option>
+                                    <option
+                                        value="Manutenção de Aeronaves">Manutenção
+                                        de Aeronaves</option>
+                                    <option
+                                        value="Projeto de Estruturas Aeronáuticas">Projeto
+                                        de Estruturas Aeronáuticas</option>
+                                </select>
+                            </div>
+                            <div class="mt-3">
+                                <label for="semester-personal-info-form"
+                                    class="input-title">Semestre:</label>
+                                <select class="form-control info-changer"
+                                    id="semester-personal-info-form"
+                                    name="semester-personal-info-form"
+                                    value="{{session['user']['semester']}}">
+                                    <option value="1">1°</option>
+                                    <option value="2">2°</option>
+                                    <option value="3">3°</option>
+                                    <option value="4">4°</option>
+                                    <option value="5">5°</option>
+                                    <option value="6">6°</option>
+                                    <option value="7">7°</option>
+                                    <option value="8">8°</option>
+                                    <option value="9">9°</option>
+                                    <option value="10">10°</option>
+                                </select>
+                            </div>
+                            <div class="mt-3 d-flex justify-content-end">
+                                <div class="w-200">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button class="btn btn-custom disabled"
+                                        id="btn-change-info"
+                                        type="submit">Confirmar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirm Modal (insert password) -->
+        <div class="modal fade" id="modal-confirm-change">
+            <div class="modal-dialog mx-auto" style="margin-top: 1%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Tem certeza?</h4>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="password-confirmation-form">
+                            <label for="info-password">Para a sua segurança,
+                                insira sua senha:</label>
+                            <input class="form-control" type="password"
+                                id="info-password" name="info-password"
+                                minlength="8" required>
+                            <div class="mt-3 d-flex justify-content-end">
+                                <div class="w-200">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-custom"
+                                        id="btn-confirm">Confirmar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de confirmação de e-mail -->
+        <div
+            class="modal fade"
+            id="modal-confirmation-exclude"
+            tabindex="-1"
+            aria-labelledby="label-modal-confirmation"
+            aria-hidden="true" data-bs-backdrop="static"
+            data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Confirme seu e-mail
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Enviamos um código para <strong
+                                id="email-addresses"></strong>. Verifique na sua
+                            caixa de span! Por
+                            favor, digite abaixo:
+                        </p>
+                        <form id="form-confirmation-delete">
+                            <input
+                                type="int"
+                                class="form-control mb-3"
+                                id="input-code-form"
+                                name="input-code-form"
+                                placeholder="Digite o código"
+                                autocomplete="off"
+                                required />
+                            <div class="text-end">
+                                <button type="submit"
+                                    class="btn btn-custom">Confirmar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </section>
-</section>
-
-<script src="{{ url_for('static', filename='scripts/certificates/script_profile.js') }}"></script>
-{% endblock %}
+    {% endblock %}

@@ -2,6 +2,7 @@ import uuid
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_certificates import Certificates
 from app.utilities.ut_validation import Validation
+from app.models.md_log import Log
 
 class CertificatesController:
 
@@ -64,6 +65,7 @@ class CertificatesController:
                 certificates.deleteFile(uniqueName)
                 return jsonify({"status": False, "message": "Erro ao salvar data!"}), 400
 
+            Log().register(operation='Certificates: Register Certificate')
             return jsonify({"status": True, "message": "Código enviado com sucesso!"}), 200
         except Exception as e:
             print(f"Error: {e}")
@@ -78,6 +80,7 @@ class CertificatesController:
             status = data.get('status')
             id = data.get('id')
             if Certificates().updateStatus(status, id):
+                Log().register(operation='Certificates: Update Status')
                 return jsonify({"mensagem": "Status atualizado com sucesso!"}), 200
             else:
                 return jsonify({"mensagem": "Erro ao atualizar status."}), 400
@@ -90,11 +93,14 @@ class CertificatesController:
         try:
             id=request.form.get("id")
             if Certificates().deleteData(id):
+                Log().register(operation='Certificates: Delete Certificate')
                 return jsonify({"status": True,"message": "Status atualizado com sucesso!"}), 200
             else:
+                Log().register(operation='Certificates: Delete Certificate Attempt')
                 return jsonify({"status": False,"message": "Erro ao atualizar status."}), 400
         except Exception as e:
             print(f"Error: {e}")
+            Log().register(operation='Certificates: Delete Certificate Attempt')
             return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
             
     #Função que atualiza a tabela dos atestados

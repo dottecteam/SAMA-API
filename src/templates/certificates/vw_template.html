@@ -36,7 +36,8 @@
 
     <!-- Carregamento -->
     <div class="modal fade" id="modal-loading" tabindex="-1"
-      aria-labelledby="label-modal-loading" aria-hidden="true">
+      aria-labelledby="label-modal-loading" aria-hidden="true"
+      data-bs-backdrop="static" data-bs-keyboard="false">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-transparent border-0">
           <div class="modal-body text-center">
@@ -89,7 +90,8 @@
 
     <!-- Modal de login -->
     <div class="modal fade" id="modal-login" tabindex="-1"
-      aria-labelledby="label-modal-login" aria-hidden="true">
+      aria-labelledby="label-modal-login" aria-hidden="true"
+      data-bs-backdrop="static" data-bs-keyboard="false">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -254,7 +256,8 @@
               </div>
               {% else %}
               <button class="btn btn-custom" style="border: 1px solid #ffffff;"
-                id="btn-login">Faça seu login!</button>
+                data-bs-toggle="modal" data-bs-target="#modal-login">Faça seu
+                login!</button>
               {% endif %}
             </div>
           </div>

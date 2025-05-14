@@ -120,6 +120,8 @@ class Validation:
     
     #Função para validar a senha
     def validePassword(password, confirmPassword):
-        if len(password)<8 or len(password)>12 or password!=confirmPassword:
-            return False
+        if len(password)<8 or len(password)>12:
+            return 0
+        elif password != confirmPassword:
+            return 1
         return True

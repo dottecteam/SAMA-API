@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_teams import Teams
 from functools import wraps
+from app.models.md_log import Log
 
 class TeamsController:
     def loginRequired(f):
@@ -18,11 +19,14 @@ class TeamsController:
             teams=Teams()
             response = teams.login(id,password)
             if response:
+                Log().register(operation=f'Team: Login')
                 return jsonify({"status": True,"message": "Equipe logada com sucesso!"}), 200
             else:
+                Log().register(operation=f'Team: Login Attempt ({id})')
                 return jsonify({"status": False, "message": "Credenciais incorretas."}), 400
         except Exception as e:
             print(f"Error: {e}")
+            Log().register(operation=f'Team: Login Attempt')
             return jsonify({"status": False,"message": "Erro ao logar equipe!"}), 400 
 
     #Função que recebe os dados
@@ -42,6 +46,7 @@ class TeamsController:
             teams=Teams()
             
             if teams.saveDataTeam(team, master, pOwner, password, EmMaster, EmPOwner, dev_nomes, dev_emails):
+                Log().register(operation=f'Team: Register Team')
                 return jsonify({"status": True, "mensagem": "Equipe cadastrada com sucesso!"}), 200
             else:
                 return jsonify({"status": False, "mensagem": "Erro ao cadastrar equipe."}), 400

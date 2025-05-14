@@ -1,27 +1,13 @@
-  //Modais
-  const ModalLoading = new bootstrap.Modal(
-    $("#modal-loading"),
-    {
-      backdrop: "static",
-      keyboard: false,
-    }
-  );
-  const ModalConfirmacao = new bootstrap.Modal($("#modal-confirmation"), {
-    backdrop: "static",
-    keyboard: false,
-  });
-  const ModalError = new bootstrap.Modal($("#modal-error"));
-  const ModalSuccess = new bootstrap.Modal($("#modal-success"));
-  
-$(document).ready(function () {
 
+
+$(document).ready(function () {
   //ENVIO DO FORMULÁRIO
   // Validação de email
   $("#form-users").on("submit", function (event) {
     event.preventDefault();
     let formData = new FormData(this);
 
-    ModalLoading.show();
+    $("#modal-loading").modal('show');
     $.ajax({
       type: "POST",
       url: "/usuarios/cadastro/validar",
@@ -29,22 +15,22 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function (response) {
-        ModalLoading.hide();
+        $("#modal-loading").modal('hide');
         if (response.status) {
           $("#email-addressee").html(formData.get("input-email-form-users"));
-          ModalConfirmacao.show();
+          $("#modal-confirmation").modal('show');
         } else {
           $("#error-message").html(response.message);
-          ModalError.show();
+          $("#modal-error").modal('show');
         }
       },
       error: function (xhr, status, error) {
         setTimeout(function () {
-          ModalLoading.hide();
+          $("#modal-loading").modal('hide');
           var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
           var errorMessage = response.message;
           $("#error-message").html(errorMessage);
-          ModalError.show();
+          $("#modal-error").modal('show');
         }, 1000);
 
       }
@@ -64,25 +50,25 @@ $(document).ready(function () {
       contentType: false,
       success: function (response) {
         if (response.status) {
-          ModalConfirmacao.hide();
-          ModalSuccess.show();
+          $("#modal-confirmation").modal('hide');
+          $("#modal-success").modal('show');
           $("#form-confirmation")[0].reset();
           $("#form-users")[0].reset();
 
         } else {
-          ModalConfirmacao.hide();
+          $("#modal-confirmation").modal('hide');
           $("#form-confirmation")[0].reset();
           $("#error-message").html(response.message);
-          ModalError.show();
+          $("#modal-error").modal('show');
         }
       },
       error: function (xhr, status, error) {
-        ModalConfirmacao.hide();
+        $("#modal-confirmation").modal('hide');
         $("#form-confirmation")[0].reset();
         var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
         var errorMessage = response.message;
         $("#error-message").html(errorMessage);
-        ModalError.show();
+        $("#modal-error").modal('show');
       },
     });
   });
