@@ -14,6 +14,6 @@ class Log:
         else:
             account='Not Logged'
         time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        line=f'[{time}] IP = {ip} | Account = {account} | Operation = {operation}'
+        line=f'[{time}] IP = {ip} | Account = {account} | Operation = {operation}\n'
         with open(self.srcData, "a") as file:
            file.write(line)
