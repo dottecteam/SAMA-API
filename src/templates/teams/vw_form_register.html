@@ -48,21 +48,6 @@
             </div>
 
             <div class="row mt-4">
-                <!-- Nome do Scrum Master ao lado do Email do Scrum Master -->
-                <div class="col-md-6">
-                    <div class="form-group p-2">
-                        <label for="input-nome-form-scmaster" class="input-title">Nome do Scrum Master:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="input-nome-form-scmaster"
-                            name="input-nome-form-scmaster"
-                            placeholder="Nome do Master"
-                            required
-                        />
-                    </div>
-                </div>
-
                 <!-- Email do Scrum Master -->
                 <div class="col-md-6">
                     <div class="form-group p-2">
@@ -77,25 +62,8 @@
                         />
                     </div>
                 </div>
-                
-            </div>
-            <div class="row mt-2">
-                <!-- Nome do Scrum Master ao lado do Email do Scrum Master -->
-                <div class="col-md-6">
-                    <div class="form-group p-2">
-                        <label for="input-nome-form-scmaster" class="input-title">Nome do Product Owner:</label>
-                        <input
-                            type="text"
-                            class="form-control w-100"
-                            id="input-nome-form-po"
-                            name="input-nome-form-po"
-                            placeholder="Nome do P.O."
-                            required
-                        />
-                    </div>
-                </div>
 
-                <!-- Email do Scrum Master -->
+                <!-- Email do Product Owner -->
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="input-email-form-po" class="input-title">Email do Product Owner:</label>
@@ -115,10 +83,10 @@
 
         <div class="container bg-light p-4 rounded">
             
-                <div id="devFieldsContainer"></div>
+                <div id="dev-fields-container" class="row form-group p-2"></div>
             
             <div class="align-items-center text-center">
-                <button id="addFieldBtn" type="button" class="btn m-3 btn-primary">Adicionar Dev</button>
+                <button id="btn-add-field" type="button" class="btn m-3 btn-primary">+ Adicionar Dev</button>
             </div>
         </div>
         <section style="text-align: center; margin-top: 30px;">
@@ -128,7 +96,7 @@
         </section>
         <!-- Botão Criar Equipe -->
         <div class="container text-center mt-4">
-            <button type="submit" class="btn btn-success">Criar Equipe</button>
+            <button type="submit" class="btn btn-custom">Criar Equipe</button>
         </div>
 
     </form>

@@ -51,6 +51,4 @@ canvas {
     .col-md-10 > .row > .col-4, .col-md-10 > .row > .col-8, .col-md-10 > .row > .col-7, .col-md-10 > .row > .col-5 {
         flex: 1 1 100%;
     }
-
-    
 }

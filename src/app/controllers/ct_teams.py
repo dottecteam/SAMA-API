@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_teams import Teams
+from app.utilities.ut_validation import Validation
 from functools import wraps
 from app.models.md_log import Log
 
@@ -33,27 +34,36 @@ class TeamsController:
     def registerTeam():
         try:
             team = request.form['input-nome-form-equipe']
-            master = request.form['input-nome-form-scmaster']
-            pOwner = request.form['input-nome-form-po']
             password = request.form['input-password-form']
             EmMaster = request.form['input-email-form-scmaster']
             EmPOwner = request.form['input-email-form-po']
 
             # Recebe os desenvolvedores como listas
-            dev_nomes = request.form.getlist('dev_name[]')
             dev_emails = request.form.getlist('dev_email[]')
 
             teams=Teams()
-            
-            if teams.saveDataTeam(team, master, pOwner, password, EmMaster, EmPOwner, dev_nomes, dev_emails):
+
+            if Validation.valideLenPassword(password)==False:
+                return jsonify({"status": False, "message": "A senha deve ter entre 8 e 20 caracteres."}), 400
+
+            # Verifica se os desenvolvedores está cadastrado
+            if Validation.UserIsRegistered(EmMaster)==False:
+                return jsonify({"status": False, "message": f"Desenvolvedor {EmMaster} não cadastrado."}), 400
+            if Validation.UserIsRegistered(EmPOwner)==False:
+                return jsonify({"status": False, "message": f"Desenvolvedor {EmPOwner} não cadastrado."}), 400
+            for email in dev_emails:
+                if Validation.UserIsRegistered(email)==False:
+                    return jsonify({"status": False, "message": f"Desenvolvedor {email} não cadastrado."}), 400
+
+            if teams.saveDataTeam(team, password, EmMaster, EmPOwner, dev_emails):
                 Log().register(operation=f'Team: Register Team')
-                return jsonify({"status": True, "mensagem": "Equipe cadastrada com sucesso!"}), 200
+                return jsonify({"status": True, "message": "Equipe cadastrada com sucesso!"}), 200
             else:
-                return jsonify({"status": False, "mensagem": "Erro ao cadastrar equipe."}), 400
+                return jsonify({"status": False, "message": "Erro ao cadastrar equipe."}), 400
         #Validações
         except Exception as e:
             print(f"Error: {e}")
-            return jsonify({"status": False, "message": "Erro ao validar data!"}), 500
+            return jsonify({"status": False, "message": "Erro ao validar!"}), 500
         
 
     #Função para ler os dados
@@ -116,3 +126,5 @@ class TeamsController:
         except Exception as e:
             print(f"Error: {e}")
             return jsonify({"status": False, "message": "Erro interno ao atualizar equipe."}), 500
+
+    

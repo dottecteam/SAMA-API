@@ -16,7 +16,7 @@ href="{{ url_for('static', filename='stylesheets/teams/style_view_teams.css') }}
       <div class="team-meta">
         <div>Status: <span class="dev-badge">Ativa</span></div>
         <p>ID: <span class="dev-badge">{{ team.id }}</span></p>
-        <p>ID: <span class="dev-badge">{{ team.password }}</span></p>
+        <p>Senha: <span class="dev-badge">{{ team.password }}</span></p>
       </div>
 
       <div class="member-list">
@@ -24,11 +24,11 @@ href="{{ url_for('static', filename='stylesheets/teams/style_view_teams.css') }}
         <ul>
           <li>
             <span class="member-role">Scrum Master:</span>
-            <span class="member-email">{{ team.master }} ({{ team.EmMaster }})</span>
+            <span class="member-email">({{ team.EmMaster }})</span>
           </li>
           <li>
             <span class="member-role">Product Owner:</span>
-            <span class="member-email">{{ team.pOwner }} ({{ team.EmPOwner }})</span>
+            <span class="member-email">({{ team.EmPOwner }})</span>
           </li>
         </ul>
 
@@ -37,7 +37,6 @@ href="{{ url_for('static', filename='stylesheets/teams/style_view_teams.css') }}
         <ul>
           {% for dev in team.devs %}
           <li>
-            <span class="member-role">{{ dev.nome }}</span>
             <span class="member-email">{{ dev.email }}</span>
           </li>
           {% endfor %}

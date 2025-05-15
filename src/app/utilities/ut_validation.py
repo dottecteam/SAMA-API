@@ -10,6 +10,7 @@ from email.mime.image import MIMEImage
 from app import app
 from app import admin_email, admin_password
 from app.models.md_dashborad_certificates import AtestadoMetricas
+from app.models.md_users import Users
 
 class Validation:
 
@@ -121,6 +122,23 @@ class Validation:
     #Função para validar a igualdade da senha
     def validePassword(password, confirmPassword):
         if password != confirmPassword:
-            return 1
+            return False
         else:
             return True
+        
+    #Função para validar a igualdade da senha
+    def valideLenPassword(password):
+        if len(password)<8 or len(password)>20:
+            return False
+        else:
+            return True
+        
+    #Função para verificar se o desenvolvedor está cadastrado
+    def UserIsRegistered(email):
+        try:
+            if len(Users().readUser(email))>0:
+                return True
+            return False
+        except Exception as e:
+            print(f"Error: {e}")
+            return False

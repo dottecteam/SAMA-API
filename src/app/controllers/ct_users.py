@@ -14,14 +14,23 @@ class UserController:
             session['semester'] = request.form['select-semester-form-users']
             session['password']=request.form['input-password-form-users']
             session['confirmPassword']=request.form['input-confirm-password-form-users']
+
+            if Validation.UserIsRegistered(session['email']) == True:
+                session.clear()
+                return jsonify({"status": False, "message": "Usuário já cadastrado!"}), 400
             
-            if Validation.validePassword(session["password"], session["confirmPassword"]) == 1:
+            if Validation.valideLenPassword(session['password']) == False:
+                session.clear()
+                return jsonify({"status": False, "message": "A senha deve ter entre 8 e 20 caracteres."}), 400
+            
+            if Validation.validePassword(session["password"], session["confirmPassword"]) == False:
                 session.clear()
                 return jsonify({"status": False, "message": "As senhas não coincidem."}), 400
 
             if Validation.sendEmail(session['email']) == False:
                 session.clear()
                 return jsonify({"status": False, "message": "Erro ao enviar email!"}), 400
+            
             return jsonify({"status": True, "message": "Código enviado com sucesso!"}), 200
         except Exception as e:
             print(f"Error: {e}")

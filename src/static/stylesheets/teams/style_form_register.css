@@ -2,3 +2,30 @@
     font-family: "Archivo Black", sans-serif;
     font-weight: bold;
   }
+
+  .btn-remove-field{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #b4b4b4;
+    color: #c01c1c;
+    transition: all 0.3s;
+    right: 1%;
+    top: 25%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .btn-remove-field span{
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+  }
+  .btn-remove-field:hover{
+    background: #c01c1c;
+    color: #ffffff;
+  }

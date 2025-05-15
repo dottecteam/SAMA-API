@@ -46,7 +46,6 @@ def update_team():
 @app.route("/equipes/avaliacoes")
 def avaliacao():
     return render_template("teams/vw_form_evaluate.html")
-
 #TELAS
 
 
@@ -59,7 +58,7 @@ def equipesCadastrar():
 #Função para fazer o login da equipe
 @app.route('/equipes/acesso/logar', methods=['POST'])
 def login_team():
+    Log().register(operation='Account: Logout')
+    session.clear()
     return TeamsController.loginTeam()
-
-
 #FUNÇÕES
