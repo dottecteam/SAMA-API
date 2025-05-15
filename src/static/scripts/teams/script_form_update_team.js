@@ -3,9 +3,6 @@ document.getElementById('addDeveloper').addEventListener('click', () => {
     const devHTML = `
         <div class="row mb-2 developer-item">
             <div class="col">
-                <input type="text" name="dev_name" class="form-control" placeholder="Nome">
-            </div>
-            <div class="col">
                 <input type="email" name="dev_email" class="form-control" placeholder="Email">
             </div>
             <div class="col-auto">
@@ -33,18 +30,15 @@ document.getElementById('editTeamForm').addEventListener('submit', async functio
     // Coleta os dados com verificações
     const formData = {
         teamName: getValue('#teamName'),
-        SMaster: getValue('input[name="SMaster"]'),
         EmMaster: getValue('input[name="EmMaster"]'),
-        PO: getValue('input[name="PO"]'),
         EmPOwner: getValue('input[name="EmPOwner"]'),
-        dev_name: Array.from(document.getElementsByName('dev_name')).map(input => input.value),
         dev_email: Array.from(document.getElementsByName('dev_email')).map(input => input.value)
     };
 
     console.log("Dados coletados:", formData); // Debug
 
     // Validação básica
-    if (!formData.teamName || !formData.SMaster || !formData.EmMaster || !formData.PO || !formData.EmPOwner) {
+    if (!formData.teamName || !formData.EmMaster || !formData.EmPOwner) {
         alert("Por favor, preencha todos os campos obrigatórios!");
         return;
     }

@@ -94,24 +94,28 @@ class TeamsController:
             
             team_id = session['team']['id']
             team_name = data.get('teamName')
-            master = data.get('SMaster')
             EmMaster = data.get('EmMaster')
-            pOwner = data.get('PO')
             EmPOwner = data.get('EmPOwner')
-            dev_names = data.get('dev_name', [])  # Lista de nomes
-            dev_emails = data.get('dev_email', [])  # Lista de emails
+            dev_emails = data.get('dev_email', [])
+
+            # Verifica se os desenvolvedores está cadastrado
+            if Validation.UserIsRegistered(EmMaster)==False:
+                return jsonify({"status": False, "message": f"Desenvolvedor {EmMaster} não cadastrado."}), 400
+            if Validation.UserIsRegistered(EmPOwner)==False:
+                return jsonify({"status": False, "message": f"Desenvolvedor {EmPOwner} não cadastrado."}), 400
+            for email in dev_emails:
+                if Validation.UserIsRegistered(email)==False:
+                    return jsonify({"status": False, "message": f"Desenvolvedor {email} não cadastrado."}), 400
 
             # Combina nomes e emails em uma lista de dicionários
-            devs = [{"nome": nome, "email": email} for nome, email in zip(dev_names, dev_emails)]
+            devs = [{"email": email} for email in zip(dev_emails)]
 
             # Chama o método do model para atualizar
-            if Teams().update_team(team_id, team_name, master, pOwner, EmMaster, EmPOwner, devs):
+            if Teams().update_team(team_id, team_name, EmMaster, EmPOwner, devs):
                 # Atualiza a sessão
                 session['team'] = {
                     'id': team_id,
                     'team': team_name,
-                    'master': master,
-                    'pOwner': pOwner,
                     'EmMaster': EmMaster,
                     'EmPOwner': EmPOwner,
                     'devs': devs

@@ -1,4 +1,8 @@
 {% extends "teams/vw_template.html" %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='stylesheets/teams/style_form_register.css') }}"
+/>
 
 <div class="container mt-4">
     <div class="row align-items-stretch">
@@ -46,14 +50,15 @@
 
 <!-- Modal de Edição da Equipe -->
 <div class="modal fade" id="editTeamModal" tabindex="-1" aria-labelledby="editTeamModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <form id="editTeamForm">
+  <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
+          
           <h5 class="modal-title" id="editTeamModalLabel">Editar Equipe</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body">
+          <form id="editTeamForm">
           <div class="mb-3">
             <label for="teamName" class="form-label" style="font-weight: bold;">Nome da Equipe</label>
             <input type="text" class="form-control" id="teamName" name="teamName" value="{{ team.team }}">
@@ -63,18 +68,12 @@
             <div class="row mb-2 developer-item">
                 <label for="SMaster" class="form-label" style="font-weight: bold;">Scrum Master</label>
               <div class="col">
-                <input type="text" name="SMaster" class="form-control" placeholder="Nome" value="{{ team.master }}">
-              </div>
-              <div class="col">
                 <input type="email" name="EmMaster" class="form-control" placeholder="Email" value="{{ team.EmMaster }}">
               </div>
             </div>
 
             <div class="row mb-2 developer-item">
                 <label for="pOwner" class="form-label" style="font-weight: bold;">Product Owner</label>
-              <div class="col">
-                <input type="text" name="PO" class="form-control" placeholder="Nome" value="{{ team.pOwner }}">
-              </div>
               <div class="col">
                 <input type="email" name="EmPOwner" class="form-control" placeholder="Email" value="{{ team.EmPOwner }}">
               </div>
@@ -103,8 +102,8 @@
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         </div>
+        </form>
       </div>
-    </form>
   </div>
 </div>
 
