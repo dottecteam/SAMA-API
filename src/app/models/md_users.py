@@ -13,7 +13,7 @@ class Users:
         self.course = course
         self.semester=semester
         self.password=password
-    
+        
     #Função para salvar dados
     def saveData(self, name, email, course, semester, password):
         try:

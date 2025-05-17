@@ -22,17 +22,18 @@ class Teams:
 
     #Funções de salvar dados
     #Função para salvar os dados no arquivo .txt
-    def saveDataTeam(self, team, password, EmMaster, EmPOwner, dev_emails):
+    def saveDataTeam(self, team, password, master, EmMaster, pOwner, EmPOwner, devs):
         try:
             idTeam = str(shortuuid.uuid())
-            devs = [{"email": email} for email in zip(dev_emails)]
       
             # Formata os dados antes de criptografar
             plain_data = {
                 "id": idTeam,
                 "team": team,
                 "password": password,
+                'master': master,
                 "EmMaster": EmMaster,
+                'pOwner': pOwner,
                 "EmPOwner": EmPOwner,
                 "devs": devs
             }
@@ -143,12 +144,11 @@ class Teams:
     #Função para salvar avaliações encriptadas
     def save_evaluations(self, evaluations):
         try:
-            now = datetime.now()
             data = {
                 'id': session['team']['id'], #Salva o ID da equipe para identificação
+                'team': session['team']['team'],
                 'evaluations': evaluations,
-                'date': f"{now.year}-{now.month}-{now.day}", #Data de envio de avaliações
-                'time': f"{now.hour}:{now.minute}:{now.second}" #Horário de envio de avaliações
+                'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S') #Data/hora de envio de avaliações
                 }
             json_data = json.dumps(data, indent=2, ensure_ascii=False)
             encrypted_data = Criptography.encrypt(json_data)

@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.models.md_teams import Teams
+from app.models.md_users import Users
 from app.utilities.ut_validation import Validation
 from functools import wraps
 from app.models.md_log import Log
@@ -46,7 +47,7 @@ class TeamsController:
             if Validation.valideLenPassword(password)==False:
                 return jsonify({"status": False, "message": "A senha deve ter entre 8 e 20 caracteres."}), 400
 
-            # Verifica se os desenvolvedores está cadastrado
+            # Verifica se os desenvolvedores estão cadastrados
             if Validation.UserIsRegistered(EmMaster)==False:
                 return jsonify({"status": False, "message": f"Desenvolvedor {EmMaster} não cadastrado."}), 400
             if Validation.UserIsRegistered(EmPOwner)==False:
@@ -54,8 +55,22 @@ class TeamsController:
             for email in dev_emails:
                 if Validation.UserIsRegistered(email)==False:
                     return jsonify({"status": False, "message": f"Desenvolvedor {email} não cadastrado."}), 400
+                
+            # Busca o nome dos membros pelo email
+            users = Users()
+            devs = []
+            for email in dev_emails:
+                user = users.readUser(email)
+                nome = user[0].name
+                dev = {
+                    'email': email,
+                    'nome': nome
+                }
+                devs.append(dev)
+            master = users.readUser(EmMaster)[0].name
+            pOwner = users.readUser(EmPOwner)[0].name
 
-            if teams.saveDataTeam(team, password, EmMaster, EmPOwner, dev_emails):
+            if teams.saveDataTeam(team, password, master, EmMaster, pOwner, EmPOwner, devs):
                 Log().register(operation=f'Team: Register Team')
                 return jsonify({"status": True, "message": "Equipe cadastrada com sucesso!"}), 200
             else:
@@ -139,23 +154,23 @@ class TeamsController:
             team = session['team']
             raw_evaluations = dict(request.form)
             evaluations = {}
-            for item in [dev['email'] for dev in team['devs']] + [team['EmMaster'], team['EmPOwner']]:
+            for item in [dev['email'][0] for dev in team['devs']] + [team['EmMaster'], team['EmPOwner']]:
                 evaluations[item] = {}
             for i in range(len(raw_evaluations)):
-                for ev in ['proatividade', 'entrega', 'comunicacao', 'colaboracao']:
+                for ev in ['proatividade', 'autonomia', 'colaboracao', 'entrega']:
                     evaluations[team['EmMaster']][ev] = raw_evaluations['master_' + ev]
                     evaluations[team['EmPOwner']][ev] = raw_evaluations['po_' + ev]
                     for dev in team['devs']:
-                        email = dev['email']
+                        email = dev['email'][0]
                         evaluations[email][ev] = raw_evaluations[email + '_' + ev]
 
-            print(evaluations)
             if teams.save_evaluations(evaluations):
-                Log().register(operation=f'Team: Evaluation Attempt')
+                Log().register(operation=f'Team: Evaluation Saved')
                 return jsonify({"status": True, "message": "Avaliações salvas com sucesso!"}), 200
             else:
                 Log().register(operation=f'Team: Failed Evaluation Attempt')
                 return jsonify({"status": False, "message": "Não foi possível salvar avaliações"}), 400
-        except:
+        except Exception as e:
+            print(e)
             Log().register(operation=f'Team: Failed Evaluation Attempt')
             return jsonify({"status": False, "message": "Não foi possível salvar avaliações"}), 500
