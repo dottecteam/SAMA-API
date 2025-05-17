@@ -13,7 +13,8 @@ href="{{ url_for('static', filename='stylesheets/teams/style_form_evaluate.css')
     <p class="text-center">Avalie a equipe baseada nos critérios abaixo:</p>
 </div>
 
-    <form id="form-avaliacao" method="post">
+
+    <form id="form-avaliacao">
         
         <!-- Container para informações e avaliação do Scrum Master -->
         <div class="container bg-light p-4 mb-4 rounded">
@@ -22,46 +23,30 @@ href="{{ url_for('static', filename='stylesheets/teams/style_form_evaluate.css')
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="scrumMaster">Nome do Scrum Master:</label>
-                        <span id="scrumMaster" class="form-control">[Nome do Scrum Master]</span>
-                        <button type="button" class="btn btn-primary mt-2" onclick="mostrarGraficoPlaceholder('scrumMaster')">Gráfico de Atributos</button>
+                        <span id="scrumMaster" class="form-control">{{session['team']['master']}}</span>
+                        <!-- <button type="button" class="btn btn-primary mt-2" onclick="mostrarGraficoPlaceholder('scrumMaster')">Gráfico de Atributos</button> -->
                     </div>
                 </div>
                 <div class="col-md-6 d-flex flex-wrap">
                     <div class="form-group p-2 w-25">
                         <label for="proatividade_sm" class="input-title">Proatividade:</label>
-                        <select id="proatividade_sm" class="form-control btn-sm">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <input type="range" id="master_proatividade" name="master_proatividade" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('master_proatividade', 'master_proatividade_output')">
+                        <output id="master_proatividade_output" value="3">3</output>
                     </div>
                     <div class="form-group p-2 w-25">
                         <label for="entrega_sm" class="input-title">Entrega:</label>
-                        <select id="entrega_sm" class="form-control btn-sm">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <input type="range" id="master_entrega" name="master_entrega" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('master_entrega', 'master_entrega_output')">
+                        <output id="master_entrega_output" value="3">3</output>
                     </div>
                     <div class="form-group p-2 w-25">
                         <label for="comunicacao_sm" class="input-title">Comunicação:</label>
-                        <select id="comunicacao_sm" class="form-control btn-sm">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <input type="range" id="master_comunicacao" name="master_comunicacao" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('master_comunicacao', 'master_comunicacao_output')">
+                        <output id="master_comunicacao_output" value="3">3</output>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="agilidade_sm" class="input-title">Agilidade:</label>
-                        <select id="agilidade_sm" class="form-control btn-sm">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <label for="colaboracao_sm" class="input-title">colaboração:</label>
+                        <input type="range" id="master_colaboracao" name="master_colaboracao" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('master_colaboracao', 'master_colaboracao_output')">
+                        <output id="master_colaboracao_output" value="3">3</output>
                     </div>
                 </div>
             </div>
@@ -74,52 +59,86 @@ href="{{ url_for('static', filename='stylesheets/teams/style_form_evaluate.css')
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="productOwner">Nome do Product Owner:</label>
-                        <span id="productOwner" class="form-control">[Nome do Product Owner]</span>
-                        <button type="button" class="btn btn-primary mt-2" onclick="mostrarGraficoPlaceholder('productOwner')">Gráfico de Atributos</button>
+                        <span id="productOwner" class="form-control">{{session['team']['pOwner']}}</span>
                     </div>
                 </div>
                 <div class="col-md-6 d-flex flex-wrap">
                     <div class="form-group p-2 w-25">
-                        <label for="proatividade_po" class="input-title">Proatividade:</label>
-                        <select id="proatividade_po" class="form-control btn-sm">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <label for="proatividade_sm" class="input-title">Proatividade:</label>
+                        <input type="range" id="po_proatividade" name="po_proatividade" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('po_proatividade', 'po_proatividade_output')">
+                        <output id="po_proatividade_output" value="3">3</output>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="entrega_po" class="input-title">Entrega:</label>
-                        <select id="entrega_po" class="form-control btn-sm">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <label for="entrega_sm" class="input-title">Entrega:</label>
+                        <input type="range" id="po_entrega" name="po_entrega" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('po_entrega', 'po_entrega_output')">
+                        <output id="po_entrega_output" value="3">3</output>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="comunicacao_po" class="input-title">Comunicação:</label>
-                        <select id="comunicacao_po" class="form-control btn-sm">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <label for="comunicacao_sm" class="input-title">Comunicação:</label>
+                        <input type="range" id="po_comunicacao" name="po_comunicacao" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('po_comunicacao', 'po_comunicacao_output')">
+                        <output id="po_comunicacao_output" value="3">3</output>
                     </div>
                     <div class="form-group p-2 w-25">
-                        <label for="agilidade_po" class="input-title">Agilidade:</label>
-                        <select id="agilidade_po" class="form-control btn-sm">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <label for="colaboracao_sm" class="input-title">colaboração:</label>
+                        <input type="range" id="po_colaboracao" name="po_colaboracao" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('po_colaboracao', 'po_colaboracao_output')">
+                        <output id="po_colaboracao_output" value="3">3</output>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="developersContainer"></div>
+        <!-- Container para avaliação de devs -->
+        <div id="developersContainer">
+            {% for dev in session['team']['devs'] %} 
+            {% set name = dev['nome'] %}
+            <div id="{{dev['nome']}}" class="dev-form container bg-light p-4 mb-4 rounded">
+                <h2 class="input-title">Desenvolvedor</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group p-2">
+                            <label for="{{name}}">Nome do Dev:</label>
+                            <span id="{{name}}" class="form-control">{{name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex flex-wrap">
+                        <div class="form-group p-2 w-25">
+                            {% set proatividade_dev = dev['email'] + "_proatividade" %}
+                            {% set proatividade_dev_output = dev['email'] + "_proatividade_output" %}
+                            <label for="{{ proatividade_dev }}" class="input-title">Proatividade:</label>
+                            <input type="range" id="{{ proatividade_dev }}" name="{{ proatividade_dev }}" min="0" max="3" step="0.1" value="3" 
+                                oninput="UpdateEvaluation('{{ proatividade_dev }}', '{{ proatividade_dev_output }}')">
+                            <output id="{{proatividade_dev_output}}" value="3">3</output>
+                        </div>
+                        <div class="form-group p-2 w-25">
+                            {% set entrega_dev = dev['email'] + "_entrega" %}
+                            {% set entrega_dev_output = dev['email'] + "_entrega_output" %}
+                            <label for="{{ entrega_dev }}" class="input-title">Entrega:</label>
+                            <input type="range" id="{{ entrega_dev }}" name="{{ entrega_dev }}" min="0" max="3" step="0.1" value="3" 
+                                oninput="UpdateEvaluation('{{ entrega_dev }}', '{{ entrega_dev_output }}')">
+                            <output id="{{entrega_dev_output}}" value="3">3</output>
+                        </div>
+                        <div class="form-group p-2 w-25">
+                            {% set comunicacao_dev = dev['email'] + "_comunicacao" %}
+                            {% set comunicacao_dev_output = dev['email'] + "_comunicacao_output" %}
+                            <label for="{{ comunicacao_dev }}" class="input-title">Comunicação:</label>
+                            <input type="range" id="{{ comunicacao_dev }}" name="{{ comunicacao_dev }}" min="0" max="3" step="0.1" value="3" 
+                                oninput="UpdateEvaluation('{{ comunicacao_dev }}', '{{ comunicacao_dev_output }}')">
+                            <output id="{{comunicacao_dev_output}}" value="3">3</output>
+                        </div>
+                        <div class="form-group p-2 w-25">
+                            {% set colaboracao_dev = dev['email'] + "_colaboracao" %}
+                            {% set colaboracao_dev_output = dev['email'] + "_colaboracao_output" %}
+                            <label for="{{ colaboracao_dev }}" class="input-title">Colaboração:</label>
+                            <input type="range" id="{{ colaboracao_dev }}" name="{{ colaboracao_dev }}" min="0" max="3" step="0.1" value="3" 
+                                oninput="UpdateEvaluation('{{ colaboracao_dev }}', '{{ colaboracao_dev_output }}')">
+                            <output id="{{colaboracao_dev_output}}" value="3">3</output>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
 
         <div class="container text-center mt-4">
             <button type="submit" class="btn btn-success btn-lg" class="input-title">Enviar Avaliação</button>

@@ -131,4 +131,31 @@ class TeamsController:
             print(f"Error: {e}")
             return jsonify({"status": False, "message": "Erro interno ao atualizar equipe."}), 500
 
-    
+
+        #Função para salvar avaliações
+    def saveEvaluations():
+        try:
+            teams = Teams()
+            team = session['team']
+            raw_evaluations = dict(request.form)
+            evaluations = {}
+            for item in [dev['email'] for dev in team['devs']] + [team['EmMaster'], team['EmPOwner']]:
+                evaluations[item] = {}
+            for i in range(len(raw_evaluations)):
+                for ev in ['proatividade', 'entrega', 'comunicacao', 'colaboracao']:
+                    evaluations[team['EmMaster']][ev] = raw_evaluations['master_' + ev]
+                    evaluations[team['EmPOwner']][ev] = raw_evaluations['po_' + ev]
+                    for dev in team['devs']:
+                        email = dev['email']
+                        evaluations[email][ev] = raw_evaluations[email + '_' + ev]
+
+            print(evaluations)
+            if teams.save_evaluations(evaluations):
+                Log().register(operation=f'Team: Evaluation Attempt')
+                return jsonify({"status": True, "message": "Avaliações salvas com sucesso!"}), 200
+            else:
+                Log().register(operation=f'Team: Failed Evaluation Attempt')
+                return jsonify({"status": False, "message": "Não foi possível salvar avaliações"}), 400
+        except:
+            Log().register(operation=f'Team: Failed Evaluation Attempt')
+            return jsonify({"status": False, "message": "Não foi possível salvar avaliações"}), 500

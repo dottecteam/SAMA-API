@@ -3,11 +3,13 @@ from app import app
 import shortuuid
 import json
 from app.utilities.ut_cryptography import Criptography
+from datetime import datetime
 from flask import session
 
 class Teams:
     #Caminho do arquivo .txt
     srcData = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "teams", "teams.txt")
+    evaluationsData = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "teams", "evaluations.txt")
 
     #Construtor da classe
     def __init__(self, team='', password='', EmMaster='', EmPOwner='', devs=None, id=''):
@@ -136,7 +138,48 @@ class Teams:
             
         except Exception as e:
             print(f"Erro ao atualizar equipe: {e}")
+            return False 
+        
+    #Função para salvar avaliações encriptadas
+    def save_evaluations(self, evaluations):
+        try:
+            now = datetime.now()
+            data = {
+                'id': session['team']['id'], #Salva o ID da equipe para identificação
+                'evaluations': evaluations,
+                'date': f"{now.year}-{now.month}-{now.day}", #Data de envio de avaliações
+                'time': f"{now.hour}:{now.minute}:{now.second}" #Horário de envio de avaliações
+                }
+            json_data = json.dumps(data, indent=2, ensure_ascii=False)
+            encrypted_data = Criptography.encrypt(json_data)
+
+            with open(self.evaluationsData, 'a', encoding='utf-8') as file:
+                file.write(f"{encrypted_data}\n")
+            return True
+        except:
             return False
         
+    #Retorna uma lista com todas as avaliações decrypitadas
+    def readEvaluations(self):
+        try:
+            with open(self.evaluationsData, 'r', encoding='utf-8') as file:
+                evaluations = [linha.strip() for linha in file.readlines()]
+            decrypted_evaluations = []
+            for evaluation in evaluations:
+                decrypted = Criptography.decrypt(evaluation)
+                decrypted_evaluations.append(json.loads(decrypted))
+            return decrypted_evaluations
+        except:
+            return None
     
-        
+    #Retorna todas as avaliações de uma equipe baseado no ID
+    def readEvaluationsById(self, id):
+        try:
+            evaluations = self.readEvaluations()
+            filtered = []
+            for evaluation in evaluations:
+                if evaluation['id'] == id:
+                    filtered.append(evaluation)
+            return filtered
+        except:
+            return None

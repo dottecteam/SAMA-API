@@ -61,4 +61,11 @@ def login_team():
 @TeamsController.loginRequired  
 def update_team():
     return TeamsController.update_team()
+
+#Função para registrar avaliação
+@app.route('/equipes/avaliacoes/avaliar', methods=['POST'])
+@TeamsController.loginRequired
+def salvar_avaliacoes():
+    return TeamsController.saveEvaluations()
+
 #FUNÇÕES
