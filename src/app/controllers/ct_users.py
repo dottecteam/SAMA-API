@@ -19,9 +19,6 @@ class UserController:
                 session.clear()
                 return jsonify({"status": False, "message": "Usuário já cadastrado!"}), 400
             
-            if Validation.valideLenPassword(session['password']) == False:
-                session.clear()
-                return jsonify({"status": False, "message": "A senha deve ter entre 8 e 20 caracteres."}), 400
             
             if Validation.validePassword(session["password"], session["confirmPassword"]) == False:
                 session.clear()

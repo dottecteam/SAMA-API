@@ -126,13 +126,6 @@ class Validation:
         else:
             return True
         
-    #Função para validar a igualdade da senha
-    def valideLenPassword(password):
-        if len(password)<8 or len(password)>20:
-            return False
-        else:
-            return True
-        
     #Função para verificar se o desenvolvedor está cadastrado
     def UserIsRegistered(email):
         try:

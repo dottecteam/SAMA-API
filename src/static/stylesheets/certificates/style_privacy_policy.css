@@ -1,25 +1,31 @@
 body {
     font-family: "Arial", "sans-serif";
+    display: flex;
+    justify-content: center;
 }
+
+#content {
+    width: 70%;
+}
+
 h1 {
     font-size: 40px;
-    margin-top: 50px;
-}
-#secao-um {
     margin-top: 100px;
 }
+
+#sections {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
 h1, h2 {
     color: rgb(59, 140, 110);
 }
+
 p {
     color: #333;
 }
-h1, h2, p {
-    padding: 0px 0px 0px 200px;
-}
+
 section {
     line-height: 2;
-}
-#secao-dez {
-    margin-bottom: 100px;
 }

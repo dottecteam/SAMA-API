@@ -121,7 +121,7 @@
           </span>
           <div class="modal-footer">
             <button type="submit" form="form-login"
-              class="btn btn-custom">Entrar</button>
+              class="btn btn-custom" style="margin-right: 40%;">Entrar</button>
           </div>
         </div>
       </div>
@@ -153,19 +153,17 @@
                   aria-labelledby="dropdown-certificates">
                   {% if session['user'] %}
                   <li><a class="dropdown-item text-center"
-                      href="/atestados/cadastro">Cadastro de Atestados</a></li>
+                      href="/atestados/cadastro">Cadastro de Atestado</a></li>
                   <li><a class="dropdown-item text-center"
                       href="/usuarios/atestados">Meus Atestados</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/atestados/acesso">Acesso Secretaria</a></li>
                   {% elif session['secretary'] %}
                   <li><a class="dropdown-item text-center"
-                      href="/atestados/consulta">Consulta de Atestados</a></li>
+                      href="/atestados/consulta">Consulta</a></li>
                   {% else %}
                   <li><a class="dropdown-item text-center"
-                      href="/usuarios/cadastro">Cadastro de Usuários</a></li>
+                      href="/usuarios/cadastro">Cadastro</a></li>
                   <li><a class="dropdown-item text-center"
-                      href="/atestados/acesso">Acesso Secretaria</a></li>
+                      href="/atestados/acesso">Secretaria</a></li>
                   {% endif %}
                 </ul>
               </li>
@@ -179,16 +177,16 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdown-teams">
                   {% if session['team'] %}
                   <li><a class="dropdown-item text-center"
-                      href="/equipes/avaliacoes">Avaliações</a></li>
+                      href="/equipes/avaliacoes">Avaliação</a></li>
                   <li><a class="dropdown-item text-center"
                       href="/equipes/visualizar">Equipes</a></li>
                   {% else %}
                   <li><a class="dropdown-item text-center"
-                      href="/equipes/cadastro">Cadastro de Equipes</a></li>
+                      href="/equipes/cadastro">Cadastro</a></li>
+                  <li><a class="dropdown-item text-center"
+                      href="/equipes/acesso">Acesso</a></li>
                   <li><a class="dropdown-item text-center"
                       href="/equipes/visualizar">Equipes</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/equipes/acesso">Acesso Equipe</a></li>
                   {% endif %}
                 </ul>
               </li>
@@ -201,9 +199,9 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown-painel">
                   <li><a class="dropdown-item text-center"
-                      href="/painel/atestados">Painel de Atestados</a></li>
+                      href="/painel/atestados">Atestados</a></li>
                   <li><a class="dropdown-item text-center"
-                      href="/painel/equipes">Painel de Equipes</a></li>
+                      href="/painel/equipes">Equipes</a></li>
                 </ul>
               </li>
             </ul>
@@ -229,7 +227,7 @@
                 <a class="nav-link dropdown-toggle rounded text-center" href="#"
                   id="dropdown-secretary" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  Acesso Secretaria
+                  Secretaria
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end"
                   aria-labelledby="dropdown-secretary">
@@ -254,8 +252,7 @@
               </div>
               {% else %}
               <button class="btn btn-custom" style="border: 1px solid #ffffff;"
-                data-bs-toggle="modal" data-bs-target="#modal-login">Faça seu
-                login!</button>
+                data-bs-toggle="modal" data-bs-target="#modal-login">Entrar</button>
               {% endif %}
             </div>
           </div>
@@ -289,7 +286,7 @@
                 <ul class="list-unstyled">
                   <li><a href="/atestados/cadastro"
                       class="text-white">Cadastro</a></li>
-                  <li><a href="/atestados/acesso" class="text-white">Acesso
+                  <li><a href="/atestados/acesso" class="text-white">
                       Secretaria</a></li>
                 </ul>
               </div>
@@ -298,16 +295,16 @@
                 <ul class="list-unstyled">
                   <li><a href="/equipes/cadastro"
                       class="text-white">Cadastro</a></li>
-                  <li><a href="/equipes/avaliacoes"
-                      class="text-white">Avaliações</a></li>
+                  <li><a href="/equipes/acesso" class="text-white">Acesso</a></li>
+                  <li><a href="/equipes/visualizar" class="text-white">Equipes</a></li>
                 </ul>
               </div>
               <div class="col-md-4">
                 <h5>Painéis</h5>
                 <ul class="list-unstyled">
-                  <li><a href="/painel/atestados" class="text-white">Painel de
+                  <li><a href="/painel/atestados" class="text-white">
                       Atestados</a></li>
-                  <li><a href="/painel/equipes" class="text-white">Painel de
+                  <li><a href="/painel/equipes" class="text-white">
                       Equipes</a></li>
                 </ul>
               </div>

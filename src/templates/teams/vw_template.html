@@ -87,46 +87,6 @@
       </div>
     </div>
 
-    <!-- Modal de login -->
-    <div class="modal fade" id="modal-login" tabindex="-1"
-      aria-labelledby="label-modal-login" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Login</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Fechar"></button>
-          </div>
-          <div class="modal-body">
-            <form id="form-login" method="post">
-              <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control"
-                  id="input-user-form-login" name="input-user-form-login"
-                  placeholder="seuemail@exemplo.com" required>
-              </div>
-              <div class="mb-3">
-                <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control"
-                  id="input-password-form-login"
-                  name="input-password-form-login" placeholder="********"
-                  required>
-              </div>
-            </form>
-          </div>
-          <span class="text-center">
-            Não tem uma conta? <a href="/usuarios/cadastro"
-              class="text-secondary link-custom">Clique aqui para se
-              cadastrar!</a>
-          </span>
-          <div class="modal-footer">
-            <button type="submit" form="form-login"
-              class="btn btn-custom">Entrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <header>
       <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
         <div class="container-fluid">
@@ -153,19 +113,17 @@
                   aria-labelledby="dropdown-certificates">
                   {% if session['user'] %}
                   <li><a class="dropdown-item text-center"
-                      href="/atestados/cadastro">Cadastro de Atestados</a></li>
+                      href="/atestados/cadastro">Cadastro de Atestado</a></li>
                   <li><a class="dropdown-item text-center"
                       href="/usuarios/atestados">Meus Atestados</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/atestados/acesso">Acesso Secretaria</a></li>
                   {% elif session['secretary'] %}
                   <li><a class="dropdown-item text-center"
-                      href="/atestados/consulta">Consulta de Atestados</a></li>
+                      href="/atestados/consulta">Consulta</a></li>
                   {% else %}
                   <li><a class="dropdown-item text-center"
-                      href="/usuarios/cadastro">Cadastro de Usuários</a></li>
+                      href="/usuarios/cadastro">Cadastro</a></li>
                   <li><a class="dropdown-item text-center"
-                      href="/atestados/acesso">Acesso Secretaria</a></li>
+                      href="/atestados/acesso">Secretaria</a></li>
                   {% endif %}
                 </ul>
               </li>
@@ -179,16 +137,16 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdown-teams">
                   {% if session['team'] %}
                   <li><a class="dropdown-item text-center"
-                      href="/equipes/avaliacoes">Avaliações</a></li>
+                      href="/equipes/avaliacoes">Avaliação</a></li>
                   <li><a class="dropdown-item text-center"
                       href="/equipes/visualizar">Equipes</a></li>
                   {% else %}
                   <li><a class="dropdown-item text-center"
-                      href="/equipes/cadastro">Cadastro de Equipes</a></li>
+                      href="/equipes/cadastro">Cadastro</a></li>
+                  <li><a class="dropdown-item text-center"
+                      href="/equipes/acesso">Acesso</a></li>
                   <li><a class="dropdown-item text-center"
                       href="/equipes/visualizar">Equipes</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/equipes/acesso">Acesso Equipe</a></li>
                   {% endif %}
                 </ul>
               </li>
@@ -201,9 +159,9 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown-painel">
                   <li><a class="dropdown-item text-center"
-                      href="/painel/atestados">Painel de Atestados</a></li>
+                      href="/painel/atestados">Atestados</a></li>
                   <li><a class="dropdown-item text-center"
-                      href="/painel/equipes">Painel de Equipes</a></li>
+                      href="/painel/equipes">Equipes</a></li>
                 </ul>
               </li>
             </ul>
@@ -229,7 +187,7 @@
                 <a class="nav-link dropdown-toggle rounded text-center" href="#"
                   id="dropdown-secretary" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  Acesso Secretaria
+                  Secretaria
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end"
                   aria-labelledby="dropdown-secretary">
@@ -254,7 +212,7 @@
               </div>
               {% else %}
               <button class="btn btn-custom" style="border: 1px solid #ffffff;"
-                id="btn-login">Faça seu login!</button>
+                id="btn-login"><a href="/equipes/acesso" class="text-white">Entrar</a></button>
               {% endif %}
             </div>
           </div>
@@ -288,7 +246,7 @@
                 <ul class="list-unstyled">
                   <li><a href="/atestados/cadastro"
                       class="text-white">Cadastro</a></li>
-                  <li><a href="/atestados/acesso" class="text-white">Acesso
+                  <li><a href="/atestados/acesso" class="text-white">
                       Secretaria</a></li>
                 </ul>
               </div>
@@ -297,16 +255,16 @@
                 <ul class="list-unstyled">
                   <li><a href="/equipes/cadastro"
                       class="text-white">Cadastro</a></li>
-                  <li><a href="/equipes/avaliacoes"
-                      class="text-white">Avaliações</a></li>
+                  <li><a href="/equipes/acesso" class="text-white">Acesso</a></li>
+                  <li><a href="/equipes/visualizar" class="text-white">Equipes</a></li>
                 </ul>
               </div>
               <div class="col-md-4">
                 <h5>Painéis</h5>
                 <ul class="list-unstyled">
-                  <li><a href="/painel/atestados" class="text-white">Painel de
+                  <li><a href="/painel/atestados" class="text-white">
                       Atestados</a></li>
-                  <li><a href="/painel/equipes" class="text-white">Painel de
+                  <li><a href="/painel/equipes" class="text-white">
                       Equipes</a></li>
                 </ul>
               </div>

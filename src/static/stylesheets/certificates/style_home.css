@@ -80,7 +80,7 @@
   background-color: #c56b17;
 }
 
-#img-home-scrum {
+#img-home-pacer {
   width: 300px;
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
@@ -126,7 +126,7 @@
   #img-home-doctor {
     width: 350px;
   }
-  #img-home-scrum {
+  #img-home-pacer {
     width: 250px;
   }
 }
@@ -134,7 +134,7 @@
   #img-home-doctor {
     width: 300px;
   }
-  #img-home-scrum {
+  #img-home-pacer {
     width: 250px;
   }
 }

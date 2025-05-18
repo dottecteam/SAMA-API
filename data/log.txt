@@ -8,3 +8,114 @@
 [2025-05-15 08:47:44] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
 [2025-05-15 08:54:11] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
 [2025-05-15 08:54:11] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 14:58:30] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 15:01:56] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 15:03:24] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 15:05:34] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 15:11:15] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 15:15:11] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 15:16:21] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 15:17:34] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 15:21:20] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:13:36] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:15:58] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:16:02] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:17:05] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:17:15] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:17:25] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:17:32] IP = 127.0.0.1 | Account = Secretary | Operation = Secretary: Login
+[2025-05-18 16:19:21] IP = 127.0.0.1 | Account = Secretary | Operation = Account: Logout
+[2025-05-18 16:19:52] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:19:52] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (DJiou9a74t4kqV6XuhUpaB)
+[2025-05-18 16:20:03] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:20:03] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 16:21:51] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-18 16:25:12] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:44:41] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:45:08] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:46:42] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:46:45] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:46:56] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:47:48] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:48:50] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:48:53] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:49:13] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:49:25] IP = 127.0.0.1 | Account = Secretary | Operation = Secretary: Login
+[2025-05-18 16:49:39] IP = 127.0.0.1 | Account = Secretary | Operation = Account: Logout
+[2025-05-18 16:49:42] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:50:05] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:50:05] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 16:51:24] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-18 16:51:35] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:51:37] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:53:05] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:53:39] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:55:22] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:56:11] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:56:22] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:57:33] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:57:57] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:59:21] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:59:25] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:59:31] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:59:55] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 16:59:58] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:07:33] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:07:43] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:07:46] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:14:03] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:14:09] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:14:13] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:14:16] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:14:36] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:17:53] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:17:53] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 17:19:54] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-18 17:20:06] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:20:06] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 17:20:48] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-18 17:21:26] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:23:11] IP = 127.0.0.1 | Account = Not Logged | Operation = User: Register Account (emailderamonbv@gmail.com)
+[2025-05-18 17:23:28] IP = 127.0.0.1 | Account = emailderamonbv@gmail.com | Operation = User: Login
+[2025-05-18 17:23:56] IP = 127.0.0.1 | Account = emailderamonbv@gmail.com | Operation = Account: Logout
+[2025-05-18 17:24:02] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:24:08] IP = 127.0.0.1 | Account = Secretary | Operation = Secretary: Login
+[2025-05-18 17:24:38] IP = 127.0.0.1 | Account = Secretary | Operation = Account: Logout
+[2025-05-18 17:25:06] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:25:06] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 17:25:23] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-18 17:28:17] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:28:20] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:29:11] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:29:40] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:29:47] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:30:03] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:30:11] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:30:18] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:30:33] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:30:38] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:30:54] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:31:15] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:31:18] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:37:07] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:37:26] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:37:57] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:38:05] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:49:26] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:49:31] IP = 127.0.0.1 | Account = Not Logged | Operation = Secretary: Login Attempt
+[2025-05-18 17:49:38] IP = 127.0.0.1 | Account = Secretary | Operation = Secretary: Login
+[2025-05-18 17:53:31] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:53:40] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 17:53:46] IP = 127.0.0.1 | Account = Secretary | Operation = Secretary: Login
+[2025-05-18 17:54:59] IP = 127.0.0.1 | Account = Secretary | Operation = Account: Logout
+[2025-05-18 17:55:23] IP = 127.0.0.1 | Account = emailderamonbv@gmail.com | Operation = User: Login
+[2025-05-18 18:00:14] IP = 127.0.0.1 | Account = emailderamonbv@gmail.com | Operation = Account: Logout
+[2025-05-18 18:01:57] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 18:01:57] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 18:02:42] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-18 18:02:58] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 18:02:58] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 18:03:12] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-18 18:03:31] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-18 18:03:31] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-18 18:03:55] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
