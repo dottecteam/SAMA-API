@@ -96,3 +96,7 @@
   border: 1px solid #ffffff;
   background-color: rgba(var(--cor-primaria));
 }
+
+.container.bg-light {
+    border-left: 6px solid rgba(var(--cor-primaria));
+}

@@ -1,151 +1,146 @@
-{% extends "teams/vw_template.html" %} {% block content %}
+{% extends "teams/vw_template.html" %}
+{% block content %}
 
 <!-- Style da pagina -->
-<link
-rel="stylesheet"
-href="{{ url_for('static', filename='stylesheets/teams/style_form_evaluate.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/teams/style_form_evaluate.css') }}" />
 
 <!-- Container para o formulário de avaliação de equipe -->
 <section id="avaliacao-section" class="container-fluid">
     <div class="container p-4 mb-4 rounded">
-    <h1 class="text-center form-evaluate-title" style="font-size:50px;">Avaliação de Equipe</h1>
-    <p class="text-center">Avalie a equipe baseada nos critérios abaixo:</p>
-</div>
+        <h1 class="text-center form-evaluate-title" style="font-size:50px;">Avaliação de Equipe</h1>
+        <p class="text-center">Avalie a equipe baseada nos critérios abaixo:</p>
+    </div>
 
+    <form id="form-avaliacao" method="post" data-devs='{{ session["team"]["devs"] | tojson | safe}}'>
 
-    <form id="form-avaliacao">
-        
-        <!-- Container para informações e avaliação do Scrum Master -->
+        <!-- SCRUM MASTER -->
         <div class="container bg-light p-4 mb-4 rounded">
             <h2 class="input-title">Scrum Master</h2>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="scrumMaster">Nome do Scrum Master:</label>
-                        <span id="scrumMaster" class="form-control">{{session['team']['EmMaster']}}</span>
-                        <!-- <button type="button" class="btn btn-primary mt-2" onclick="mostrarGraficoPlaceholder('scrumMaster')">Gráfico de Atributos</button> -->
+                        <span id="scrumMaster" class="form-control">[Nome do Scrum Master]</span>
                     </div>
                 </div>
                 <div class="col-md-6 d-flex flex-wrap">
-                    <div class="form-group p-2 w-25">
-                        <label for="master_proatividade" class="input-title">Proatividade:</label>
-                        <input type="range" id="master_proatividade" name="master_proatividade" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('master_proatividade', 'master_proatividade_output')">
-                        <output id="master_proatividade_output" value="3">3</output>
+                    <div class="row w-100">
+                        <!-- Proatividade -->
+                        <div class="form-group p-2 col-6">
+                            <label>Proatividade:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" min="0" max="3" step="0.1" value="0"
+                                    class="form-range me-2 sync-slider" data-target="proativ_input">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="proativ_input"
+                                    class="form-control w-50 sync-input">
+                            </div>
+                        </div>
+                        <!-- Entrega -->
+                        <div class="form-group p-2 col-6">
+                            <label>Entrega:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" min="0" max="3" step="0.1" value="0"
+                                    class="form-range me-2 sync-slider" data-target="entrega_input">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="entrega_input"
+                                    class="form-control w-50 sync-input">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group p-2 w-25">
-                        <label for="master_autonomia" class="input-title">Autonomia:</label>
-                        <input type="range" id="master_autonomia" name="master_autonomia" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('master_autonomia', 'master_autonomia_output')">
-                        <output id="master_autonomia_output" value="3">3</output>
-                    </div>
-                    <div class="form-group p-2 w-25">
-                        <label for="master_colaboracao" class="input-title">colaboração:</label>
-                        <input type="range" id="master_colaboracao" name="master_colaboracao" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('master_colaboracao', 'master_colaboracao_output')">
-                        <output id="master_colaboracao_output" value="3">3</output>
-                    </div>
-                    <div class="form-group p-2 w-25">
-                        <label for="master_entrega" class="input-title">Entrega:</label>
-                        <input type="range" id="master_entrega" name="master_entrega" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('master_entrega', 'master_entrega_output')">
-                        <output id="master_entrega_output" value="3">3</output>
+                    <div class="row w-100">
+                        <!-- Comunicação -->
+                        <div class="form-group p-2 col-6">
+                            <label>Comunicação:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" min="0" max="3" step="0.1" value="0"
+                                    class="form-range me-2 sync-slider" data-target="comm_input">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="comm_input"
+                                    class="form-control w-50 sync-input">
+                            </div>
+                        </div>
+                        <!-- Cooperação -->
+                        <div class="form-group p-2 col-6">
+                            <label>Cooperação:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" min="0" max="3" step="0.1" value="0"
+                                    class="form-range me-2 sync-slider" data-target="coop_input">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="coop_input"
+                                    class="form-control w-50 sync-input">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Container para informações e avaliação do Product Owner -->
-        <div id="productOwnerOriginal" class="container bg-light p-4 mb-4 rounded">
+        <!-- PRODUCT OWNER -->
+        <div class="container bg-light p-4 mb-4 rounded">
             <h2 class="input-title">Product Owner</h2>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="productOwner">Nome do Product Owner:</label>
-                        <span id="productOwner" class="form-control">{{session['team']['EmPOwner']}}</span>
+                        <span id="productOwner" class="form-control">[Nome do Product Owner]</span>
                     </div>
                 </div>
                 <div class="col-md-6 d-flex flex-wrap">
-                    <div class="form-group p-2 w-25">
-                        <label for="proatividade_sm" class="input-title">Proatividade:</label>
-                        <input type="range" id="po_proatividade" name="po_proatividade" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('po_proatividade', 'po_proatividade_output')">
-                        <output id="po_proatividade_output" value="3">3</output>
+                    <!-- Proatividade -->
+                    <div class="row w-100">
+                        <div class="form-group p-2 col-6">
+                            <label>Proatividade:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" min="0" max="3" step="0.1" value="0"
+                                    class="form-range me-2 sync-slider" data-target="proativ_po_input">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="proativ_po_input"
+                                    class="form-control w-50 sync-input">
+                            </div>
+                        </div>
+                        <!-- Entrega -->
+                        <div class="form-group p-2 col-6">
+                            <label>Entrega:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" min="0" max="3" step="0.1" value="0"
+                                    class="form-range me-2 sync-slider" data-target="entrega_po_input">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="entrega_po_input"
+                                    class="form-control w-50 sync-input">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group p-2 w-25">
-                        <label for="po_autonomia" class="input-title">Autonomia:</label>
-                        <input type="range" id="po_autonomia" name="po_autonomia" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('po_autonomia', 'po_autonomia_output')">
-                        <output id="po_autonomia_output" value="3">3</output>
-                    </div>
-                    <div class="form-group p-2 w-25">
-                        <label for="colaboracao_sm" class="input-title">colaboração:</label>
-                        <input type="range" id="po_colaboracao" name="po_colaboracao" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('po_colaboracao', 'po_colaboracao_output')">
-                        <output id="po_colaboracao_output" value="3">3</output>
-                    </div>
-                    <div class="form-group p-2 w-25">
-                        <label for="entrega_sm" class="input-title">Entrega:</label>
-                        <input type="range" id="po_entrega" name="po_entrega" min="0" max="3" step="0.1" value="3" oninput="UpdateEvaluation('po_entrega', 'po_entrega_output')">
-                        <output id="po_entrega_output" value="3">3</output>
+                    <!-- Comunicação -->
+                    <div class="row w-100">
+                        <div class="form-group p-2 col-6">
+                            <label>Comunicação:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" min="0" max="3" step="0.1" value="0"
+                                    class="form-range me-2 sync-slider" data-target="comm_po_input">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="comm_po_input"
+                                    class="form-control w-50 sync-input">
+                            </div>
+                        </div>
+                        <!-- Cooperação -->
+                        <div class="form-group p-2 col-6">
+                            <label>Cooperação:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="range" min="0" max="3" step="0.1" value="0"
+                                    class="form-range me-2 sync-slider" data-target="coop_po_input">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="coop_po_input"
+                                    class="form-control w-50 sync-input">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Container para avaliação de devs -->
-        <div id="developersContainer">
-            {% for dev in session['team']['devs'] %} 
-            {% set email = dev['email'][0] %}
-            <div id="{{dev['nome']}}" class="dev-form container bg-light p-4 mb-4 rounded">
-                <h2 class="input-title">Desenvolvedor</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group p-2">
-                            <label for="{{dev['name']}}">Nome do Dev:</label>
-                            <span id="{{dev['name']}}" class="form-control">{{dev['name']}}</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 d-flex flex-wrap">
-                        <div class="form-group p-2 w-25">
-                            {% set proatividade_dev = email + "_proatividade" %}
-                            {% set proatividade_dev_output = email + "_proatividade_output" %}
-                            <label for="{{ proatividade_dev }}" class="input-title">Proatividade:</label>
-                            <input type="range" id="{{ proatividade_dev }}" name="{{ proatividade_dev }}" min="0" max="3" step="0.1" value="3" 
-                                oninput="UpdateEvaluation('{{ proatividade_dev }}', '{{ proatividade_dev_output }}')">
-                            <output id="{{proatividade_dev_output}}" value="3">3</output>
-                        </div>
-                        <div class="form-group p-2 w-25">
-                            {% set autonomia_dev = email + "_autonomia" %}
-                            {% set autonomia_dev_output = email + "_autonomia_output" %}
-                            <label for="{{ autonomia_dev }}" class="input-title">Autonomia:</label>
-                            <input type="range" id="{{ autonomia_dev }}" name="{{ autonomia_dev }}" min="0" max="3" step="0.1" value="3" 
-                                oninput="UpdateEvaluation('{{ autonomia_dev }}', '{{ autonomia_dev_output }}')">
-                            <output id="{{autonomia_dev_output}}" value="3">3</output>
-                        </div>
-                        <div class="form-group p-2 w-25">
-                            {% set colaboracao_dev = email + "_colaboracao" %}
-                            {% set colaboracao_dev_output = email + "_colaboracao_output" %}
-                            <label for="{{ colaboracao_dev }}" class="input-title">Colaboração:</label>
-                            <input type="range" id="{{ colaboracao_dev }}" name="{{ colaboracao_dev }}" min="0" max="3" step="0.1" value="3" 
-                                oninput="UpdateEvaluation('{{ colaboracao_dev }}', '{{ colaboracao_dev_output }}')">
-                            <output id="{{colaboracao_dev_output}}" value="3">3</output>
-                        </div>
-                        <div class="form-group p-2 w-25">
-                            {% set entrega_dev = email + "_entrega" %}
-                            {% set entrega_dev_output = email + "_entrega_output" %}
-                            <label for="{{ entrega_dev }}" class="input-title">Entrega:</label>
-                            <input type="range" id="{{ entrega_dev }}" name="{{ entrega_dev }}" min="0" max="3" step="0.1" value="3" 
-                                oninput="UpdateEvaluation('{{ entrega_dev }}', '{{ entrega_dev_output }}')">
-                            <output id="{{entrega_dev_output}}" value="3">3</output>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            {% endfor %}
-        </div>
+        <div id="developersContainer"></div>
 
-        <div class="container text-center mt-4">
-            <button type="submit" class="btn btn-success btn-lg" class="input-title">Enviar Avaliação</button>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-custom btn-lg" class="input-title">Enviar Avaliação</button>
         </div>
     </form>
+
 </section>
 
-<script src="{{ url_for('static', filename='scripts/teams/script_form_evaluate.js') }}"></script>  <!-- Inclua o script aqui -->
+<script src="{{ url_for('static', filename='scripts/teams/script_form_evaluate.js') }}"></script>
+
 
 {% endblock %}

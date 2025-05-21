@@ -1,0 +1,122 @@
+.container {
+  padding-top: 50px;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 15px;
+  font-size: 1.3rem;
+  margin: 0 auto;
+}
+
+.card-header {
+  border-radius: 15px 15px 0 0;
+  background-color: #154773;
+}
+
+.card-header h4 {
+  font-size: 1.95rem;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-footer {
+  border-radius: 0 0 15px 15px;
+  font-size: 1.15rem;
+}
+
+.form-group {
+  margin: 1rem 0;
+}
+
+.form-label {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.position-relative {
+  position: relative;
+}
+
+#toggle-password {
+  top: 73%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: #154773;
+  border: none;
+  background: transparent;
+}
+
+#toggle-password i {
+  cursor: pointer;
+}
+
+.text-danger {
+  font-size: 1.2rem;
+  color: red;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+.text-white {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 90%;
+    font-size: 1.2rem;
+  }
+
+  .card-header h4 {
+    font-size: 1.7rem;
+  }
+
+  .form-label {
+    font-size: 1.1rem;
+  }
+
+  .btn-custom {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .card {
+    max-width: 95%;
+    font-size: 1rem;
+  }
+
+  .card-header h4 {
+    font-size: 1.5rem;
+  }
+
+  .form-label {
+    font-size: 1rem;
+  }
+
+  .btn-custom {
+    font-size: 1.1rem;
+    width: 80%;
+  }
+
+  #toggle-password {
+    right: 5px;
+    font-size: 1.1rem;
+  }
+
+  #toggle-password i {
+    font-size: 1.3rem;
+  }
+}

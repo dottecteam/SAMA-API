@@ -29,3 +29,26 @@
     background: #c01c1c;
     color: #ffffff;
   }
+
+  /* Estilos para o campo de senha e o botão de visibilidade */
+#input-password-form {
+  font-size: 1rem;
+  width: 100%;
+  padding-right: 40px;
+}
+
+/* Ajuste para o botão de visibilidade */
+#toggle-password-register {
+  position: absolute;
+  top: 66%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: #154773;
+  border: none;
+  background: transparent;
+}
+
+#toggle-password-register i {
+  cursor: pointer;
+}

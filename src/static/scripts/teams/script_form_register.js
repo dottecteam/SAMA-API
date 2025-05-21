@@ -59,3 +59,19 @@ $(document).ready(function () {
     });
   });
 });
+
+
+// Script para alternar visibilidade da senha na página de cadastro
+const togglePasswordRegister = document.getElementById('toggle-password-register');
+const passwordFieldRegister = document.getElementById('input-password-form');
+const passwordIconRegister = document.getElementById('password-icon-register');
+
+togglePasswordRegister.addEventListener('click', function () {
+  // Alternar o tipo do campo de senha
+  const type = passwordFieldRegister.type === 'password' ? 'text' : 'password';
+  passwordFieldRegister.type = type;
+
+  // Alternar o ícone de visibilidade
+  passwordIconRegister.classList.toggle('bi-eye');
+  passwordIconRegister.classList.toggle('bi-eye-slash');
+});

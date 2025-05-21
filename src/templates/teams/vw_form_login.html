@@ -1,8 +1,6 @@
-{% extends "teams/vw_template.html" %} {% block content %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='stylesheets/teams/style_form_login.css') }}"
-/>
+{% extends "teams/vw_template.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/teams/style_form_login.css') }}" />
 
 <div class="container d-flex justify-content-center align-items-start" style="padding-top: 50px;">
   <div class="card shadow-lg" style="width: 100%; max-width: 520px; border-radius: 15px; font-size: 1.3rem;">
@@ -14,35 +12,32 @@
         <p class="text-center text-muted mb-4" style="font-size: 1.3rem;">
           Insira sua senha para acessar o painel da equipe.
         </p>
-        
+
         <div class="form-group m-3">
           <label for="input-id-team" class="form-label fw-bold" style="font-size: 1.3rem;">ID:</label>
-          <input
-            autocomplete="off"
-            type="text"
-            name="input-id-team"
-            id="input-id-team"
-            class="form-control"
-            placeholder="Digite seu ID"
-            style="font-size: 1.3rem;"
-            required
-          />
+          <input autocomplete="off" type="text" name="input-id-team" id="input-id-team" class="form-control"
+            placeholder="Digite seu ID" style="font-size: 1.3rem;" required aria-label="ID do usuário" />
         </div>
-        <div class="form-group m-3">
+
+        <div class="form-group m-3 position-relative">
           <label for="input-password-team" class="form-label fw-bold" style="font-size: 1.3rem;">Senha:</label>
-          <input
-            autocomplete="off"
-            type="password"
-            name="input-password-team"
-            id="input-password-team"
-            class="form-control"
-            placeholder="Digite sua Senha"
-            style="font-size: 1.3rem;"
-            required
-          />
+          <input autocomplete="off" type="password" name="input-password-team" id="input-password-team"
+            class="form-control" placeholder="Digite sua Senha" style="font-size: 1.3rem;" required
+            aria-label="Senha do usuário" />
+
+          <button type="button" id="toggle-password" class="btn btn-link position-absolute">
+            <i id="password-icon" class="bi bi-eye-slash"></i>
+          </button>
         </div>
+
+        <div id="error-message" class="text-danger text-center" style="display:none; font-size: 1.2rem;">
+          <p>Credenciais inválidas. Por favor, tente novamente.</p>
+        </div>
+
         <div class="form-group text-center">
-          <button type="submit" class="btn btn-custom text-white w-75" style=" font-size: 1.3rem;">Entrar</button>
+          <button type="submit" class="btn btn-custom text-white w-75" style="font-size: 1.3rem;">
+            Entrar
+          </button>
         </div>
       </form>
     </div>
@@ -50,4 +45,5 @@
 </div>
 
 <script src="{{ url_for('static', filename='scripts/teams/script_form_login.js') }}"></script>
+
 {% endblock %}

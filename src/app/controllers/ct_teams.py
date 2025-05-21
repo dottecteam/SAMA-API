@@ -44,9 +44,6 @@ class TeamsController:
 
             teams=Teams()
 
-            if Validation.valideLenPassword(password)==False:
-                return jsonify({"status": False, "message": "A senha deve ter entre 8 e 20 caracteres."}), 400
-
             # Verifica se os desenvolvedores estão cadastrados
             if Validation.UserIsRegistered(EmMaster)==False:
                 return jsonify({"status": False, "message": f"Desenvolvedor {EmMaster} não cadastrado."}), 400
@@ -62,7 +59,9 @@ class TeamsController:
             for email in dev_emails:
                 user = users.readUser(email)
                 nome = user[0].name
+                devId = f"{(dev_emails.index(email) + 1):03}"
                 dev = {
+                    'devId': devId,
                     'email': email,
                     'nome': nome
                 }
@@ -153,16 +152,16 @@ class TeamsController:
             teams = Teams()
             team = session['team']
             raw_evaluations = dict(request.form)
-            evaluations = {}
-            for item in [dev['email'][0] for dev in team['devs']] + [team['EmMaster'], team['EmPOwner']]:
-                evaluations[item] = {}
-            for i in range(len(raw_evaluations)):
-                for ev in ['proatividade', 'autonomia', 'colaboracao', 'entrega']:
-                    evaluations[team['EmMaster']][ev] = raw_evaluations['master_' + ev]
-                    evaluations[team['EmPOwner']][ev] = raw_evaluations['po_' + ev]
-                    for dev in team['devs']:
-                        email = dev['email'][0]
-                        evaluations[email][ev] = raw_evaluations[email + '_' + ev]
+            evaluations = {team['EmMaster']: {}, team['EmPOwner']: {}}
+            for dev in team['devs']:
+                evaluations[dev['email']] = {}
+            for ev in ['proatividade', 'autonomia', 'colaboracao', 'entrega']:
+                evaluations[team['EmMaster']][ev] = raw_evaluations['master_' + ev]
+                evaluations[team['EmPOwner']][ev] = raw_evaluations['po_' + ev]
+                for dev in team['devs']:
+                    devEmail = dev['email']
+                    devId = dev['devId']
+                    evaluations[devEmail][ev] = raw_evaluations[devId + '_' + ev]
 
             if teams.save_evaluations(evaluations):
                 Log().register(operation=f'Team: Evaluation Saved')

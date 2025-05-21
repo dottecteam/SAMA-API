@@ -12,10 +12,12 @@ class Teams:
     evaluationsData = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "teams", "evaluations.txt")
 
     #Construtor da classe
-    def __init__(self, team='', password='', EmMaster='', EmPOwner='', devs=None, id=''):
+    def __init__(self, team='', password='', master='', EmMaster='', pOwner='', EmPOwner='', devs=None, id=''):
         self.team = team
         self.password=password
+        self.master=master
         self.EmMaster=EmMaster
+        self.pOwner=pOwner
         self.EmPOwner=EmPOwner
         self.devs = devs if devs else []
         self.id=id
@@ -67,7 +69,9 @@ class Teams:
                         id=team_data["id"],
                         team=team_data["team"],
                         password=team_data["password"],
+                        master=team_data["master"],
                         EmMaster=team_data["EmMaster"],
+                        pOwner=team_data["pOwner"],
                         EmPOwner=team_data["EmPOwner"],
                         devs=team_data["devs"]
                     )) 
@@ -86,7 +90,9 @@ class Teams:
                     session['team']={
                         'id': team.id,
                         'team': team.team,
+                        'master': team.master,
                         'EmMaster': team.EmMaster,
+                        'pOwner': team.pOwner,
                         'EmPOwner': team.EmPOwner,
                         'devs': team.devs
                     }

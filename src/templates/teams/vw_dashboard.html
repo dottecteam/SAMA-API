@@ -1,6 +1,5 @@
 {% extends "teams/vw_template.html" %} {% block content %}
-<link rel="stylesheet"
-    href="{{ url_for('static', filename='stylesheets/teams/style_dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/teams/style_dashboard.css') }}">
 
 <div class="container-fluid" id="container-dashboard">
     <div class="row h-100 g-3">
@@ -24,7 +23,8 @@
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
                 <h1>3.0</h1>
-                <span class="text-muted">Entrega</span></div>
+                <span class="text-muted">Entrega</span>
+            </div>
         </div>
 
         <!-- Segunda Coluna: 2 linhas com 2 elementos cada -->
@@ -33,32 +33,23 @@
             <div class="row flex-fill g-3">
                 <div class="col-8">
                     <div class="border rounded p-3 text-center h-100">
-                        <div
-                            class="h-100 w-100 d-flex justify-content-center flex-column">
-                            <canvas id="line-chart"
-                                class="w-100 h-100"></canvas>
+                        <div class="h-100 w-100 d-flex justify-content-center flex-column">
+                            <canvas id="line-chart" class="w-100 h-100"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="border rounded p-3 text-center h-100">
                         <div class="h-75">
-                            <canvas id="radar-chart"
-                                class="w-100 h-100"></canvas>
+                            <canvas id="radar-chart" class="w-100 h-100"></canvas>
                         </div>
-                        <div
-                            class="h-25 d-flex gap-3 align-items-center overflow-x-auto">
+                        <div class="h-25 d-flex gap-3 align-items-center overflow-x-auto">
 
-                            <span
-                                class="border team-developer active rounded">Ramon</span>
-                            <span
-                                class="border team-developer rounded">João</span>
-                            <span
-                                class="border team-developer rounded">Cauã</span>
-                            <span
-                                class="border team-developer rounded">Kauan</span>
-                            <span
-                                class="border team-developer rounded">Gabriel</span>
+                            <span class="border team-developer active rounded">Ramon</span>
+                            <span class="border team-developer rounded">João</span>
+                            <span class="border team-developer rounded">Cauã</span>
+                            <span class="border team-developer rounded">Kauan</span>
+                            <span class="border team-developer rounded">Gabriel</span>
 
                         </div>
                     </div>
@@ -68,8 +59,7 @@
             <!-- Linha de baixo -->
             <div class="row flex-fill g-3">
                 <div class="col-5">
-                    <div
-                        class="border rounded p-3 text-center h-100 row">
+                    <div class="border rounded p-3 text-center h-100 row">
                         <div class="text-dashboard align-self-center col-6 border-end">
                             <h1>2.1</h1>
                             <span class="text-muted">Média</span>
@@ -81,8 +71,7 @@
                     </div>
                 </div>
                 <div class="col-7">
-                    <div
-                        class="border rounded p-3 text-center h-100">
+                    <div class="border rounded p-3 text-center h-100">
                         <h1>Controles</h1>
                     </div>
                 </div>
@@ -92,6 +81,5 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script defer
-    src="{{ url_for('static', filename='scripts/teams/script_dashboard.js') }}"></script>
+<script defer src="{{ url_for('static', filename='scripts/teams/script_dashboard.js') }}"></script>
 {% endblock %}

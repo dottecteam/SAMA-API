@@ -1,10 +1,8 @@
-{% extends "teams/vw_template.html" %} {% block content %}
+{% extends "teams/vw_template.html" %} 
+{% block content %}
 
-<!-- Style da pagina -->
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='stylesheets/teams/style_form_register.css') }}"
-/>
+<!-- Estilo da página -->
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/teams/style_form_register.css') }}" />
 
 <!-- Container para o formulário de cadastro de equipes -->
 <section id="teams-section" class="container-fluid">
@@ -17,7 +15,7 @@
         <!-- Container para Nome da Equipe e Scrum Master com fundo mais claro e bordas arredondadas -->
         <div class="container bg-light p-4 mb-4 rounded">
             <div class="row">
-                <!-- Nome da Equipe ao lado da Senha -->
+                <!-- Nome da Equipe -->
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="input-nome-form-equipe" class="input-title">Nome da Equipe:</label>
@@ -34,7 +32,7 @@
 
                 <!-- Senha de Entrada -->
                 <div class="col-md-6">
-                    <div class="form-group p-2">
+                    <div class="form-group p-2 position-relative">
                         <label for="input-password-form" class="input-title">Senha:</label>
                         <input
                             type="password"
@@ -44,6 +42,14 @@
                             placeholder="Senha"
                             required
                         />
+                        <!-- Botão para alternar visibilidade da senha -->
+                        <button
+                            type="button"
+                            id="toggle-password-register"
+                            class="btn btn-link position-absolute"
+                        >
+                            <i id="password-icon-register" class="bi bi-eye-slash"></i> <!-- Inicialmente oculto -->
+                        </button>
                     </div>
                 </div>
             </div>
@@ -70,7 +76,7 @@
                         <label for="input-email-form-po" class="input-title">Email do Product Owner:</label>
                         <input
                             type="email"
-                            class="form-control w-100"
+                            class="form-control"
                             id="input-email-form-po"
                             name="input-email-form-po"
                             placeholder="Email do P.O."
@@ -104,6 +110,7 @@
 
     <!-- Script para adicionar e remover os campos de Dev -->
     <script src="{{ url_for('static', filename='scripts/teams/script_form_register.js') }}"></script>
-    
+    <script src="{{ url_for('static', filename='scripts/teams/script_password_toggle.js') }}"></script>
 </section>
+
 {% endblock %}

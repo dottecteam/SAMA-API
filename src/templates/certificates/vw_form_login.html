@@ -1,8 +1,7 @@
-{% extends "certificates/vw_template.html" %} {% block content %}
+{% extends "certificates/vw_template.html" %}
+{% block content %}
 
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='stylesheets/certificates/style_form_login.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_form_login.css') }}" />
 
 <div class="container d-flex justify-content-center align-items-start"
   style="padding-top: 50px;">
@@ -19,33 +18,43 @@
           Insira seu código de funcionário para acessar o sistema.
         </p>
         <div class="form-group m-3 position-relative">
-          <label for="input-password-secretary" class="form-label fw-bold"
-            style="font-size: 1.3rem;">Código:</label>
-          <input
-            autocomplete="off"
-            type="password"
-            name="input-password-secretary"
-            id="input-password-secretary"
-            class="form-control"
-            placeholder="Digite seu código"
-            style="font-size: 1.3rem;"
-            required />
-          <i
-            class="bi bi-eye-fill position-absolute"
-            id="show-password"
-            style="top: calc(50% + 18px); right: 10px; transform: translateY(-50%); cursor: pointer; font-size: 1.625rem; line-height: 1;"
-            onclick="showPassword()"></i>
+          <label for="input-password-secretary" class="form-label fw-bold" style="font-size: 1.3rem;">Código:</label>
+          <input autocomplete="off" type="password" name="input-password-secretary" id="input-password-secretary"
+            class="form-control" placeholder="Digite seu código" style="font-size: 1.3rem;" required />
+          
+          <!-- Botão de visibilidade -->
+          <button type="button" id="toggle-password" class="btn btn-link position-absolute">
+            <i id="password-icon" class="bi bi-eye-slash"></i>
+          </button>
         </div>
         <div class="form-group text-center">
-          <button type="submit" class="btn w-75 text-white btn-custom"
-            style="font-size: 1.3rem;">Entrar</button>
+          <button type="submit" class="btn w-75 text-white btn-custom" style="font-size: 1.3rem;">Entrar</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-<script
-  src="{{ url_for('static', filename='scripts/certificates/script_form_login_secretary.js') }}"></script>
+<script>
+  // Selecionando os elementos
+  const passwordField = document.getElementById('input-password-secretary');
+  const toggleButton = document.getElementById('toggle-password');
+  const passwordIcon = document.getElementById('password-icon');
+
+  // Função para alternar a visibilidade da senha
+  toggleButton.addEventListener('click', () => {
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      passwordIcon.classList.remove('bi-eye-slash');
+      passwordIcon.classList.add('bi-eye');
+    } else {
+      passwordField.type = 'password';
+      passwordIcon.classList.remove('bi-eye');
+      passwordIcon.classList.add('bi-eye-slash');
+    }
+  });
+</script>
+
+<script src="{{ url_for('static', filename='scripts/certificates/script_form_login_secretary.js') }}"></script>
 
 {% endblock %}
