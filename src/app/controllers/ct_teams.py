@@ -97,7 +97,6 @@ class TeamsController:
             return jsonify({"status": False, "message": "Erro ao ler dados da equipe!"}), 500
         
     #Função para editar equipe
-    @staticmethod
     def update_team():
         try:
             if 'team' not in session:
@@ -121,20 +120,34 @@ class TeamsController:
                 if Validation.UserIsRegistered(email)==False:
                     return jsonify({"status": False, "message": f"Desenvolvedor {email} não cadastrado."}), 400
 
-            # Combina nomes e emails em uma lista de dicionários
-            devs = [{"email": email} for email in zip(dev_emails)]
+            # Busca o nome dos membros pelo email
+            users = Users()
+            devs = []
+            for email in dev_emails:
+                user = users.readUser(email)
+                nome = user[0].name
+                devId = f"{(dev_emails.index(email) + 1):03}"
+                dev = {
+                    'devId': devId,
+                    'email': email,
+                    'nome': nome
+                }
+                devs.append(dev)
+            master = users.readUser(EmMaster)[0].name
+            pOwner = users.readUser(EmPOwner)[0].name
 
             # Chama o método do model para atualizar
-            if Teams().update_team(team_id, team_name, EmMaster, EmPOwner, devs):
+            if Teams().update_team(team_id, team_name, master, pOwner, EmMaster, EmPOwner, devs):
                 # Atualiza a sessão
                 session['team'] = {
                     'id': team_id,
                     'team': team_name,
+                    'master': master,
+                    'pOwner': pOwner,
                     'EmMaster': EmMaster,
                     'EmPOwner': EmPOwner,
                     'devs': devs
                 }
-                session.modified = True
 
                 Log().register(operation=f'Team: Update Team Data ({team_id})')
                 return jsonify({"status": True, "message": "Equipe atualizada com sucesso!"}), 200
