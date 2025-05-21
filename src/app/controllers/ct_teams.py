@@ -176,6 +176,8 @@ class TeamsController:
                     devId = dev['devId']
                     evaluations[devEmail][ev] = raw_evaluations[devId + '_' + ev]
 
+            print(evaluations)
+
             if teams.save_evaluations(evaluations):
                 Log().register(operation=f'Team: Evaluation Saved')
                 return jsonify({"status": True, "message": "Avaliações salvas com sucesso!"}), 200
