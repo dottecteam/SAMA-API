@@ -1,28 +1,33 @@
 {% extends "teams/vw_template.html" %} {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/teams/style_dashboard.css') }}">
 
+<script>
+    var data = JSON.parse('{{ data | tojson }}');
+    var avarage = JSON.parse('{{avarage | tojson}}');
+</script>
+
 <div class="container-fluid" id="container-dashboard">
     <div class="row h-100 g-3">
         <!-- Primeira Coluna -->
         <div class="col-md-2 d-flex flex-column gap-3">
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>1.5</h1>
+                <h1>{{avarage[0][0]}}</h1>
                 <span class="text-muted">Proatividade</span>
             </div>
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>1.7</h1>
+                <h1>{{avarage[0][1]}}</h1>
                 <span class="text-muted">Autonomia</span>
             </div>
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>2.0</h1>
+                <h1>{{avarage[0][2]}}</h1>
                 <span class="text-muted">Colaboração</span>
             </div>
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>3.0</h1>
+                <h1>{{avarage[0][3]}}</h1>
                 <span class="text-muted">Entrega</span>
             </div>
         </div>
@@ -61,7 +66,7 @@
                 <div class="col-5">
                     <div class="border rounded p-3 text-center h-100 row">
                         <div class="text-dashboard align-self-center col-6 border-end">
-                            <h1>2.1</h1>
+                            <h1>{{'{:.1f}'.format((avarage[0][0] + avarage[0][1] + avarage[0][2] + avarage[0][3]) / 4)}}</h1>
                             <span class="text-muted">Média</span>
                         </div>
                         <div class="text-dashboard align-self-center col-6">
@@ -79,6 +84,8 @@
         </div>
     </div>
 </div>
+
+{{data}}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script defer src="{{ url_for('static', filename='scripts/teams/script_dashboard.js') }}"></script>

@@ -8,7 +8,7 @@ $(document).ready(function () {
             datasets: [
                 {
                     label: 'Atual',
-                    data: [1.5, 1.7, 2.0, 3.0],
+                    data: [avarage[0][0], avarage[0][1], avarage[0][2], avarage[0][3]],
                     borderColor: '#0d6efd',
                     backgroundColor: 'rgba(13, 110, 253, 0.1)',
                     pointBackgroundColor: '#0d6efd',
@@ -18,7 +18,7 @@ $(document).ready(function () {
                 },
                 {
                     label: 'Anterior',
-                    data: [1.2, 1.5, 2.3, 2.5],
+                    data: [avarage[1][0], avarage[1][1], avarage[1][2], avarage[1][3]],
                     borderColor: '#adb5bd',
                     backgroundColor: 'rgba(173, 181, 189, 0.1)',
                     pointBackgroundColor: '#adb5bd',
