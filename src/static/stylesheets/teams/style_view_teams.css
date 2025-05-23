@@ -62,8 +62,7 @@
 .member-list li {
     padding: 8px 0;
     border-bottom: 1px dashed #ecf0f1;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
 }
 
 .member-list li:last-child {
@@ -102,4 +101,54 @@
     .team-container {
         grid-template-columns: 1fr;
     }
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 20px;
+}
+
+.team-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.team-card {
+  min-width: 300px;
+  flex-shrink: 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    color: white;
+    font-size: 2em;
+    padding: 0 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 4px;
+    margin: 1%;
+    opacity: 0.5;
+    transition: all .3s ease;
+}
+
+.carousel-btn:hover{
+    opacity: 1;
+}
+
+
+
+.carousel-btn.left {
+  left: 0;
+}
+
+.carousel-btn.right {
+  right: 0;
 }

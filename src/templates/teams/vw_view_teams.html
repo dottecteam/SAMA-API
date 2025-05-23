@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/teams/style_view_teams.css') }}" />
 
 <h1 class="title">Equipes Cadastradas</h1>
-  {% if teams %}
+{% if teams %}
 
 
 <div class="carousel-wrapper">
@@ -35,12 +35,12 @@
   <button class="carousel-btn right" id="btnRight" onclick="scrollCarousel(1)">❯</button>
 </div>
 
-  {% else %}
-    <div class="no-teams">
-      <h3>Nenhuma equipe cadastrada</h3>
-      <p>Acesse "Cadastro de Equipes" para começar</p>
-    </div>
-  {% endif %}
+{% else %}
+<div class="no-teams">
+  <h3>Nenhuma equipe cadastrada</h3>
+  <p>Acesse "Cadastro de Equipes" para começar</p>
+</div>
+{% endif %}
 </div>
 
 <script src="{{ url_for('static', filename='scripts/teams/script_view_teams.js') }}"></script>
