@@ -77,7 +77,7 @@ $(document).ready(function () {
 document.addEventListener('DOMContentLoaded', function () {
   const passwordField = document.getElementById('input-password-form-users');
   const toggleButton = document.getElementById('toggle-password-user');
-  const passwordIcon = document.getElementById('password-icon');
+  const passwordIcon = document.getElementById('password-icon-user');
 
   toggleButton.addEventListener('click', function () {
     const isPassword = passwordField.type === 'password';
