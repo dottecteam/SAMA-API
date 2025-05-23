@@ -4,3 +4,4 @@
 [2025-05-22 10:46:36] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
 [2025-05-23 07:19:20] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
 [2025-05-23 07:19:48] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-23 07:30:21] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = Certificates: Register Certificate
