@@ -93,7 +93,7 @@ class Validation:
             server.quit()
             return True
         except Exception as e:
-            print(f"Erro ao enviar e-mail: {e}")
+            print(f"Error: {e}")
             return False
     
     #Função para validar o código

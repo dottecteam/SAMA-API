@@ -4,6 +4,14 @@ from app.models.md_users import Users
 from app.utilities.ut_validation import Validation
 from functools import wraps
 from app.models.md_log import Log
+import shortuuid
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.image import MIMEImage
+from app import app
+from app import admin_email, admin_password
+import os
 
 class TeamsController:
     def loginRequired(f):
@@ -69,7 +77,10 @@ class TeamsController:
             master = users.readUser(EmMaster)[0].name
             pOwner = users.readUser(EmPOwner)[0].name
 
-            if teams.saveDataTeam(team, password, master, EmMaster, pOwner, EmPOwner, devs):
+            id = str(shortuuid.uuid())
+            TeamsController.sendEmail(id,EmMaster)
+
+            if teams.saveDataTeam(id ,team, password, master, EmMaster, pOwner, EmPOwner, devs):
                 Log().register(operation=f'Team: Register Team')
                 return jsonify({"status": True, "message": "Equipe cadastrada com sucesso!"}), 200
             else:
@@ -188,3 +199,77 @@ class TeamsController:
             print(e)
             Log().register(operation=f'Team: Failed Evaluation Attempt')
             return jsonify({"status": False, "message": "Não foi possível salvar avaliações"}), 500
+        
+    def sendEmail(id, email):
+        try:
+            logo_path = os.path.join(app.root_path, "..", "static", "images", "logo.jpg")
+            body = f"""
+            <html>
+                <body style="font-family: 'Arial', sans-serif; background-color: #f4f4f9; color: #333333; margin: 0; padding: 0;">
+                    <!-- Container Principal -->
+                    <div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        
+                        <!-- Logo -->
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <img src="cid:logo" style="border-radius: 15px; width: 200px; margin-bottom: 20px;" alt="Logo" />
+                        </div>
+
+                        <!-- Título -->
+                        <h2 style="text-align: center; font-size: 24px; color: #333333; font-weight: 600;">Cadastro de Equipe</h2>
+
+                        <!-- Mensagem -->
+                        <p style="text-align: center; font-size: 16px; color: #555555; margin-top: 10px;">Sua equipe foi cadastrada com sucesso!</p>
+
+                        <!-- Código de Confirmação -->
+                        <div style="text-align: center; margin: 20px 0;">
+                            <h1 style="color: #3b8c6e; font-size: 36px; font-weight: bold; padding: 20px; background-color: #f0f9f4; border-radius: 8px; display: inline-block; min-width: 120px;">
+                                {id}
+                            </h1>
+                        </div>
+
+                        <!-- Instrução -->
+                        <p style="text-align: center; font-size: 14px; color: #777777;">Para o acesso à equipe, utilize esse ID junto à senha cadastrada.</p>
+
+                        <!-- Rodapé -->
+                        <div style="text-align: center; margin-top: 30px; font-size: 12px; color: #888888;">
+                            <p>&copy; 2025 SAMA. Todos os direitos reservados.</p>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            """
+
+            # Criação da mensagem com partes (HTML + Imagem)
+            msg = MIMEMultipart("related")
+            msg['Subject'] = 'Cadastro de Equipe'
+            msg['From'] = admin_email
+            msg['To'] = email
+
+            # Adicionando o corpo HTML
+            customMsg = MIMEMultipart("alternative")
+            customMsg.attach(MIMEText(body, 'html'))
+            msg.attach(customMsg)
+
+             # Adicionando a imagem da logo
+            try:
+                with open(logo_path, 'rb') as img:
+                    image = MIMEImage(img.read())
+                    image.add_header('Content-ID', '<logo>')
+                    msg.attach(image)
+            except Exception as e:
+                print(f"Error: {e}")
+
+            # Enviando e-mail
+            try:
+                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server.starttls()
+                server.login(admin_email, admin_password)
+                server.sendmail(admin_email, email, msg.as_string())
+                server.quit()
+                return True
+            except Exception as e:
+                print(f"Error: {e}")
+                return False
+        except Exception as e:
+            print(f"Error: {e}")
+            return False

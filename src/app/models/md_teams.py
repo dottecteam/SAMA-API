@@ -1,6 +1,5 @@
 import os
 from app import app
-import shortuuid
 import json
 from app.utilities.ut_cryptography import Criptography
 from datetime import datetime
@@ -25,10 +24,8 @@ class Teams:
 
     #Funções de salvar dados
     #Função para salvar os dados no arquivo .txt
-    def saveDataTeam(self, team, password, master, EmMaster, pOwner, EmPOwner, devs):
+    def saveDataTeam(self, idTeam, team, password, master, EmMaster, pOwner, EmPOwner, devs):
         try:
-            idTeam = str(shortuuid.uuid())
-      
             # Formata os dados antes de criptografar
             plain_data = {
                 "id": idTeam,
@@ -86,7 +83,6 @@ class Teams:
     #Função de Login
     def login(self, id,password):
         try:
-            print(id,password)
             teams=self.readTeam()
             for team in teams:
                 if team.id==id and team.password==password:
