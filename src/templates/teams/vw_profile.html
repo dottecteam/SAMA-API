@@ -1,113 +1,131 @@
 {% extends "teams/vw_template.html" %} {% block content %}
 <link
   rel="stylesheet"
-  href="{{ url_for('static', filename='stylesheets/teams/style_form_register.css') }}"
-/>
+  href="{{ url_for('static', filename='stylesheets/teams/style_form_register.css') }}" />
 
 <div class="container mt-4">
-    <div class="row align-items-stretch">
-        <!-- Left container -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title text-center">Informações</h3>
-                </div>
-                <div class="card-body">
-                    <p class="card-text"><strong>Equipe:</strong> {{ team.team }}</p>
-                    <p class="card-text"><strong>ID:</strong> {{ team.id }}</p>
-                    <p class="card-text"><strong>PO:</strong> {{ team.pOwner }} ({{ team.EmPOwner }})</p>
-                    <p class="card-text"><strong>Master:</strong> {{ team.master }} ({{ team.EmMaster }})</p>
-
-                    <div style="margin-left: 20%;">
-                        <button type="button" class="btn btn-custom text-white w-75" style="font-size: 1.3rem;" data-bs-toggle="modal" data-bs-target="#editTeamModal">Editar equipe</button>
-                    </div>
-                </div>
-            </div>
+  <div class="row align-items-stretch">
+    <!-- Left container -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title text-center">Informações</h3>
         </div>
+        <div class="card-body">
+          <p class="card-text"><strong>Equipe:</strong> {{ team.team }}</p>
+          <p class="card-text"><strong>ID:</strong> {{ team.id }}</p>
+          <p class="card-text"><strong>PO:</strong> {{ team.pOwner }} ({{
+            team.EmPOwner }})</p>
+          <p class="card-text"><strong>Master:</strong> {{ team.master }} ({{
+            team.EmMaster }})</p>
 
-        <!-- Right container -->
-        <div class="col-md-8 d-flex">
-            <div class="card flex-fill">
-                <div class="card-header">
-                    <h3 class="card-title text-center">Desenvolvedores</h3>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        {% if team.devs %}
-                        {% for dev in team.devs %}
-                        <li class="list-group-item">{{ dev.nome }} ({{ dev.email }})</li>
-                        {% endfor %}
-                        {% else %}
-                        <li class="list-group-item"><h3 class="text-center">No developers found.</h3></li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-</div>
-
-<!-- Modal de Edição da Equipe -->
-<div class="modal fade" id="editTeamModal" tabindex="-1" aria-labelledby="editTeamModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          
-          <h5 class="modal-title" id="editTeamModalLabel">Editar Equipe</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-        </div>
-        <div class="modal-body">
-          <form id="editTeamForm">
-          <div class="mb-3">
-            <label for="teamName" class="form-label" style="font-weight: bold;">Nome da Equipe</label>
-            <input type="text" class="form-control" id="teamName" name="teamName" value="{{ team.team }}">
+          <div style="margin-left: 20%;">
+            <button type="button" class="btn btn-custom text-white w-75"
+              style="font-size: 1.3rem;" data-bs-toggle="modal"
+              data-bs-target="#editTeamModal">Editar equipe</button>
           </div>
-          <div class="mb-3">
-            
-            <div class="row mb-2 developer-item">
-                <label for="SMaster" class="form-label" style="font-weight: bold;">Scrum Master</label>
-              <div class="col">
-                <input type="email" name="EmMaster" class="form-control" placeholder="Email" value="{{ team.EmMaster }}">
-              </div>
-            </div>
-
-            <div class="row mb-2 developer-item">
-                <label for="pOwner" class="form-label" style="font-weight: bold;">Product Owner</label>
-              <div class="col">
-                <input type="email" name="EmPOwner" class="form-control" placeholder="Email" value="{{ team.EmPOwner }}">
-              </div>
-            </div>
-
-          <div id="developersContainer">
-            {% for dev in team.devs %}
-            <div class="row mb-2 developer-item">
-                <label for="teamName" class="form-label" style="font-weight: bold;">Desenvolvedores</label>
-              <div class="col">
-                <input type="text" name="dev_name" class="form-control" placeholder="Nome" value="{{ dev.nome }}">
-              </div>
-              <div class="col">
-                <input type="email" name="dev_email" class="form-control" placeholder="Email" value="{{ dev.email }}">
-              </div>
-              <div class="col-auto">
-                <button type="button" class="btn btn-danger remove-dev">Remover</button>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-
-          <button type="button" class="btn btn-secondary mt-2" id="addDeveloper">Adicionar Membro</button>
         </div>
-
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-        </div>
-        </form>
       </div>
+    </div>
+
+    <!-- Right container -->
+    <div class="col-md-8 d-flex">
+      <div class="card flex-fill">
+        <div class="card-header">
+          <h3 class="card-title text-center">Desenvolvedores</h3>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% if team.devs %}
+            {% for dev in team.devs %}
+            <li class="list-group-item">{{ dev.nome }} ({{ dev.email }})</li>
+            {% endfor %}
+            {% else %}
+            <li class="list-group-item"><h3 class="text-center">No developers
+                found.</h3></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
+<!-- Modal de Edição da Equipe -->
+<div class="modal fade" id="editTeamModal" tabindex="-1"
+  aria-labelledby="editTeamModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
 
-<script src="{{ url_for('static', filename='scripts/teams/script_form_update_team.js') }}"></script>
+        <h5 class="modal-title" id="editTeamModalLabel">Editar Equipe</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" id="editTeamForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="teamName" class="form-label"
+                  style="font-weight: bold;">Nome da Equipe</label>
+                <input type="text" class="form-control" id="teamName"
+                  name="teamName" value="{{ team.team }}">
+              </div>
+              <div class="mb-3">
 
-{% endblock %}
+                <div class="row mb-2 developer-item">
+                  <label for="SMaster" class="form-label"
+                    style="font-weight: bold;">Scrum Master</label>
+                  <div class="col">
+                    <input type="email" name="EmMaster" class="form-control"
+                      placeholder="Email" value="{{ team.EmMaster }}">
+                  </div>
+                </div>
+
+                <div class="row mb-2 developer-item">
+                  <label for="pOwner" class="form-label"
+                    style="font-weight: bold;">Product Owner</label>
+                  <div class="col">
+                    <input type="email" name="EmPOwner" class="form-control"
+                      placeholder="Email" value="{{ team.EmPOwner }}">
+                  </div>
+                </div>
+
+                <div id="developersContainer">
+                  {% for dev in team.devs %}
+                  <div class="row mb-2 developer-item">
+                    <label for="dev_email" class="form-label"
+                      style="font-weight: bold;">Desenvolvedor</label>
+                    <div class="col">
+                      <input type="email" name="dev_email" class="form-control"
+                        placeholder="Email">
+                    </div>
+                    <div class="col-auto">
+                      <button type="button"
+                        class="btn btn-danger remove-dev">Remover</button>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                <button type="button" class="btn btn-primary mt-2"
+                  id="addDeveloper">Adicionar Membro</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-custom">Salvar
+              Alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script
+    src="{{ url_for('static', filename='scripts/teams/script_form_update_team.js') }}"></script>
+
+  {% endblock %}

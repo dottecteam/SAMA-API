@@ -8,3 +8,5 @@
 [2025-05-23 13:59:55] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
 [2025-05-23 14:00:50] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
 [2025-05-23 14:00:52] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
+[2025-05-23 14:15:19] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-23 14:15:19] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login

@@ -120,6 +120,7 @@ class TeamsController:
             team_name = data.get('teamName')
             EmMaster = data.get('EmMaster')
             EmPOwner = data.get('EmPOwner')
+            
             dev_emails = data.get('dev_email', [])
 
             # Verifica se os desenvolvedores está cadastrado
@@ -148,7 +149,7 @@ class TeamsController:
             pOwner = users.readUser(EmPOwner)[0].name
 
             # Chama o método do model para atualizar
-            if Teams().update_team(team_id, team_name, master, pOwner, EmMaster, EmPOwner, devs):
+            if Teams().update_team(team_id, team_name, master, pOwner, EmMaster, EmPOwner, devs, img):
                 # Atualiza a sessão
                 session['team'] = {
                     'id': team_id,
@@ -157,7 +158,8 @@ class TeamsController:
                     'pOwner': pOwner,
                     'EmMaster': EmMaster,
                     'EmPOwner': EmPOwner,
-                    'devs': devs
+                    'devs': devs,
+                    'img': img
                 }
 
                 Log().register(operation=f'Team: Update Team Data ({team_id})')
