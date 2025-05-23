@@ -244,3 +244,33 @@ a {
   margin: auto;
   transform: translateY(-50%);
 }
+
+.form-group {
+  position: relative;
+}
+
+/* Estilos para os campos de senha */
+#input-password-form-login {
+  font-size: 1rem;
+  width: 100%;
+  padding-right: 40px; /* Espaço para o botão */
+}
+
+/* Botões de visibilidade posicionados dentro do input */
+#toggle-password-login{
+  position: absolute;
+  top: 75%;
+  right: 25px;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: #157331;
+  border: none;
+  background: transparent;
+  padding: 0;
+  z-index: 2;
+}
+
+#toggle-password-user i,
+#toggle-confirm-password-user i {
+  cursor: pointer;
+}
