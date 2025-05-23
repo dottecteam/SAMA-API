@@ -222,59 +222,56 @@
 
     <main class="container-main">{% block content %} {% endblock %}</main>
 
-    <footer class="footer-custom-bg footer-custom text-white py-4">
-      <div class="container-fluid text-center">
-        <div class="row">
-          <div class="col-12 mb-3">
-            <p class="mb-0">
-              <span>Se você tem alguma dúvida, acesse nosso <a href="/faq"
-                  class="text-white">FAQ</a></span>
-            </p>
-          </div>
+ <footer class="footer-custom-bg footer-custom text-white py-4">
+    <div class="container-fluid text-center">
+      <div class="row">
+        <div class="col-md-5">
+          <a href="/">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo SAMA" class="footer-logo-custom" />
+          </a>
         </div>
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <a href="/">
-              <img src="{{ url_for('static', filename='images/logo.png') }}"
-                alt="Logo SAMA" class="footer-logo-custom" />
-            </a>
-          </div>
-          <div class="col-md-8 align-self-center">
-            <div class="row">
-              <div class="col-md-4">
-                <h5>Atestados</h5>
-                <ul class="list-unstyled">
-                  <li><a href="/atestados/cadastro"
-                      class="text-white">Cadastro</a></li>
-                  <li><a href="/atestados/acesso" class="text-white">
-                      Secretaria</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h5>Equipes</h5>
-                <ul class="list-unstyled">
-                  <li><a href="/equipes/cadastro"
-                      class="text-white">Cadastro</a></li>
-                  <li><a href="/equipes/acesso" class="text-white">Acesso</a></li>
-                  <li><a href="/equipes/visualizar" class="text-white">Equipes</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h5>Painéis</h5>
-                <ul class="list-unstyled">
-                  <li><a href="/painel/atestados" class="text-white">
-                      Atestados</a></li>
-                  <li><a href="/painel/equipes" class="text-white">
-                      Equipes</a></li>
-                </ul>
-              </div>
+        <div class="columns col-md-7">
+          <div class="row flex-row-reverse">
+            <div class="paineis col-md-3">
+              <h5>Painéis</h5>
+              <ul class="list-unstyled">
+                <li><a href="/painel/atestados" class="text-white">
+                    Atestados</a></li>
+                <li><a href="/painel/equipes" class="text-white">
+                    Equipes</a></li>
+              </ul>
+            </div>
+            <div class="atestados col-md-3">
+              <h5>Atestados</h5>
+              <ul class="list-unstyled">
+                <li><a href="/atestados/cadastro" class="text-white">Cadastro</a></li>
+                <li><a href="/atestados/acesso" class="text-white">
+                    Secretaria</a></li>
+              </ul>
+            </div>
+            <div class="equipes col-md-3">
+              <h5>Equipes</h5>
+              <ul class="list-unstyled">
+                <li><a href="/equipes/cadastro" class="text-white">Cadastro</a></li>
+                <li><a href="/equipes/acesso" class="text-white">Acesso</a></li>
+                <li><a href="/equipes/visualizar" class="text-white">Equipes</a></li>
+              </ul>
+            </div>
+            <div class="ajuda col-md-3">
+              <h5>Ajuda</h5>
+              <ul class="list-unstyled">
+                <li><a href="/faq" class="text-white">FAQ</a></li>
+                <li><a href="/usuarios/privacidade" class="text-white">Termos de Privacidade</a></li>
+                <li><a href="mailto:grupodev.tec@gmail.com" class="text-white">Entrar em contato</a></li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="mt-3">
-          <p class="mb-0">&copy; 2025 SAMA. Todos os direitos reservados.</p>
-        </div>
       </div>
-    </footer>
-  </body>
+    </div>
+    <div class="mx-5 border-top pt-4">
+      <p class="mb-0">&copy; 2025 SAMA. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
 </html>

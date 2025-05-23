@@ -84,3 +84,8 @@
   background-color: rgba(var(--cor-primaria)); /* azul claro (ou qualquer cor que você quiser) */
   border-color: rgba(var(--cor-primaria));
 }
+
+.accordion-button:not(.collapsed) {
+    color: white;
+    background-color: rgba(var(--cor-primaria));
+}
