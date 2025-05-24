@@ -2,7 +2,8 @@
 <link rel="stylesheet"
     href="{{ url_for('static', filename='stylesheets/certificates/style_profile.css') }}">
 <script defer
-    src="{{ url_for('static', filename='scripts/certificates/script_profile.js') }}"></script>
+    src="{{ url_for('static', filename='scripts/certificates/script_profile.js') }}">
+</script>
 
 <section id="profile-container" class="container mb-5">
     <!-- Data -->
@@ -13,7 +14,7 @@
 
     <div class="row">
         <!-- Navigation Buttons -->
-        <section id="navigation" class="col-md-4 mt-5">
+        <section id="navigation" class="col-md-4 mt-5 h-100">
             <div class="card h-100">
                 <div class="card-header">
                     <h3 id="name-nav-header">{{session['user']['name']}}</h3>
@@ -33,7 +34,13 @@
                             <button class="nav-button btn-custom">Alterar
                                 Senha</button>
                         </li>
+                        {% if teams|length > 0 %}    
+                         <li class="nav-item w-100">
+                            <button class="nav-button btn-custom">Equipes</button>
+                        </li>
+                        {% endif %}
                     </ul>
+
                 </div>
                 <div class="card-footer d-flex justify-content-evenly"
                     style="background-color: transparent; border: none;">
@@ -51,9 +58,10 @@
                 <div class="card-header">
                     <h4>Dados Pessoais</h4>
                 </div>
-                <div class="card-body mt-3">
+                <div class="card-body mt-3 h-50">
                     <ul class="list-group list-group-flush"
                         id="list-personal-info">
+                        <h5>Informações</h5>
                         <li id="li-name" class="list-group-item">Nome:
                             {{session['user']['name']}}</li>
                         <li class="list-group-item">Email:
@@ -74,7 +82,7 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item mt-2">
+                        <li class="list-group-item">
                             <h5>Atualizar dados pessoais</h5>
                             <p>Atualize seus dados pessoais, como nome, curso e
                                 semestre, sempre que necessário.</p>
@@ -82,7 +90,7 @@
                                 id="btn-update-info"><strong>Atualizar dados
                                     pessoais</strong></button>
                         </li>
-                        <li class="list-group-item mt-2">
+                        <li class="list-group-item mt-1">
                             <h5>Excluir Conta</h5>
                             <p>Ao excluir sua conta, todas as suas informações
                                 serão removidas do sistema, incluindo dados
@@ -92,9 +100,7 @@
                                     conta</strong></button>
                         </li>
                     </ul>
-
                 </div>
-
             </section>
 
             <!-- Password update -->
@@ -145,7 +151,56 @@
                     </form>
                 </section>
             </section>
-        </div>
+
+            {% if teams|length > 0 %}
+            <section id="teams" class="container-info card w-100 h-100"
+                style="display: none;">
+                <div class="card-header">
+                    <h4>Equipes</h4>
+                </div>
+                {% if teams|length == 1 %}
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="card-header" style="background: transparent; color: #2c3e50;"><h3>{{ teams[0].team }}</h3></div>
+                            <div class="member-list">
+                                <h4 style="margin-bottom: 10px; color: rgb(59, 140, 110); ">Liderança</h4>
+                                <ul>
+                                    <li><span class="member-role">Scrum Master:</span> <span>{{ teams[0].master }} ({{ teams[0].EmMaster }})</span></li>
+                                    <li><span class="member-role">Product Owner:</span> <span>{{ teams[0].pOwner }} ({{ teams[0].EmPOwner }})</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                <div id="teams-carousel" class="card-body carousel slide">
+                    <div class="carousel-inner mx-auto" style="width: 90%;">
+
+                        {% for team in teams %}
+                            <div class="card carousel-item {% if team == teams[0] %}active{% endif %}">
+                                <div class="card-header" style="background: transparent; color: #2c3e50;"><h3>{{ team.team }}</h3></div>
+                                <div class="member-list">
+                                    <h4 style="margin-bottom: 10px; color: rgb(59, 140, 110); ">Liderança</h4>
+                                    <ul>
+                                        <li><span class="member-role">Scrum Master:</span> <span>{{ team.master }} ({{ team.EmMaster }})</span></li>
+                                        <li><span class="member-role">Product Owner:</span> <span>{{ team.pOwner }} ({{ team.EmPOwner }})</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#teams-carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#teams-carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+                {% endif %}
+            </section>
+            {% endif %}
+        </section>
+    </div>
 
         <!-- Modals -->
 

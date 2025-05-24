@@ -45,7 +45,8 @@ def user_certificates():
 @app.route("/usuarios/perfil")
 @UserController.loginRequired
 def perfil_usuario():
-    return render_template('certificates/vw_profile.html')
+    teams = UserController.getTeamData()
+    return render_template('certificates/vw_profile.html', teams = teams)
 
 #Página de cadastro de atestados
 @app.route("/atestados/cadastro")

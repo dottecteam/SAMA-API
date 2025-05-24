@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app.utilities.ut_validation import Validation
 from app.models.md_users import Users
+from app.models.md_teams import Teams
 from app.models.md_certificates import Certificates
 from functools import wraps
 from app.models.md_log import Log
@@ -156,3 +157,13 @@ class UserController:
                 return jsonify({"status": False,"message": "Não está logado!"})
         except:
             return jsonify({"status": False,"message": "Não está logado!"})
+
+    def getTeamData():
+        try:
+            teams = Teams
+            email = session['user']['email']
+            team = teams.getTeamByEmail(Teams, email)
+            return team
+        except Exception as e:
+            print(f"Error: {e}")
+            return e

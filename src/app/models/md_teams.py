@@ -106,6 +106,7 @@ class Teams:
     def update_team(self, team_id, new_team_name, new_master, new_pOwner, new_EmMaster, new_EmPOwner, new_devs, new_img):
         try:
             teams = self.readTeam()
+            print(teams)
             with open(self.srcData, "w", encoding="utf-8") as file: 
                 for team in teams:
                     if team.id == team_id:
@@ -199,3 +200,24 @@ class Teams:
         except Exception as e:
             print(f"Erro ao deletar imagem: {e}")
             return False
+        
+    def getTeamByEmail(self, email):
+        try:
+            teams = self.readTeam(self)
+            userTeams = []
+            for team in teams:
+                if team.EmMaster == email:
+                    session['user']['team'] = team
+                    userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs})
+                elif team.EmPOwner == email:
+                    session['user']['team'] = team
+                    userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs})
+                else:
+                    for dev in team.devs:
+                        if dev['email'] == email:
+                            session['user']['team'] = team
+                            userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs})
+            return userTeams
+        except Exception as e:
+            print(f"Error: {e}")
+            return "Erro ao ler equipes"

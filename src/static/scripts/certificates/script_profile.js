@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelectorAll('.nav-button');
     const sections = document.querySelectorAll('.container-info');
-    const sectionIds = ['personal-info', 'update-info', 'security'];
+    const sectionIds = ['personal-info', 'update-info', 'security', 'teams'];
 
     buttons.forEach((button, index) => {
         button.addEventListener('click', function () {
