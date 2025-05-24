@@ -178,3 +178,12 @@
 [2025-05-21 08:58:36] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
 [2025-05-21 08:58:36] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
 [2025-05-21 08:59:04] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-21 09:18:11] IP = 127.0.0.1 | Account = cmfcursino@gmail.com | Operation = Account: Logout
+[2025-05-21 09:18:36] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-21 09:18:36] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (8fPQH7qdB8iaeho5YHVHoe)
+[2025-05-21 09:18:51] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-21 09:18:51] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (8fPQH7qdB8iaeho5YHVHoe)
+[2025-05-21 09:19:00] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-21 09:19:00] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (8fPQH7qdB8iaeho5YHVHoe)
+[2025-05-21 09:19:06] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-21 09:19:06] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
