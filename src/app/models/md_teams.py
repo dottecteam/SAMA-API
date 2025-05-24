@@ -201,6 +201,7 @@ class Teams:
             print(f"Erro ao deletar imagem: {e}")
             return False
         
+    # Retorna uma lista com as equipes do usuário
     def getTeamByEmail(self, email):
         try:
             teams = self.readTeam(self)
@@ -208,15 +209,15 @@ class Teams:
             for team in teams:
                 if team.EmMaster == email:
                     session['user']['team'] = team
-                    userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs})
+                    userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs, "img":team.img})
                 elif team.EmPOwner == email:
                     session['user']['team'] = team
-                    userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs})
+                    userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs, "img":team.img})
                 else:
                     for dev in team.devs:
                         if dev['email'] == email:
                             session['user']['team'] = team
-                            userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs})
+                            userTeams.append({"id": team.id, "team": team.team, "master": team.master, "pOwner": team.pOwner, "password": team.password, "EmMaster": team.EmMaster, "EmPOwner": team.EmPOwner, "devs": team.devs, "img":team.img})
             return userTeams
         except Exception as e:
             print(f"Error: {e}")

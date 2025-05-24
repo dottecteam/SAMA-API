@@ -159,14 +159,14 @@
                     <h4>Equipes</h4>
                 </div>
                 {% if teams|length == 1 %}
-                    <div class="card-body">
-                        <div class="card">
-                            <div class="card-header" style="background: transparent; color: #2c3e50;"><h3>{{ teams[0].team }}</h3></div>
-                            <div class="member-list">
-                                <h4 style="margin-bottom: 10px; color: rgb(59, 140, 110); ">Liderança</h4>
-                                <ul>
-                                    <li><span class="member-role">Scrum Master:</span> <span>{{ teams[0].master }} ({{ teams[0].EmMaster }})</span></li>
-                                    <li><span class="member-role">Product Owner:</span> <span>{{ teams[0].pOwner }} ({{ teams[0].EmPOwner }})</span></li>
+                    <div class="card-body w-70">
+                            <div style="color: #2c3e50; text-align: center;"><h3>{{ teams[0].team }}</h3></div>
+                            <div class="card-body mx-auto" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1;">
+                                <div style="max-height: 150px; overflow: hidden;" class="rounded"><img src="{{ url_for('uploaded_file', filename='teams/img/' + teams[0].img) }}" class="img-fluid rounded img-cover"></div>
+                                <h4 style="margin: 5px; color: rgb(59, 140, 110);">Liderança</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><span>Scrum Master:</span> <span>{{ teams[0].master }} ({{ teams[0].EmMaster }})</span></li>
+                                    <li class="list-group-item"><span>Product Owner:</span> <span>{{ teams[0].pOwner }} ({{ teams[0].EmPOwner }})</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -177,13 +177,15 @@
 
                         {% for team in teams %}
                             <div class="card carousel-item {% if team == teams[0] %}active{% endif %}">
-                                <div class="card-header" style="background: transparent; color: #2c3e50;"><h3>{{ team.team }}</h3></div>
-                                <div class="member-list">
-                                    <h4 style="margin-bottom: 10px; color: rgb(59, 140, 110); ">Liderança</h4>
-                                    <ul>
-                                        <li><span class="member-role">Scrum Master:</span> <span>{{ team.master }} ({{ team.EmMaster }})</span></li>
-                                        <li><span class="member-role">Product Owner:</span> <span>{{ team.pOwner }} ({{ team.EmPOwner }})</span></li>
-                                    </ul>
+                                <div style="color: #2c3e50; text-align: center; margin-top: 10px;"><h3>{{ team.team }}</h3></div>
+                                <div class="card-body" style=" padding: 1;">
+                                    <div style="max-height: 150px; overflow: hidden; text-align: center;" class="rounded"><img src="{{ url_for('uploaded_file', filename='teams/img/' + team.img) }}" class="img-fluid rounded img-cover"></div>
+
+                                    <h4 style="margin: 5px; color: rgb(59, 140, 110); ">Liderança</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item border-0"><strong> Scrum Master:</strong> <span>{{ team.EmMaster }}</span></li>
+                                    <li class="list-group-item border-0"><strong>Product Owner:</strong> <span>{{ team.EmPOwner }}</span></li>
+                                </ul>
                                 </div>
                             </div>
                         {% endfor %}
