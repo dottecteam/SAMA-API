@@ -14,7 +14,7 @@
 
     {% for team in teams %}
     <div class="team-card">
-      <h3>{{ team.team }}</h3>
+      <h3 class="text-center">{{ team.team }}</h3>
       <div class="team-meta" style="max-width: 400px;">
         <img src="{{ url_for('uploaded_file', filename='teams/img/' + team.img) }}" class="img-fluid rounded img-cover"
           style="max-width: 100%;">

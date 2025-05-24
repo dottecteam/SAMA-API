@@ -34,6 +34,7 @@ $(document).ready(function () {
   $('#form-teams').on('submit', function (event) {
     event.preventDefault();
     let formData = new FormData(this);
+    $('#modal-loading').modal('show');
     $.ajax({
       type: "POST",
       url: "/equipes/cadastro/cadastrar",
@@ -41,6 +42,7 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function (response) {
+        $('#modal-loading').modal('hide');
         if (response.status) {
           $("#modal-success").modal('show');
           $("#form-teams")[0].reset();
@@ -51,6 +53,7 @@ $(document).ready(function () {
         }
       },
       error: function (xhr, status, error) {
+        $('#modal-loading').modal('hide');
         var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
         var errorMessage = response.message;
         $("#error-message").html(errorMessage);

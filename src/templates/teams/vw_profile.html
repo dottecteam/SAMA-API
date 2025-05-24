@@ -12,13 +12,15 @@
           <h3 class="card-title text-center">Informações</h3>
         </div>
         <div class="card-body">
+          <div class="position-relative border rounded overflow-hidden mb-3"
+            style="height: 200px;">
+            <img
+              src="{{ url_for('uploaded_file', filename='teams/img/' + session['team']['img']) }}"
+              class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover"
+              alt="Pré-visualização do logo">
+          </div>
           <p class="card-text"><strong>Equipe:</strong> {{ team.team }}</p>
           <p class="card-text"><strong>ID:</strong> {{ team.id }}</p>
-          <p class="card-text"><strong>PO:</strong> {{ team.pOwner }} ({{
-            team.EmPOwner }})</p>
-          <p class="card-text"><strong>Master:</strong> {{ team.master }} ({{
-            team.EmMaster }})</p>
-
           <div style="margin-left: 20%;">
             <button type="button" class="btn btn-custom text-white w-75"
               style="font-size: 1.3rem;" data-bs-toggle="modal"
@@ -32,17 +34,20 @@
     <div class="col-md-8 d-flex">
       <div class="card flex-fill">
         <div class="card-header">
-          <h3 class="card-title text-center">Desenvolvedores</h3>
+          <h3 class="card-title text-center">Membros</h3>
         </div>
         <div class="card-body">
+          <div class="m-3 py-2 border-bottom">
+            <p class="card-text"><strong>PO:</strong> {{ team.pOwner }} ({{
+              team.EmPOwner }})</p>
+            <p class="card-text"><strong>Master:</strong> {{ team.master }} ({{
+              team.EmMaster }})</p>
+          </div>
           <ul class="list-group list-group-flush">
             {% if team.devs %}
             {% for dev in team.devs %}
-            <li class="list-group-item">{{ dev.nome }} ({{ dev.email }})</li>
+            <li class="list-group-item"><strong>Desenvolvedor:</strong> {{ dev.nome }} ({{ dev.email }})</li>
             {% endfor %}
-            {% else %}
-            <li class="list-group-item"><h3 class="text-center">No developers
-                found.</h3></li>
             {% endif %}
           </ul>
         </div>
@@ -66,7 +71,7 @@
       <div class="modal-body">
         <form enctype="multipart/form-data" id="editTeamForm">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 overflow-y-auto" style="max-height: 310px;">
               <div class="mb-3">
                 <label for="teamName" class="form-label"
                   style="font-weight: bold;">Nome da Equipe</label>
@@ -74,7 +79,6 @@
                   name="teamName" value="{{ team.team }}">
               </div>
               <div class="mb-3">
-
                 <div class="row mb-2 developer-item">
                   <label for="SMaster" class="form-label"
                     style="font-weight: bold;">Scrum Master</label>
@@ -100,7 +104,7 @@
                       style="font-weight: bold;">Desenvolvedor</label>
                     <div class="col">
                       <input type="email" name="dev_email" class="form-control"
-                        placeholder="Email">
+                        placeholder="Email" value="{{ dev.email }}">
                     </div>
                     <div class="col-auto">
                       <button type="button"
@@ -114,6 +118,24 @@
                   id="addDeveloper">Adicionar Membro</button>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="team-img" class="form-label"
+                  style="font-weight: bold;">Imagem da Equipe</label>
+                <input type="file" class="form-control" id="teamLogo"
+                  name="team-img" accept=".jpg, .jpeg, .png"
+                  onchange="previewLogo(event)">
+              </div>
+
+              <div class="position-relative border rounded overflow-hidden mb-3"
+                style="height: 200px;">
+                <img id="logoPreview"
+                  src="{{ url_for('uploaded_file', filename='teams/img/' + session['team']['img']) }}"
+                  class="w-100 h-100 position-absolute top-0 start-0 object-fit-cover"
+                  alt="Pré-visualização do logo">
+              </div>
+            </div>
+
           </div>
 
           <div class="modal-footer">

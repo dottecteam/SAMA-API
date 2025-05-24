@@ -13,54 +13,66 @@ document.getElementById('addDeveloper').addEventListener('click', () => {
     container.insertAdjacentHTML('beforeend', devHTML);
 });
 
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('remove-dev')) {
         e.target.closest('.developer-item').remove();
     }
 });
 
-document.getElementById('editTeamForm').addEventListener('submit', async function(e) {
+function previewLogo(event) {
+    const input = event.target;
+    const preview = document.getElementById('logoPreview');
+
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+document.getElementById('editTeamForm').addEventListener('submit', async function (e) {
     e.preventDefault();
-    
-    // Função segura para pegar valores
-    function getValue(selector) {
-        const element = document.querySelector(selector);
-        return element ? element.value : null;
+
+    const form = document.getElementById('editTeamForm');
+    const formData = new FormData();
+
+    // Adiciona dados ao FormData
+    formData.append('teamName', form.teamName.value);
+    formData.append('EmMaster', form.EmMaster.value);
+    formData.append('EmPOwner', form.EmPOwner.value);
+
+    const teamLogo = form.teamLogo.files[0];
+    if (teamLogo) {
+        formData.append('teamLogo', teamLogo);
     }
 
-    // Coleta os dados com verificações
-    const formData = {
-        teamName: getValue('#teamName'),
-        EmMaster: getValue('input[name="EmMaster"]'),
-        EmPOwner: getValue('input[name="EmPOwner"]'),
-        dev_email: Array.from(document.getElementsByName('dev_email')).map(input => input.value)
-    };
-
-    console.log("Dados coletados:", formData); // Debug
-
-    // Validação básica
-    if (!formData.teamName || !formData.EmMaster || !formData.EmPOwner) {
-        alert("Por favor, preencha todos os campos obrigatórios!");
-        return;
-    }
+    // Vários dev_email
+    document.querySelectorAll('[name="dev_email"]').forEach((input, index) => {
+        formData.append('dev_email', input.value);
+    });
 
     try {
         const response = await fetch('/equipes/atualizar', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
+            body: formData // <-- sem headers!
         });
 
         const result = await response.json();
-        console.log("Resposta:", result);
 
         if (result.status) {
             location.reload();
         } else {
-            alert("Erro: " + result.message);
+            $('#editTeamModal').modal('hide');
+            $('#error-message').html(result.message);
+            $('#modal-error').modal('show');
         }
     } catch (error) {
+        $('#editTeamModal').modal('hide');
         console.error("Erro na requisição:", error);
-        alert("Erro ao comunicar com o servidor");
+        $('#modal-error').modal('show');
     }
 });

@@ -187,3 +187,45 @@
 [2025-05-21 09:19:00] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (8fPQH7qdB8iaeho5YHVHoe)
 [2025-05-21 09:19:06] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
 [2025-05-21 09:19:06] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-23 22:18:18] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-23 22:18:19] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-23 22:18:26] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-23 22:21:42] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
+[2025-05-23 22:22:13] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-23 22:22:13] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-23 22:22:23] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-23 22:22:40] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-23 22:23:17] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-23 22:23:21] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-23 22:23:34] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-23 22:23:34] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-24 10:30:38] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-24 10:36:17] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-24 10:40:29] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-24 11:02:25] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
+[2025-05-24 11:05:32] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
+[2025-05-24 11:05:32] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
+[2025-05-24 11:07:25] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
+[2025-05-24 11:07:53] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-24 11:07:53] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (9Sm4pujPMeTs2m2BGiRttJ)
+[2025-05-24 11:08:01] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-24 11:08:01] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (9Sm4pujPMeTs2m2BGiRttJ)
+[2025-05-24 11:08:18] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-24 11:08:18] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-24 11:43:39] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:45:01] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:45:55] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:46:16] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:47:34] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:49:18] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:51:32] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:51:46] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:52:19] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:58:47] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:58:53] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 11:59:03] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 12:04:38] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 12:04:49] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 12:04:54] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 12:05:21] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-24 12:13:19] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)

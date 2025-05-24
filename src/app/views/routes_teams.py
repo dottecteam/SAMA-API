@@ -40,7 +40,7 @@ def team_profile():
 
 #Página de criar avaliações
 @app.route("/equipes/avaliacoes")
-def avaliacao():
+def evaluate():
     return render_template("teams/vw_form_evaluate.html")
 #TELAS
 
@@ -48,7 +48,7 @@ def avaliacao():
 #FUNÇÕES
 #Página de cadastro de equipes (Back)
 @app.route("/equipes/cadastro/cadastrar", methods=['POST'])
-def equipesCadastrar():
+def register_team():
     return TeamsController.registerTeam()
 
 #Função para fazer o login da equipe
@@ -67,12 +67,11 @@ def update_team():
 #Função para registrar avaliação
 @app.route('/equipes/avaliacoes/avaliar', methods=['POST'])
 @TeamsController.loginRequired
-def salvar_avaliacoes():
+def save_evaluations():
     return TeamsController.saveEvaluations()
 
 
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
 #FUNÇÕES

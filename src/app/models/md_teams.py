@@ -179,3 +179,23 @@ class Teams:
             return filtered
         except:
             return None
+
+    def saveImage(self, image, filename):
+        try:
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], 'teams', 'img', filename)
+            image.save(image_path)
+            return True
+        except Exception as e:
+            print(f"Erro ao salvar imagem: {e}")
+            return False
+        
+    def deleteImage(self, filename):
+        try:
+            image_path = os.path.join(app.config['UPLOAD_FOLDER'], 'teams', 'img', filename)
+            if os.path.exists(image_path):
+                os.remove(image_path)
+                return True
+            return False
+        except Exception as e:
+            print(f"Erro ao deletar imagem: {e}")
+            return False

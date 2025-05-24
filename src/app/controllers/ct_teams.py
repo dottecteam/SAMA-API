@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, jsonify, session
+from flask import request, redirect, url_for, jsonify, session
 from app.models.md_teams import Teams
 from app.models.md_users import Users
 from app.utilities.ut_validation import Validation
@@ -12,6 +12,7 @@ from email.mime.image import MIMEImage
 from app import app
 from app import admin_email, admin_password
 import os
+import uuid
 
 class TeamsController:
     def loginRequired(f):
@@ -70,6 +71,9 @@ class TeamsController:
             if EmMaster in dev_emails or EmPOwner in dev_emails:
                 return jsonify({"status": False, "message": "Scrum Master ou Product Owner não pode ser listado como desenvolvedor."}), 400
                             
+            if EmMaster == EmPOwner:
+                return jsonify({"status": False, "message": "Scrum Master e Product Owner não podem ser o mesmo usuário."}), 400
+            
             # Busca o nome dos membros pelo email
             users = Users()
             devs = []
@@ -121,16 +125,19 @@ class TeamsController:
         try:
             if 'team' not in session:
                 return jsonify({"status": False, "message": "Acesso não autorizado."}), 401
-
-            # Pega os dados do JSON enviado pelo frontend
-            data = request.get_json()
             
             team_id = session['team']['id']
-            team_name = data.get('teamName')
-            EmMaster = data.get('EmMaster')
-            EmPOwner = data.get('EmPOwner')
-            
-            dev_emails = data.get('dev_email', [])
+            team_name = request.form.get('teamName')
+            EmMaster = request.form.get('EmMaster')
+            EmPOwner = request.form.get('EmPOwner')
+            dev_emails = request.form.getlist('dev_email')
+            file = request.files.get('teamLogo')
+
+            if file and file.filename:
+                img = str(uuid.uuid4()) + os.path.splitext(file.filename)[1]
+                Teams().saveImage(file, img)
+            else:
+                img = session['team']['img']
 
             # Verifica se os desenvolvedores está cadastrado
             if Validation.UserIsRegistered(EmMaster)==False:
@@ -140,6 +147,24 @@ class TeamsController:
             for email in dev_emails:
                 if Validation.UserIsRegistered(email)==False:
                     return jsonify({"status": False, "message": f"Desenvolvedor {email} não cadastrado."}), 400
+                
+            # Verifica se há desenvolvedores duplicados
+            if len(dev_emails) != len(set(dev_emails)):
+                return jsonify({"status": False, "message": "Um mesmo desenvolvedor está sendo adicionado mais de uma vez."}), 400
+            
+            # Verifica se o Master ou PO está repetido na lista de devs
+            if EmMaster in dev_emails or EmPOwner in dev_emails:
+                return jsonify({"status": False, "message": "Scrum Master ou Product Owner não pode ser listado como desenvolvedor."}), 400
+            if EmMaster == EmPOwner:
+                return jsonify({"status": False, "message": "Scrum Master e Product Owner não podem ser o mesmo usuário."}), 400
+            
+            if img == session['team']['img']:
+                img = session['team']['img']
+            else:
+                # Remove a imagem antiga se houver
+                if session['team']['img'] and session['team']['img'] != 'default.png':
+                    Teams().deleteImage(session['team']['img'])
+
 
             # Busca o nome dos membros pelo email
             users = Users()
