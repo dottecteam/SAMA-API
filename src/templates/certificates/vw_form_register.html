@@ -1,11 +1,9 @@
 {% extends "certificates/vw_template.html" %} {% block content %}
 
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_form_register.css') }}">
+
 <!-- Modal de confirmação de e-mail -->
-<div
-  class="modal fade"
-  id="modal-confirmation"
-  tabindex="-1"
-  aria-labelledby="label-modal-confirmation"
+<div class="modal fade" id="modal-confirmation" tabindex="-1" aria-labelledby="label-modal-confirmation"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-4 shadow">
@@ -16,22 +14,14 @@
       </div>
       <div class="modal-body">
         <p>
-          Enviamos um código para <strong
-            id="email-addressee"></strong>. Verifique na sua caixa de span! Por
+          Enviamos um código para <strong id="email-addressee"></strong>. Verifique na sua caixa de span! Por
           favor, digite abaixo:
         </p>
         <form id="form-confirmation">
-          <input
-            type="int"
-            class="form-control mb-3"
-            id="input-code-form-users"
-            name="input-code-form-users"
-            placeholder="Digite o código"
-            autocomplete="off"
-            required />
+          <input type="int" class="form-control mb-3" id="input-code-form-users" name="input-code-form-users"
+            placeholder="Digite o código" autocomplete="off" required />
           <div class="text-end">
-            <button type="submit"
-              class="btn btn-custom">Confirmar</button>
+            <button type="submit" class="btn btn-custom">Confirmar</button>
           </div>
         </form>
       </div>
@@ -50,46 +40,26 @@
         <!-- Campos à esquerda -->
         <div class="col-md-6">
           <div class="form-group p-2">
-            <label for="input-email-form-users"
-              class="input-title">E-mail:</label>
-            <input
-              type="email"
-              class="form-control"
-              id="input-email-form-users"
-              name="input-email-form-users"
-              aria-describedby="email-help"
-              placeholder="seuemail@exemplo.com"
-              required
-              autocomplete="off" />
+            <label for="input-email-form-users" class="input-title">E-mail:</label>
+            <input type="email" class="form-control" id="input-email-form-users" name="input-email-form-users"
+              aria-describedby="email-help" placeholder="seuemail@exemplo.com" required autocomplete="off" />
           </div>
 
           <div class="form-group p-2">
             <label for="input-name-form-users" class="input-title">Nome
               completo:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="input-name-form-users"
-              name="input-name-form-users"
-              aria-describedby="name-help"
-              placeholder="Egydio da Silva"
-              required
-              autocomplete="off" />
+            <input type="text" class="form-control" id="input-name-form-users" name="input-name-form-users"
+              aria-describedby="name-help" placeholder="Egydio da Silva" required autocomplete="off" />
           </div>
 
           <div class="form-group p-2">
-            <label for="input-password-form-users"
-              class="input-title">Senha:</label>
-            <input
-              type="password"
-              class="form-control"
-              id="input-password-form-users"
-              name="input-password-form-users"
-              aria-describedby="password-help"
-              placeholder="*********"
-              minlength="12"
-              required
-              autocomplete="off" />
+            <label for="input-password-form-users" class="input-title">Senha:</label>
+            <input type="password" class="form-control" id="input-password-form-users" name="input-password-form-users"
+              aria-describedby="password-help" placeholder="*********" minlength="12" required autocomplete="off" />
+
+            <button type="button" id="toggle-password-user" class="btn btn-link position-absolute">
+              <i id="password-icon-user" class="bi bi-eye-slash"></i>
+            </button>
           </div>
 
         </div>
@@ -97,17 +67,12 @@
         <!-- Seguintes à direita -->
         <div class="col-md-6">
           <div class="form-group p-2">
-            <label for="select-course-form-users"
-              class="input-title">Curso:</label>
-            <select
-              class="form-control"
-              id="select-course-form-users"
-              name="select-course-form-users">
+            <label for="select-course-form-users" class="input-title">Curso:</label>
+            <select class="form-control" id="select-course-form-users" name="select-course-form-users">
               <option value="Análise e Desenvolvimento de Sistemas">Análise e
                 Desenvolvimento de Sistemas</option>
               <option value="Banco de Dados">Banco de Dados</option>
-              <option
-                value="Desenvolvimento de Software Multiplataforma">Desenvolvimento
+              <option value="Desenvolvimento de Software Multiplataforma">Desenvolvimento
                 de Software Multiplataforma</option>
               <option value="Gestão da Produção Industrial">Gestão da Produção
                 Industrial</option>
@@ -122,12 +87,8 @@
           </div>
 
           <div class="form-group p-2">
-            <label for="select-semester-form-users"
-              class="input-title">Semestre:</label>
-            <select
-              class="form-control"
-              id="select-semester-form-users"
-              name="select-semester-form-users">
+            <label for="select-semester-form-users" class="input-title">Semestre:</label>
+            <select class="form-control" id="select-semester-form-users" name="select-semester-form-users">
               <option value="1">1°</option>
               <option value="2">2°</option>
               <option value="3">3°</option>
@@ -140,27 +101,24 @@
               <option value="10">10°</option>
             </select>
           </div>
-          <div class="form-group p-2">
-            <label for="input-confirm-password-form-users"
-              class="input-title">Confirmar
+
+          <div class="form-group p-2 position-relative">
+            <label for="input-confirm-password-form-users" class="input-title">Confirmar
               Senha:</label>
-            <input
-              type="password"
-              class="form-control"
-              id="input-confirm-password-form-users"
-              name="input-confirm-password-form-users"
-              aria-describedby="confirm-password-help"
-              placeholder="Confirme a senha"
-              minlength="12"
-              required
-              autocomplete="off" />
+            <input type="password" class="form-control" id="input-confirm-password-form-users"
+              name="input-confirm-password-form-users" aria-describedby="confirm-password-help"
+              placeholder="Confirme a senha" minlength="12" required autocomplete="off" />
+
+              <button type="button" id="toggle-confirm-password-user" class="btn btn-link position-absolute">
+                <i id="confirm-password-icon" class="bi bi-eye-slash"></i>
+              </button>
           </div>
         </div>
       </div>
       <section style="text-align: center; margin-top: 30px;">
         <p>Ao selecionar a opção <strong>Validar</strong>, o usuário declara
-        estar de acordo com a nossa <a href="/usuarios/privacidade" target="blank" class="link-custom">
-        política de privacidade</a>.</p>
+          estar de acordo com a nossa <a href="/usuarios/privacidade" target="blank" class="link-custom">
+            política de privacidade</a>.</p>
       </section>
       <div class="text-center p-2">
         <button type="submit" class="btn btn-custom">Validar</button>
@@ -169,6 +127,5 @@
   </div>
 </section>
 
-<script
-  src="{{ url_for('static', filename='scripts/certificates/script_form_register.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/certificates/script_form_register.js') }}"></script>
 {% endblock %}

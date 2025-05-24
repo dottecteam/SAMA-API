@@ -1,4 +1,4 @@
-{% extends "teams/vw_template.html" %} 
+{% extends "teams/vw_template.html" %}
 {% block content %}
 
 <!-- Estilo da página -->
@@ -11,7 +11,7 @@
     <br>
 
     <form id="form-teams" action="/equipes/cadastro/cadastrar" method="post" enctype="multipart/form-data">
-        
+
         <!-- Container para Nome da Equipe e Scrum Master com fundo mais claro e bordas arredondadas -->
         <div class="container bg-light p-4 mb-4 rounded">
             <div class="row">
@@ -19,14 +19,8 @@
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="input-nome-form-equipe" class="input-title">Nome da Equipe:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="input-nome-form-equipe"
-                            name="input-nome-form-equipe"
-                            placeholder="Nome da Equipe"
-                            required
-                        />
+                        <input type="text" class="form-control" id="input-nome-form-equipe"
+                            name="input-nome-form-equipe" placeholder="Nome da Equipe" required />
                     </div>
                 </div>
 
@@ -34,21 +28,11 @@
                 <div class="col-md-6">
                     <div class="form-group p-2 position-relative">
                         <label for="input-password-form" class="input-title">Senha:</label>
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="input-password-form"
-                            name="input-password-form"
-                            placeholder="Senha"
-                            required
-                        />
+                        <input type="password" class="form-control" id="input-password-form" name="input-password-form"
+                            placeholder="Senha" minlength='12' required />
                         <!-- Botão para alternar visibilidade da senha -->
-                        <button
-                            type="button"
-                            id="toggle-password-register"
-                            class="btn btn-link position-absolute"
-                        >
-                            <i id="password-icon-register" class="bi bi-eye-slash"></i> <!-- Inicialmente oculto -->
+                        <button type="button" id="toggle-password-register" class="btn btn-link position-absolute">
+                            <i id="password-icon-register" class="bi bi-eye-slash"></i>
                         </button>
                     </div>
                 </div>
@@ -59,14 +43,8 @@
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="input-email-form-scmaster" class="input-title">Email do Scrum Master:</label>
-                        <input
-                            type="email"
-                            class="form-control"
-                            id="input-email-form-scmaster"
-                            name="input-email-form-scmaster"
-                            placeholder="Email do Master"
-                            required
-                        />
+                        <input type="email" class="form-control" id="input-email-form-scmaster"
+                            name="input-email-form-scmaster" placeholder="Email do Master" required />
                     </div>
                 </div>
 
@@ -74,32 +52,26 @@
                 <div class="col-md-6">
                     <div class="form-group p-2">
                         <label for="input-email-form-po" class="input-title">Email do Product Owner:</label>
-                        <input
-                            type="email"
-                            class="form-control"
-                            id="input-email-form-po"
-                            name="input-email-form-po"
-                            placeholder="Email do P.O."
-                            required
-                        />
+                        <input type="email" class="form-control" id="input-email-form-po" name="input-email-form-po"
+                            placeholder="Email do P.O." required />
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
         <div class="container bg-light p-4 rounded">
-            
-                <div id="dev-fields-container" class="row form-group p-2"></div>
-            
+
+            <div id="dev-fields-container" class="row form-group p-2"></div>
+
             <div class="align-items-center text-center">
                 <button id="btn-add-field" type="button" class="btn m-3 btn-primary">+ Adicionar Dev</button>
             </div>
         </div>
         <section style="text-align: center; margin-top: 30px;">
             <p>Ao selecionar a opção <strong>Criar Equipe</strong>, o usuário declara
-            estar de acordo com a nossa <a href="/equipes/privacidade" target="blank" class="link-custom">
-            política de privacidade</a>.</p>
+                estar de acordo com a nossa <a href="/equipes/privacidade" target="blank" class="link-custom">
+                    política de privacidade</a>.</p>
         </section>
         <!-- Botão Criar Equipe -->
         <div class="container text-center mt-4">

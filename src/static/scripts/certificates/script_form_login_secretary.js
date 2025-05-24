@@ -28,8 +28,8 @@ $(document).ready(function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   const passwordField = document.getElementById('input-password-secretary');
-  const toggleButton = document.getElementById('toggle-password');
-  const passwordIcon = document.getElementById('password-icon');
+  const toggleButton = document.getElementById('toggle-password-secretary');
+  const passwordIcon = document.getElementById('password-icon-secretary');
 
   toggleButton.addEventListener('click', function () {
     const isPassword = passwordField.type === 'password';

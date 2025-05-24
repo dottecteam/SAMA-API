@@ -2,6 +2,7 @@ document.getElementById('addDeveloper').addEventListener('click', () => {
     const container = document.getElementById('developersContainer');
     const devHTML = `
         <div class="row mb-2 developer-item">
+        <label for="dev_email" class="form-label" style="font-weight: bold;">Desenvolvedor</label>
             <div class="col">
                 <input type="email" name="dev_email" class="form-control" placeholder="Email">
             </div>

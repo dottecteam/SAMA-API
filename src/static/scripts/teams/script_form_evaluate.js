@@ -72,17 +72,8 @@ function criarAvaliacoesDevs(qtdDevs, devsInfo = []) {
     const devDiv = document.createElement('div');
     devDiv.className = 'container bg-light p-4 mb-4 rounded';
 
+    const evaluationsTypes = {proatividade: 'Proatividade', autonomia: 'Autonomia', colaboracao: 'Colaboração', entrega: 'Entrega'}
     devDiv.innerHTML = `
-      <h2 class="input-title">Developer ${i + 1}</h2>
-      <div class="form-group p-2 d-flex justify-content-between align-items-center">
-        <label>Nome do Developer:</label>
-        <span class="form-control flex-grow-1">${devName}</span>
-        <div class="sliders-container">
-          <div class="row" id="dev_${i}_sliders"></div>
-        </div>
-      </div>
-    `;
-
             <h2 class="input-title">Developer ${i + 1}</h2>
             <div class="row">
                 <div class="col-md-6">
@@ -92,10 +83,10 @@ function criarAvaliacoesDevs(qtdDevs, devsInfo = []) {
                     </div>
                 </div>
                 <div class="col-md-6 d-flex flex-wrap">
-                    ${['proatividade', 'autonomia', 'colaboracao', 'entrega'].map(label => `
-                        <div class="form-group p-2 w-25">
-                            <div class="sliderContainer">
-                            <label>${label}:</label>
+                    <div class="row w-100">
+                    ${['proatividade', 'autonomia'].map(label => `
+                            <div class="form-group p-2 col-6">
+                                <label>${evaluationsTypes[label]}:</label>
                                 <div class="d-flex align-items-center gap-1">
                                     <input type="range"
                                         min="0" max="3" step="0.1" value="0"
@@ -112,8 +103,30 @@ function criarAvaliacoesDevs(qtdDevs, devsInfo = []) {
                                         oninput="document.getElementById('${label}_dev_slider_${i}').value = this.value">
                                 </div>
                             </div>
-                        </div>
                     `).join('')}
+                        </div>
+                      <div class="row w-100">
+                    ${['colaboracao', 'entrega'].map(label => `
+                            <div class="form-group p-2 col-6">
+                                <label>${evaluationsTypes[label]}:</label>
+                                <div class="d-flex align-items-center gap-1">
+                                    <input type="range"
+                                        min="0" max="3" step="0.1" value="0"
+                                        class="slider sync-slider"
+                                        id="${label}_dev_slider_${i}"
+                                        data-target="${label}_dev_input_${i}"
+                                        oninput="atualizarSlider('${label}_dev_slider_${i}', '${label}_dev_input_${i}')">
+                                    <input type="number"
+                                        min="0" max="3" step="0.1" value="0"
+                                        id="${label}_dev_input_${i}"
+                                        name="${devId}_${label}"
+                                        class="form-control text-center sync-input"
+                                        style="width: 60px"
+                                        oninput="document.getElementById('${label}_dev_slider_${i}').value = this.value">
+                                </div>
+                            </div>
+                    `).join('')}
+                    </div>
                 </div>
             </div>
         `;
@@ -205,5 +218,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 });
-
-

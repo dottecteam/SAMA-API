@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, redirect, url_for, session, send_from_directory
 from app.controllers.ct_teams import *
 import os
+from app.controllers.ct_dashboard_teams import DashboardTeams
 
 #TELAS
 #Página de login
@@ -14,7 +15,8 @@ def teams_access():
 @app.route("/painel/equipes")
 @TeamsController.loginRequired
 def teams_panel():
-    return render_template("teams/vw_dashboard.html")
+    data, avarage = DashboardTeams.getData()
+    return render_template("teams/vw_dashboard.html", data = data, avarage = avarage)
 
 #Página de cadastro de equipes
 @app.route("/equipes/cadastro")
@@ -67,5 +69,10 @@ def update_team():
 @TeamsController.loginRequired
 def salvar_avaliacoes():
     return TeamsController.saveEvaluations()
+
+
+@app.route('/uploads/<path:filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 #FUNÇÕES

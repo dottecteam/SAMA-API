@@ -41,7 +41,7 @@
   position: relative;
 }
 
-#toggle-password {
+#toggle-password-secretary {
   top: 73%;
   right: 10px;
   transform: translateY(-50%);
@@ -51,7 +51,7 @@
   background: transparent;
 }
 
-#toggle-password i {
+#toggle-password-secretary i {
   cursor: pointer;
 }
 

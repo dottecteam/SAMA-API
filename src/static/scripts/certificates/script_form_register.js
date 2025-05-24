@@ -73,3 +73,28 @@ $(document).ready(function () {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const passwordField = document.getElementById('input-password-form-users');
+  const toggleButton = document.getElementById('toggle-password-user');
+  const passwordIcon = document.getElementById('password-icon-user');
+
+  toggleButton.addEventListener('click', function () {
+    const isPassword = passwordField.type === 'password';
+    passwordField.type = isPassword ? 'text' : 'password';
+    passwordIcon.className = isPassword ? 'bi bi-eye' : 'bi bi-eye-slash';
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const passwordField = document.getElementById('input-confirm-password-form-users');
+  const toggleButton = document.getElementById('toggle-confirm-password-user');
+  const passwordIcon = document.getElementById('confirm-password-icon');
+
+  toggleButton.addEventListener('click', function () {
+    const isPassword = passwordField.type === 'password';
+    passwordField.type = isPassword ? 'text' : 'password';
+    passwordIcon.className = isPassword ? 'bi bi-eye' : 'bi bi-eye-slash';
+  });
+});
+

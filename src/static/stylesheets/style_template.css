@@ -21,9 +21,9 @@ main {
   flex: 1;
 }
 
-footer{
+footer {
   width: 100%;
-  }
+}
 
 ::-webkit-scrollbar {
   width: 7px;
@@ -166,8 +166,38 @@ footer{
 footer {
   bottom: 0;
   width: 100%;
-  /* Garante que o footer ocupe toda a largura da tela */
+  right: 0;
+  margin-top: 10%;
+  text-align: center;
 }
+
+
+footer .columns {
+  font-weight: 100;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+footer h5 {
+  font-weight: 900;
+}
+
+footer .atestados {
+  font-size: 1.1rem;
+}
+
+footer .equipes {
+  font-size: 1.1rem;
+}
+
+footer .paineis {
+  font-size: 1.1rem;
+}
+
+footer .ajuda {
+  font-size: 1.1rem;
+}
+
 
 .footer-logo-custom {
   width: 400px;
@@ -243,4 +273,35 @@ a {
 .modal-dialog {
   margin: auto;
   transform: translateY(-50%);
+}
+
+.form-group {
+  position: relative;
+}
+
+/* Estilos para os campos de senha */
+#input-password-form-login {
+  font-size: 1rem;
+  width: 100%;
+  padding-right: 40px;
+  /* Espaço para o botão */
+}
+
+/* Botões de visibilidade posicionados dentro do input */
+#toggle-password-login {
+  position: absolute;
+  top: 75%;
+  right: 25px;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: #157331;
+  border: none;
+  background: transparent;
+  padding: 0;
+  z-index: 2;
+}
+
+#toggle-password-user i,
+#toggle-confirm-password-user i {
+  cursor: pointer;
 }

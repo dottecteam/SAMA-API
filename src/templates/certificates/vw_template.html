@@ -1,320 +1,272 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SAMA - Sistema de Atestados Médicos e Avaliações</title>
-    <link rel="icon"
-      href="{{ url_for('static', filename='images/icone.svg') }}" />
 
-    <!-- Bibliotecas -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMA - Sistema de Atestados Médicos e Avaliações</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/icone.svg') }}" />
 
-    <!-- Bootstrap CSS e JS -->
-    <link
-      href="{{ url_for('static', filename='libs/bootstrap/bootstrap.css') }}"
-      rel="stylesheet" />
-    <link rel="stylesheet"
-      href="{{ url_for('static', filename='libs/bootstrap/bootstrap-icons.css') }}" />
-    <script
-      src="{{ url_for('static', filename='libs/bootstrap/bootstrap.js') }}"></script>
+  <!-- Bibliotecas -->
 
-    <!-- JQuery -->
-    <script
-      src="{{ url_for('static', filename='libs/jquery/jquery.js') }}"></script>
+  <!-- Bootstrap CSS e JS -->
+  <link href="{{ url_for('static', filename='libs/bootstrap/bootstrap.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='libs/bootstrap/bootstrap-icons.css') }}" />
+  <script src="{{ url_for('static', filename='libs/bootstrap/bootstrap.js') }}"></script>
 
-    <!-- Bibliotecas Próprias -->
-    <link rel="stylesheet"
-      href="{{ url_for('static', filename='stylesheets/style_template.css') }}" />
-    <link rel="stylesheet"
-      href="{{ url_for('static', filename='stylesheets/certificates/style_color.css') }}" />
-    <script
-      src="{{ url_for('static', filename='scripts/script_template.js') }}"></script>
-    <script
-      src="{{ url_for('static', filename='scripts/certificates/script_form_login_users.js') }}"></script>
-  </head>
-  <body>
+  <!-- JQuery -->
+  <script src="{{ url_for('static', filename='libs/jquery/jquery.js') }}"></script>
 
-    <!-- Carregamento -->
-    <div class="modal fade" id="modal-loading" tabindex="-1"
-      aria-labelledby="label-modal-loading" aria-hidden="true"
-      data-bs-backdrop="static" data-bs-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-transparent border-0">
-          <div class="modal-body text-center">
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border text-light" role="status">
-                <span class="visually-hidden">Carregando...</span>
-              </div>
+  <!-- Bibliotecas Próprias -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style_template.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_color.css') }}" />
+  <script src="{{ url_for('static', filename='scripts/script_template.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/certificates/script_form_login_users.js') }}"></script>
+</head>
+
+<body>
+
+  <!-- Carregamento -->
+  <div class="modal fade" id="modal-loading" tabindex="-1" aria-labelledby="label-modal-loading" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body text-center">
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border text-light" role="status">
+              <span class="visually-hidden">Carregando...</span>
             </div>
-            <h3 class="mt-2 text-white">Carregando, aguarde...</h3>
           </div>
+          <h3 class="mt-2 text-white">Carregando, aguarde...</h3>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Modal de erro -->
-    <div class="modal fade" id="modal-error" tabindex="-1"
-      aria-labelledby="label-modal-error" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title">Erro</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Fechar"></button>
-          </div>
-          <div class="modal-body text-center">
-            <p><strong>Ocorreu um erro inesperado!</strong></p>
-            <p id="error-message">Por favor, tente novamente.</p>
-          </div>
+  <!-- Modal de erro -->
+  <div class="modal fade" id="modal-error" tabindex="-1" aria-labelledby="label-modal-error" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Erro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p><strong>Ocorreu um erro inesperado!</strong></p>
+          <p id="error-message">Por favor, tente novamente.</p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Modal de sucesso -->
-    <div class="modal fade" id="modal-success" tabindex="-1"
-      aria-labelledby="label-modal-success" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-success text-white">
-            <h5 class="modal-title">Sucesso</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Fechar"></button>
-          </div>
-          <div class="modal-body text-center">
-            <p><strong>Operação realizada com sucesso!</strong></p>
-          </div>
+  <!-- Modal de sucesso -->
+  <div class="modal fade" id="modal-success" tabindex="-1" aria-labelledby="label-modal-success" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Sucesso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p><strong>Operação realizada com sucesso!</strong></p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Modal de login -->
-    <div class="modal fade" id="modal-login" tabindex="-1"
-      aria-labelledby="label-modal-login" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Login</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-              aria-label="Fechar"></button>
-          </div>
-          <div class="modal-body">
-            <form id="form-login" method="post">
-              <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control"
-                  id="input-user-form-login" name="input-user-form-login"
-                  placeholder="seuemail@exemplo.com" required>
-              </div>
-              <div class="mb-3">
-                <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control"
-                  id="input-password-form-login"
-                  name="input-password-form-login" placeholder="********"
-                  required>
-              </div>
-            </form>
-          </div>
-          <span class="text-center">
-            Não tem uma conta? <a href="/usuarios/cadastro"
-              class="text-secondary link-custom">Clique aqui para se
-              cadastrar!</a>
-          </span>
-          <div class="modal-footer">
-            <button type="submit" form="form-login"
-              class="btn btn-custom" style="margin-right: 40%;">Entrar</button>
-          </div>
+  <!-- Modal de login -->
+  <div class="modal fade" id="modal-login" tabindex="-1" aria-labelledby="label-modal-login" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form-login" method="post">
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="input-user-form-login" name="input-user-form-login"
+                placeholder="seuemail@exemplo.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="senha" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="input-password-form-login"
+                name="input-password-form-login" placeholder="********" required>
+
+              <button type="button" id="toggle-password-login" class="btn btn-link position-absolute">
+                <i id="password-icon" class="bi bi-eye-slash"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <span class="text-center">
+          Não tem uma conta? <a href="/usuarios/cadastro" class="text-secondary link-custom">Clique aqui para se
+            cadastrar!</a>
+        </span>
+        <div class="modal-footer">
+          <button type="submit" form="form-login" class="btn btn-custom" style="margin-right: 40%;">Entrar</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-        <div class="container-fluid">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+      <div class="container-fluid">
+        <a href="/">
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo SAMA" class="navbar-logo-custom" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#responsive-navbar"
+          aria-controls="responsive-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list navbar-icon-custom"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="responsive-navbar">
+          <ul class="navbar-nav mx-auto">
+
+            <li class="nav-item dropdown w-100 p-2">
+              <a class="nav-link dropdown-toggle rounded text-center" href="#" id="dropdown-certificates" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Atestados
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown-certificates">
+                {% if session['user'] %}
+                <li><a class="dropdown-item text-center" href="/atestados/cadastro">Cadastro de Atestado</a></li>
+                <li><a class="dropdown-item text-center" href="/usuarios/atestados">Meus Atestados</a></li>
+                {% elif session['secretary'] %}
+                <li><a class="dropdown-item text-center" href="/atestados/consulta">Consulta</a></li>
+                {% else %}
+                <li><a class="dropdown-item text-center" href="/usuarios/cadastro">Cadastro</a></li>
+                <li><a class="dropdown-item text-center" href="/atestados/acesso">Secretaria</a></li>
+                {% endif %}
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown w-100 p-2">
+              <a class="nav-link dropdown-toggle rounded text-center" href="#" id="dropdown-teams" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Equipes
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown-teams">
+                {% if session['team'] %}
+                <li><a class="dropdown-item text-center" href="/equipes/avaliacoes">Avaliação</a></li>
+                <li><a class="dropdown-item text-center" href="/equipes/visualizar">Equipes</a></li>
+                {% else %}
+                <li><a class="dropdown-item text-center" href="/equipes/cadastro">Cadastro</a></li>
+                <li><a class="dropdown-item text-center" href="/equipes/acesso">Acesso</a></li>
+                <li><a class="dropdown-item text-center" href="/equipes/visualizar">Equipes</a></li>
+                {% endif %}
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown w-100 p-2">
+              <a class="nav-link dropdown-toggle rounded text-center" href="#" id="dropdown-painel" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Painéis
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown-painel">
+                <li><a class="dropdown-item text-center" href="/painel/atestados">Atestados</a></li>
+                <li><a class="dropdown-item text-center" href="/painel/equipes">Equipes</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="navbar-nav">
+            {% if session['user'] %}
+            <div class="nav-item dropdown w-100 p-2">
+              <a class="nav-link dropdown-toggle rounded text-center" href="#" id="dropdown-user" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Olá, {{ session['user'].name.split()[0] }}!
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+                <li><a class="dropdown-item text-center" href="/usuarios/perfil">Perfil</a></li>
+                <li><a class="dropdown-item text-center" href="/logout">Sair</a></li>
+              </ul>
+            </div>
+            {% elif session['secretary'] %}
+            <div class="nav-item dropdown w-100 p-2">
+              <a class="nav-link dropdown-toggle rounded text-center" href="#" id="dropdown-secretary" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Secretaria
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-secretary">
+                <li><a class="dropdown-item text-center" href="/logout">Sair</a></li>
+              </ul>
+            </div>
+            {% elif session['team'] %}
+            <div class="nav-item dropdown w-100 p-2">
+              <a class="nav-link dropdown-toggle rounded text-center" href="#" id="dropdown-team" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {{ session['team'].team.split()[0] }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-team">
+                <li><a class="dropdown-item text-center" href="/equipes/equipe">Equipe</a></li>
+                <li><a class="dropdown-item text-center" href="/logout">Sair</a></li>
+              </ul>
+            </div>
+            {% else %}
+            <button class="btn btn-custom" style="border: 1px solid #ffffff;" data-bs-toggle="modal"
+              data-bs-target="#modal-login">Entrar</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container-main">{% block content %} {% endblock %}</main>
+
+  <footer class="footer-custom-bg footer-custom text-white py-4">
+    <div class="container-fluid text-center">
+      <div class="row">
+        <div class="col-md-5">
           <a href="/">
-            <img src="{{ url_for('static', filename='images/logo.png') }}"
-              alt="Logo SAMA" class="navbar-logo-custom" />
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo SAMA" class="footer-logo-custom" />
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#responsive-navbar"
-            aria-controls="responsive-navbar" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <i class="bi bi-list navbar-icon-custom"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="responsive-navbar">
-            <ul class="navbar-nav mx-auto">
-
-              <li class="nav-item dropdown w-100 p-2">
-                <a class="nav-link dropdown-toggle rounded text-center" href="#"
-                  id="dropdown-certificates" role="button"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  Atestados
-                </a>
-                <ul class="dropdown-menu"
-                  aria-labelledby="dropdown-certificates">
-                  {% if session['user'] %}
-                  <li><a class="dropdown-item text-center"
-                      href="/atestados/cadastro">Cadastro de Atestado</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/usuarios/atestados">Meus Atestados</a></li>
-                  {% elif session['secretary'] %}
-                  <li><a class="dropdown-item text-center"
-                      href="/atestados/consulta">Consulta</a></li>
-                  {% else %}
-                  <li><a class="dropdown-item text-center"
-                      href="/usuarios/cadastro">Cadastro</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/atestados/acesso">Secretaria</a></li>
-                  {% endif %}
-                </ul>
-              </li>
-
-              <li class="nav-item dropdown w-100 p-2">
-                <a class="nav-link dropdown-toggle rounded text-center" href="#"
-                  id="dropdown-teams" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Equipes
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown-teams">
-                  {% if session['team'] %}
-                  <li><a class="dropdown-item text-center"
-                      href="/equipes/avaliacoes">Avaliação</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/equipes/visualizar">Equipes</a></li>
-                  {% else %}
-                  <li><a class="dropdown-item text-center"
-                      href="/equipes/cadastro">Cadastro</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/equipes/acesso">Acesso</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/equipes/visualizar">Equipes</a></li>
-                  {% endif %}
-                </ul>
-              </li>
-
-              <li class="nav-item dropdown w-100 p-2">
-                <a class="nav-link dropdown-toggle rounded text-center" href="#"
-                  id="dropdown-painel" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Painéis
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown-painel">
-                  <li><a class="dropdown-item text-center"
-                      href="/painel/atestados">Atestados</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/painel/equipes">Equipes</a></li>
-                </ul>
-              </li>
-            </ul>
-
-            <div class="navbar-nav">
-              {% if session['user'] %}
-              <div class="nav-item dropdown w-100 p-2">
-                <a class="nav-link dropdown-toggle rounded text-center" href="#"
-                  id="dropdown-user" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Olá, {{ session['user'].name.split()[0] }}!
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="dropdown-user">
-                  <li><a class="dropdown-item text-center"
-                      href="/usuarios/perfil">Perfil</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/logout">Sair</a></li>
-                </ul>
-              </div>
-              {% elif session['secretary'] %}
-              <div class="nav-item dropdown w-100 p-2">
-                <a class="nav-link dropdown-toggle rounded text-center" href="#"
-                  id="dropdown-secretary" role="button"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  Secretaria
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="dropdown-secretary">
-                  <li><a class="dropdown-item text-center"
-                      href="/logout">Sair</a></li>
-                </ul>
-              </div>
-              {% elif session['team'] %}
-              <div class="nav-item dropdown w-100 p-2">
-                <a class="nav-link dropdown-toggle rounded text-center" href="#"
-                  id="dropdown-team" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  {{ session['team'].team.split()[0] }}
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="dropdown-team">
-                  <li><a class="dropdown-item text-center"
-                      href="/equipes/equipe">Equipe</a></li>
-                  <li><a class="dropdown-item text-center"
-                      href="/logout">Sair</a></li>
-                </ul>
-              </div>
-              {% else %}
-              <button class="btn btn-custom" style="border: 1px solid #ffffff;"
-                data-bs-toggle="modal" data-bs-target="#modal-login">Entrar</button>
-              {% endif %}
+        </div>
+        <div class="columns col-md-7">
+          <div class="row flex-row-reverse">
+            <div class="paineis col-md-3">
+              <h5>Painéis</h5>
+              <ul class="list-unstyled">
+                <li><a href="/painel/atestados" class="text-white">
+                    Atestados</a></li>
+                <li><a href="/painel/equipes" class="text-white">
+                    Equipes</a></li>
+              </ul>
+            </div>
+            <div class="atestados col-md-3">
+              <h5>Atestados</h5>
+              <ul class="list-unstyled">
+                <li><a href="/atestados/cadastro" class="text-white">Cadastro</a></li>
+                <li><a href="/atestados/acesso" class="text-white">
+                    Secretaria</a></li>
+              </ul>
+            </div>
+            <div class="equipes col-md-3">
+              <h5>Equipes</h5>
+              <ul class="list-unstyled">
+                <li><a href="/equipes/cadastro" class="text-white">Cadastro</a></li>
+                <li><a href="/equipes/acesso" class="text-white">Acesso</a></li>
+                <li><a href="/equipes/visualizar" class="text-white">Equipes</a></li>
+              </ul>
+            </div>
+            <div class="ajuda col-md-3">
+              <h5>Ajuda</h5>
+              <ul class="list-unstyled">
+                <li><a href="/faq" class="text-white">FAQ</a></li>
+                <li><a href="/usuarios/privacidade" class="text-white">Termos de Privacidade</a></li>
+                <li><a href="mailto:grupodev.tec@gmail.com" class="text-white">Entrar em contato</a></li>
+              </ul>
             </div>
           </div>
-        </div>
-      </nav>
-    </header>
-
-    <main class="container-main">{% block content %} {% endblock %}</main>
-
-    <footer class="footer-custom-bg footer-custom text-white py-4">
-      <div class="container-fluid text-center">
-        <div class="row">
-          <div class="col-12 mb-3">
-            <p class="mb-0">
-              <span>Se você tem alguma dúvida, acesse nosso <a href="/faq"
-                  class="text-white">FAQ</a></span>
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <a href="/">
-              <img src="{{ url_for('static', filename='images/logo.png') }}"
-                alt="Logo SAMA" class="footer-logo-custom" />
-            </a>
-          </div>
-          <div class="col-md-8 align-self-center">
-            <div class="row">
-              <div class="col-md-4">
-                <h5>Atestados</h5>
-                <ul class="list-unstyled">
-                  <li><a href="/atestados/cadastro"
-                      class="text-white">Cadastro</a></li>
-                  <li><a href="/atestados/acesso" class="text-white">
-                      Secretaria</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h5>Equipes</h5>
-                <ul class="list-unstyled">
-                  <li><a href="/equipes/cadastro"
-                      class="text-white">Cadastro</a></li>
-                  <li><a href="/equipes/acesso" class="text-white">Acesso</a></li>
-                  <li><a href="/equipes/visualizar" class="text-white">Equipes</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4">
-                <h5>Painéis</h5>
-                <ul class="list-unstyled">
-                  <li><a href="/painel/atestados" class="text-white">
-                      Atestados</a></li>
-                  <li><a href="/painel/equipes" class="text-white">
-                      Equipes</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-3">
-          <p class="mb-0">&copy; 2025 SAMA. Todos os direitos reservados.</p>
         </div>
       </div>
-    </footer>
-  </body>
+    </div>
+    <div class="mx-5 border-top pt-4">
+      <p class="mb-0">&copy; 2025 SAMA. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+
 </html>

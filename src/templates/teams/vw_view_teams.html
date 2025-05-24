@@ -1,56 +1,47 @@
 {% extends "teams/vw_template.html" %}
 {% block content %}
 
-<link
-rel="stylesheet"
-href="{{ url_for('static', filename='stylesheets/teams/style_view_teams.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/teams/style_view_teams.css') }}" />
 
-<h1 class="title">Equipes Cadastradas (TESTE)</h1>
+<h1 class="title">Equipes Cadastradas</h1>
+{% if teams %}
 
-<div class="team-container">
-  {% if teams %}
+
+<div class="carousel-wrapper">
+  <button class="carousel-btn left" id="btnLeft" onclick="scrollCarousel(-1)">❮</button>
+
+  <div class="team-carousel" id="teamCarousel">
+
     {% for team in teams %}
     <div class="team-card">
-      <h3 style="text-align: center; font-weight: bold;">{{ team.team }}</h3>
-      <div class="team-meta">
-        <div>Status: <span class="dev-badge">Ativa</span></div>
-        <p>ID: <span class="dev-badge">{{ team.id }}</span></p>
-        <p>Senha: <span class="dev-badge">{{ team.password }}</span></p>
-      </div>
+      <h3>{{ team.team }}</h3>
+      <div class="team-meta" style="max-width: 400px;">
+        <img src="{{ url_for('uploaded_file', filename='teams/img/' + team.img) }}" class="img-fluid rounded img-cover"
+          style="max-width: 100%;">
 
+      </div>
       <div class="member-list">
         <h4>Liderança</h4>
         <ul>
-          <li>
-            <span class="member-role">Scrum Master:</span>
-            <span class="member-email">({{ team.EmMaster }})</span>
-          </li>
-          <li>
-            <span class="member-role">Product Owner:</span>
-            <span class="member-email">({{ team.EmPOwner }})</span>
-          </li>
+          <li><span class="member-role">Scrum Master:</span> <span>{{ team.master }} ({{ team.EmMaster }})</span></li>
+          <li><span class="member-role">Product Owner:</span> <span>{{ team.pOwner }} ({{ team.EmPOwner }})</span></li>
         </ul>
-
-        {% if team.devs %}
-        <h4>Desenvolvedores</h4>
-        <ul>
-          {% for dev in team.devs %}
-          <li>
-            <span class="member-email">{{ dev.email }}</span>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
       </div>
     </div>
     {% endfor %}
-  {% else %}
-    <div class="no-teams">
-      <h3>Nenhuma equipe cadastrada</h3>
-      <p>Acesse "Cadastro de Equipes" para começar</p>
-    </div>
-  {% endif %}
+
+  </div>
+
+  <button class="carousel-btn right" id="btnRight" onclick="scrollCarousel(1)">❯</button>
 </div>
 
+{% else %}
+<div class="no-teams">
+  <h3>Nenhuma equipe cadastrada</h3>
+  <p>Acesse "Cadastro de Equipes" para começar</p>
+</div>
+{% endif %}
+</div>
+
+<script src="{{ url_for('static', filename='scripts/teams/script_view_teams.js') }}"></script>
 {% endblock %}

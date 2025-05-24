@@ -1,6 +1,5 @@
 import os
 from app import app
-import shortuuid
 import json
 from app.utilities.ut_cryptography import Criptography
 from datetime import datetime
@@ -12,7 +11,7 @@ class Teams:
     evaluationsData = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "teams", "evaluations.txt")
 
     #Construtor da classe
-    def __init__(self, team='', password='', master='', EmMaster='', pOwner='', EmPOwner='', devs=None, id=''):
+    def __init__(self, team='', password='', master='', EmMaster='', pOwner='', EmPOwner='', devs=None, id='', img=''):
         self.team = team
         self.password=password
         self.master=master
@@ -21,13 +20,12 @@ class Teams:
         self.EmPOwner=EmPOwner
         self.devs = devs if devs else []
         self.id=id
+        self.img=img
 
     #Funções de salvar dados
     #Função para salvar os dados no arquivo .txt
-    def saveDataTeam(self, team, password, master, EmMaster, pOwner, EmPOwner, devs):
+    def saveDataTeam(self, idTeam, team, password, master, EmMaster, pOwner, EmPOwner, devs):
         try:
-            idTeam = str(shortuuid.uuid())
-      
             # Formata os dados antes de criptografar
             plain_data = {
                 "id": idTeam,
@@ -37,7 +35,8 @@ class Teams:
                 "EmMaster": EmMaster,
                 'pOwner': pOwner,
                 "EmPOwner": EmPOwner,
-                "devs": devs
+                "devs": devs,
+                "img": 'default.jpg'
             }
             
             # Converte para JSON formatado (para legibilidade no arquivo)
@@ -73,7 +72,8 @@ class Teams:
                         EmMaster=team_data["EmMaster"],
                         pOwner=team_data["pOwner"],
                         EmPOwner=team_data["EmPOwner"],
-                        devs=team_data["devs"]
+                        devs=team_data["devs"],
+                        img=team_data['img']
                     )) 
             return teams
         except FileNotFoundError:
@@ -83,7 +83,6 @@ class Teams:
     #Função de Login
     def login(self, id,password):
         try:
-            print(id,password)
             teams=self.readTeam()
             for team in teams:
                 if team.id==id and team.password==password:
@@ -94,7 +93,8 @@ class Teams:
                         'EmMaster': team.EmMaster,
                         'pOwner': team.pOwner,
                         'EmPOwner': team.EmPOwner,
-                        'devs': team.devs
+                        'devs': team.devs,
+                        'img':team.img
                     }
                     return True
             return False
@@ -103,46 +103,36 @@ class Teams:
             return False
     
     #Função de editar equipe
-    def update_team(self, team_id, new_team_name, new_master, new_pOwner, new_EmMaster, new_EmPOwner, new_devs):
+    def update_team(self, team_id, new_team_name, new_master, new_pOwner, new_EmMaster, new_EmPOwner, new_devs, new_img):
         try:
             teams = self.readTeam()
-            updated = False
-            
-            with open(self.srcData, "w", encoding="utf-8") as file:
-                file.write("")
-                
-            for team in teams:
-                if team.id == team_id:
-                    team.team = new_team_name
-                    team.master = new_master
-                    team.pOwner = new_pOwner
-                    team.EmMaster = new_EmMaster
-                    team.EmPOwner = new_EmPOwner
-                    team.devs = new_devs
-                    updated = True
-                
-                plain_data = {
-                    "id": team.id,
-                    "team": team.team,
-                    "master": team.master,
-                    "pOwner": team.pOwner,
-                    "password": team.password,
-                    "EmMaster": team.EmMaster,
-                    "EmPOwner": team.EmPOwner,
-                    "status": "Pendente",
-                    "devs": team.devs
-                }
-                
-                json_data = json.dumps(plain_data, indent=2, ensure_ascii=False)
-                encrypted_data = Criptography.encrypt(json_data)
-                
-                with open(self.srcData, "a", encoding="utf-8") as file:
-                    file.write("--- INÍCIO DA EQUIPE ---\n")
+            with open(self.srcData, "w", encoding="utf-8") as file: 
+                for team in teams:
+                    if team.id == team_id:
+                        team.team = new_team_name
+                        team.master = new_master
+                        team.pOwner = new_pOwner
+                        team.EmMaster = new_EmMaster
+                        team.EmPOwner = new_EmPOwner
+                        team.devs = new_devs
+                        team.img=new_img
+                    
+                    plain_data = {
+                        "id": team.id,
+                        "team": team.team,
+                        "master": team.master,
+                        "pOwner": team.pOwner,
+                        "password": team.password,
+                        "EmMaster": team.EmMaster,
+                        "EmPOwner": team.EmPOwner,
+                        "devs": team.devs,
+                        'img':team.img
+                    }
+                    
+                    json_data = json.dumps(plain_data, indent=2, ensure_ascii=False)
+                    encrypted_data = Criptography.encrypt(json_data)
                     file.write(f"{encrypted_data}\n")
-                    file.write("--- FIM DA EQUIPE ---\n\n")
-            
-            return updated
-            
+            return True
         except Exception as e:
             print(f"Erro ao atualizar equipe: {e}")
             return False 
