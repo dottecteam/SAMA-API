@@ -116,13 +116,16 @@
                     class="container card-body">
                     <form id="change-password-form">
                         <div class="row">
-                            <div class="col-lg mt-3">
+                            <div class="col-lg mt-3" style="max-height: 3.3em;">
                                 <label class="input-title">Senha Atual:</label>
                                 <input class="form-control" type="password"
                                     id="senha_atual" name="senha_atual"
                                     required>
+                                <button type="button" class="btn btn-link btn-showpassword float-end" onclick="showPassword('#senha_atual', '#password-icon')">
+                                    <i id="password-icon" class="bi bi-eye-slash"></i>
+                                </button>
                             </div>
-                            <div class="col-lg mt-3">
+                            <div class="col-lg mt-3" style="max-height: 3.3em;">
                                 <label class="input-title">Nova Senha:</label>
                                 <input class="form-control" type="password"
                                     id="nova_senha" name="nova_senha"
@@ -130,8 +133,11 @@
                                     pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}"
                                     title="A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula, uma minúscula e um número."
                                     required>
+                                <button type="button" class="btn btn-link btn-showpassword float-end" onclick="showPassword('#nova_senha', '#new-icon-password')">
+                                    <i id="new-password-icon" class="bi bi-eye-slash"></i>
+                                </button>
                             </div>
-                            <div class="col-lg mt-3">
+                            <div class="col-lg mt-3" style="max-height: 3.3em;">
                                 <label class="input-title">Confirmar
                                     Senha:</label>
                                 <input class="form-control" type="password"
@@ -139,10 +145,13 @@
                                     minlength="8"
                                     title="Confirmar senha"
                                     required>
+                                <button type="button" class="btn btn-link btn-showpassword float-end" onclick="showPassword('#confirmar_senha', '#new-password-confirm-icon')">
+                                    <i id="new-password-confirm-icon" class="bi bi-eye-slash"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md mt-3"
+                            <div class="col-md mt-4"
                                 style="display: flex; justify-content: flex-end;">
                                 <button class="btn btn-custom"
                                     type="submit">Confirmar</button>

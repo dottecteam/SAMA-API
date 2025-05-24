@@ -45,3 +45,17 @@
 .carousel-control-next::after {
   content: '›'; /* seta pra direita */
 }
+
+.btn-showpassword, .btn-showpassword:active {
+  top: 73%;
+  right: 90%;
+  transform: translateY(-93%);
+  font-size: 1.3rem;
+  color: var(--cor-principal);
+  border: none;
+  background: transparent;
+}
+
+.btn-showpassword i {
+  cursor: pointer;
+}

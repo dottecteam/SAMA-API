@@ -207,3 +207,18 @@ $('#change-password-form').submit(function (event) {
         }
     });
 });
+
+
+
+function showPassword(passwordFieldSelector, passwordIconSelector) {
+    const $passwordField = $(passwordFieldSelector);
+    const $passwordIcon = $(passwordIconSelector);
+
+    if ($passwordField.attr('type') === 'password') {
+        $passwordField.attr('type', 'text');
+        $passwordIcon.removeClass('bi-eye-slash').addClass('bi-eye');
+    } else {
+        $passwordField.attr('type', 'password');
+        $passwordIcon.removeClass('bi-eye').addClass('bi-eye-slash');
+    };
+};

@@ -304,3 +304,12 @@ a {
 #toggle-confirm-password-user i {
   cursor: pointer;
 }
+
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-reveal,
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+  appearance: none;
+  pointer-events: none;
+}
