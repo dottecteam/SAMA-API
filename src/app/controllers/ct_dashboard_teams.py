@@ -36,8 +36,3 @@ class DashboardTeams:
 
             avarageAll.append(avarage) 
         return avarageAll
-
-            
-            
-                
-        

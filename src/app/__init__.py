@@ -12,6 +12,7 @@ app.secret_key = os.getenv('SECRET_KEY')
 secretary_password = os.getenv('PASSWORD_SECRETARY')
 admin_password = os.getenv('PASSWORD')
 admin_email = os.getenv('EMAIL')
-cripto_key=os.getenv('CRIPTO_KEY')
+cripto_key = os.getenv('CRIPTO_KEY')
+app.jinja_env.globals['abs'] = abs
 
 from app.views import routes_certificates, routes_teams
