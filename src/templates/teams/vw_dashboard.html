@@ -10,8 +10,9 @@
 
 <input type="hidden" id="team-id"
     value="{{session['team']['id']}}">
-<input type="hidden" id="team-evaluation" value="{{data[0]['time']}}">
+
 {% if data[0] %}
+<input type="hidden" id="team-evaluation" value="{{data[0]['time']}}">
 <div class="container-fluid" id="container-dashboard">
     <div class="row h-100 g-3">
         <!-- Primeira Coluna -->
