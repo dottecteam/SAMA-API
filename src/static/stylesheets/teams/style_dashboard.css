@@ -18,26 +18,34 @@
     white-space: nowrap;
 }
 
-/* Impede o gráfico de crescer demais */
-canvas {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 100%;
-    aspect-ratio: 16 / 9;
+.mobile-export {
+    width: 660px;
+    height: 1125px;
 }
 
-/* Ajusta colunas nos gráficos somente no responsivo */
-@media (max-width: 768px) {
+@media print {
+    main {
+        width: 768px !important;
+    }
+}
+
+.mobile-export {
+    width: 768px;
+    margin-top: 50%;
+}
+
+.mobile-export {
+    
     .col-md-2 {
         width: 100%;
         flex-wrap: wrap;
         flex-direction: row !important;
+        margin-top: 25%;
     }
 
-    .col-md-2 > div {
+    .col-md-2>div {
         flex: 1 1 48%;
     }
-
 
     .team-developer {
         font-size: 1rem;
@@ -48,7 +56,66 @@ canvas {
         font-size: 2rem;
     }
 
-    .col-md-10 > .row > .col-4, .col-md-10 > .row > .col-8, .col-md-10 > .row > .col-7, .col-md-10 > .row > .col-5 {
+    .col-md-10 {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .col-md-10>.row>.col-4,
+    .col-md-10>.row>.col-8,
+    .col-md-10>.row>.col-7,
+    .col-md-10>.row>.col-5 {
+        flex: 1 1 100%;
+    }
+
+    #radar-chart-container {
+        display: none;
+    }
+
+    #chart-controller {
+        display: none;
+    }
+}
+
+
+/* Impede o gráfico de crescer demais */
+canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+/* Ajusta colunas nos gráficos somente no responsivo */
+@media (orientation: portrait) {
+    .col-md-2 {
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: row !important;
+    }
+
+    .col-md-2>div {
+        flex: 1 1 48%;
+    }
+
+    .team-developer {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .text-dashboard h1 {
+        font-size: 2rem;
+    }
+
+    .col-md-10 {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .col-md-10>.row>.col-4,
+    .col-md-10>.row>.col-8,
+    .col-md-10>.row>.col-7,
+    .col-md-10>.row>.col-5 {
         flex: 1 1 100%;
     }
 }

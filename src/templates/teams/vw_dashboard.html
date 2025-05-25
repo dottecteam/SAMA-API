@@ -8,6 +8,9 @@
     var avarage = JSON.parse('{{avarage | tojson}}');
 </script>
 
+<input type="hidden" id="team-id"
+    value="{{session['team']['id']}}">
+<input type="hidden" id="team-evaluation" value="{{data[0]['time']}}">
 {% if data[0] %}
 <div class="container-fluid" id="container-dashboard">
     <div class="row h-100 g-3">
@@ -48,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-4" id="radar-chart-container">
                     <div class="border rounded p-3 text-center h-100">
                         <div class="h-75">
                             <canvas id="radar-chart"
@@ -82,7 +85,7 @@
                                 + avarage[0][2] + avarage[0][3]) / 4)}}</h1>
                             <span class="text-muted">Média</span>
                         </div>
-                        
+
                         <div class="text-dashboard align-self-center col-6">
                             <h1 id="performance">
                                 {% set last_avarage = (avarage[0][0] +
@@ -122,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-7">
+                <div class="col-7" id="chart-controller">
                     <div class="border rounded p-3 text-center h-100">
                         <div class="row h-100">
                             <div
@@ -138,7 +141,13 @@
                                         evaluation['time'][0:4] }}</option>
 
                                     {% endfor %}
-                                </div>
+                                </select>
+                            </div>
+                            <div
+                                class="col-3 border-end h-100 align-items-center d-flex flex-column justify-content-center">
+                                <button id="export-chart"
+                                    class="btn btn-success">Exportar
+                                    gráfico</button>
                             </div>
                         </div>
                     </div>
@@ -146,84 +155,90 @@
             </div>
         </div>
     </div>
+</div>
 
-    {% else %}
-    <div class="container-fluid" id="container-dashboard">
-        <div class="row h-100 g-3">
-            <!-- Primeira Coluna -->
-            <div class="col-md-2 d-flex flex-column gap-3">
-                <div
-                    class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                    <h1>-</h1>
-                    <span class="text-muted">Proatividade</span>
-                </div>
-                <div
-                    class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                    <h1>-</h1>
-                    <span class="text-muted">Autonomia</span>
-                </div>
-                <div
-                    class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                    <h1>-</h1>
-                    <span class="text-muted">Colaboração</span>
-                </div>
-                <div
-                    class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                    <h1>-</h1>
-                    <span class="text-muted">Entrega</span>
-                </div>
+{% else %}
+<div class="container-fluid" id="container-dashboard">
+    <div class="row h-100 g-3">
+        <!-- Primeira Coluna -->
+        <div class="col-md-2 d-flex flex-column gap-3">
+            <div
+                class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
+                <h1>-</h1>
+                <span class="text-muted">Proatividade</span>
             </div>
+            <div
+                class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
+                <h1>-</h1>
+                <span class="text-muted">Autonomia</span>
+            </div>
+            <div
+                class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
+                <h1>-</h1>
+                <span class="text-muted">Colaboração</span>
+            </div>
+            <div
+                class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
+                <h1>-</h1>
+                <span class="text-muted">Entrega</span>
+            </div>
+        </div>
 
-            <!-- Segunda Coluna: 2 linhas com 2 elementos cada -->
-            <div class="col-md-10 d-flex flex-column gap-3">
-                <!-- Linha de cima -->
-                <div class="row flex-fill g-3">
-                    <div class="col-8">
-                        <div class="border rounded p-3 text-center h-100">
-                            <div
-                                class="h-100 w-100 d-flex justify-content-center flex-column">
-                                <h1>---</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="border rounded p-3 text-center h-100">
-                            <div class="h-75">
-                                <h1>---</h1>
-                            </div>
+        <!-- Segunda Coluna: 2 linhas com 2 elementos cada -->
+        <div class="col-md-10 d-flex flex-column gap-3">
+            <!-- Linha de cima -->
+            <div class="row flex-fill g-3">
+                <div class="col-8">
+                    <div class="border rounded p-3 text-center h-100">
+                        <div
+                            class="h-100 w-100 d-flex justify-content-center flex-column">
+                            <h1>---</h1>
                         </div>
                     </div>
                 </div>
-
-                <!-- Linha de baixo -->
-                <div class="row flex-fill g-3">
-                    <div class="col-5">
-                        <div class="border rounded p-3 text-center h-100 row">
-                            <div
-                                class="text-dashboard align-self-center col-6 border-end">
-                                <h1>-</h1>
-                                <span class="text-muted">Média</span>
-                            </div>
-                            <div class="text-dashboard align-self-center col-6">
-                                <h1>
-                                    -
-                                </h1>
-                                <span class="text-muted">Rendimento</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-7">
-                        <div class="border rounded p-3 text-center h-100">
+                <div class="col-4">
+                    <div class="border rounded p-3 text-center h-100">
+                        <div class="h-75">
                             <h1>---</h1>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Linha de baixo -->
+            <div class="row flex-fill g-3">
+                <div class="col-5">
+                    <div class="border rounded p-3 text-center h-100 row">
+                        <div
+                            class="text-dashboard align-self-center col-6 border-end">
+                            <h1>-</h1>
+                            <span class="text-muted">Média</span>
+                        </div>
+                        <div class="text-dashboard align-self-center col-6">
+                            <h1>
+                                -
+                            </h1>
+                            <span class="text-muted">Rendimento</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="border rounded p-3 text-center h-100">
+                        <h1>---</h1>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    {% endif %}
+</div>
+{% endif %}
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer
-        src="{{ url_for('static', filename='scripts/teams/script_dashboard.js') }}"></script>
-    {% endblock %}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script defer
+    src="{{ url_for('static', filename='scripts/teams/script_dashboard.js') }}"></script>
+{% endblock %}

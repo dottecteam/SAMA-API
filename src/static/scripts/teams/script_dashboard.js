@@ -150,7 +150,6 @@ $(document).ready(function () {
 
         let lastAvarage = (avarage[indexAvarage].reduce((a, b) => a + b, 0) / avarage[indexAvarage].length);
         let oldAvarage = (avarage[indexAvarage + 1] ? (avarage[indexAvarage + 1].reduce((a, b) => a + b, 0) / avarage[indexAvarage + 1].length) : 0);
-        console.log(lastAvarage, oldAvarage, avarage[indexAvarage + 1], indexAvarage + 1);
         let performanceDashboard = ((lastAvarage - oldAvarage) / oldAvarage * 100).toFixed(1);
 
         if (oldAvarage === 0) {
@@ -176,7 +175,6 @@ $(document).ready(function () {
                 `${performanceDashboard}`
             );
         }
-        console.log(performanceDashboard);
     });
 
     $('.team-developer').click(function () {
@@ -202,4 +200,34 @@ $(document).ready(function () {
 
         chartRadar.update()
     });
+
+    $('#export-chart').click(function () {
+        $('#modal-loading').modal('show');
+        const mainElement = document.querySelector('main');
+
+        // Aplica classe que força o estilo mobile
+        mainElement.classList.add('mobile-export', 'mobile-export-force');
+
+        html2canvas(mainElement).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const imgWidth = pageWidth;
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+            pdf.save('dashboard.pdf');
+
+            // Remove a classe depois
+            mainElement.classList.remove('mobile-export', 'mobile-export-force');
+        });
+
+        setTimeout(() => {
+            $('#modal-loading').modal('hide');
+        }, 1000);
+    });
+
 });
+
