@@ -262,3 +262,36 @@
 [2025-05-25 15:42:24] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
 [2025-05-25 16:51:45] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
 [2025-05-25 16:52:18] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 18:43:55] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-25 18:46:06] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-25 18:46:24] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 18:46:38] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 18:46:57] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 18:47:07] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 18:47:45] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 18:49:45] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 18:50:20] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 18:55:38] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 18:59:20] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 19:01:43] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-25 19:03:11] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = User: Login
+[2025-05-25 19:09:35] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = Account: Logout
+[2025-05-25 19:09:43] IP = 127.0.0.1 | Account = Secretary | Operation = Secretary: Login
+[2025-05-25 19:10:11] IP = 127.0.0.1 | Account = Secretary | Operation = Account: Logout
+[2025-05-25 19:10:59] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = User: Login
+[2025-05-25 19:19:51] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = Account: Logout
+[2025-05-25 19:20:46] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-25 19:25:42] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 20:04:31] IP = 192.168.15.4 | Account = .Tec | Operation = Team: Login
+[2025-05-25 20:06:47] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 20:06:47] IP = 192.168.15.4 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 20:08:12] IP = 192.168.15.4 | Account = .Tec | Operation = Account: Logout
+[2025-05-25 20:15:18] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 20:06:47)
+[2025-05-25 20:17:09] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 16:51:45)
+[2025-05-25 20:17:44] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 16:52:18)
+[2025-05-25 20:17:55] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 20:18:06] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 20:18:18] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 20:18:30] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 20:19:07] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 20:18:30)
+[2025-05-25 20:19:21] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 20:17:55)

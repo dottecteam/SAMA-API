@@ -175,6 +175,7 @@ $(document).ready(function () {
                 `${performanceDashboard}`
             );
         }
+        $('#team-evaluation').val(data[indexAvarage]['time']);
     });
 
     $('.team-developer').click(function () {
@@ -182,6 +183,7 @@ $(document).ready(function () {
         $(this).addClass('active');
 
         let selectedEmail = $(this).data('email');
+
 
         if (!data[indexAvarage]['evaluations'][selectedEmail]) {
             $('#error-message').html('Nenhuma avaliação encontrada para este desenvolvedor.');
@@ -229,5 +231,41 @@ $(document).ready(function () {
         }, 1000);
     });
 
+    $('#delete-evaluation').click(function () {
+        $('#modal-confirm').modal('show');
+    });
+
+    $('#btn-confirm').click(function () {
+        $('#modal-confirm').modal('hide');
+        $('#modal-loading').modal('show');
+        $.ajax({
+            url: '/equipes/avaliacoes/deletar',
+            type: 'POST',
+            data: {
+                evaluation_time: $('#team-evaluation').val()
+            },
+            success: function (response) {
+                setTimeout(() => {
+                    $('#modal-loading').modal('hide');
+                    if (response.status) {
+                        window.location.reload();
+                    } else {
+                        $('#error-message').html(response.message);
+                        $('#modal-error').modal('show');
+                    }
+                }, 1000);
+
+            },
+            error: function () {
+                setTimeout(() => {
+                    $('#modal-loading').modal('hide');
+                    $('#error-message').html('Erro ao excluir a avaliação.');
+                    $('#modal-error').modal('show');
+                }, 1000);
+
+            }
+        });
+
+    });
 });
 

@@ -8,10 +8,27 @@
     var avarage = JSON.parse('{{avarage | tojson}}');
 </script>
 
-<input type="hidden" id="team-id"
-    value="{{session['team']['id']}}">
-
 {% if data[0] %}
+
+<!-- Modal Bootstrap para confirmar alteração no status do atestado -->
+<div class="modal fade" id="modal-confirm">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmar ação</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza de que deseja excluir a avaliação selecionada?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-danger" id="btn-confirm">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <input type="hidden" id="team-evaluation" value="{{data[0]['time']}}">
 <div class="container-fluid" id="container-dashboard">
     <div class="row h-100 g-3">
@@ -150,6 +167,11 @@
                                     class="btn btn-success">Exportar
                                     gráfico</button>
                             </div>
+                            <div
+                                class="col-3 border-end h-100 align-items-center d-flex flex-column justify-content-center">
+                                <button id="delete-evaluation"
+                                    class="btn btn-danger">Deletar Avaliação</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -234,6 +256,7 @@
 </div>
 {% endif %}
 
+{{data}}
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script

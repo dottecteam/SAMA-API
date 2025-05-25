@@ -222,3 +222,18 @@ class Teams:
         except Exception as e:
             print(f"Error: {e}")
             return "Erro ao ler equipes"
+
+    def deleteEvaluation(self, id, time):
+        try:
+            evaluations = self.readEvaluations()
+            with open(self.evaluationsData, 'w', encoding='utf-8') as file:
+                for evaluation in evaluations:
+                    if evaluation['id'] == id and evaluation['time'] == time:
+                        continue  # Skip the evaluation to be deleted
+                    json_data = json.dumps(evaluation, indent=2, ensure_ascii=False)
+                    encrypted_data = Criptography.encrypt(json_data)
+                    file.write(f"{encrypted_data}\n")
+            return True
+        except Exception as e:
+            print(f"Erro ao deletar avaliação: {e}")
+            return False

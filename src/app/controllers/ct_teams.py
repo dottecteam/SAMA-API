@@ -309,3 +309,21 @@ class TeamsController:
         except Exception as e:
             print(f"Error: {e}")
             return False
+
+    def deleteEvaluation():
+        try:
+            if 'team' not in session:
+                return jsonify({"status": False, "message": "Acesso não autorizado."}), 401
+            
+            team_id = session['team']['id']
+            evaluation_time = request.form.get('evaluation_time')
+
+            if Teams().deleteEvaluation(team_id, evaluation_time):
+                Log().register(operation=f'Team: Evaluation Deleted ({evaluation_time})')
+                return jsonify({"status": True, "message": "Avaliação deletada com sucesso!"}), 200
+            else:
+                Log().register(operation=f'Team: Failed Evaluation Deletion Attempt ({evaluation_time})')
+                return jsonify({"status": False, "message": "Erro ao deletar avaliação."}), 400
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"status": False, "message": "Erro interno ao deletar avaliação."}), 500

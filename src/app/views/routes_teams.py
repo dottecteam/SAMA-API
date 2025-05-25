@@ -34,11 +34,13 @@ def view_teams():
 
 #Página de minha equipe
 @app.route("/equipes/equipe")
+@TeamsController.loginRequired  
 def team_profile():
     return render_template("teams/vw_profile.html", team=TeamsController.readTeamById())
 
 #Página de criar avaliações
 @app.route("/equipes/avaliacoes")
+@TeamsController.loginRequired 
 def evaluate():
     return render_template("teams/vw_form_evaluate.html")
 #TELAS
@@ -70,4 +72,9 @@ def save_evaluations():
 @app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route("/equipes/avaliacoes/deletar", methods=['POST'])
+@TeamsController.loginRequired
+def delete_evaluation():
+    return TeamsController.deleteEvaluation()
 #FUNÇÕES
