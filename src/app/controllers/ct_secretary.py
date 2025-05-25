@@ -14,6 +14,7 @@ class SecretaryController:
 
     def loginSecretary():
         try:
+            session.clear()
             password = request.form.get('input-password-secretary')
             secretary=Secretary()
             response = secretary.login(password)

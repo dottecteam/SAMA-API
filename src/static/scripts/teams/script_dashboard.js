@@ -111,7 +111,8 @@ $(document).ready(function () {
         const selectedEmail = $(this).data('email');
 
         if (!data[0]['evaluations'][selectedEmail]) {
-            alert('Dados não encontrados para este usuário!');
+            $('#error-message').html('Nenhuma avaliação encontrada para este desenvolvedor.');
+            $('#modal-error').modal('show');
             chartRadar.data.datasets[0].data = [0, 0, 0, 0]
             chartRadar.update();
             return;

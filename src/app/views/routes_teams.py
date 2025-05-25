@@ -8,7 +8,6 @@ from app.controllers.ct_dashboard_teams import DashboardTeams
 #Página de login
 @app.route("/equipes/acesso")
 def teams_access():
-    session.clear()
     return render_template("teams/vw_form_login.html")
 
 #Página de painel de atestados
@@ -54,8 +53,6 @@ def register_team():
 #Função para fazer o login da equipe
 @app.route('/equipes/acesso/logar', methods=['POST'])
 def login_team():
-    Log().register(operation='Account: Logout')
-    session.clear()
     return TeamsController.loginTeam()
 
 #Página de edição de equipe

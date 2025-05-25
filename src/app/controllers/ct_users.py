@@ -9,6 +9,7 @@ from app.models.md_log import Log
 class UserController:
     def dataValidation():
         try:
+            session.clear()
             session['name'] = request.form['input-name-form-users']
             session['email'] = request.form['input-email-form-users']
             session['course'] = request.form['select-course-form-users']
@@ -54,6 +55,8 @@ class UserController:
 
     def loginUser():
         try:
+            session.clear()
+
             email=request.form.get('input-user-form-login')
             password=request.form.get('input-password-form-login')
             user=Users()

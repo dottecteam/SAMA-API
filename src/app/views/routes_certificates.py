@@ -26,8 +26,6 @@ def faq():
 #Página de cadastro de usuários
 @app.route("/usuarios/cadastro")
 def user_register():
-    Log().register(operation='Account: Logout')
-    session.clear()
     return render_template('certificates/vw_form_register.html')
 
 # Página da política de privacidade
@@ -58,8 +56,6 @@ def certificates_register():
 #Página de login da secretaria
 @app.route("/atestados/acesso")
 def certificates_access():
-    Log().register(operation='Account: Logout')
-    session.clear()
     return render_template("certificates/vw_form_login.html")
 
 #Página de consulta de atestados

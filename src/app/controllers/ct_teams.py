@@ -25,6 +25,7 @@ class TeamsController:
     
     def loginTeam():
         try:
+            session.clear()
             id=request.form.get('input-id-team')
             password = request.form.get('input-password-team')
             teams=Teams()
@@ -43,6 +44,7 @@ class TeamsController:
     #Função que recebe os dados
     def registerTeam():
         try:
+            session.clear()
             team = request.form['input-nome-form-equipe']
             password = request.form['input-password-form']
             EmMaster = request.form['input-email-form-scmaster']
@@ -222,8 +224,6 @@ class TeamsController:
                     devEmail = dev['email']
                     devId = dev['devId']
                     evaluations[devEmail][ev] = raw_evaluations[devId + '_' + ev]
-
-            print(evaluations)
 
             if teams.save_evaluations(evaluations):
                 Log().register(operation=f'Team: Evaluation Saved')
