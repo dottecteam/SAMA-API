@@ -1,32 +1,32 @@
 $(document).ready(function () {
     const ctx = document.getElementById('line-chart').getContext('2d');
+
+    const datasets = [];
+
+    datasets.push({
+        label: 'Atual',
+        data: avarage[0],
+        borderColor: '#0d6efd',
+        backgroundColor: 'rgba(13, 110, 253, 0.1)',
+        borderWidth: 2,
+    });
+
+    if (avarage.length > 1 && avarage[1].length) {
+        datasets.push({
+            label: 'Anterior',
+            data: avarage[1],
+            borderColor: '#adb5bd',
+            borderDash: [6, 4],
+            backgroundColor: 'rgba(173, 181, 189, 0.1)',
+            borderWidth: 2,
+        });
+    }
+
     const chart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: ['Proatividade', 'Autonomia', 'Colaboração', 'Entrega'],
-            datasets: [
-                {
-                    label: 'Atual',
-                    data: [avarage[0][0], avarage[0][1], avarage[0][2], avarage[0][3]],
-                    borderColor: '#0d6efd',
-                    backgroundColor: 'rgba(13, 110, 253, 0.1)',
-                    pointBackgroundColor: '#0d6efd',
-                    borderWidth: 2,
-                    tension: 0, // Linha reta
-                    pointRadius: 6
-                },
-                {
-                    label: 'Anterior',
-                    data: [avarage[1][0], avarage[1][1], avarage[1][2], avarage[1][3]],
-                    borderColor: '#adb5bd',
-                    backgroundColor: 'rgba(173, 181, 189, 0.1)',
-                    pointBackgroundColor: '#adb5bd',
-                    borderWidth: 2,
-                    tension: 0,
-                    borderDash: [6, 4],
-                    pointRadius: 6
-                }
-            ]
+            datasets: datasets
         },
         options: {
             responsive: true,
@@ -56,7 +56,7 @@ $(document).ready(function () {
         }
     });
 
-    let email=$('.team-developer.active').data('email');
+    let email = $('.team-developer.active').data('email');
 
     const radarCtx = document.getElementById('radar-chart').getContext('2d');
     const chartRadar = new Chart(radarCtx, {
@@ -71,10 +71,10 @@ $(document).ready(function () {
                     parseFloat(data[0]['evaluations'][email]['colaboracao']),
                     parseFloat(data[0]['evaluations'][email]['entrega'])
                 ],
-                    backgroundColor: 'rgba(13, 110, 253, 0.2)', 
-                    borderColor: '#0d6efd',
-                    pointBackgroundColor: '#0d6efd'
-                }]
+                backgroundColor: 'rgba(13, 110, 253, 0.2)',
+                borderColor: '#0d6efd',
+                pointBackgroundColor: '#0d6efd'
+            }]
         },
         options: {
             responsive: true,
@@ -104,7 +104,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.team-developer').click(function() {
+    $('.team-developer').click(function () {
         $('.team-developer.active').removeClass('active')
         $(this).addClass('active');
 
@@ -116,7 +116,7 @@ $(document).ready(function () {
             chartRadar.update();
             return;
         }
-        
+
         chartRadar.data.datasets[0].data = [
             parseFloat(data[0]['evaluations'][selectedEmail]['proatividade']),
             parseFloat(data[0]['evaluations'][selectedEmail]['autonomia']),

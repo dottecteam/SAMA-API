@@ -229,3 +229,21 @@
 [2025-05-24 12:04:54] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
 [2025-05-24 12:05:21] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
 [2025-05-24 12:13:19] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-25 10:42:12] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = User: Login
+[2025-05-25 10:46:01] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = Account: Logout
+[2025-05-25 10:46:35] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-25 10:46:35] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-25 10:46:41] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-25 10:46:41] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (AxMQ7Gw8FQ9MkPGhWBaAbx)
+[2025-05-25 10:47:52] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
+[2025-05-25 10:48:07] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-25 10:48:07] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-25 11:38:03] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (RnyAy3SxReF8J7J3Cby4Kk)
+[2025-05-25 11:40:14] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 11:45:09] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 11:45:50] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 11:51:22] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 11:55:36] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-25 11:55:57] IP = 127.0.0.1 | Account = Not Logged | Operation = Account: Logout
+[2025-05-25 11:55:57] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-25 11:56:14] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
