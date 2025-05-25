@@ -4,6 +4,7 @@
 
 <script>
     var data = JSON.parse('{{ data | tojson }}');
+    console.log(data);
     var avarage = JSON.parse('{{avarage | tojson}}');
 </script>
 
@@ -14,22 +15,22 @@
         <div class="col-md-2 d-flex flex-column gap-3">
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>{{avarage[0][0]}}</h1>
+                <h1 id="proactivity">{{avarage[0][0]}}</h1>
                 <span class="text-muted">Proatividade</span>
             </div>
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>{{avarage[0][1]}}</h1>
+                <h1 id="autonomy">{{avarage[0][1]}}</h1>
                 <span class="text-muted">Autonomia</span>
             </div>
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>{{avarage[0][2]}}</h1>
+                <h1 id="collaboration">{{avarage[0][2]}}</h1>
                 <span class="text-muted">Colaboração</span>
             </div>
             <div
                 class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>{{avarage[0][3]}}</h1>
+                <h1 id="delivery">{{avarage[0][3]}}</h1>
                 <span class="text-muted">Entrega</span>
             </div>
         </div>
@@ -76,18 +77,19 @@
                     <div class="border rounded p-3 text-center h-100 row">
                         <div
                             class="text-dashboard align-self-center col-6 border-end">
-                            <h1>{{'{:.1f}'.format((avarage[0][0] + avarage[0][1]
+                            <h1 id="avarage">{{'{:.1f}'.format((avarage[0][0] +
+                                avarage[0][1]
                                 + avarage[0][2] + avarage[0][3]) / 4)}}</h1>
                             <span class="text-muted">Média</span>
                         </div>
+                        
                         <div class="text-dashboard align-self-center col-6">
-                            <h1>
-
+                            <h1 id="performance">
                                 {% set last_avarage = (avarage[0][0] +
                                 avarage[0][1] + avarage[0][2] + avarage[0][3]) /
                                 4 %}
 
-                                {% if avarage[1] %}
+                                {% if avarage|length > 1 and avarage[1] %}
                                 {% set old_avarage = (avarage[1][0] +
                                 avarage[1][1] + avarage[1][2] + avarage[1][3]) /
                                 4 %}
@@ -95,20 +97,25 @@
                                 {% set old_avarage = 0 %}
                                 {% endif %}
 
-                                {% if old_avarage==0 %}
-                                    {% set performance = 100 %}
+                                {% if old_avarage == 0 %}
+                                {% set performance = '-' %}
                                 {% else %}
-                                    {% set performance = ((last_avarage - old_avarage) / old_avarage) * 100 %}
+                                {% set performance = ((last_avarage -
+                                old_avarage) / old_avarage) * 100 %}
                                 {% endif %}
-                                
+
+                                {% if performance != '-' %}
                                 {% if performance > 0 %}
-                                <i
-                                    class="bi bi-caret-up-fill"></i>{{'{:.0f}'.format(abs(performance))}}%
+                                <i class="bi bi-caret-up-fill"></i>{{
+                                '{:.1f}'.format(abs(performance)) }}%
                                 {% elif performance < 0 %}
-                                <i
-                                    class="bi bi-caret-down-fill"></i>{{'{:.0f}'.format(abs(performance))}}%
+                                <i class="bi bi-caret-down-fill"></i>{{
+                                '{:.1f}'.format(abs(performance)) }}%
                                 {% else %}
-                                {{abs(performance)}}%
+                                {{ '{:.1f}'.format(performance) }}%
+                                {% endif %}
+                                {% else %}
+                                {{ performance }}
                                 {% endif %}
                             </h1>
                             <span class="text-muted">Rendimento</span>
@@ -117,105 +124,106 @@
                 </div>
                 <div class="col-7">
                     <div class="border rounded p-3 text-center h-100">
-                        <h1>Controles</h1>
+                        <div class="row h-100">
+                            <div
+                                class="col-3 border-end h-100 align-items-center d-flex flex-column justify-content-center">
+                                <label for="select-evaluation"
+                                    class="form-label">Avaliação</label>
+                                <select class="form-select"
+                                    id="select-evaluation">
+                                    {% for evaluation in data %}
+                                    <option value="{{loop.index0}}">{{
+                                        evaluation['time'][8:10] }}/{{
+                                        evaluation['time'][5:7] }}/{{
+                                        evaluation['time'][0:4] }}</option>
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{% else %}
-<div class="container-fluid" id="container-dashboard">
-    <div class="row h-100 g-3">
-        <!-- Primeira Coluna -->
-        <div class="col-md-2 d-flex flex-column gap-3">
-            <div
-                class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>-</h1>
-                <span class="text-muted">Proatividade</span>
-            </div>
-            <div
-                class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>-</h1>
-                <span class="text-muted">Autonomia</span>
-            </div>
-            <div
-                class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>-</h1>
-                <span class="text-muted">Colaboração</span>
-            </div>
-            <div
-                class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
-                <h1>-</h1>
-                <span class="text-muted">Entrega</span>
-            </div>
-        </div>
 
-        <!-- Segunda Coluna: 2 linhas com 2 elementos cada -->
-        <div class="col-md-10 d-flex flex-column gap-3">
-            <!-- Linha de cima -->
-            <div class="row flex-fill g-3">
-                <div class="col-8">
-                    <div class="border rounded p-3 text-center h-100">
-                        <div
-                            class="h-100 w-100 d-flex justify-content-center flex-column">
-                            <h1>---</h1>
-                        </div>
-                    </div>
+    {% else %}
+    <div class="container-fluid" id="container-dashboard">
+        <div class="row h-100 g-3">
+            <!-- Primeira Coluna -->
+            <div class="col-md-2 d-flex flex-column gap-3">
+                <div
+                    class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
+                    <h1>-</h1>
+                    <span class="text-muted">Proatividade</span>
                 </div>
-                <div class="col-4">
-                    <div class="border rounded p-3 text-center h-100">
-                        <div class="h-75">
-                            <h1>---</h1>
-                        </div>
-                        <div
-                            class="h-25 d-flex gap-3 align-items-center overflow-x-auto">
-                            <span class="border team-developer rounded"
-                                data-email="{{session['team']['EmMaster']}}">{{
-                                session['team']['master'].split()[0] }}</span>
-                            <span class="border team-developer rounded"
-                                data-email="{{session['team']['EmPOwner']}}">{{
-                                session['team']['pOwner'].split()[0] }}</span>
-                            {% for dev in session['team']['devs'] %}
-                            <span class="border team-developer rounded"
-                                data-email="{{dev.email}}">{{dev.nome.split()[0]}}</span>
-                            {% endfor %}
-                        </div>
-                    </div>
+                <div
+                    class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
+                    <h1>-</h1>
+                    <span class="text-muted">Autonomia</span>
+                </div>
+                <div
+                    class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
+                    <h1>-</h1>
+                    <span class="text-muted">Colaboração</span>
+                </div>
+                <div
+                    class="border rounded p-3 text-center flex-fill d-flex flex-column justify-content-center text-dashboard">
+                    <h1>-</h1>
+                    <span class="text-muted">Entrega</span>
                 </div>
             </div>
 
-            <!-- Linha de baixo -->
-            <div class="row flex-fill g-3">
-                <div class="col-5">
-                    <div class="border rounded p-3 text-center h-100 row">
-                        <div
-                            class="text-dashboard align-self-center col-6 border-end">
-                            <h1>-</h1>
-                            <span class="text-muted">Média</span>
+            <!-- Segunda Coluna: 2 linhas com 2 elementos cada -->
+            <div class="col-md-10 d-flex flex-column gap-3">
+                <!-- Linha de cima -->
+                <div class="row flex-fill g-3">
+                    <div class="col-8">
+                        <div class="border rounded p-3 text-center h-100">
+                            <div
+                                class="h-100 w-100 d-flex justify-content-center flex-column">
+                                <h1>---</h1>
+                            </div>
                         </div>
-                        <div class="text-dashboard align-self-center col-6">
-                            <h1>
-                                -
-                            </h1>
-                            <span class="text-muted">Rendimento</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-3 text-center h-100">
+                            <div class="h-75">
+                                <h1>---</h1>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-7">
-                    <div class="border rounded p-3 text-center h-100">
-                        <h1>Controles</h1>
+
+                <!-- Linha de baixo -->
+                <div class="row flex-fill g-3">
+                    <div class="col-5">
+                        <div class="border rounded p-3 text-center h-100 row">
+                            <div
+                                class="text-dashboard align-self-center col-6 border-end">
+                                <h1>-</h1>
+                                <span class="text-muted">Média</span>
+                            </div>
+                            <div class="text-dashboard align-self-center col-6">
+                                <h1>
+                                    -
+                                </h1>
+                                <span class="text-muted">Rendimento</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="border rounded p-3 text-center h-100">
+                            <h1>---</h1>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{% endif %}
+    {% endif %}
 
-{{ data }}
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script defer
-    src="{{ url_for('static', filename='scripts/teams/script_dashboard.js') }}"></script>
-{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer
+        src="{{ url_for('static', filename='scripts/teams/script_dashboard.js') }}"></script>
+    {% endblock %}
