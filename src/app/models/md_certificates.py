@@ -46,7 +46,7 @@ class Certificates:
         try:
             with open(self.srcData,'w',encoding="utf-8") as file:
                 for item in list:
-                    line=Criptography.encrypt(f"{item.id};{item.name};{item.email};{item.course};{item.semester};{datetime.strptime(item.dateIn.split()[0],"%d/%m/%Y").strftime("%Y-%m-%d")};{datetime.strptime(item.dateFin.split()[0],"%d/%m/%Y").strftime("%Y-%m-%d")};{item.cid};{item.pdf};{item.status}")
+                    line=Criptography.encrypt(f'{item.id};{item.name};{item.email};{item.course};{item.semester};{datetime.strptime(item.dateIn.split()[0],"%d/%m/%Y").strftime("%Y-%m-%d")};{datetime.strptime(item.dateFin.split()[0],"%d/%m/%Y").strftime("%Y-%m-%d")};{item.cid};{item.pdf};{item.status}')
                     file.write(f"{line}\n")
             return True
         except Exception as e:
