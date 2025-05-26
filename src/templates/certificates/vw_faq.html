@@ -1,6 +1,7 @@
 {% extends "certificates/vw_template.html" %}
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/certificates/style_faq.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='stylesheets/certificates/style_faq.css') }}">
 
 <h1 class="text-center">Perguntas frequentes (FAQ)</h1>
 
@@ -9,24 +10,36 @@
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading1">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse1"
+                    aria-expanded="false" aria-controls="collapse1">
                     Como faço para cadastrar um atestado médico?
                 </button>
             </h2>
-            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#faqAccordion">
+            <div id="collapse1" class="accordion-collapse collapse"
+                aria-labelledby="heading1" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Para cadastrar um atestado, acesse a área de <a href="/atestados/cadastro">Cadastro de Atestados</a>, preencha as informações necessárias (e-mail, CPF, nome, curso, CID, semestre, período de afastamento) e anexe o atestado. Em seguida, clique em "Validar".
+                    Antes de cadastrar um atestado, é necessário que você esteja
+                    logado no sistema. Após o login, acesse a área de <a
+                        class="link-custom" href="/atestados/cadastro">Cadastro
+                        de Atestados</a>, preencha o formulário com as
+                    informações solicitadas e anexe o arquivo do atestado em
+                    formato PDF. Em seguida, clique em "Cadastrar Atestado".
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading2">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                    Quais formatos de arquivo são aceitos para anexar o atestado?
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse2"
+                    aria-expanded="false" aria-controls="collapse2">
+                    Quais formatos de arquivo são aceitos para anexar o
+                    atestado?
                 </button>
             </h2>
-            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#faqAccordion">
+            <div id="collapse2" class="accordion-collapse collapse"
+                aria-labelledby="heading2" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
                     Atualmente, aceitamos apenas arquivos no formato PDF.
                 </div>
@@ -35,104 +48,133 @@
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading3">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse3"
+                    aria-expanded="false" aria-controls="collapse3">
                     Como acompanho o status do meu atestado?
                 </button>
             </h2>
-            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#faqAccordion">
+            <div id="collapse3" class="accordion-collapse collapse"
+                aria-labelledby="heading3" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Você pode acompanhar o status do seu atestado buscando pelo CPF na barra de pesquisa. O sistema mostrará se ele está "Pendente", "Aprovado" ou "Recusado".
+                    Você pode acompanhar o status do seu atestado acessando a
+                    área <a class="link-custom"
+                        href="/usuarios/atestados">Meus Atestados</a>. A página
+                    exibirá uma lista de todos os
+                    atestados cadastrados.
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading4">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse4"
+                    aria-expanded="false" aria-controls="collapse4">
                     Quem tem acesso aos atestados cadastrados?
                 </button>
             </h2>
-            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#faqAccordion">
+            <div id="collapse4" class="accordion-collapse collapse"
+                aria-labelledby="heading4" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Apenas os funcionários da secretaria têm acesso aos atestados cadastrados, garantindo a privacidade das informações.
+                    Apenas os funcionários da secretaria têm acesso aos
+                    atestados cadastrados, garantindo a privacidade das
+                    informações.
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading5">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse5"
+                    aria-expanded="false" aria-controls="collapse5">
                     Como funciona a avaliação das equipes pelo método Scrum?
                 </button>
             </h2>
-            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#faqAccordion">
+            <div id="collapse5" class="accordion-collapse collapse"
+                aria-labelledby="heading5" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    As equipes são avaliadas com base nas entregas feitas em cada sprint. Os critérios incluem proatividade, entrega, comunicação e agilidade.
+                    As equipes são avaliadas com base nas entregas feitas em
+                    cada sprint. Os critérios incluem proatividade, entrega,
+                    colaboração e autonomia.
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading6">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse6"
+                    aria-expanded="false" aria-controls="collapse6">
                     Como cadastro uma equipe?
                 </button>
             </h2>
-            <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#faqAccordion">
+            <div id="collapse6" class="accordion-collapse collapse"
+                aria-labelledby="heading6" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Acesse a área de <a href="/equipes/cadastro">Cadastro de equipes</a>, preencha o formulário com as informações da sua equipe e clique em "Criar Equipe".
+                    Acesse a área de <a class="link-custom"
+                        href="/equipes/cadastro">Cadastro de Equipes</a>,
+                    preencha o formulário com as informações da sua equipe e
+                    clique em "Criar Equipe".
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading6">
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse11"
+                    aria-expanded="false" aria-controls="collapse6">
+                    Como acesso minha equipe?
+                </button>
+            </h2>
+            <div id="collapse11" class="accordion-collapse collapse"
+                aria-labelledby="heading6" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Ao cadastrar sua equipe, você pode acessá-la na área de <a
+                        class="link-custom" href="/equipes/acesso">Equipes</a>.
+                    Lá, você terá que utilizar o ID da equipe (mandado no
+                    e-mail do Scrum Master) juntamente da senha cadastrada para acessar as
+                    informações da sua equipe.
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading7">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse7"
+                    aria-expanded="false" aria-controls="collapse7">
                     Como registro a avaliação de uma equipe?
                 </button>
             </h2>
-            <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#faqAccordion">
+            <div id="collapse7" class="accordion-collapse collapse"
+                aria-labelledby="heading7" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Após cadastrar sua equipe, acesse a área de <a href="/equipes/avaliacoes">Avaliações</a>, selecione a equipe e preencha os critérios de avaliação. Em seguida, clique em "Enviar Avaliação".
-                </div>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="heading8">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                    Posso editar uma avaliação depois de enviada?
-                </button>
-            </h2>
-            <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Sim, desde que a avaliação ainda não tenha sido finalizada pelo gestor. Você pode acessar a avaliação na aba "Minhas Avaliações" e clicar em "Editar".
-                </div>
-            </div>
-        </div>
-
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="heading9">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
-                    O sistema gera relatórios de desempenho?
-                </button>
-            </h2>
-            <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Sim! O sistema permite gerar relatórios detalhados de atestados médicos e avaliações de equipe. Você pode exportar os relatórios em PDF.
+                    Após cadastrar sua equipe, acesse a área de <a
+                        class="link-custom"
+                        href="/equipes/avaliacoes">Avaliações</a>, selecione a
+                    equipe e preencha os critérios de avaliação. Em seguida,
+                    clique em "Enviar Avaliação".
                 </div>
             </div>
         </div>
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading10">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapse10"
+                    aria-expanded="false" aria-controls="collapse10">
                     Preciso de ajuda. Como entro em contato com o suporte?
                 </button>
             </h2>
-            <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10" data-bs-parent="#faqAccordion">
+            <div id="collapse10" class="accordion-collapse collapse"
+                aria-labelledby="heading10" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Você pode entrar em contato com o suporte pelo e-mail <a href="mailto:grupodev.tec@gmail.com">grupodev.tec@gmail.com</a>, de segunda a sexta, das 8h às 18h.
+                    Você pode entrar em contato com o suporte pelo e-mail <a
+                        class="link-custom"
+                        href="mailto:grupodev.tec@gmail.com">grupodev.tec@gmail.com</a>.
                 </div>
             </div>
         </div>

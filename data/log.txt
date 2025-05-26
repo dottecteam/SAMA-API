@@ -299,3 +299,7 @@
 [2025-05-25 20:52:09] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
 [2025-05-25 20:52:41] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
 [2025-05-25 20:53:05] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 20:52:09)
+[2025-05-25 21:15:57] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-25 21:41:22] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-25 22:08:46] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-25 22:08:53] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = User: Login
