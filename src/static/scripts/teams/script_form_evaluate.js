@@ -36,18 +36,29 @@ function atualizarSlider(sliderId, inputId) {
   }
 }
 
+function InputAtualizarSlider(slider) {
+  if (slider.type !== 'range') return;
+  if (slider.type === 'range') {
+    const min = 0;
+    const max = 3;
+    const val = slider.value;
+    const percent = ((val - min) / (max - min)) * 100;
+    slider.style.background = `linear-gradient(to right, #3264fe ${percent}%, #d5d5d5 ${percent}%)`;
+  }
+}
+
 
 // Scrum Master
-function proativ_master_nota() { atualizarSlider("proativ_slider", "proatividade"); }
-function entrega_master_nota() { atualizarSlider("entrega_slider", "entrega"); }
-function comm_master_nota() { atualizarSlider("comm_slider", "comunicacao"); }
-function coop_master_nota() { atualizarSlider("coop_nota", "coop"); }
+function proativ_master_nota() { atualizarSlider("proativ_slider", "proativ_input"); }
+function autonomia_master_nota() { atualizarSlider("auto_slider", "auto_input"); }
+function colab_master_nota() { atualizarSlider("colab_slider", "colab_input"); }
+function entrega_master_nota() { atualizarSlider("entrega_slider", "entrega_input"); }
 
 // Product Owner
-function proativ_po_nota() { atualizarSlider("proativ_po_slider", "proatividade_po_val"); }
-function entrega_po_nota() { atualizarSlider("entrega_po_slider", "entrega_po_val"); }
-function comm_po_nota() { atualizarSlider("comm_po_slider", "comunicacao_po_val"); }
-function coop_po_nota() { atualizarSlider("agilidade_po_slider", "coop_po_val"); }
+function proativ_po_nota() { atualizarSlider("proativ_po_slider", "proativ_po_input"); }
+function autonomia_po_nota() { atualizarSlider("auto_po_slider", "auto_po_input"); }
+function colab_po_nota() { atualizarSlider("colab_po_slider", "colab_po_input"); }
+function entrega_po_nota() { atualizarSlider("entrega_po_slider", "entrega_po_input"); }
 
 // Desenvolvedores 
 function inicializarSlidersDevs(qtdDevs) {
@@ -153,32 +164,24 @@ let qtdDevs = devsInfo.length
 
 window.addEventListener("DOMContentLoaded", () => {
   proativ_master_nota();
+  autonomia_master_nota();
+  colab_master_nota();
   entrega_master_nota();
-  comm_master_nota();
-  coop_master_nota();
   proativ_po_nota();
+  autonomia_po_nota();
+  colab_po_nota();
   entrega_po_nota();
-  comm_po_nota();
-  coop_po_nota();
 
   document.getElementById("proativ_slider")?.addEventListener("input", proativ_master_nota);
-  document.getElementById("proatividade")?.addEventListener("input", proativ_master_input);
+  document.getElementById("auto_slider")?.addEventListener("input", autonomia_master_nota);
+  document.getElementById("colab_slider")?.addEventListener("input", colab_master_nota);
   document.getElementById("entrega_slider")?.addEventListener("input", entrega_master_nota);
-  document.getElementById("entrega")?.addEventListener("input", entrega_master_input);
-  document.getElementById("comm_slider")?.addEventListener("input", comm_master_nota);
-  document.getElementById("comunicacao")?.addEventListener("input", comm_master_input);
-  document.getElementById("coop_nota")?.addEventListener("input", coop_master_nota);
-  document.getElementById("coop")?.addEventListener("input", coop_master_input);
 
   // Product Owner
   document.getElementById("proativ_po_slider")?.addEventListener("input", proativ_po_nota);
-  document.getElementById("proatividade_po_val")?.addEventListener("input", proativ_po_input);
+  document.getElementById("auto_po_slider")?.addEventListener("input", autonomia_po_nota);
+  document.getElementById("colab_po_slider")?.addEventListener("input", colab_po_nota);
   document.getElementById("entrega_po_slider")?.addEventListener("input", entrega_po_nota);
-  document.getElementById("entrega_po_val")?.addEventListener("input", entrega_po_input);
-  document.getElementById("comm_po_slider")?.addEventListener("input", comm_po_nota);
-  document.getElementById("comunicacao_po_val")?.addEventListener("input", comm_po_input);
-  document.getElementById("agilidade_po_slider")?.addEventListener("input", coop_po_nota);
-  document.getElementById("coop_po_val")?.addEventListener("input", coop_po_input);
   // Se houver devs, clona as divs de avaliação
   if (qtdDevs > 0) {
     criarAvaliacoesDevs(qtdDevs, devsInfo);
@@ -206,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('input', (e) => {
       if (e.target.classList.contains('sync-input')) {
         const input = e.target;
-        const sliderId = input.id.replace('_input_', '_slider_');
+        const sliderId = input.id.replace('_input', '_slider');
         const slider = document.getElementById(sliderId);
         if (slider) {
           slider.value = input.value;

@@ -29,15 +29,15 @@
                         <div class="form-group p-2 col-6">
                             <label>Proatividade:</label>
                             <div class="d-flex align-items-center">
-                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="proativ_input" id="master-proatividade-slider" oninput="atualizarSlider('master-proatividade-slider', 'proativ_input')">
-                                <input type="number" min="0" max="3" step="0.1" value="0" id="proativ_input" name="master_proatividade" style="width: 60px;" class="form-control text-center sync-input">
+                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="proativ_input" id="proativ_slider">
+                                <input type="number" min="0" max="3" step="0.1" value="0" id="proativ_input" name="master_proatividade" style="width: 60px;" class="form-control text-center sync-input" oninput="InputAtualizarSlider('master_proatividade_slider')">
                             </div>
                         </div>
                         <!-- Autonomia -->
                         <div class="form-group p-2 col-6">
                             <label>Autonomia:</label>
                             <div class="d-flex align-items-center">
-                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="auto_input" id="master-autonomia-slider" oninput="atualizarSlider('master-autonomia-slider', 'auto_input')">
+                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="auto_input" id="auto_slider">
                                 <input type="number" min="0" max="3" step="0.1" value="0" id="auto_input" name="master_autonomia" style="width: 60px;" class="form-control text-center sync-input">
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                         <div class="form-group p-2 col-6">
                             <label>Colaboração:</label>
                             <div class="d-flex align-items-center">
-                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="colab_input" id="master-colaboracao-slider" oninput="atualizarSlider('master-colaboracao-slider', 'colab_input')">
+                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="colab_input" id="colab_slider">
                                 <input type="number" min="0" max="3" step="0.1" value="0" id="colab_input" name="master_colaboracao" style="width: 60px;" class="form-control text-center sync-input">
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                         <div class="form-group p-2 col-6">
                             <label>Entrega:</label>
                             <div class="d-flex align-items-center">
-                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="entrega_input" id="master-entrega-slider" oninput="atualizarSlider('master-entrega-slider', 'entrega_input')">
+                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="entrega_input" id="entrega_slider">
                                 <input type="number" min="0" max="3" step="0.1" value="0" id="entrega_input" name="master_entrega" style="width: 60px;" class="form-control text-center sync-input">
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                         <div class="form-group p-2 col-6">
                             <label>Proatividade:</label>
                             <div class="d-flex align-items-center">
-                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="proativ_po_input" id="po-proatividade-slider" oninput="atualizarSlider('po-proatividade-slider', 'proativ_po_input')">
+                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="proativ_po_input" id="proativ_po_slider">
                                 <input type="number" min="0" max="3" step="0.1" value="0" id="proativ_po_input" name="po_proatividade" style="width: 60px;" class="form-control text-center sync-input">
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="form-group p-2 col-6">
                             <label>Autonomia:</label>
                             <div class="d-flex align-items-center">
-                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="auto_po_input" id="po-autonomia-slider" oninput="atualizarSlider('po-autonomia-slider', 'auto_po_input')">
+                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="auto_po_input" id="auto_po_slider">
                                 <input type="number" min="0" max="3" step="0.1" value="0" id="auto_po_input" name="po_autonomia" style="width: 60px;" class="form-control text-center sync-input">
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                         <div class="form-group p-2 col-6">
                             <label>Colaboração:</label>
                             <div class="d-flex align-items-center">
-                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="colab_po_input" id="po-colaboracao-slider" oninput="atualizarSlider('po-colaboracao-slider', 'colab_po_input')">
+                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="colab_po_input" id="colab_po_slider">
                                 <input type="number" min="0" max="3" step="0.1" value="0" id="colab_po_input" name="po_colaboracao" style="width: 60px;" class="form-control text-center sync-input">
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                         <div class="form-group p-2 col-6">
                             <label>Entrega:</label>
                             <div class="d-flex align-items-center">
-                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="entrega_po_input" id="po-entrega-slider" oninput="atualizarSlider('po-entrega-slider', 'entrega_po_input')">
+                                <input type="range" min="0" max="3" step="0.1" value="0" class="slider me-1 sync-slider" data-target="entrega_po_input" id="entrega_po_slider">
                                 <input type="number" min="0" max="3" step="0.1" value="0" id="entrega_po_input" name="po_entrega" style="width: 60px;" class="form-control text-center sync-input">
                             </div>
                         </div>

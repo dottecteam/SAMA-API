@@ -70,7 +70,7 @@ class UserController:
         except Exception as e:
             print(f"Error: {e}")
             Log().register(operation=f'User: Login Attempt')
-            return jsonify({"status": False,"message": "Erro ao logar!"}), 400
+            return jsonify({"status": False,"message": "Erro ao logar!"}), 500
         
     def loginRequired(f):
         @wraps(f)

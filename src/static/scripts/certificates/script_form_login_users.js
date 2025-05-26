@@ -12,21 +12,20 @@ $(document).ready(function () {
                 if (response.status) {
                     window.location.href = "/";
                 } else {
-                    setTimeout(function () {
-                        $("#modal-login").modal('hide');
-                        $("#modal-error").modal('show');
-                    }, 200);
+                    $("#modal-login").modal('hide');
+                    $("#modal-error").modal('show');
 
-                    $('#error-message').html(response.mensagem);
+                    $('#error-message').html(response.message);
                 }
             },
             error: function (xhr, status, error) {
+                console.log(response)
                 setTimeout(function () {
                     $("#modal-login").modal('hide');
                     $("#modal-error").modal('show');
-                }, 200);
+                }, 200);sta
                 var response = JSON.parse(xhr.responseText); // Tenta analisar a resposta como JSON
-                var errorMessage = response.mensagem;
+                var errorMessage = response.message;
                 $('#error-message').html(errorMessage);
             },
         });
