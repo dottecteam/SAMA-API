@@ -46,7 +46,7 @@ class UserController:
             if response != True:
                 session.clear()
                 return jsonify({"status": False, "message": "Erro ao salvar dados!"}), 400
-            Log().register(operation=f'User: Register Account ({session['email']})')
+            Log().register(operation=f"User: Register Account ({session['email']})")
             session.clear()
             return jsonify({"status": True, "message": "Atestado cadastrado com sucesso!"}), 200 
         except Exception as e:
