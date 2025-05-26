@@ -118,6 +118,10 @@ canvas {
     .col-md-10>.row>.col-5 {
         flex: 1 1 100%;
     }
+
+    #chart-controller .row .border-start {
+        border-left: none !important;
+    }
 }
 
 @media (orientation: portrait) {
@@ -130,5 +134,4 @@ canvas {
     #chart-controller .row {
         height: auto !important;
     }
-
 }
