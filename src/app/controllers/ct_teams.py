@@ -327,3 +327,15 @@ class TeamsController:
         except Exception as e:
             print(f"Error: {e}")
             return jsonify({"status": False, "message": "Erro interno ao deletar avaliação."}), 500
+        
+    def deleteTeam():
+        try:
+            teams = Teams()
+            if teams.deleteTeam():
+                session.clear()
+                return jsonify({"status": True, "message": "Equipe excluída com sucesso!"}), 200
+            else:
+                return jsonify({"status": False, "message": "Erro ao excluir equipe."}), 400
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"status": False, "message": "Erro interno ao excluir equipe."}), 500

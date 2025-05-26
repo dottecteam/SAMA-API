@@ -237,3 +237,29 @@ class Teams:
         except Exception as e:
             print(f"Erro ao deletar avaliação: {e}")
             return False
+        
+    def deleteTeam(self):
+        try:
+            teams = self.readTeam()
+            with open(self.srcData, "w", encoding="utf-8") as file: 
+                for team in teams:
+                    if team.id != session['team']['id']:
+                        plain_data = {
+                            "id": team.id,
+                            "team": team.team,
+                            "master": team.master,
+                            "pOwner": team.pOwner,
+                            "password": team.password,
+                            "EmMaster": team.EmMaster,
+                            "EmPOwner": team.EmPOwner,
+                            "devs": team.devs,
+                            'img':team.img
+                        }
+                        json_data = json.dumps(plain_data, indent=2, ensure_ascii=False)
+                        encrypted_data = Criptography.encrypt(json_data)
+                        file.write(f"{encrypted_data}\n")
+            print(session['team']['id'])
+            return True
+        except Exception as e:
+            print(f"Erro ao deletar avaliação: {e}")
+            return False

@@ -13,6 +13,7 @@ document.getElementById('addDeveloper').addEventListener('click', () => {
     container.insertAdjacentHTML('beforeend', devHTML);
 });
 
+
 document.addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('remove-dev')) {
         e.target.closest('.developer-item').remove();
@@ -76,3 +77,32 @@ document.getElementById('editTeamForm').addEventListener('submit', async functio
         $('#modal-error').modal('show');
     }
 });
+
+$('#delete-team').click(function () {
+    $('#editTeamModal').modal('hide');
+    $('#modal-confirm').modal('show');
+});
+
+$("#btn-confirm").on("click", function(){
+    $.ajax({
+        type: 'POST',
+        url: '/equipes/perfil/excluir',
+        success: function(response) {
+        if (response.status) {
+            $('#modal-confirm').modal('hide');
+            window.location.href = "/";
+        } else {
+            $('#modal-confirm').modal('hide');
+            $("#modal-error").modal('show');
+            $('#error-message').html(response.message);
+        }},
+        error: function (xhr, status, error) {
+            $('#modal-confirm').modal('hide');
+            $("#modal-error").modal('show');
+            var response = JSON.parse(xhr.responseText);
+            var errorMessage = response.message;
+            $('#error-message').html(errorMessage);
+        },
+
+        })
+})

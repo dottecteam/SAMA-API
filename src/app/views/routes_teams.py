@@ -77,4 +77,9 @@ def uploaded_file(filename):
 @TeamsController.loginRequired
 def delete_evaluation():
     return TeamsController.deleteEvaluation()
+
+@app.route('/equipes/perfil/excluir', methods=['POST'])
+@TeamsController.loginRequired
+def delete_team():
+    return TeamsController.deleteTeam()
 #FUNÇÕES

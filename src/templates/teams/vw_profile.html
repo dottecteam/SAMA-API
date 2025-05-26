@@ -3,6 +3,28 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='stylesheets/teams/style_form_register.css') }}" />
 
+<!-- Modal Bootstrap para confirmar alteração no status do atestado -->
+<div class="modal fade" id="modal-confirm">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmar ação</h4>
+                <button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Tem certeza de que deseja excluir a equipe?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-danger"
+                    id="btn-confirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container mt-4">
   <div class="row align-items-stretch">
     <!-- Left container -->
@@ -67,6 +89,7 @@
         <h5 class="modal-title" id="editTeamModalLabel">Editar Equipe</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"
           aria-label="Fechar"></button>
+
       </div>
       <div class="modal-body">
         <form enctype="multipart/form-data" id="editTeamForm">
@@ -143,6 +166,7 @@
               Alterações</button>
           </div>
         </form>
+        <button class="btn btn-danger ms-3" id="delete-team" style="transform: translateY(-54px)">Excluir Equipe</button>
       </div>
     </div>
   </div>
