@@ -12,21 +12,24 @@
 
 <!-- Modal Bootstrap para confirmar alteração no status do atestado -->
 <div class="modal fade" id="modal-confirm">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Confirmar ação</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        Tem certeza de que deseja excluir a avaliação selecionada?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button class="btn btn-danger" id="btn-confirm">Confirmar</button>
-      </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmar ação</h4>
+                <button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Tem certeza de que deseja excluir a avaliação selecionada?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-danger"
+                    id="btn-confirm">Confirmar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <input type="hidden" id="team-evaluation" value="{{data[0]['time']}}">
@@ -147,7 +150,7 @@
                     <div class="border rounded p-3 text-center h-100">
                         <div class="row h-100">
                             <div
-                                class="col-3 border-end h-100 align-items-center d-flex flex-column justify-content-center">
+                                class="col-4 align-items-center d-flex flex-column justify-content-center">
                                 <label for="select-evaluation"
                                     class="form-label">Avaliação</label>
                                 <select class="form-select"
@@ -162,16 +165,25 @@
                                 </select>
                             </div>
                             <div
-                                class="col-3 border-end h-100 align-items-center d-flex flex-column justify-content-center">
+                                class="col-4 border-end border-start align-items-center d-flex flex-column justify-content-center">
+                                <label for="export-chart"
+                                    class="form-label">Exportar
+                                    gráfico</label>
                                 <button id="export-chart"
-                                    class="btn btn-success">Exportar
-                                    gráfico</button>
+                                    class="btn btn-success px-5"><i
+                                        class="bi bi-download"
+                                        style="font-weight: 1000; font-size: 1.3rem;"></i></button>
                             </div>
                             <div
-                                class="col-3 border-end h-100 align-items-center d-flex flex-column justify-content-center">
+                                class="col-4 align-items-center d-flex flex-column justify-content-center">
+                                <label for="delete-evaluation"
+                                    class="form-label">Deletar Avaliação</label>
                                 <button id="delete-evaluation"
-                                    class="btn btn-danger">Deletar Avaliação</button>
+                                    class="btn btn-danger px-5"><i
+                                        class="bi bi-trash"
+                                        style="font-weight: 1000; font-size: 1.3rem;"></i></button>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -256,7 +268,6 @@
 </div>
 {% endif %}
 
-{{data}}
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script

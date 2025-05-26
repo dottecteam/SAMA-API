@@ -35,7 +35,7 @@
 }
 
 .mobile-export {
-    
+
     .col-md-2 {
         width: 100%;
         flex-wrap: wrap;
@@ -118,4 +118,17 @@ canvas {
     .col-md-10>.row>.col-5 {
         flex: 1 1 100%;
     }
+}
+
+@media (orientation: portrait) {
+    #chart-controller {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    #chart-controller .row {
+        height: auto !important;
+    }
+
 }
