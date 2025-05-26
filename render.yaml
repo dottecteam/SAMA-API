@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: SAMA-API
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn src.app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production

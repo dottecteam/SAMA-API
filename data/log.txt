@@ -312,3 +312,8 @@
 [2025-05-25 22:46:45] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
 [2025-05-25 22:47:24] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 22:46:02)
 [2025-05-25 22:49:22] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-26 13:14:42] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (nkNiN7tzbPM5EiCiXaunRD)
+[2025-05-26 13:14:47] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (nkNiN7tzbPM5EiCiXaunRD)
+[2025-05-26 13:15:15] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (cf3sxy9okYpmN8TPLV7wkX)
+[2025-05-26 13:15:20] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-26 13:16:15] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
