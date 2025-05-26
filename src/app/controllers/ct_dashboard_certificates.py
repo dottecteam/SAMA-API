@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app.models.md_dashborad_certificates import AtestadoMetricas
+from src.app.models.md_dashborad_certificates import AtestadoMetricas
 from datetime import datetime
 
 def coletar_metricas():

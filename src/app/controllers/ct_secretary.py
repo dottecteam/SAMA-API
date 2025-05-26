@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app.models.md_secretary import Secretary
+from src.app.models.md_secretary import Secretary
 from functools import wraps
-from app.models.md_log import Log
+from src.app.models.md_log import Log
 
 class SecretaryController:
     def loginRequired(f):

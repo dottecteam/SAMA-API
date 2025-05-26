@@ -7,10 +7,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
-from app import app
-from app import admin_email, admin_password
-from app.models.md_dashborad_certificates import AtestadoMetricas
-from app.models.md_users import Users
+from src.app import app
+from src.app import admin_email, admin_password
+from src.app.models.md_dashborad_certificates import AtestadoMetricas
+from src.app.models.md_users import Users
 
 class Validation:
 

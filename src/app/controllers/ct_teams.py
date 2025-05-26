@@ -1,16 +1,16 @@
 from flask import request, redirect, url_for, jsonify, session
-from app.models.md_teams import Teams
-from app.models.md_users import Users
-from app.utilities.ut_validation import Validation
+from src.app.models.md_teams import Teams
+from src.app.models.md_users import Users
+from src.app.utilities.ut_validation import Validation
 from functools import wraps
-from app.models.md_log import Log
+from src.app.models.md_log import Log
 import shortuuid
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
-from app import app
-from app import admin_email, admin_password
+from src.app import app
+from src.app import admin_email, admin_password
 import os
 import uuid
 

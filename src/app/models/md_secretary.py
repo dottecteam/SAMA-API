@@ -1,5 +1,5 @@
 from flask import session
-from app import secretary_password
+from src.app import secretary_password
 
 class Secretary:
     def __init__(self):

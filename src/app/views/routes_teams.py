@@ -1,8 +1,8 @@
-from app import app
+from src.app import app
 from flask import render_template, redirect, url_for, session, send_from_directory
-from app.controllers.ct_teams import *
+from src.app.controllers.ct_teams import *
 import os
-from app.controllers.ct_dashboard_teams import DashboardTeams
+from src.app.controllers.ct_dashboard_teams import DashboardTeams
 
 #TELAS
 #Página de login

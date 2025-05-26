@@ -1,8 +1,8 @@
 import uuid
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app.models.md_certificates import Certificates
-from app.utilities.ut_validation import Validation
-from app.models.md_log import Log
+from src.app.models.md_certificates import Certificates
+from src.app.utilities.ut_validation import Validation
+from src.app.models.md_log import Log
 
 class CertificatesController:
 

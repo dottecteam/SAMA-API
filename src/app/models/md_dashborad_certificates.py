@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 import json
-from app.utilities.ut_cryptography import Criptography
+from src.app.utilities.ut_cryptography import Criptography
 
 class AtestadoMetricas:
     caminho_arquivo = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "certificates", "certificates.txt")

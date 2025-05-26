@@ -317,3 +317,14 @@
 [2025-05-26 13:15:15] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Login Attempt (cf3sxy9okYpmN8TPLV7wkX)
 [2025-05-26 13:15:20] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
 [2025-05-26 13:16:15] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-26 13:59:39] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-26 13:59:51] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 22:46:45)
+[2025-05-26 13:59:56] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-26 13:59:39)
+[2025-05-26 14:00:00] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
+[2025-05-26 14:00:05] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = User: Login
+[2025-05-26 14:00:50] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = Certificates: Register Certificate
+[2025-05-26 14:01:01] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = Certificates: Delete Certificate
+[2025-05-26 14:01:03] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = Account: Logout
+[2025-05-26 14:01:10] IP = 127.0.0.1 | Account = Secretary | Operation = Secretary: Login
+[2025-05-26 14:01:21] IP = 127.0.0.1 | Account = Secretary | Operation = Certificates: Update Status
+[2025-05-26 14:01:37] IP = 127.0.0.1 | Account = Secretary | Operation = Account: Logout

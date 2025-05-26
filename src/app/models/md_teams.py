@@ -1,7 +1,7 @@
 import os
-from app import app
+from src.app import app
 import json
-from app.utilities.ut_cryptography import Criptography
+from src.app.utilities.ut_cryptography import Criptography
 from datetime import datetime
 from flask import session
 

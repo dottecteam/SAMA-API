@@ -1,5 +1,5 @@
 import os
-from app.utilities.ut_cryptography import Criptography
+from src.app.utilities.ut_cryptography import Criptography
 from flask import session
 
 class Users:

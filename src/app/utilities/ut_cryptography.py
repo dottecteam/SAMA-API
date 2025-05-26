@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet
-from app import cripto_key
+from src.app import cripto_key
 
 class Criptography:
     fernet=Fernet(cripto_key)

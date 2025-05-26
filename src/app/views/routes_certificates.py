@@ -1,10 +1,10 @@
-from app import app
+from src.app import app
 from flask import render_template, redirect, url_for, session, send_from_directory
-from app.controllers.ct_certificates import *
-from app.controllers.ct_users import *
-from app.controllers.ct_secretary import *
-from app.controllers.ct_dashboard_certificates import *
-from app.models.md_log import Log
+from src.app.controllers.ct_certificates import *
+from src.app.controllers.ct_users import *
+from src.app.controllers.ct_secretary import *
+from src.app.controllers.ct_dashboard_certificates import *
+from src.app.models.md_log import Log
 import os
 
 #TELAS

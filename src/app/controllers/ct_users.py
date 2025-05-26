@@ -1,10 +1,10 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app.utilities.ut_validation import Validation
-from app.models.md_users import Users
-from app.models.md_teams import Teams
-from app.models.md_certificates import Certificates
+from src.app.utilities.ut_validation import Validation
+from src.app.models.md_users import Users
+from src.app.models.md_teams import Teams
+from src.app.models.md_certificates import Certificates
 from functools import wraps
-from app.models.md_log import Log
+from src.app.models.md_log import Log
 
 class UserController:
     def dataValidation():

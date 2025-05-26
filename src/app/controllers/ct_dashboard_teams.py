@@ -1,5 +1,5 @@
 from flask import jsonify, session
-from app.models.md_teams import Teams
+from src.app.models.md_teams import Teams
 from datetime import datetime
 
 class DashboardTeams:

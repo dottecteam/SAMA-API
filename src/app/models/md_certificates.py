@@ -1,8 +1,8 @@
 import os
 from datetime import datetime
-from app import app
+from src.app import app
 import shortuuid
-from app.utilities.ut_cryptography import Criptography
+from src.app.utilities.ut_cryptography import Criptography
 
 class Certificates:
     #Caminho do arquivo .txt
