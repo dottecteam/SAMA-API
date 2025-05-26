@@ -28,7 +28,7 @@ O desenvolvimento do projeto segue a metodologia ágil **Scrum**, uma forma adap
 
 ✔ **Sprint 1** - Home page, cadastro de atestados, consulta de atestados e página FAQ. <a href='https://drive.google.com/file/d/1ywzBtuB1bd4RrZu-ZCTQt8jgHP-A-EsA/view?usp=sharing'>Clique aqui para acessar o vídeo!</a><br>
 ✔ **Sprint 2** - Cadastro de usuários, aprovação de atestados, dashboard de atestados, cadastro de equipes ágeis. <a href='https://drive.google.com/file/d/1jTk7eODt-Jak68Yrb946AIikA18FqWzU/view?usp=sharing'>Clique aqui para acessar o vídeo!</a><br>
-⌚ **Sprint 3** - Comparador de gráficos e correção de detalhes.<br>
+✔ **Sprint 3** - Edição de equipes ágeis, cadastro de avaliações, dashboard de avaliações e edição de perfil. <a href='https://drive.google.com/file/d/1yhL3QTFPQqRvMhVtk6LwgWhd_UeKy8lJ/view?usp=sharing'>Clique aqui para acessar o vídeo!</a><br>
 
 <br> 
 <br>
@@ -45,9 +45,9 @@ ID | Epic | User Story | DOR (Definition of ready) | Effort
 7 | Dashboard (atestados) | Como funcionário da secretaria, quero visualizar uma seção com gráficos sobre as estatísticas dos alunos afastados, para comparar diferentes períodos e identificar tendências. | Gráficos de barras, linhas ou outros tipos gráficos que mostrem o número de alunos afastados por período, o funcionário deve poder selecionar diferentes períodos (exemplos: mensal, trimestral e anual) para comparar os dados, e deve ter uma opção de dowload do gráfico. | 20
 8 | Cadastro de equipes | Como avaliador, quero cadastrar minha equipe no sistema, para avaliar seu desempenho, visualizar informações relevantes e tomar decisões mais eficientes. | Um formulário que deve permitir adicionar membros, definir suas funções e deve gerar automaticamente um ID de acesso. | 8
 9 | Login de avaliadores | Como avaliador, quero acessar o sistema de equipes, para visualizar e administrar informações detalhadas sobre os membros. | Login ao sistema utilizando uma senha gerada no cadastro da equipe e testes de segurança, para garantir que os dados das equipes estejam protegidos. | 13
-10 | Avaliação de equipes | Como avaliador, quero avaliar os membros por meio de métricas de desempenho, identificar pontos fortes e áreas de melhoria, para  ter uma melhor gestão e acompanhamento do time. | Uma seção que deve medir o desempenho por meio de avaliações (exemplo: PACER), atribuir uma nota baseada em critérios predefinidos e exibir um feedback descritivo. | 13
-11 | Dashboard (equipes) | Como avaliador, quero acessar uma seção com gráficos sobre as estatísticas de desempenho dos membros, monitorar o progresso e identificar áreas de melhoria, para otimizar o desempenho e apoiar o crescimento contínuo da equipe. | Gráficos de barras, linhas ou outros tipos gráficos que reflitam as métricas de desempenho das equipes e deve haver uma opção de download do gráfico nos formatos PDF e XLSX. | 20
-12 | Comparação de gráficos | Como avaliador, quero comparar diferentes gráficos de forma clara e interativa, para identificar facilmente as variações e tendências entre eles e tomar melhores decisões. | O sistema deve permitir que o avaliador selecione dois ou mais gráficos para comparação e deve destacar as variações significativas entre os gráficos de forma visual (exemplos: cores diferentes e indicadores). | 20
+10 | Avaliação de equipes | Como avaliador, quero avaliar os membros por meio de métricas de desempenho, identificar pontos fortes e áreas de melhoria, para  ter uma melhor gestão e acompanhamento do time. | Uma seção que deve medir o desempenho por meio de avaliações (exemplo: PACER), atribuir uma nota baseada em critérios predefinidos. | 13
+11 | Dashboard (equipes) | Como avaliador, quero acessar uma seção com gráficos sobre as estatísticas de desempenho dos membros, monitorar o progresso e identificar áreas de melhoria, para otimizar o desempenho e apoiar o crescimento contínuo da equipe. | Gráficos de barras, linhas ou outros tipos gráficos que reflitam as métricas de desempenho das equipes e deve haver uma opção de download do gráfico no formato PDF. | 20
+12 | Comparação de gráficos | Como avaliador, quero comparar diferentes gráficos de forma clara e interativa, para identificar facilmente as variações e tendências entre eles e tomar melhores decisões. | O sistema deve permitir que o avaliador selecione avaliações passadas para comparação de rendimento e deve destacar as variações significativas entre os gráficos de forma visual (exemplos: cores diferentes e indicadores). | 20
 
 <br>
 <br>
@@ -64,9 +64,9 @@ Acesso de alunos | Um formulário que possibilite o cadastro de um e-mail e uma 
 Painel de gráficos (atestados) | Gráficos de barras, linhas ou outros tipos gráficos que mostrem o número de alunos afastados por período, o funcionário deve poder selecionar diferentes períodos (exemplos: mensal, trimestral e anual) para comparar os dados, e deve ter uma opção de dowload do gráfico. | Média | 2
 Cadastro de equipes | Um formulário que deve permitir adicionar membros, definir suas funções e deve gerar automaticamente um ID de acesso. | Média | 2
 Acesso de avaliadores | Login ao sistema utilizando uma senha gerada no cadastro da equipe e testes de segurança, para garantir que os dados das equipes estejam protegidos. | Média | 2
-Avaliação de equipes | Uma seção que deve medir o desempenho por meio de avaliações (exemplo: PACER), atribuir uma nota baseada em critérios predefinidos e exibir um feedback descritivo. | Alta | 3
-Painel de gráficos (equipes) | Gráficos de barras, linhas ou outros tipos gráficos que reflitam as métricas de desempenho das equipes e deve haver uma opção de download do gráfico nos formatos PDF e XLSX. | Média | 3
-Comparação de gráficos | Um sistema que deve permitir que o avaliador selecione dois ou mais gráficos para comparação e deve destacar as variações significativas entre os gráficos de forma visual (exemplos: cores diferentes e indicadores). | Média | 3
+Avaliação de equipes | Uma seção que deve medir o desempenho por meio de avaliações (exemplo: PACER), atribuir uma nota baseada em critérios predefinidos. | Alta | 3
+Painel de gráficos (equipes) | Gráficos de barras, linhas ou outros tipos gráficos que reflitam as métricas de desempenho das equipes e deve haver uma opção de download do gráfico no formato PDF. | Média | 3
+Comparação de gráficos | O sistema deve permitir que o avaliador selecione avaliações passadas para comparação de rendimento e deve destacar as variações significativas entre os gráficos de forma visual (exemplos: cores diferentes e indicadores). | Média | 3
 
 <br>
 <br>
@@ -93,7 +93,54 @@ Para garantir um sistema mais funcional e eficiente, o **SAMA** está sendo dese
 - **[jQuery](https://jquery.com/)**: Biblioteca de JavaScript que facilita a manipulação de elementos HTML e a criação de interações dinâmicas no front-end.
 - **[Flask](https://flask.palletsprojects.com/)**: Biblioteca de Python para o desenvolvimento do back-end, garantindo um servidor simples para o gerenciamento de requisições.
 - **[Visual Studio Code](https://code.visualstudio.com/)**: Editor de código leve e versátil, com suporte a extensões e múltiplas linguagens.
-- **Ajax**: Tecnologia web que permite a atualização dinâmica de partes da página.
+- **[Ajax]**: Tecnologia web que permite a atualização dinâmica de partes da página.
+- **[Chart.js]**: Biblioteca JavaScript que permite a criação de gráficos.
+
+<br>
+<br>
+
+## 🛠️ Instalação
+
+Para rodar o **SAMA** localmente, siga os passos abaixo:
+
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/Equipe-DotTec/SAMA-API.git
+   cd SAMA-API
+   ```
+
+2. **Crie um ambiente virtual**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/macOS
+   venv\Scripts\activate     # Windows
+   ```
+
+3. **Instale as dependências**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Crie um arquivo `.env`** no diretório src do projeto com o seguinte conteúdo:
+   ```
+      SECRET_KEY=sua_secret_key
+      EMAIL=seu_email
+      PASSWORD_SECRETARY=senha_da_secretaria
+      PASSWORD=senha_do_seu_email
+      CRIPTO_KEY=chave_de_criptografia
+   ```
+
+5. **Execute o sistema**
+   ```bash
+   python run.py
+   ```
+
+6. Acesse no navegador:
+   ```
+   http://localhost:5000
+   ```
+
+> ⚠️ Certifique-se de ter o **Python 3.10+** instalado em sua máquina.
 
 <br>
 <br>
@@ -104,7 +151,6 @@ Nome | Função | Github | Linkedin
 -|-|-|-
 Cauã Mehiel Faria Cursino | Developer | <a href="https://github.com/Cacow69"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> | <a href="https://www.linkedin.com/in/cauã-cursino-748485235/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
 Gabriel Borges de Toledo | Developer | <a href="https://github.com/Gabe-Borges"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> | <a href="https://www.linkedin.com/in/gabriel-borges-de-toledo-b922a433b/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
-Guilherme Silva Corrêa | Developer | <a href="https://github.com/Vaporwaffle"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> | <a href="https://www.linkedin.com/in/guilherme-silva-corr%C3%AAa-a4a36b316/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
 João Paulo Aparecido Santos | Scrum master | <a href="https://github.com/jopaul0"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> | <a href="https://www.linkedin.com/in/joaosantos02/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
 Kauan Victor Domingues do Nascimento | Developer | <a href="https://github.com/KauanDomingues"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> | <a href="https://www.linkedin.com/in/kauan-domingues-3b00a5276/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
 Luiz Gabriel Lakner dos Santos | Developer | <a href="https://github.com/Lakner13"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> | <a href="https://www.linkedin.com/in/gabriel-lakner-734528264/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin$logoColor=white"> </a>

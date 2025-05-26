@@ -303,3 +303,12 @@
 [2025-05-25 21:41:22] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
 [2025-05-25 22:08:46] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
 [2025-05-25 22:08:53] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = User: Login
+[2025-05-25 22:43:15] IP = 127.0.0.1 | Account = jpaulo3907@gmail.com | Operation = Account: Logout
+[2025-05-25 22:45:04] IP = 127.0.0.1 | Account = Not Logged | Operation = Team: Register Team
+[2025-05-25 22:45:25] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-25 22:45:37] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (cf3sxy9okYpmN8TPLV7wkX)
+[2025-05-25 22:46:02] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 22:46:23] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (cf3sxy9okYpmN8TPLV7wkX)
+[2025-05-25 22:46:45] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-25 22:47:24] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-25 22:46:02)
+[2025-05-25 22:49:22] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
