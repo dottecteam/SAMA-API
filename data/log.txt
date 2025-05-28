@@ -328,3 +328,11 @@
 [2025-05-26 14:01:10] IP = 127.0.0.1 | Account = Secretary | Operation = Secretary: Login
 [2025-05-26 14:01:21] IP = 127.0.0.1 | Account = Secretary | Operation = Certificates: Update Status
 [2025-05-26 14:01:37] IP = 127.0.0.1 | Account = Secretary | Operation = Account: Logout
+[2025-05-27 21:58:43] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Login
+[2025-05-27 22:00:03] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-27 22:00:17] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-27 22:00:03)
+[2025-05-27 22:00:19] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Deleted (2025-05-26 13:16:15)
+[2025-05-27 22:01:15] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Update Team Data (cf3sxy9okYpmN8TPLV7wkX)
+[2025-05-27 22:01:39] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-27 22:02:17] IP = 127.0.0.1 | Account = .Tec | Operation = Team: Evaluation Saved
+[2025-05-27 22:03:16] IP = 127.0.0.1 | Account = .Tec | Operation = Account: Logout
