@@ -142,17 +142,6 @@ function criarAvaliacoesDevs(qtdDevs, devsInfo = []) {
             </div>
         `;
     container.appendChild(devDiv);
-
-    const row = document.getElementById(`dev_${i}_sliders`);
-    labels.forEach((label, index) => {
-      const sliderId = `${label.toLowerCase()}_dev_slider_${i}`;
-      const inputId = `${label.toLowerCase()}_dev_input_${i}`;
-      row.innerHTML += generateSliderHTML(label, sliderId, inputId);
-
-      if ((index + 1) % 2 === 0 && index + 1 < labels.length) {
-        row.innerHTML += '<div class="w-100"></div>';
-      }
-    });
   }
 
   inicializarSlidersDevs(qtdDevs);
